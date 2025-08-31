@@ -1,12 +1,17 @@
 import { Box, Button, Container, Flex, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
+import { useAuth } from "../contexts/auth-context";
+import { LoginModal } from "./login-modal";
 import { MobileMenu } from "./topbar-mobile-menu";
+import { UserMenu } from "./user-menu";
 
 const culturalCategories = ["Arte", "Música", "Cine", "Teatro", "Eventos"];
 
 export const Topbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const { isLogged } = useAuth();
 
   return (
     <Box
@@ -85,23 +90,23 @@ export const Topbar = () => {
               <FiHeart /> Lugares Favoritos
             </Button>
 
-            <Button
-              colorScheme="brand"
-              variant="solid"
-              size="md"
-              borderRadius="full"
-              px={6}
-              _hover={{
-                bg: "brand.200",
-                color: "black",
-              }}
-              transition="all 0.2s"
-            >
-              <FiUser />
-              Iniciar Sesión
-            </Button>
+            {isLogged ? (
+              <UserMenu />
+            ) : (
+              <Button
+                colorScheme="brand"
+                variant="solid"
+                size="md"
+                borderRadius="full"
+                px={6}
+                transition="all 0.2s"
+                onClick={() => setLoginModalOpen(true)}
+              >
+                <FiUser />
+                Iniciar Sesión
+              </Button>
+            )}
 
-            {/* Menú Móvil */}
             <Button
               variant="ghost"
               size="md"
@@ -189,6 +194,11 @@ export const Topbar = () => {
           </Box>
         </Stack>
       </Container>
+
+      <LoginModal
+        isOpen={loginModalOpen}
+        onClose={() => setLoginModalOpen(false)}
+      />
     </Box>
   );
 };

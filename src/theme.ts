@@ -1,4 +1,38 @@
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  defineRecipe,
+} from "@chakra-ui/react";
+
+const buttonRecipe = defineRecipe({
+  base: {
+    borderRadius: "md",
+    fontWeight: "semibold",
+  },
+  variants: {
+    variant: {
+      solid: {
+        bg: "brand.500",
+        color: "white",
+        _hover: { bg: "brand.600" },
+      },
+      outline: {
+        borderWidth: "1px",
+        borderColor: "brand.500",
+        color: "brand.500",
+        _hover: { bg: "brand.50" },
+      },
+      ghost: {
+        color: "brand.500",
+        _hover: { bg: "brand.100" },
+      },
+    },
+  },
+  defaultVariants: {
+    variant: "solid",
+  },
+});
 
 const config = defineConfig({
   theme: {
@@ -17,6 +51,9 @@ const config = defineConfig({
           900: { value: "#7c2d12" },
         },
       },
+    },
+    recipes: {
+      button: buttonRecipe,
     },
   },
 });

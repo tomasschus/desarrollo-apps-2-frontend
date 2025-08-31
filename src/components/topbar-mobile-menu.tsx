@@ -1,5 +1,13 @@
 import { Button, Drawer, Separator, Stack, Text } from "@chakra-ui/react";
-import { FiHeart, FiSearch, FiMusic, FiCamera, FiUsers, FiStar, FiMapPin } from "react-icons/fi";
+import {
+  FiCamera,
+  FiHeart,
+  FiMapPin,
+  FiMusic,
+  FiSearch,
+  FiStar,
+  FiUsers,
+} from "react-icons/fi";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -14,15 +22,15 @@ export const MobileMenu = ({
 }: MobileMenuProps) => {
   const getCategoryIcon = (category: string) => {
     switch (category.toLowerCase()) {
-      case 'arte':
+      case "arte":
         return <FiStar />;
-      case 'música':
+      case "música":
         return <FiMusic />;
-      case 'cine':
+      case "cine":
         return <FiCamera />;
-      case 'teatro':
+      case "teatro":
         return <FiUsers />;
-      case 'eventos':
+      case "eventos":
         return <FiMapPin />;
       default:
         return <FiStar />;
@@ -53,7 +61,7 @@ export const MobileMenu = ({
               <Button
                 variant="ghost"
                 size="lg"
-                fontSize="2xl"
+                fontSize="xl"
                 aria-label="Cerrar menú"
                 onClick={onClose}
               >
