@@ -64,7 +64,7 @@ export const Topbar = () => {
               }}
               display={{
                 base: "none",
-                md: "block",
+                md: "flex",
               }}
             >
               <FiSearch /> Que hacer hoy
@@ -79,7 +79,7 @@ export const Topbar = () => {
               }}
               display={{
                 base: "none",
-                md: "block",
+                md: "flex",
               }}
             >
               <FiHeart /> Lugares Favoritos
