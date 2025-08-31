@@ -24,7 +24,12 @@ export const CulturalSpaces = () => {
             boxShadow="sm"
             bg="white"
             overflow="hidden"
-            _hover={{ boxShadow: "md" }}
+            cursor="pointer"
+            _hover={{
+              boxShadow: "none",
+              transform: "scale(1.02)",
+              borderColor: "brand.500",
+            }}
             transition="box-shadow 0.2s"
             display="flex"
             flexDirection="column"
