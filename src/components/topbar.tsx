@@ -1,8 +1,12 @@
 import { Box, Button, Container, Flex, Stack, Text } from "@chakra-ui/react";
+import { useState } from "react";
 import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
+import { MobileMenu } from "./topbar-mobile-menu";
+
+const culturalCategories = ["Arte", "Música", "Cine", "Teatro", "Eventos"];
 
 export const Topbar = () => {
-  const culturalCategories = ["Arte", "Música", "Cine", "Teatro", "Eventos"];
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <Box
@@ -15,14 +19,20 @@ export const Topbar = () => {
       borderColor="gray.200"
       boxShadow="sm"
     >
-      <Container maxW="container.xl">
+      <Container
+        maxW="container.xl"
+        px={{
+          base: 0,
+          md: 4,
+        }}
+      >
         <Flex as="nav" align="center" justify="space-between" py={4} px={2}>
           {/* Logo y Brand */}
           <Flex align="center" gap={3}>
             <Box
               p={2}
               borderRadius="lg"
-              bg="orange.500"
+              bg="brand.500"
               color="white"
               fontSize="xl"
               fontWeight="bold"
@@ -38,15 +48,28 @@ export const Topbar = () => {
               >
                 Cultura
               </Text>
-              <Text fontSize="xs" color="gray.600" letterSpacing="wider">
+              <Text fontSize="xs" color="brand.600" letterSpacing="wider">
                 DESCUBRE • CONECTA • INSPIRA
               </Text>
             </Flex>
           </Flex>
 
-          {/* Acciones del Usuario */}
           <Flex gap={3}>
-            {/* Botón de Búsqueda */}
+            <Button
+              variant="ghost"
+              size="md"
+              color="brand.700"
+              _hover={{
+                bg: "gray.100",
+              }}
+              display={{
+                base: "none",
+                md: "block",
+              }}
+            >
+              <FiSearch /> Que hacer hoy
+            </Button>
+
             <Button
               variant="ghost"
               size="md"
@@ -54,32 +77,23 @@ export const Topbar = () => {
               _hover={{
                 bg: "gray.100",
               }}
-            >
-              <FiSearch /> Buscar
-            </Button>
-
-            {/* Botón de Favoritos */}
-            <Button
-              variant="ghost"
-              size="md"
-              color="gray.700"
-              _hover={{
-                bg: "gray.100",
+              display={{
+                base: "none",
+                md: "block",
               }}
             >
               <FiHeart /> Lugares Favoritos
             </Button>
 
-            {/* Botón de Iniciar Sesión */}
             <Button
-              colorScheme="orange"
+              colorScheme="brand"
               variant="solid"
               size="md"
               borderRadius="full"
               px={6}
               _hover={{
-                transform: "translateY(-1px)",
-                boxShadow: "lg",
+                bg: "brand.200",
+                color: "black",
               }}
               transition="all 0.2s"
             >
@@ -93,12 +107,18 @@ export const Topbar = () => {
               size="md"
               display={{ base: "flex", md: "none" }}
               color="gray.700"
-              _hover={{
-                bg: "gray.100",
-              }}
+              _hover={{ bg: "gray.100" }}
+              onClick={() => setMenuOpen(true)}
+              aria-label="Abrir menú"
             >
               ☰
             </Button>
+
+            <MobileMenu
+              isOpen={menuOpen}
+              onClose={() => setMenuOpen(false)}
+              categories={culturalCategories}
+            />
           </Flex>
         </Flex>
 
@@ -117,7 +137,7 @@ export const Topbar = () => {
                 color="gray.700"
                 _hover={{
                   bg: "gray.100",
-                  color: "orange.600",
+                  color: "brand.600",
                 }}
                 transition="all 0.2s"
               >
@@ -127,21 +147,24 @@ export const Topbar = () => {
           </Flex>
 
           <Box
-            bg="orange.50"
+            bg="brand.50"
             borderTop="1px"
             borderColor="gray.200"
             py={2}
-            px={4}
+            px={{
+              sm: 0,
+              md: 4,
+            }}
           >
             <Flex
               align="center"
               justify="center"
               gap={3}
               fontSize="sm"
-              color="orange.700"
+              color="brand.700"
             >
               <Box
-                bg="orange.500"
+                bg="brand.500"
                 color="white"
                 px={3}
                 py={1}
@@ -156,7 +179,7 @@ export const Topbar = () => {
               </Text>
               <Button
                 size="xs"
-                colorScheme="orange"
+                colorScheme="brand"
                 variant="outline"
                 borderRadius="full"
               >
