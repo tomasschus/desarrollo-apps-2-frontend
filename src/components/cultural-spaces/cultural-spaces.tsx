@@ -1,7 +1,9 @@
 import { Box, Grid, Image, Stack, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 import { culturalSpacesMock } from "./cultural-spaces.mock";
 
 export const CulturalSpaces = () => {
+  const navigate = useNavigate();
   return (
     <Stack>
       <Text fontSize="xl" fontWeight="semibold" mb={4}>
@@ -18,6 +20,7 @@ export const CulturalSpaces = () => {
       >
         {culturalSpacesMock.map((space) => (
           <Box
+            onClick={() => navigate(`/espacio-cultural/${space.id}`)}
             key={space.name}
             borderWidth="1px"
             borderRadius="lg"

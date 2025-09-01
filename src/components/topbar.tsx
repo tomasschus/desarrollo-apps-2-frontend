@@ -1,6 +1,7 @@
 import { Box, Button, Container, Flex, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
+import { useNavigate } from "react-router";
 import { useAuth } from "../contexts/auth-context";
 import { LoginModal } from "./login-modal";
 import { MobileMenu } from "./topbar-mobile-menu";
@@ -12,6 +13,7 @@ export const Topbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const { isLogged } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -32,8 +34,12 @@ export const Topbar = () => {
         }}
       >
         <Flex as="nav" align="center" justify="space-between" py={4} px={2}>
-          {/* Logo y Brand */}
-          <Flex align="center" gap={3}>
+          <Flex
+            align="center"
+            gap={3}
+            cursor="pointer"
+            onClick={() => navigate("/")}
+          >
             <Box
               p={2}
               borderRadius="lg"
