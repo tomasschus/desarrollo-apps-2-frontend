@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import { useAuth } from "../contexts/auth-context";
+import { FestivalAnnouncement } from "./festival-announcement";
 import { LoginModal } from "./login-modal";
 import { MobileMenu } from "./topbar-mobile-menu";
 import { UserMenu } from "./user-menu";
@@ -93,7 +94,7 @@ export const Topbar = () => {
                 md: "flex",
               }}
             >
-              <FiHeart /> Lugares Favoritos
+              <FiHeart /> Lugares favoritos
             </Button>
 
             {isLogged ? (
@@ -157,47 +158,7 @@ export const Topbar = () => {
             ))}
           </Flex>
 
-          <Box
-            bg="brand.50"
-            borderTop="1px"
-            borderColor="gray.200"
-            py={2}
-            px={{
-              sm: 0,
-              md: 4,
-            }}
-          >
-            <Flex
-              align="center"
-              justify="center"
-              gap={3}
-              fontSize="sm"
-              color="brand.700"
-            >
-              <Box
-                bg="brand.500"
-                color="white"
-                px={3}
-                py={1}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="bold"
-              >
-                ¡NUEVO!
-              </Box>
-              <Text fontWeight="medium">
-                Festival de Arte Contemporáneo - Próximamente
-              </Text>
-              <Button
-                size="xs"
-                colorScheme="brand"
-                variant="outline"
-                borderRadius="full"
-              >
-                Más Info
-              </Button>
-            </Flex>
-          </Box>
+          <FestivalAnnouncement />
         </Stack>
       </Container>
 

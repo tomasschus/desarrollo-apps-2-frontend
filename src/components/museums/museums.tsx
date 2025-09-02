@@ -1,8 +1,11 @@
 import { Box, Grid, HStack, Text, VStack } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 import type { Museum } from "./museums.mock";
 import { museumsMock } from "./museums.mock";
 
 export const Museums = () => {
+  const navigate = useNavigate();
+
   return (
     <VStack align="start" gap={6} w="100%">
       <Text fontSize="2xl" fontWeight="bold" color="brand.600">
@@ -28,10 +31,13 @@ export const Museums = () => {
             borderColor="gray.100"
             _hover={{
               borderColor: "brand.500",
+              transform: "translateY(-2px)",
+              boxShadow: "md",
             }}
             transition="all 0.2s"
             cursor="pointer"
             align="start"
+            onClick={() => navigate(`/museos/${museum.id}`)}
           >
             <Box
               w="50px"

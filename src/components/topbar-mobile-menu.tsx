@@ -94,7 +94,7 @@ export const MobileMenu = ({
                   w="full"
                   _hover={{ bg: "brand.50" }}
                 >
-                  <FiHeart /> Lugares Favoritos
+                  <FiHeart /> Lugares favoritos
                 </Button>
               </Stack>
               <Separator />

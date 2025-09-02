@@ -3,14 +3,14 @@ import { Topbar } from "./topbar";
 
 export const ScreenLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Stack gap={6}>
+    <Stack gap={6} pb={6}>
       <Topbar />
       <HStack justifyContent={"center"} w={"full"}>
         <Stack
           w={{
             base: "full",
-            md: "md",
-            lg: "lg",
+            md: "2xl",
+            lg: "4xl",
             xl: "6xl",
           }}
           px={{
