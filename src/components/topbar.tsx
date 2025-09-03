@@ -1,4 +1,12 @@
-import { Box, Button, Container, Flex, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Image,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
 import { useNavigate } from "react-router";
@@ -7,12 +15,14 @@ import { FestivalAnnouncement } from "./festival-announcement";
 import { LoginModal } from "./login-modal";
 import { MobileMenu } from "./topbar-mobile-menu";
 import { UserMenu } from "./user-menu";
+import { WhatToDoModal } from "./what-to-do-modal";
 
 const culturalCategories = ["Arte", "Música", "Cine", "Teatro", "Eventos"];
 
 export const Topbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [whatToDoModalOpen, setWhatToDoModalOpen] = useState(false);
   const { isLogged } = useAuth();
   const navigate = useNavigate();
 
@@ -41,16 +51,7 @@ export const Topbar = () => {
             cursor="pointer"
             onClick={() => navigate("/")}
           >
-            <Box
-              p={2}
-              borderRadius="lg"
-              bg="brand.500"
-              color="white"
-              fontSize="xl"
-              fontWeight="bold"
-            >
-              C
-            </Box>
+            <Image src="/monumento.svg" alt="Monumento" boxSize={12} />
             <Flex direction="column" gap={0}>
               <Text
                 fontSize="xl"
@@ -78,6 +79,7 @@ export const Topbar = () => {
                 base: "none",
                 md: "flex",
               }}
+              onClick={() => setWhatToDoModalOpen(true)}
             >
               <FiSearch /> Que hacer hoy
             </Button>
@@ -165,6 +167,11 @@ export const Topbar = () => {
       <LoginModal
         isOpen={loginModalOpen}
         onClose={() => setLoginModalOpen(false)}
+      />
+
+      <WhatToDoModal
+        isOpen={whatToDoModalOpen}
+        onOpenChange={() => setWhatToDoModalOpen(!whatToDoModalOpen)}
       />
     </Box>
   );
