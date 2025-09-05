@@ -141,6 +141,7 @@ export const Topbar = () => {
             display={{ base: "none", md: "flex" }}
             width={"full"}
             justifyContent={"center"}
+            pb={2}
           >
             {culturalCategories.map((category) => (
               <Button
