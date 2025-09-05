@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
 import { EVENTS_ACTIVE } from "./festival-announcement.api";
@@ -18,7 +18,7 @@ interface Event {
 }
 
 export const FestivalAnnouncement = () => {
-  const { data, loading, error } = useGetDataFromBackend<Event[]>({
+  const { data } = useGetDataFromBackend<Event[]>({
     url: EVENTS_ACTIVE(),
     options: {
       method: "GET",
@@ -26,75 +26,7 @@ export const FestivalAnnouncement = () => {
     executeAutomatically: true,
   });
 
-  if (loading) {
-    return (
-      <Box
-        bg="brand.50"
-        borderTop="1px"
-        borderColor="gray.200"
-        py={2}
-        px={{
-          sm: 0,
-          md: 4,
-        }}
-      >
-        <Flex align="center" justify="center">
-          <Spinner size="sm" />
-          <Text ml={2}>Cargando eventos...</Text>
-        </Flex>
-      </Box>
-    );
-  }
-
-  if (error || !data || data.length === 0) {
-    return (
-      <Box
-        bg="brand.50"
-        borderTop="1px"
-        borderColor="gray.200"
-        py={2}
-        px={{
-          sm: 0,
-          md: 4,
-        }}
-      >
-        <Flex
-          align="center"
-          justify="center"
-          gap={3}
-          fontSize="sm"
-          color="brand.700"
-        >
-          <Box
-            bg="brand.500"
-            color="white"
-            px={4}
-            py={1}
-            borderRadius="full"
-            fontSize="xs"
-            fontWeight="extrabold"
-            textTransform="uppercase"
-            letterSpacing="wide"
-            boxShadow="sm"
-            animation={`${pulse} 2s infinite`}
-          >
-            ¡Nuevo!
-          </Box>
-          <Text fontWeight="medium">
-            Festival de Arte Contemporáneo - Próximamente
-          </Text>
-          <Button
-            size="xs"
-            colorScheme="brand"
-            variant="outline"
-            borderRadius="full"
-          >
-            Más Info
-          </Button>
-        </Flex>
-      </Box>
-    );
-  }
+  if (!data) return null;
 
   const nextEvent = data[0]; // Mostrar el primer evento activo
 
@@ -129,7 +61,7 @@ export const FestivalAnnouncement = () => {
           boxShadow="sm"
           animation={`${pulse} 2s infinite`}
         >
-          ¡Evento!
+          ¡Nuevo!
         </Box>
         <Text fontWeight="medium">
           {nextEvent.name} - {new Date(nextEvent.date).toLocaleDateString()}{" "}

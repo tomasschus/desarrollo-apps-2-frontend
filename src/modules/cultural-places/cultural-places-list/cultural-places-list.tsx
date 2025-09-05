@@ -1,5 +1,6 @@
 import { Box, Grid, Image, Spinner, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
+import { TruncatedText } from "../../../components/ui/truncated-text";
 import { useGetDataFromBackend } from "../../../hooks/useGetDataFromBackend";
 import { getCulturalPlaces } from "./cultural-places-list.api";
 
@@ -93,9 +94,7 @@ export const CulturalPlacesList = () => {
               >
                 {space.name}
               </Text>
-              <Text color="gray.700" fontSize={{ base: "sm", md: "md" }}>
-                {space.description}
-              </Text>
+              <TruncatedText text={space.description} maxLength={80} />
             </Box>
           </Box>
         ))}
