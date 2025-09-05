@@ -1,5 +1,7 @@
+import { API_BASE_URL } from "../../../config/api.config";
+
 export const getCulturalPlaceById = (id: string) =>
-  `/api/v1/cultural-places/${id}`;
+  `${API_BASE_URL}/api/v1/cultural-places/${id}`;
 
 export const getEventsByCulturalPlace = (id: string) =>
-  `/api/v1/events/cultural-place/${id}`;
+  `${API_BASE_URL}/api/v1/events/cultural-place/${id}`;
