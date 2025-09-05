@@ -1,0 +1,65 @@
+/* Estilos personalizados para react-calendar */
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  font-family: inherit !important;
+}
+
+.react-calendar__navigation {
+  margin-bottom: 1rem !important;
+}
+
+.react-calendar__navigation button {
+  color: var(--chakra-colors-brand-600) !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: var(--chakra-colors-brand-50) !important;
+}
+
+.react-calendar__month-view__weekdays {
+  text-align: center !important;
+  text-transform: uppercase !important;
+  font-weight: bold !important;
+  font-size: 0.8rem !important;
+  color: var(--chakra-colors-gray-600) !important;
+}
+
+.react-calendar__tile {
+  max-width: 100% !important;
+  padding: 0.75rem 0.5rem !important;
+  background: none !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  font-size: 0.9rem !important;
+  color: var(--chakra-colors-gray-700) !important;
+  position: relative !important;
+}
+
+.react-calendar__tile:hover {
+  background-color: var(--chakra-colors-gray-100) !important;
+}
+
+.react-calendar__tile--now {
+  background-color: var(--chakra-colors-brand-50) !important;
+  color: var(--chakra-colors-brand-700) !important;
+  font-weight: bold !important;
+}
+
+.react-calendar__tile--active {
+  background-color: var(--chakra-colors-brand-500) !important;
+  color: white !important;
+}
+
+.event-day {
+  background-color: var(--chakra-colors-brand-100) !important;
+  color: var(--chakra-colors-brand-700) !important;
+  font-weight: bold !important;
+  border-radius: 6px !important;
+}
+
+.react-calendar__tile--now.event-day {
+  background-color: var(--chakra-colors-brand-200) !important;
+}

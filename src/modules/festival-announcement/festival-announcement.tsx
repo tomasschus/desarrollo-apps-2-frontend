@@ -1,7 +1,9 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
+import { useNavigate } from "react-router";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
-import { EVENTS_ACTIVE } from "./festival-announcement.api";
+import { formatIsoDate } from "../../utils/date.utils";
+import { getActiveEvents } from "./festival-announcement.api";
 
 // Definimos la animación de pulso
 const pulse = keyframes`
@@ -18,8 +20,9 @@ interface Event {
 }
 
 export const FestivalAnnouncement = () => {
+  const navigate = useNavigate();
   const { data } = useGetDataFromBackend<Event[]>({
-    url: EVENTS_ACTIVE(),
+    url: getActiveEvents(),
     options: {
       method: "GET",
     },
@@ -29,6 +32,10 @@ export const FestivalAnnouncement = () => {
   if (!data) return null;
 
   const nextEvent = data[0]; // Mostrar el primer evento activo
+
+  const handleBuyTickets = () => {
+    navigate(`/evento/${nextEvent._id}`);
+  };
 
   return (
     <Box
@@ -64,7 +71,8 @@ export const FestivalAnnouncement = () => {
           ¡Nuevo!
         </Box>
         <Text fontWeight="medium">
-          {nextEvent.name} - {new Date(nextEvent.date).toLocaleDateString()}{" "}
+          {nextEvent.name} -{" "}
+          {formatIsoDate(nextEvent.date, { format: "DD/MM/YYYY" })}{" "}
           {nextEvent.time}
         </Text>
         <Button
@@ -72,8 +80,9 @@ export const FestivalAnnouncement = () => {
           colorScheme="brand"
           variant="outline"
           borderRadius="full"
+          onClick={handleBuyTickets}
         >
-          Ver Más
+          Comprar Entradas
         </Button>
       </Flex>
     </Box>

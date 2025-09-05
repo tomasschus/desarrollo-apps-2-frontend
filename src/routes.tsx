@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import { ScreenLayout } from "./components/screen-layout";
 import { CulturalPlacesList } from "./modules/cultural-places/cultural-places-list/cultural-places-list";
 import { SingleCulturalPlaces } from "./modules/cultural-places/single-cultural-places/cultural-places";
+import { SingleEvent } from "./modules/events/single-event";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,14 @@ const router = createBrowserRouter([
     element: (
       <ScreenLayout>
         <SingleCulturalPlaces />
+      </ScreenLayout>
+    ),
+  },
+  {
+    path: "/evento/:id",
+    element: (
+      <ScreenLayout>
+        <SingleEvent />
       </ScreenLayout>
     ),
   },
