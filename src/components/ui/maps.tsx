@@ -1,4 +1,4 @@
-import { Card } from "@chakra-ui/react";
+import { Card, Text } from "@chakra-ui/react";
 import "leaflet/dist/leaflet.css";
 import {
   MapContainer,
@@ -6,13 +6,20 @@ import {
   Polyline,
   Popup,
   TileLayer,
+  type MapContainerProps,
 } from "react-leaflet";
 
 type MapsProps = {
+  cardTitle: string;
   coordinates: { lat: number; lng: number; description: string };
+  mapsProps?: MapContainerProps;
 };
 
-export const Maps = ({ coordinates }: MapsProps) => {
+export const Maps = ({
+  coordinates,
+  mapsProps = {},
+  cardTitle = "",
+}: MapsProps) => {
   if (!coordinates) {
     return <div>No coordinates to display</div>;
   }
@@ -21,11 +28,19 @@ export const Maps = ({ coordinates }: MapsProps) => {
 
   return (
     <Card.Root>
+      <Card.Header>
+        <Card.Title>
+          <Text fontSize="xl" fontWeight="bold" color="brand.700">
+            {cardTitle}
+          </Text>
+        </Card.Title>
+      </Card.Header>
       <Card.Body>
         <MapContainer
           center={center}
           zoom={15}
           style={{ height: "400px", width: "100%" }}
+          {...mapsProps}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

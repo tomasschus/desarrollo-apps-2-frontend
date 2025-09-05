@@ -130,6 +130,7 @@ export const Detail = () => {
             />
             <NextEvents />
             <Maps
+              cardTitle="Ubicación del evento"
               coordinates={{
                 lat: culturalPlace.contact.coordinates.lat,
                 lng: culturalPlace.contact.coordinates.lng,

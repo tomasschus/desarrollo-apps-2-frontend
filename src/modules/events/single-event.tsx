@@ -143,6 +143,7 @@ export const SingleEvent = () => {
             />
             <EventCalendar eventDate={event.date} eventName={event.name} />
             <Maps
+              cardTitle="Ubicación del evento"
               coordinates={{
                 lat: event.culturalPlaceId.contact.coordinates.lat,
                 lng: event.culturalPlaceId.contact.coordinates.lng,
