@@ -41,10 +41,9 @@ export const Topbar = () => {
         maxW="container.xl"
         px={{
           base: 0,
-          md: 4,
         }}
       >
-        <Flex as="nav" align="center" justify="space-between" py={4} px={2}>
+        <Flex as="nav" align="center" justify="space-between" py={4} px={6}>
           <Flex
             align="center"
             gap={3}

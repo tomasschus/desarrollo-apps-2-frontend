@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import { useNavigate } from "react-router";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
-import { formatIsoDate } from "../../utils/date.utils";
+import { formatIsoDate, isLessThanOneWeek } from "../../utils/date.utils";
 import { getActiveEvents } from "./festival-announcement.api";
 
 // Definimos la animación de pulso
@@ -31,23 +31,16 @@ export const FestivalAnnouncement = () => {
 
   if (!data) return null;
 
-  const nextEvent = data[0]; // Mostrar el primer evento activo
+  const nextEvent = data[0] && isLessThanOneWeek(data[0].date) ? data[0] : null;
+
+  if (!nextEvent) return null;
 
   const handleBuyTickets = () => {
     navigate(`/evento/${nextEvent._id}`);
   };
 
   return (
-    <Box
-      bg="brand.50"
-      borderTop="1px"
-      borderColor="gray.200"
-      py={2}
-      px={{
-        sm: 0,
-        md: 4,
-      }}
-    >
+    <Box bg="brand.50" borderTop="1px" borderColor="gray.200" py={2}>
       <Flex
         align="center"
         justify="center"
@@ -58,8 +51,8 @@ export const FestivalAnnouncement = () => {
         <Box
           bg="brand.500"
           color="white"
-          px={4}
           py={1}
+          px={2}
           borderRadius="full"
           fontSize="xs"
           fontWeight="extrabold"

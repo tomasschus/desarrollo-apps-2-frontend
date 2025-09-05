@@ -136,3 +136,9 @@ export const decrementDateByDays = (
   modifiedDate.setDate(modifiedDate.getDate() - daysToSubstract);
   return modifiedDate;
 };
+
+export const isLessThanOneWeek = (date: string) => {
+  const eventDate = new Date(date);
+  const oneWeekFromNow = incrementDateByDays(new Date(), 7);
+  return eventDate < oneWeekFromNow;
+};

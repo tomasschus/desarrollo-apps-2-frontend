@@ -78,7 +78,6 @@ export const WhatToDoModal = ({
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
-      <Dialog.Trigger />
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content maxW="500px">
