@@ -1,11 +1,11 @@
 import { Box, Card, Grid, HStack, Text, VStack } from "@chakra-ui/react";
 import { FaClock } from "react-icons/fa";
 
-interface MuseumDetailHoursProps {
+interface HoursProps {
   openingHours: Record<string, string>;
 }
 
-export const MuseumDetailHours = ({ openingHours }: MuseumDetailHoursProps) => {
+export const Hours = ({ openingHours }: HoursProps) => {
   return (
     <Card.Root>
       <Card.Body>

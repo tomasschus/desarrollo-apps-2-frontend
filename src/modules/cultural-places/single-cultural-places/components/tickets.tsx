@@ -8,17 +8,17 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import {
+  FaCalendarAlt,
   FaChild,
   FaGraduationCap,
-  FaTicketAlt,
   FaUsers,
   FaUserTie,
 } from "react-icons/fa";
-import { useAuth } from "../../contexts/auth-context";
-import { formatMoney } from "../../utils/money.utils";
-import { Tooltip } from "../ui/tooltip";
+import { Tooltip } from "../../../../components/ui/tooltip";
+import { useAuth } from "../../../../contexts/auth-context";
+import { formatMoney } from "../../../../utils/money.utils";
 
-interface MuseumDetailTicketsProps {
+interface TicketsProps {
   ticketPrices: {
     general: number;
     students: number;
@@ -26,18 +26,16 @@ interface MuseumDetailTicketsProps {
   };
 }
 
-export const MuseumDetailTickets = ({
-  ticketPrices,
-}: MuseumDetailTicketsProps) => {
+export const Tickets = ({ ticketPrices }: TicketsProps) => {
   const { isLogged } = useAuth();
   return (
     <Card.Root>
       <Card.Body>
         <VStack align="start" gap={3}>
           <HStack gap={2}>
-            <Box as={FaTicketAlt} color="brand.500" />
+            <Box as={FaCalendarAlt} color="brand.500" />
             <Text fontSize="lg" fontWeight="semibold" color="brand.600">
-              Precios de entrada
+              Próximos eventos
             </Text>
           </HStack>
           <VStack align="stretch" gap={2} w="100%">
@@ -115,7 +113,7 @@ export const MuseumDetailTickets = ({
               disabled={!isLogged}
             >
               <HStack gap={2}>
-                <Box as={FaTicketAlt} />
+                <Box as={FaCalendarAlt} />
                 <Text fontSize="md">Comprar entradas</Text>
               </HStack>
             </Button>

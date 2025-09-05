@@ -11,7 +11,7 @@ import { useState } from "react";
 import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import { useAuth } from "../contexts/auth-context";
-import { FestivalAnnouncement } from "./festival-announcement";
+import { FestivalAnnouncement } from "../modules/festival-announcement/festival-announcement";
 import { LoginModal } from "./login-modal";
 import { MobileMenu } from "./topbar-mobile-menu";
 import { UserMenu } from "./user-menu";

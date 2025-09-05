@@ -1,9 +1,46 @@
-import { Box, Grid, Image, Stack, Text } from "@chakra-ui/react";
+import { Box, Grid, Image, Spinner, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
-import { culturalSpacesMock } from "./cultural-spaces.mock";
+import { useGetDataFromBackend } from "../../../hooks/useGetDataFromBackend";
+import { getCulturalPlaces } from "./cultural-places-list.api";
 
-export const CulturalSpaces = () => {
+interface CulturalPlace {
+  _id: string;
+  name: string;
+  description: string;
+  image: string;
+}
+
+export const CulturalPlacesList = () => {
   const navigate = useNavigate();
+  const {
+    data: places,
+    loading,
+    error,
+  } = useGetDataFromBackend<CulturalPlace[]>({
+    url: getCulturalPlaces(),
+    options: {
+      method: "GET",
+    },
+    executeAutomatically: true,
+  });
+
+  if (loading) {
+    return (
+      <Stack align="center" justify="center" minH="200px">
+        <Spinner size="xl" />
+        <Text>Cargando espacios culturales...</Text>
+      </Stack>
+    );
+  }
+
+  if (error) {
+    return (
+      <Text color="red.500" textAlign="center">
+        Error al cargar espacios culturales: {error}
+      </Text>
+    );
+  }
+
   return (
     <Stack>
       <Text fontSize="xl" fontWeight="semibold" mb={4}>
@@ -18,10 +55,10 @@ export const CulturalSpaces = () => {
         }}
         gap={{ base: 4, md: 6 }}
       >
-        {culturalSpacesMock.map((space) => (
+        {places?.map((space) => (
           <Box
-            onClick={() => navigate(`/espacio-cultural/${space.id}`)}
-            key={space.name}
+            onClick={() => navigate(`/espacio-cultural/${space._id}`)}
+            key={space._id}
             borderWidth="1px"
             borderRadius="lg"
             boxShadow="sm"

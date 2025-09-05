@@ -1,17 +1,14 @@
 import { Box, Card, HStack, Text, VStack } from "@chakra-ui/react";
-import { FaGlobe, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { FaEnvelope, FaGlobe, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 
-interface MuseumDetailContactProps {
+interface ContactProps {
   address: string;
   phone: string;
   website: string;
+  email: string;
 }
 
-export const MuseumDetailContact = ({
-  address,
-  phone,
-  website,
-}: MuseumDetailContactProps) => {
+export const Contact = ({ address, phone, website, email }: ContactProps) => {
   return (
     <Card.Root>
       <Card.Body>
@@ -36,6 +33,12 @@ export const MuseumDetailContact = ({
               <Box as={FaGlobe} color="brand.500" />
               <Text fontSize="md" color="gray.600">
                 {website}
+              </Text>
+            </HStack>
+            <HStack gap={2}>
+              <Box as={FaEnvelope} color="brand.500" />
+              <Text fontSize="md" color="gray.600">
+                {email}
               </Text>
             </HStack>
           </VStack>

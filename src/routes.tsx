@@ -1,15 +1,14 @@
 import { createBrowserRouter } from "react-router";
-import { CulturalSpace } from "./components/cultural-space/cultural-space";
-import { CulturalSpaces } from "./components/cultural-spaces/cultural-spaces";
-import { MuseumDetail } from "./components/museum-detail/museum-detail";
 import { ScreenLayout } from "./components/screen-layout";
+import { CulturalPlacesList } from "./modules/cultural-places/cultural-places-list/cultural-places-list";
+import { SingleCulturalPlaces } from "./modules/cultural-places/single-cultural-places/cultural-places";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <ScreenLayout>
-        <CulturalSpaces />
+        <CulturalPlacesList />
       </ScreenLayout>
     ),
   },
@@ -17,15 +16,19 @@ const router = createBrowserRouter([
     path: "/espacio-cultural/:id",
     element: (
       <ScreenLayout>
-        <CulturalSpace />
+        <SingleCulturalPlaces />
       </ScreenLayout>
     ),
   },
   {
-    path: "/museos/:id",
+    path: "*",
     element: (
       <ScreenLayout>
-        <MuseumDetail />
+        <div style={{ textAlign: "center", padding: "2rem" }}>
+          <h1>404 - Página no encontrada</h1>
+          <p>La página que buscas no existe.</p>
+          <a href="/">Volver al inicio</a>
+        </div>
       </ScreenLayout>
     ),
   },
