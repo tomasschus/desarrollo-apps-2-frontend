@@ -1,6 +1,7 @@
 import { Box, Grid, Spinner, Stack, Text, VStack } from "@chakra-ui/react";
 import { FiXCircle } from "react-icons/fi";
 import { useParams } from "react-router";
+import { Maps } from "../../components/ui/maps";
 import { useAuth } from "../../contexts/auth-context";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
 import { CulturalPlaceInfo } from "./components/cultural-place-info";
@@ -141,6 +142,13 @@ export const SingleEvent = () => {
               phone={event.culturalPlaceId.contact.phone}
             />
             <EventCalendar eventDate={event.date} eventName={event.name} />
+            <Maps
+              coordinates={{
+                lat: event.culturalPlaceId.contact.coordinates.lat,
+                lng: event.culturalPlaceId.contact.coordinates.lng,
+                description: event.culturalPlaceId.name,
+              }}
+            />
           </VStack>
         </Grid>
       </Box>

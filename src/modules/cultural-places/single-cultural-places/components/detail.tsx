@@ -1,6 +1,7 @@
 import { Box, Grid, Spinner, Stack, Text, VStack } from "@chakra-ui/react";
 import { FiXCircle } from "react-icons/fi";
 import { useParams } from "react-router";
+import { Maps } from "../../../../components/ui/maps";
 import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
 import { getCulturalPlaceById } from "../cultural-places.api";
 import { About } from "./about";
@@ -128,6 +129,13 @@ export const Detail = () => {
               email={culturalPlace.contact.email}
             />
             <NextEvents />
+            <Maps
+              coordinates={{
+                lat: culturalPlace.contact.coordinates.lat,
+                lng: culturalPlace.contact.coordinates.lng,
+                description: culturalPlace.name,
+              }}
+            />
             {/* <Tickets ticketPrices={culturalPlace.ticketPrices} /> */}
           </VStack>
         </Grid>
