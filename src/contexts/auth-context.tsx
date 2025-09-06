@@ -5,7 +5,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 export const UserRole = {
   ADMIN: "admin",
   USER: "user",
-  SUPERVISOR: "supervisor",
+  OPERATOR: "operator",
 } as const;
 
 export type UserRoleType = (typeof UserRole)[keyof typeof UserRole];
@@ -21,6 +21,8 @@ interface AuthContextType {
   isLogged: boolean;
   user: User | null;
   role: UserRoleType | null;
+  isAdmin: boolean;
+  isOperator: boolean;
   login: (userData: User) => void;
   logout: () => void;
   setRole: (role: UserRoleType) => void;
@@ -70,6 +72,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     isLogged,
     user,
     role: user?.role || null,
+    isAdmin: user?.role === UserRole.ADMIN,
+    isOperator: user?.role === UserRole.OPERATOR,
     login,
     logout,
     setRole,

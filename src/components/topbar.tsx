@@ -3,13 +3,14 @@ import {
   Button,
   Container,
   Flex,
+  HStack,
   Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../contexts/auth-context";
 import { FestivalAnnouncement } from "../modules/festival-announcement/festival-announcement";
 import { LoginModal } from "./login-modal";
@@ -23,7 +24,7 @@ export const Topbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [whatToDoModalOpen, setWhatToDoModalOpen] = useState(false);
-  const { isLogged } = useAuth();
+  const { isLogged, isAdmin, isOperator } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -37,6 +38,17 @@ export const Topbar = () => {
       borderColor="gray.200"
       boxShadow="sm"
     >
+      <Box bg={"black"}>
+        {(isAdmin || isOperator) && (
+          <HStack py={1} justifyContent={"center"}>
+            <Link to="/admin">
+              <Button size={"xs"} variant={"outline"}>
+                Entrar al administrador
+              </Button>
+            </Link>
+          </HStack>
+        )}
+      </Box>
       <Container
         maxW="container.xl"
         px={{
