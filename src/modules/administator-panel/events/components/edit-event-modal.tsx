@@ -9,8 +9,8 @@ import {
   Textarea,
   VStack,
 } from "@chakra-ui/react";
-import { useFieldArray, useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
 import { FiPlus, FiTrash2, FiX } from "react-icons/fi";
 import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
 import { getCulturalPlaces, updateEvent } from "../../api/admin.api";
@@ -94,13 +94,14 @@ export const EditEventModal = ({
       // Formatear la fecha para el input de fecha (YYYY-MM-DD)
       const formatDate = (dateString: string) => {
         const date = new Date(dateString);
-        return date.toISOString().split('T')[0];
+        return date.toISOString().split("T")[0];
       };
 
       const formData: EventFormData = {
-        culturalPlaceId: typeof event.culturalPlaceId === 'object' 
-          ? event.culturalPlaceId._id 
-          : event.culturalPlaceId,
+        culturalPlaceId:
+          typeof event.culturalPlaceId === "object"
+            ? event.culturalPlaceId._id
+            : event.culturalPlaceId,
         name: event.name,
         description: event.description,
         date: formatDate(event.date),
@@ -133,16 +134,13 @@ export const EditEventModal = ({
     if (!event) return;
 
     try {
-      const response = await fetch(
-        updateEvent(event._id),
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch(updateEvent(event._id), {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
       if (response.ok) {
         alert("Evento actualizado correctamente");
@@ -345,7 +343,9 @@ export const EditEventModal = ({
                             Tipo
                           </Text>
                           <select
-                            {...register(`ticketTypes.${index}.type`, { required: true })}
+                            {...register(`ticketTypes.${index}.type`, {
+                              required: true,
+                            })}
                             style={{
                               width: "100%",
                               padding: "8px 12px",
@@ -369,10 +369,10 @@ export const EditEventModal = ({
                             </Text>
                             <Input
                               type="number"
-                              {...register(`ticketTypes.${index}.price`, { 
-                                required: true, 
+                              {...register(`ticketTypes.${index}.price`, {
+                                required: true,
                                 min: 1,
-                                valueAsNumber: true 
+                                valueAsNumber: true,
                               })}
                               min="0"
                             />
@@ -384,11 +384,14 @@ export const EditEventModal = ({
                             </Text>
                             <Input
                               type="number"
-                              {...register(`ticketTypes.${index}.initialQuantity`, { 
-                                required: true, 
-                                min: 1,
-                                valueAsNumber: true 
-                              })}
+                              {...register(
+                                `ticketTypes.${index}.initialQuantity`,
+                                {
+                                  required: true,
+                                  min: 1,
+                                  valueAsNumber: true,
+                                }
+                              )}
                               min="1"
                             />
                           </Box>
@@ -399,9 +402,12 @@ export const EditEventModal = ({
                             </Text>
                             <Input
                               type="number"
-                              {...register(`ticketTypes.${index}.soldQuantity`, { 
-                                valueAsNumber: true 
-                              })}
+                              {...register(
+                                `ticketTypes.${index}.soldQuantity`,
+                                {
+                                  valueAsNumber: true,
+                                }
+                              )}
                               min="0"
                             />
                           </Box>
