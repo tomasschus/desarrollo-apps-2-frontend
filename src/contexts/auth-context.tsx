@@ -23,6 +23,7 @@ interface AuthContextType {
   role: UserRoleType | null;
   isAdmin: boolean;
   isOperator: boolean;
+  isUser: boolean;
   login: (userData: User) => void;
   logout: () => void;
   setRole: (role: UserRoleType) => void;
@@ -74,6 +75,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     role: user?.role || null,
     isAdmin: user?.role === UserRole.ADMIN,
     isOperator: user?.role === UserRole.OPERATOR,
+    isUser: user?.role === UserRole.USER,
     login,
     logout,
     setRole,

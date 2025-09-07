@@ -11,11 +11,11 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
 
   const handleRoleLogin = (role: UserRoleType) => {
     const mockUsers = {
-      [UserRole.SUPERVISOR]: {
-        id: "supervisor_789",
-        name: "Carlos Supervisor",
-        email: "carlos@supervisor.com",
-        role: UserRole.SUPERVISOR as UserRoleType,
+      [UserRole.OPERATOR]: {
+        id: "operator_789",
+        name: "Carlos Operador",
+        email: "carlos@operador.com",
+        role: UserRole.OPERATOR as UserRoleType,
       },
       [UserRole.USER]: {
         id: "user_123",
@@ -85,9 +85,9 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
                 variant="outline"
                 w="full"
                 size="lg"
-                onClick={() => handleRoleLogin(UserRole.SUPERVISOR)}
+                onClick={() => handleRoleLogin(UserRole.OPERATOR)}
               >
-                👨‍💼 Iniciar como Supervisor
+                👨‍💼 Iniciar como Operador
               </Button>
             </Stack>
           </Dialog.Body>

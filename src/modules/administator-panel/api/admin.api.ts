@@ -23,3 +23,6 @@ export const getTicketsByEvent = (eventId: string) =>
 
 export const deleteCulturalPlace = (placeId: string) =>
   `${API_BASE_URL}/api/v1/cultural-places/${placeId}`;
+
+export const updateCulturalPlace = (placeId: string) =>
+  `${API_BASE_URL}/api/v1/cultural-places/${placeId}`;

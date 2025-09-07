@@ -1,11 +1,14 @@
 import { Box, Flex, HStack, Stack } from "@chakra-ui/react";
-import { Outlet, useLocation } from "react-router";
+import { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router";
+import { useAuth } from "../contexts/auth-context";
 import { AdminSidebar } from "./admin-sidebar";
 
 export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
+  const navigate = useNavigate();
   const location = useLocation();
+  const { isUser } = useAuth();
 
-  // Determinar la sección activa basada en la URL
   const getActiveSection = () => {
     const path = location.pathname;
     if (path === "/admin" || path === "/admin/dashboard") return "dashboard";
@@ -17,6 +20,12 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
     if (path.includes("/admin/configuracion")) return "settings";
     return "dashboard";
   };
+
+  useEffect(() => {
+    if (isUser) {
+      navigate("/");
+    }
+  }, [isUser]);
 
   return (
     <Flex minH="100vh" bg="gray.50">

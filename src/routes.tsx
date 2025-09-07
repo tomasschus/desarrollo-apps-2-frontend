@@ -1,13 +1,65 @@
+import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router";
 import { AdminLayout } from "./components/admin-layout";
 import { ScreenLayout } from "./components/screen-layout";
-import { AdminCulturalPlaces } from "./modules/administator-panel/cultural-places/cultural-places-management";
-import { AdminDashboard } from "./modules/administator-panel/dashboard/dashboard";
-import { AdminEvents } from "./modules/administator-panel/events/events-management";
-import { AdminTickets } from "./modules/administator-panel/tickets/tickets-management";
-import { CulturalPlacesList } from "./modules/cultural-places/cultural-places-list/cultural-places-list";
-import { SingleCulturalPlaces } from "./modules/cultural-places/single-cultural-places/cultural-places";
-import { SingleEvent } from "./modules/events/single-event";
+
+// Lazy loading para componentes principales
+const CulturalPlacesList = lazy(() =>
+  import(
+    "./modules/cultural-places/cultural-places-list/cultural-places-list"
+  ).then((module) => ({ default: module.CulturalPlacesList }))
+);
+
+const SingleCulturalPlaces = lazy(() =>
+  import(
+    "./modules/cultural-places/single-cultural-places/cultural-places"
+  ).then((module) => ({ default: module.SingleCulturalPlaces }))
+);
+
+const SingleEvent = lazy(() =>
+  import("./modules/events/single-event").then((module) => ({
+    default: module.SingleEvent,
+  }))
+);
+
+const AdminDashboard = lazy(() =>
+  import("./modules/administator-panel/dashboard/dashboard").then((module) => ({
+    default: module.AdminDashboard,
+  }))
+);
+
+const AdminEvents = lazy(() =>
+  import("./modules/administator-panel/events/events-management").then(
+    (module) => ({ default: module.AdminEvents })
+  )
+);
+
+const AdminCulturalPlaces = lazy(() =>
+  import(
+    "./modules/administator-panel/cultural-places/cultural-places-management"
+  ).then((module) => ({ default: module.AdminCulturalPlaces }))
+);
+
+const AdminTickets = lazy(() =>
+  import("./modules/administator-panel/tickets/tickets-management").then(
+    (module) => ({ default: module.AdminTickets })
+  )
+);
+
+// Componente de loading
+const PageLoader = () => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "200px",
+      fontSize: "18px",
+    }}
+  >
+    Cargando...
+  </div>
+);
 
 // Componente temporal para secciones no implementadas
 const ComingSoon = ({ title }: { title: string }) => (
@@ -22,7 +74,9 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <ScreenLayout>
-        <CulturalPlacesList />
+        <Suspense fallback={<PageLoader />}>
+          <CulturalPlacesList />
+        </Suspense>
       </ScreenLayout>
     ),
   },
@@ -30,7 +84,9 @@ const router = createBrowserRouter([
     path: "/espacio-cultural/:id",
     element: (
       <ScreenLayout>
-        <SingleCulturalPlaces />
+        <Suspense fallback={<PageLoader />}>
+          <SingleCulturalPlaces />
+        </Suspense>
       </ScreenLayout>
     ),
   },
@@ -38,7 +94,9 @@ const router = createBrowserRouter([
     path: "/evento/:id",
     element: (
       <ScreenLayout>
-        <SingleEvent />
+        <Suspense fallback={<PageLoader />}>
+          <SingleEvent />
+        </Suspense>
       </ScreenLayout>
     ),
   },
@@ -48,23 +106,43 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AdminDashboard />,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminDashboard />
+          </Suspense>
+        ),
       },
       {
         path: "dashboard",
-        element: <AdminDashboard />,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminDashboard />
+          </Suspense>
+        ),
       },
       {
         path: "eventos",
-        element: <AdminEvents />,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminEvents />
+          </Suspense>
+        ),
       },
       {
         path: "lugares",
-        element: <AdminCulturalPlaces />,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminCulturalPlaces />
+          </Suspense>
+        ),
       },
       {
         path: "tickets",
-        element: <AdminTickets />,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminTickets />
+          </Suspense>
+        ),
       },
       {
         path: "usuarios",

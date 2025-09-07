@@ -9,9 +9,11 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { FiEdit, FiGlobe, FiMapPin, FiPhone, FiTrash2 } from "react-icons/fi";
 import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
 import { deleteCulturalPlace } from "../../api/admin.api";
+import { EditCulturalPlaceModal } from "./edit-cultural-place-modal";
 
 interface CulturalPlace {
   _id: string;
@@ -43,6 +45,8 @@ export const CulturalPlaceCard = ({
   place,
   onDeleted,
 }: CulturalPlaceCardProps) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   const { loading: deleteLoading, callback: onDeleteCulturalPlace } =
     useGetDataFromBackend<any>({
       url: deleteCulturalPlace(place._id),
@@ -104,7 +108,12 @@ export const CulturalPlaceCard = ({
               {place.category}
             </Badge>
             <HStack>
-              <Button size="sm" colorScheme="blue" variant="outline">
+              <Button
+                size="sm"
+                colorScheme="blue"
+                variant="outline"
+                onClick={() => setIsEditModalOpen(true)}
+              >
                 <Icon as={FiEdit} />
               </Button>
               <Button
@@ -193,6 +202,14 @@ export const CulturalPlaceCard = ({
           </HStack>
         </Stack>
       </Box>
+
+      {/* Modal de Edición */}
+      <EditCulturalPlaceModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onPlaceUpdated={onDeleted}
+        place={place}
+      />
     </Box>
   );
 };
