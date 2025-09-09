@@ -88,8 +88,8 @@ export const Topbar = () => {
               <Text
                 fontSize="xl"
                 fontWeight="bold"
-                color="gray.800"
                 letterSpacing="tight"
+                color={'brand.700'}
               >
                 Cultura
               </Text>
