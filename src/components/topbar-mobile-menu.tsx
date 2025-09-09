@@ -8,11 +8,15 @@ import {
   FiStar,
   FiUsers,
 } from "react-icons/fi";
+import { Link } from "react-router";
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  categories: string[];
+  categories: {
+    name: string;
+    to?: string;
+  }[];
 }
 
 export const MobileMenu = ({
@@ -102,22 +106,44 @@ export const MobileMenu = ({
                 <Text fontWeight="bold" fontSize="lg" color="brand.600" mb={2}>
                   Categorías
                 </Text>
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    variant="ghost"
-                    size="lg"
-                    color="gray.700"
-                    justifyContent="flex-start"
-                    w="full"
-                    fontSize="lg"
-                    py={6}
-                    onClick={onClose}
-                    _hover={{ bg: "brand.50", color: "brand.600" }}
-                  >
-                    {getCategoryIcon(category)} {category}
-                  </Button>
-                ))}
+                {categories.map((category) => {
+                  if (category.to) {
+                    return (
+                      <Link key={category.name} to={category.to}>
+                        <Button
+                          variant="ghost"
+                          size="lg"
+                          color="gray.700"
+                          justifyContent="flex-start"
+                          w="full"
+                          fontSize="lg"
+                          py={6}
+                          onClick={onClose}
+                          _hover={{ bg: "brand.50", color: "brand.600" }}
+                        >
+                          {getCategoryIcon(category.name)} {category.name}
+                        </Button>
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <Button
+                      key={category.name}
+                      variant="ghost"
+                      size="lg"
+                      color="gray.700"
+                      justifyContent="flex-start"
+                      w="full"
+                      fontSize="lg"
+                      py={6}
+                      onClick={onClose}
+                      _hover={{ bg: "brand.50", color: "brand.600" }}
+                    >
+                      {getCategoryIcon(category.name)} {category.name}
+                    </Button>
+                  );
+                })}
               </Stack>
             </Stack>
           </Drawer.Body>

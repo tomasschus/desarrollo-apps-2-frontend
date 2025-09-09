@@ -18,7 +18,28 @@ import { MobileMenu } from "./topbar-mobile-menu";
 import { UserMenu } from "./user-menu";
 import { WhatToDoModal } from "./what-to-do-modal";
 
-const culturalCategories = ["Arte", "Música", "Cine", "Teatro", "Eventos"];
+const culturalCategories = [
+  {
+    name: "Arte",
+    filter: (event: string) => event === "Arte",
+  },
+  {
+    name: "Música",
+    filter: (event: string) => event === "Música",
+  },
+  {
+    name: "Cine",
+    filter: (event: string) => event === "Cine",
+  },
+  {
+    name: "Teatro",
+    filter: (event: string) => event === "Teatro",
+  },
+  {
+    name: "Eventos",
+    to: "/eventos",
+  },
+];
 
 export const Topbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -155,21 +176,32 @@ export const Topbar = () => {
             justifyContent={"center"}
             pb={2}
           >
-            {culturalCategories.map((category) => (
-              <Button
-                key={category}
-                variant="ghost"
-                size="md"
-                color="gray.700"
-                _hover={{
-                  bg: "gray.100",
-                  color: "brand.600",
-                }}
-                transition="all 0.2s"
-              >
-                {category}
-              </Button>
-            ))}
+            {culturalCategories.map((category) => {
+              if (category.to) {
+                return (
+                  <Link key={category.name} to={category.to}>
+                    <Button variant="ghost" size="md" color="gray.700">
+                      {category.name}
+                    </Button>
+                  </Link>
+                );
+              }
+              return (
+                <Button
+                  key={category.name}
+                  variant="ghost"
+                  size="md"
+                  color="gray.700"
+                  _hover={{
+                    bg: "gray.100",
+                    color: "brand.600",
+                  }}
+                  transition="all 0.2s"
+                >
+                  {category.name}
+                </Button>
+              );
+            })}
           </Flex>
 
           <FestivalAnnouncement />

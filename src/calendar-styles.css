@@ -53,13 +53,32 @@
   color: white !important;
 }
 
-.event-day {
+.has-events {
   background-color: var(--chakra-colors-brand-100) !important;
   color: var(--chakra-colors-brand-700) !important;
   font-weight: bold !important;
   border-radius: 6px !important;
+  border: 2px solid var(--chakra-colors-brand-700) !important;
 }
 
-.react-calendar__tile--now.event-day {
+.react-calendar__tile--now.has-events {
   background-color: var(--chakra-colors-brand-200) !important;
+  color: var(--chakra-colors-brand-800) !important;
+}
+
+.event-counter {
+  position: absolute !important;
+  top: 2px !important;
+  right: 2px !important;
+  background-color: var(--chakra-colors-brand-700) !important;
+  color: white !important;
+  border-radius: 50% !important;
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 18px !important;
 }

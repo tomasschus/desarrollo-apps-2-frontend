@@ -2,8 +2,8 @@ import { Box, Text } from "@chakra-ui/react";
 import { useMemo } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import "../../../calendar-styles.css";
 import { formatIsoDate } from "../../../utils/date.utils";
-import "./event-calendar.css";
 
 interface EventCalendarProps {
   eventDate: string;

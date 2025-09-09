@@ -10,6 +10,7 @@ import { AuthProvider } from "./contexts/auth-context.tsx";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
 import "react-calendar/dist/Calendar.css";
+import "./calendar-styles.css";
 
 dayjs.locale("es");
 dayjs.extend(dayjsRelativeTime);

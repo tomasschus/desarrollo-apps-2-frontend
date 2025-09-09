@@ -22,6 +22,12 @@ const SingleEvent = lazy(() =>
   }))
 );
 
+const EventsCalendar = lazy(() =>
+  import("./modules/events/events-calendar").then((module) => ({
+    default: module.EventsCalendar,
+  }))
+);
+
 const AdminDashboard = lazy(() =>
   import("./modules/administator-panel/dashboard/dashboard").then((module) => ({
     default: module.AdminDashboard,
@@ -96,6 +102,16 @@ const router = createBrowserRouter([
       <ScreenLayout>
         <Suspense fallback={<PageLoader />}>
           <SingleEvent />
+        </Suspense>
+      </ScreenLayout>
+    ),
+  },
+  {
+    path: "/eventos",
+    element: (
+      <ScreenLayout>
+        <Suspense fallback={<PageLoader />}>
+          <EventsCalendar />
         </Suspense>
       </ScreenLayout>
     ),
