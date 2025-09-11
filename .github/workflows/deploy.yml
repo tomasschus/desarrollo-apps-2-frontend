@@ -27,17 +27,17 @@ jobs:
         uses: a7ul/tar-action@v1.1.0
         with:
           command: c
-          cwd: "./"
+          cwd: ${{ github.workspace }}
           files: |
             Dockerfile
             captain-definition
             dist/
-          outPath: deploy.tar
+          outPath: ${{ github.workspace }}/deploy.tar
 
       - name: Deploy to CapRover
         uses: caprover/deploy-from-github@v1.1.2
         with:
-          server: "${{ secrets.CAPROVER_SERVER }}"
-          app: "${{ secrets.APP_NAME }}"
-          token: "${{ secrets.APP_TOKEN }}"
-          tarFile: deploy.tar
+          server: ${{ secrets.CAPROVER_SERVER }}
+          app: ${{ secrets.APP_NAME }}
+          token: ${{ secrets.APP_TOKEN }}
+          tarFile: ${{ github.workspace }}/deploy.tar
