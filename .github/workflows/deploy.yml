@@ -9,37 +9,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout del repo
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # 2️⃣ Setup Node
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 22
 
+      # 3️⃣ Instalar dependencias
       - name: Install dependencies
         run: npm ci
 
+      # 4️⃣ Build de la app
       - name: Build app
         run: npm run build
 
+      # 5️⃣ Crear tar para CapRover (incluye todo menos node_modules y .git)
       - name: Create tar for CapRover
-        uses: a7ul/tar-action@v1.1.0
-        with:
-          command: c
-          cwd: ${{ github.workspace }}
-          files: |
-            Dockerfile
-            captain-definition
-            package.json
-            package-lock.json
-            tsconfig.json
-            tsconfig.app.json
-            tsconfig.node.json
-            src/
-            public/
-          outPath: ${{ github.workspace }}/deploy.tar
+        run: |
+          tar --exclude='.git' --exclude='node_modules' -cvf deploy.tar .
 
+      # 6️⃣ Deploy a CapRover
       - name: Deploy to CapRover
         uses: caprover/deploy-from-github@v1.1.2
         with:
