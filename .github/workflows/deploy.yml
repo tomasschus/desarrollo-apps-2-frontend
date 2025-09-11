@@ -17,10 +17,14 @@ jobs:
         with:
           node-version: 22
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install dependencies
+        run: npm ci
 
-      - uses: caprover/deploy-from-github@v1.0.1
+      - name: Build app
+        run: npm run build
+
+      - name: Deploy to CapRover
+        uses: caprover/deploy-from-github@v1.0.1
         with:
           server: "${{ secrets.CAPROVER_SERVER }}"
           app: "${{ secrets.APP_NAME }}"
