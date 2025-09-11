@@ -32,6 +32,8 @@ jobs:
             Dockerfile
             captain-definition
             dist/
+            package.json
+            package-lock.json
           outPath: ${{ github.workspace }}/deploy.tar
 
       - name: Deploy to CapRover
