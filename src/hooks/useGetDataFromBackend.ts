@@ -11,7 +11,7 @@ interface UseApiRequestReturn<T> {
   data: T | null;
   loading: boolean;
   error: string | null;
-  callback: (url: string, options?: UseApiRequestOptions) => Promise<void>;
+  callback: () => Promise<void>;
 }
 
 export function useGetDataFromBackend<T>({

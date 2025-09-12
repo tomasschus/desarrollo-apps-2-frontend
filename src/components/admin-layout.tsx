@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Stack } from "@chakra-ui/react";
+import { Grid, GridItem, Stack } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import { useAuth } from "../contexts/auth-context";
@@ -28,30 +28,41 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
   }, [isUser]);
 
   return (
-    <Flex minH="100vh" bg="gray.50">
-      <AdminSidebar activeSection={getActiveSection()} />
-      <Flex flex="1" direction="column" ml={{ base: 0, md: "250px" }}>
-        <Box flex="1" p={6}>
-          <Stack gap={6} pb={6}>
-            <HStack justifyContent="center" w="full">
-              <Stack
-                w={{
-                  base: "full",
-                  md: "2xl",
-                  lg: "4xl",
-                  xl: "6xl",
-                }}
-                px={{
-                  base: 4,
-                  md: 0,
-                }}
-              >
-                {children || <Outlet />}
-              </Stack>
-            </HStack>
-          </Stack>
-        </Box>
-      </Flex>
-    </Flex>
+    <Grid
+      templateColumns={{ base: "1fr", md: "250px 1fr" }}
+      minH="100vh"
+      bg="gray.50"
+      w="100vw"
+      overflow="hidden"
+    >
+      <GridItem>
+        <AdminSidebar activeSection={getActiveSection()} />
+      </GridItem>
+      <GridItem
+        p={6}
+        display="flex"
+        justifyContent="center"
+        overflow="auto"
+        minW={0}
+      >
+        <Stack
+          w={{
+            base: "full",
+            md: "2xl",
+            lg: "4xl",
+            xl: "6xl",
+          }}
+          maxW="100%"
+          px={{
+            base: 4,
+            md: 0,
+          }}
+          gap={6}
+          pb={6}
+        >
+          {children || <Outlet />}
+        </Stack>
+      </GridItem>
+    </Grid>
   );
 };

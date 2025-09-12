@@ -46,7 +46,7 @@ export const AdminCulturalPlaces = () => {
   });
 
   const handleRefreshPlaces = () => {
-    fetchCulturalPlaces(getCulturalPlaces());
+    fetchCulturalPlaces();
   };
 
   if (loading) {

@@ -13,6 +13,8 @@ import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../contexts/auth-context";
 import { FestivalAnnouncement } from "../modules/festival-announcement/festival-announcement";
+import { CartButton } from "./cart/cart-button";
+import { CartDrawer } from "./cart/cart-drawer";
 import { LoginModal } from "./login-modal";
 import { MobileMenu } from "./topbar-mobile-menu";
 import { UserMenu } from "./user-menu";
@@ -45,8 +47,14 @@ export const Topbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [whatToDoModalOpen, setWhatToDoModalOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const { isLogged, isAdmin, isOperator } = useAuth();
   const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    setCartOpen(false);
+    navigate("/checkout");
+  };
 
   return (
     <Box
@@ -130,6 +138,8 @@ export const Topbar = () => {
             >
               <FiHeart /> Lugares favoritos
             </Button>
+
+            {isLogged && <CartButton onClick={() => setCartOpen(true)} />}
 
             {isLogged ? (
               <UserMenu />
@@ -217,6 +227,14 @@ export const Topbar = () => {
         isOpen={whatToDoModalOpen}
         onOpenChange={() => setWhatToDoModalOpen(!whatToDoModalOpen)}
       />
+
+      {isLogged && (
+        <CartDrawer
+          isOpen={cartOpen}
+          onClose={() => setCartOpen(false)}
+          onCheckout={handleCheckout}
+        />
+      )}
     </Box>
   );
 };

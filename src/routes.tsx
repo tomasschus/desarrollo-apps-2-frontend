@@ -52,6 +52,12 @@ const AdminTickets = lazy(() =>
   )
 );
 
+const CheckoutPage = lazy(() =>
+  import("./modules/checkout/checkout").then((module) => ({
+    default: module.CheckoutPage,
+  }))
+);
+
 // Componente de loading
 const PageLoader = () => (
   <div
@@ -112,6 +118,16 @@ const router = createBrowserRouter([
       <ScreenLayout>
         <Suspense fallback={<PageLoader />}>
           <EventsCalendar />
+        </Suspense>
+      </ScreenLayout>
+    ),
+  },
+  {
+    path: "/checkout",
+    element: (
+      <ScreenLayout>
+        <Suspense fallback={<PageLoader />}>
+          <CheckoutPage />
         </Suspense>
       </ScreenLayout>
     ),

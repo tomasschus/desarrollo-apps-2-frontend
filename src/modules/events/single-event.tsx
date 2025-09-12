@@ -9,7 +9,7 @@ import { EventAbout } from "./components/event-about";
 import { EventCalendar } from "./components/event-calendar";
 import { EventHeader } from "./components/event-header";
 import { EventTickets } from "./components/event-tickets";
-import { getBuyTicket, getEventById } from "./single-event.api";
+import { getEventById } from "./single-event.api";
 
 interface Event {
   _id: string;
@@ -45,50 +45,13 @@ interface Event {
 
 export const SingleEvent = () => {
   const { id } = useParams<{ id: string }>();
-  const { user, isLogged } = useAuth();
+  const { isLogged } = useAuth();
 
   const { data: event, loading } = useGetDataFromBackend<Event>({
     url: id ? getEventById(id) : "",
     options: { method: "GET" },
     executeAutomatically: !!id,
   });
-
-  const handleBuyTicket = async (ticketType: string, price: number) => {
-    if (!user) {
-      return;
-    }
-
-    if (!id) {
-      alert("ID del evento no encontrado");
-      return;
-    }
-
-    try {
-      const response = await fetch(getBuyTicket(), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          eventId: id,
-          userId: user.id,
-          ticketType,
-          price,
-        }),
-      });
-
-      if (response.ok) {
-        alert("¡Compra exitosa! Tu entrada ha sido reservada");
-      } else {
-        const error = await response.json();
-        alert(
-          `Error en la compra: ${
-            error.message || "No se pudo completar la compra"
-          }`
-        );
-      }
-    } catch (error) {
-      alert("Error de conexión");
-    }
-  };
 
   if (loading) {
     return (
@@ -126,8 +89,12 @@ export const SingleEvent = () => {
           <VStack gap={6} align="stretch">
             <EventAbout description={event.description} />
             <EventTickets
+              eventId={event._id}
+              eventName={event.name}
+              eventDate={event.date}
+              eventTime={event.time}
+              culturalPlaceName={event.culturalPlaceId.name}
               tickets={event.ticketTypes}
-              onBuyTicket={handleBuyTicket}
               isLogged={isLogged}
             />
           </VStack>

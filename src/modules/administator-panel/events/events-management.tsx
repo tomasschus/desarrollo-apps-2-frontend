@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { FiCalendar, FiEdit, FiMapPin, FiPlus, FiTrash2 } from "react-icons/fi";
 import { useGetDataFromBackend } from "../../../hooks/useGetDataFromBackend";
+import { formatMoney } from "../../../utils/money.utils";
 import { deleteEvent, getEvents } from "../api/admin.api";
 import { CreateEventModal } from "./components/create-event-modal";
 import { EditEventModal } from "./components/edit-event-modal";
@@ -62,7 +63,7 @@ export const AdminEvents = () => {
         });
 
         if (response.ok) {
-          fetchEvents(getEvents());
+          fetchEvents();
         }
       } catch (error) {
         console.error("Error deleting event:", error);
@@ -72,7 +73,7 @@ export const AdminEvents = () => {
 
   const handleEventCreated = () => {
     // Refrescar la lista de eventos cuando se crea uno nuevo
-    fetchEvents(getEvents());
+    fetchEvents();
   };
 
   const handleEditEvent = (event: Event) => {
@@ -86,18 +87,11 @@ export const AdminEvents = () => {
   };
 
   const handleEventUpdated = () => {
-    fetchEvents(getEvents());
+    fetchEvents();
   };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("es-AR");
-  };
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "ARS",
-    }).format(amount);
   };
 
   if (loading) {
@@ -195,7 +189,7 @@ export const AdminEvents = () => {
                 {event.ticketTypes.length > 0 && (
                   <Text fontSize="sm" color="gray.600">
                     Desde{" "}
-                    {formatCurrency(
+                    {formatMoney(
                       Math.min(...event.ticketTypes.map((t) => t.price))
                     )}
                   </Text>

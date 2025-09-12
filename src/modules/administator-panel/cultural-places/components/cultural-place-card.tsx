@@ -56,7 +56,7 @@ export const CulturalPlaceCard = ({
   const handleDeletePlace = async () => {
     if (confirm("¿Estás seguro de que deseas eliminar este lugar cultural?")) {
       try {
-        await onDeleteCulturalPlace(deleteCulturalPlace(place._id));
+        await onDeleteCulturalPlace();
         onDeleted();
       } catch (error) {
         console.error("Error deleting place:", error);

@@ -6,6 +6,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import { Provider } from "./components/ui/provider.tsx";
 import { AuthProvider } from "./contexts/auth-context.tsx";
+import { CartProvider } from "./contexts/cart-context.tsx";
 
 import dayjs from "dayjs";
 import "dayjs/locale/es";
@@ -21,7 +22,9 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider>
       <AuthProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </AuthProvider>
     </Provider>
   </StrictMode>

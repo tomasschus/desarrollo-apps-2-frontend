@@ -1,6 +1,7 @@
 import { Box, Button, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { FaTicketAlt } from "react-icons/fa";
 import { Tooltip } from "../../../components/ui/tooltip";
+import { useCart } from "../../../contexts/cart-context";
 
 interface TicketType {
   type: string;
@@ -11,19 +12,41 @@ interface TicketType {
 }
 
 interface EventTicketsProps {
+  eventId: string;
+  eventName: string;
+  eventDate: string;
+  eventTime: string;
+  culturalPlaceName: string;
   tickets: TicketType[];
   isLogged: boolean;
-  onBuyTicket: (ticketType: string, price: number) => void;
 }
 
 export const EventTickets = ({
+  eventId,
+  eventName,
+  eventDate,
+  eventTime,
+  culturalPlaceName,
   tickets,
   isLogged,
-  onBuyTicket,
 }: EventTicketsProps) => {
+  const { addToCart, isInCart, getItemQuantity } = useCart();
+
   const availableTickets = tickets.filter(
     (ticket) => ticket.isActive && ticket.soldQuantity < ticket.initialQuantity
   );
+
+  const handleAddToCart = (ticket: TicketType) => {
+    addToCart({
+      eventId,
+      eventName,
+      eventDate,
+      eventTime,
+      culturalPlaceName,
+      ticketType: ticket.type,
+      price: ticket.price,
+    });
+  };
 
   return (
     <Box bg="white" p={6} borderRadius="lg" boxShadow="sm">
@@ -40,56 +63,66 @@ export const EventTickets = ({
         </Text>
       ) : (
         <VStack gap={3} align="stretch">
-          {availableTickets.map((ticket) => (
-            <Box
-              key={ticket.type}
-              border="1px"
-              borderColor="gray.200"
-              borderRadius="md"
-              p={4}
-              _hover={{ borderColor: "brand.300", boxShadow: "sm" }}
-              transition="all 0.2s"
-            >
-              <Flex justify="space-between" align="center">
-                <Box>
-                  <Text
-                    fontWeight="semibold"
-                    textTransform="capitalize"
-                    fontSize="lg"
-                  >
-                    {ticket.type}
-                  </Text>
-                  <Text fontSize="sm" color="gray.600">
-                    Disponibles: {ticket.initialQuantity - ticket.soldQuantity}
-                  </Text>
-                </Box>
-                <HStack gap={3}>
-                  <Text fontSize="xl" fontWeight="bold" color="brand.600">
-                    ${ticket.price}
-                  </Text>
-                  <Tooltip
-                    positioning={{ placement: "top" }}
-                    content={
-                      !isLogged ? "Inicia sesión para comprar entradas" : ""
-                    }
-                    openDelay={100}
-                    showArrow
-                  >
-                    <Button
-                      disabled={!isLogged}
-                      colorScheme="brand"
-                      size="md"
-                      onClick={() => onBuyTicket(ticket.type, ticket.price)}
-                      _hover={{ transform: "translateY(-1px)" }}
-                      transition="all 0.2s"
+          {availableTickets.map((ticket) => {
+            const inCartQuantity = getItemQuantity(eventId, ticket.type);
+            const availableQuantity = ticket.initialQuantity - ticket.soldQuantity;
+            
+            return (
+              <Box
+                key={ticket.type}
+                border="1px"
+                borderColor="gray.200"
+                borderRadius="md"
+                p={4}
+                _hover={{ borderColor: "brand.300", boxShadow: "sm" }}
+                transition="all 0.2s"
+              >
+                <Flex justify="space-between" align="center">
+                  <Box>
+                    <Text
+                      fontWeight="semibold"
+                      textTransform="capitalize"
+                      fontSize="lg"
                     >
-                      Comprar
-                    </Button>
-                  </Tooltip>
-                </HStack>
-              </Flex>
-            </Box>
-          ))}
+                      {ticket.type}
+                    </Text>
+                    <Text fontSize="sm" color="gray.600">
+                      Disponibles: {availableQuantity}
+                    </Text>
+                    {inCartQuantity > 0 && (
+                      <Text fontSize="sm" color="blue.600" fontWeight="medium">
+                        En carrito: {inCartQuantity}
+                      </Text>
+                    )}
+                  </Box>
+                  <HStack gap={3}>
+                    <Text fontSize="xl" fontWeight="bold" color="brand.600">
+                      ${ticket.price}
+                    </Text>
+                    <Tooltip
+                      positioning={{ placement: "top" }}
+                      content={
+                        !isLogged ? "Inicia sesión para comprar entradas" : ""
+                      }
+                      openDelay={100}
+                      showArrow
+                    >
+                      <Button
+                        disabled={!isLogged}
+                        colorScheme="brand"
+                        size="md"
+                        onClick={() => handleAddToCart(ticket)}
+                        _hover={{ transform: "translateY(-1px)" }}
+                        transition="all 0.2s"
+                      >
+                        {isInCart(eventId, ticket.type) ? "Agregar más" : "Agregar al carrito"}
+                      </Button>
+                    </Tooltip>
+                  </HStack>
+                </Flex>
+              </Box>
+            );
+          })}
         </VStack>
       )}
     </Box>
