@@ -1,5 +1,7 @@
 import { Button, Menu, Portal, Text } from "@chakra-ui/react";
 import { FiLogOut, FiUser } from "react-icons/fi";
+import { MdConfirmationNumber } from "react-icons/md";
+import { Link } from "react-router";
 import { useAuth } from "../contexts/auth-context";
 
 export const UserMenu = () => {
@@ -34,6 +36,13 @@ export const UserMenu = () => {
               <Text fontSize="sm" color="brand.600" fontWeight="bold">
                 {user.role.toUpperCase()}
               </Text>
+            </Menu.Item>
+            <Menu.Separator />
+            <Menu.Item value="my-tickets" asChild>
+              <Link to="/mis-tickets">
+                <MdConfirmationNumber />
+                Mis Tickets
+              </Link>
             </Menu.Item>
             <Menu.Item
               value="logout"

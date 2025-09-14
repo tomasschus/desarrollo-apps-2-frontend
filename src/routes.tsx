@@ -1,6 +1,7 @@
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router";
 import { AdminLayout } from "./components/admin-layout";
+import { LazyPage } from "./components/lazy-page";
 import { ScreenLayout } from "./components/screen-layout";
 
 // Lazy loading para componentes principales
@@ -58,22 +59,12 @@ const CheckoutPage = lazy(() =>
   }))
 );
 
-// Componente de loading
-const PageLoader = () => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "200px",
-      fontSize: "18px",
-    }}
-  >
-    Cargando...
-  </div>
+const MyTicketsPage = lazy(() =>
+  import("./modules/my-tickets/my-tickets").then((module) => ({
+    default: module.MyTicketsPage,
+  }))
 );
 
-// Componente temporal para secciones no implementadas
 const ComingSoon = ({ title }: { title: string }) => (
   <div style={{ textAlign: "center", padding: "2rem" }}>
     <h2>{title}</h2>
@@ -84,53 +75,33 @@ const ComingSoon = ({ title }: { title: string }) => (
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <ScreenLayout>
-        <Suspense fallback={<PageLoader />}>
-          <CulturalPlacesList />
-        </Suspense>
-      </ScreenLayout>
-    ),
-  },
-  {
-    path: "/espacio-cultural/:id",
-    element: (
-      <ScreenLayout>
-        <Suspense fallback={<PageLoader />}>
-          <SingleCulturalPlaces />
-        </Suspense>
-      </ScreenLayout>
-    ),
-  },
-  {
-    path: "/evento/:id",
-    element: (
-      <ScreenLayout>
-        <Suspense fallback={<PageLoader />}>
-          <SingleEvent />
-        </Suspense>
-      </ScreenLayout>
-    ),
-  },
-  {
-    path: "/eventos",
-    element: (
-      <ScreenLayout>
-        <Suspense fallback={<PageLoader />}>
-          <EventsCalendar />
-        </Suspense>
-      </ScreenLayout>
-    ),
-  },
-  {
-    path: "/checkout",
-    element: (
-      <ScreenLayout>
-        <Suspense fallback={<PageLoader />}>
-          <CheckoutPage />
-        </Suspense>
-      </ScreenLayout>
-    ),
+    element: <ScreenLayout />,
+    children: [
+      {
+        index: true,
+        element: <LazyPage Component={CulturalPlacesList} />,
+      },
+      {
+        path: "espacio-cultural/:id",
+        element: <LazyPage Component={SingleCulturalPlaces} />,
+      },
+      {
+        path: "evento/:id",
+        element: <LazyPage Component={SingleEvent} />,
+      },
+      {
+        path: "eventos",
+        element: <LazyPage Component={EventsCalendar} />,
+      },
+      {
+        path: "checkout",
+        element: <LazyPage Component={CheckoutPage} />,
+      },
+      {
+        path: "mis-tickets",
+        element: <LazyPage Component={MyTicketsPage} />,
+      },
+    ],
   },
   {
     path: "/admin",
@@ -138,43 +109,23 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <AdminDashboard />
-          </Suspense>
-        ),
+        element: <LazyPage Component={AdminDashboard} />,
       },
       {
         path: "dashboard",
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <AdminDashboard />
-          </Suspense>
-        ),
+        element: <LazyPage Component={AdminDashboard} />,
       },
       {
         path: "eventos",
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <AdminEvents />
-          </Suspense>
-        ),
+        element: <LazyPage Component={AdminEvents} />,
       },
       {
         path: "lugares",
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <AdminCulturalPlaces />
-          </Suspense>
-        ),
+        element: <LazyPage Component={AdminCulturalPlaces} />,
       },
       {
         path: "tickets",
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <AdminTickets />
-          </Suspense>
-        ),
+        element: <LazyPage Component={AdminTickets} />,
       },
       {
         path: "usuarios",

@@ -1,7 +1,8 @@
 import { HStack, Stack } from "@chakra-ui/react";
+import { Outlet } from "react-router";
 import { Topbar } from "./topbar";
 
-export const ScreenLayout = ({ children }: { children: React.ReactNode }) => {
+export const ScreenLayout = ({ children }: { children?: React.ReactNode }) => {
   return (
     <Stack gap={6} pb={6}>
       <Topbar />
@@ -18,7 +19,7 @@ export const ScreenLayout = ({ children }: { children: React.ReactNode }) => {
             md: 0,
           }}
         >
-          {children}
+          {children || <Outlet />}
         </Stack>
       </HStack>
     </Stack>

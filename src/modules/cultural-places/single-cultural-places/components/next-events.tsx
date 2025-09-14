@@ -87,7 +87,7 @@ export const NextEvents = () => {
   }
 
   return (
-    <Card.Root bg="white" boxShadow="sm" borderRadius="lg">
+    <Card.Root bg="white" borderRadius="lg">
       <Card.Body p={6}>
         <VStack align="start" gap={4}>
           <HStack gap={3}>

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
+import { toaster } from "../components/ui/toaster";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useAuth } from "./auth-context";
 
@@ -70,7 +71,14 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     `cart_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
   const addToCart = (item: Omit<CartItem, "tempId" | "quantity">) => {
-    if (!user) return;
+    if (!user) {
+      toaster.create({
+        title: "Error",
+        description: "Debes iniciar sesión para agregar elementos al carrito",
+        type: "error",
+      });
+      return;
+    }
 
     const existingItem = items.find(
       (cartItem) =>
@@ -93,6 +101,11 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         tempId: generateTempId(),
       };
       newItems = [...items, newItem];
+      toaster.create({
+        title: "Agregado al carrito",
+        description: `${item.eventName} - ${item.ticketType}`,
+        type: "success",
+      });
     }
 
     updateItemsAndStorage(newItems);
@@ -101,7 +114,17 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const removeFromCart = (tempId: string) => {
     if (!user) return;
 
+    const itemToRemove = items.find((item) => item.tempId === tempId);
     const newItems = items.filter((item) => item.tempId !== tempId);
+
+    if (itemToRemove) {
+      toaster.create({
+        title: "Eliminado del carrito",
+        description: `${itemToRemove.eventName} - ${itemToRemove.ticketType}`,
+        type: "success",
+      });
+    }
+
     updateItemsAndStorage(newItems);
   };
 

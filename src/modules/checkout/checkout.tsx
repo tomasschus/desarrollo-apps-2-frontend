@@ -16,6 +16,7 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import { useNavigate } from "react-router";
+import { toaster } from "../../components/ui/toaster";
 import { useAuth } from "../../contexts/auth-context";
 import { useCart } from "../../contexts/cart-context";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
@@ -26,7 +27,6 @@ export const CheckoutPage = () => {
   const { user, isLogged } = useAuth();
   const { items, totalPrice } = useCart();
   const navigate = useNavigate();
-
   const { loading, callback: purchaseMultipleTickets } =
     useGetDataFromBackend<void>({
       url: "/api/v1/tickets/purchase",
@@ -41,6 +41,22 @@ export const CheckoutPage = () => {
             userId: user?.id || "",
           })),
         },
+      },
+      onSuccess: () => {
+        toaster.create({
+          title: "Compra exitosa",
+          description: "Tus entradas han sido compradas con éxito",
+          type: "success",
+        });
+        navigate("/mis-tickets");
+      },
+      onError: () => {
+        toaster.create({
+          title: "Error en la compra",
+          description:
+            "Ocurrió un error al procesar tu compra. Por favor, intenta nuevamente.",
+          type: "error",
+        });
       },
     });
 
@@ -57,10 +73,6 @@ export const CheckoutPage = () => {
 
   if (!isLogged || !user || items.length === 0) {
     return null;
-  }
-
-  if (items.length === 0) {
-    navigate("/");
   }
 
   return (

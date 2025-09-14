@@ -18,10 +18,14 @@ export function useGetDataFromBackend<T>({
   url,
   options,
   executeAutomatically = false,
+  onSuccess,
+  onError,
 }: {
   url: string;
   options: UseApiRequestOptions;
   executeAutomatically?: boolean;
+  onSuccess?: (data: T) => void;
+  onError?: (error: any) => void;
 }): UseApiRequestReturn<T> {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
@@ -39,8 +43,14 @@ export function useGetDataFromBackend<T>({
       };
       const response: AxiosResponse<T> = await axios(config);
       setData(response.data);
+      if (onSuccess) {
+        onSuccess(response.data);
+      }
     } catch (err: any) {
       setError(err.message || "An error occurred");
+      if (onError) {
+        onError(err);
+      }
     } finally {
       setLoading(false);
     }

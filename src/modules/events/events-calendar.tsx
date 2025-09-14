@@ -166,7 +166,7 @@ export const EventsCalendar = () => {
 
         {/* Panel lateral con eventos próximos */}
         <VStack gap={4} align="stretch">
-          <Box bg="white" p={6} borderRadius="lg" boxShadow="lg">
+          <Box bg="white" p={6} borderRadius="lg">
             <Heading size="md" mb={4} color="brand.700">
               Próximos Eventos
             </Heading>
