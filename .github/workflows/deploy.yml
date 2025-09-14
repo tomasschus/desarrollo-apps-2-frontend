@@ -2,7 +2,8 @@ name: Build & Deploy
 
 on:
   push:
-    branches: ["main"]
+    tags:
+      - "v*"
 
 jobs:
   build-and-deploy:
@@ -13,26 +14,33 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node
+      # 2️⃣ Mostrar información del release
+      - name: Show release info
+        run: |
+          echo "🚀 Deployando versión: ${{ github.ref_name }}"
+          echo "📝 Commit: ${{ github.sha }}"
+          echo "👤 Autor: ${{ github.actor }}"
+
+      # 3️⃣ Setup Node
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 22
 
-      # 3️⃣ Instalar dependencias
+      # 4️⃣ Instalar dependencias
       - name: Install dependencies
         run: npm ci
 
-      # 4️⃣ Build de la app
+      # 5️⃣ Build de la app
       - name: Build app
         run: npm run build
 
-      # 5️⃣ Crear tar para CapRover (incluye todo menos node_modules y .git)
+      # 6️⃣ Crear tar para CapRover (incluye todo menos node_modules y .git)
       - name: Create tar for CapRover
         run: |
           tar --exclude='.git' --exclude='node_modules' -cvf deploy.tar .
 
-      # 6️⃣ Deploy a CapRover
+      # 7️⃣ Deploy a CapRover
       - name: Deploy to CapRover
         uses: caprover/deploy-from-github@v1.1.2
         with:
