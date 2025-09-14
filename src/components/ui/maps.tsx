@@ -1,6 +1,7 @@
-import { Card, Text } from "@chakra-ui/react";
+import { Box, Card, HStack, Text } from "@chakra-ui/react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { FaLocationDot } from "react-icons/fa6";
 import {
   MapContainer,
   Marker,
@@ -42,9 +43,12 @@ export const Maps = ({
     <Card.Root>
       <Card.Header>
         <Card.Title>
-          <Text fontSize="xl" fontWeight="bold" color="brand.700">
-            {cardTitle}
-          </Text>
+          <HStack gap={2}>
+            <Box as={FaLocationDot} color="brand.500" />
+            <Text fontSize="xl" fontWeight="bold" color="brand.700">
+              {cardTitle}
+            </Text>
+          </HStack>
         </Card.Title>
       </Card.Header>
       <Card.Body>

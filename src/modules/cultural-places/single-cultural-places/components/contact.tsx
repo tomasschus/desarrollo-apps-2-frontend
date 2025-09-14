@@ -1,5 +1,11 @@
-import { Box, Card, HStack, Text, VStack } from "@chakra-ui/react";
-import { FaEnvelope, FaGlobe, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { Box, Card, HStack, Link, Text, VStack } from "@chakra-ui/react";
+import {
+  FaEnvelope,
+  FaGlobe,
+  FaInfoCircle,
+  FaMapMarkerAlt,
+  FaPhone,
+} from "react-icons/fa";
 
 interface ContactProps {
   address: string;
@@ -13,33 +19,66 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
     <Card.Root>
       <Card.Body>
         <VStack align="start" gap={3}>
-          <Text fontSize="lg" fontWeight="semibold" color="brand.600">
-            Información de contacto
-          </Text>
-          <VStack align="start" gap={3}>
+          <HStack gap={2}>
+            <Box as={FaInfoCircle} color="brand.500" />
+            <Text fontSize="lg" fontWeight="semibold" color="brand.600">
+              Información de contacto
+            </Text>
+          </HStack>
+          <VStack align="start" gap={3} pl={5}>
             <HStack gap={2}>
-              <Box as={FaMapMarkerAlt} color="brand.500" />
-              <Text fontSize="md" color="gray.600">
+              <Box as={FaMapMarkerAlt} color="blue.400" />
+              <Link
+                href={`https://maps.google.com/maps?q=${encodeURIComponent(
+                  address
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                fontSize="md"
+                color="brand.700"
+                textDecoration="no"
+                _hover={{ color: "brand.800" }}
+              >
                 {address}
-              </Text>
+              </Link>
             </HStack>
             <HStack gap={2}>
-              <Box as={FaPhone} color="brand.500" />
-              <Text fontSize="md" color="gray.600">
+              <Box as={FaPhone} color="blue.400" />
+              <Link
+                href={`tel:${phone}`}
+                fontSize="md"
+                color="brand.700"
+                textDecoration="no"
+                _hover={{ color: "brand.800" }}
+              >
                 {phone}
-              </Text>
+              </Link>
             </HStack>
             <HStack gap={2}>
-              <Box as={FaGlobe} color="brand.500" />
-              <Text fontSize="md" color="gray.600">
+              <Box as={FaGlobe} color="blue.400" />
+              <Link
+                href={website}
+                target="_blank"
+                rel="noopener noreferrer"
+                fontSize="md"
+                color="brand.700"
+                textDecoration="no"
+                _hover={{ color: "brand.800" }}
+              >
                 {website}
-              </Text>
+              </Link>
             </HStack>
             <HStack gap={2}>
-              <Box as={FaEnvelope} color="brand.500" />
-              <Text fontSize="md" color="gray.600">
+              <Box as={FaEnvelope} color="blue.400" />
+              <Link
+                href={`mailto:${email}`}
+                fontSize="md"
+                color="brand.700"
+                textDecoration="no"
+                _hover={{ color: "brand.800" }}
+              >
                 {email}
-              </Text>
+              </Link>
             </HStack>
           </VStack>
         </VStack>
