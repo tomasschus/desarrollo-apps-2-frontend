@@ -9,8 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FiCalendar, FiMapPin } from "react-icons/fi";
-import { API_BASE_URL } from "../../config/api.config";
 import { useAuth } from "../../contexts/auth-context";
+import { getTicketsByUser } from "../administator-panel/api/admin.api";
 
 interface UserTicket {
   _id: string;
@@ -41,9 +41,7 @@ export const UserTickets = () => {
       if (!user) return;
 
       try {
-        const response = await fetch(
-          `${API_BASE_URL}/api/v1/tickets/user/${user.id}`
-        );
+        const response = await fetch(getTicketsByUser(user.id));
         if (response.ok) {
           const data = await response.json();
           setTickets(data.data || []);

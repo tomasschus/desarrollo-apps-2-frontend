@@ -12,7 +12,7 @@ import {
 import { useFieldArray, useForm } from "react-hook-form";
 import { FiPlus, FiTrash2, FiX } from "react-icons/fi";
 import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
-import { getCulturalPlaces } from "../../api/admin.api";
+import { getCulturalPlaces, getEvents } from "../../api/admin.api";
 
 interface CulturalPlace {
   _id: string;
@@ -106,9 +106,7 @@ export const CreateEventModal = ({
 
   const onSubmit = async (data: EventFormData) => {
     try {
-      const response = await fetch(
-        "https://desarrollo-apps-2-backend.onrender.com/api/v1/events",
-        {
+      const response = await fetch(getEvents(), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
