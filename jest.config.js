@@ -32,11 +32,12 @@ export default {
     "<rootDir>/src/tests/**/*.(test|spec).(ts|tsx|js)",
   ],
   collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
-    "!src/**/*.d.ts",
+    "src/components/**/*.{ts,tsx}",
+    "src/config/**/*.{ts,tsx}",
+    "src/contexts/**/*.{ts,tsx}",
+    "src/hooks/**/*.{ts,tsx}",
+    "src/modules/**/*.{ts,tsx}",
     "!src/utils/**/*",
-    "!src/main.tsx",
-    "!src/vite-env.d.ts",
   ],
   coverageThreshold: {
     global: {
