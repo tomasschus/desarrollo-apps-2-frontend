@@ -3,8 +3,8 @@ import { API_BASE_URL } from "../../config/api.config";
 export interface TicketPurchaseData {
   eventId: string;
   userId: string;
-  ticketType: string;
-  price: number;
+  type: string;
+  quantity: number;
 }
 
 export interface TicketPurchaseResponse {

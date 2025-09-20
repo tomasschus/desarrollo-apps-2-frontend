@@ -40,6 +40,8 @@ export const CheckoutPage = () => {
           tickets: items.map((item) => ({
             eventId: item.eventId,
             userId: user?.id || "",
+            type: item.ticketType,
+            quantity: item.quantity,
           })),
         },
       },
