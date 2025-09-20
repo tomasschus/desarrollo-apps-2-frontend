@@ -20,18 +20,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Chunk para React y librerías principales
           vendor: ["react", "react-dom", "react-router"],
-          // Chunk para Chakra UI
           ui: ["@chakra-ui/react", "@emotion/react"],
-          // Chunk para mapas y visualización
           maps: ["leaflet", "react-leaflet"],
-          // Chunk para utilidades
           utils: ["axios", "dayjs", "react-hook-form", "react-icons"],
         },
       },
     },
-    // Incrementar el límite de warning para chunks grandes
     chunkSizeWarningLimit: 600,
   },
 });

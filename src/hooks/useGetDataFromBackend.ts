@@ -1,5 +1,6 @@
 import axios, { type AxiosResponse } from "axios";
 import { useCallback, useEffect, useState } from "react";
+import { useAuth } from "../contexts/auth-context";
 
 interface UseApiRequestOptions {
   method?: "GET" | "POST" | "PUT" | "DELETE";
@@ -30,6 +31,7 @@ export function useGetDataFromBackend<T>({
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { role } = useAuth();
 
   const callback = useCallback(async () => {
     setLoading(true);
@@ -39,7 +41,10 @@ export function useGetDataFromBackend<T>({
         method: options.method || "GET",
         url,
         data: options.body,
-        headers: options.headers,
+        headers: {
+          ...options.headers,
+          "x-user-role": role || "unlogged",
+        },
       };
       const response: AxiosResponse<T> = await axios(config);
       setData(response.data);

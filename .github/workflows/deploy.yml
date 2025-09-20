@@ -35,12 +35,16 @@ jobs:
       - name: Build app
         run: npm run build
 
-      # 6️⃣ Crear tar para CapRover (incluye todo menos node_modules y .git)
+      # 6️⃣ Ejecutar tests:
+      # - name: Run tests
+      #   run: npm test
+
+      # 7️⃣ Crear tar para CapRover (incluye todo menos node_modules y .git)
       - name: Create tar for CapRover
         run: |
           tar --exclude='.git' --exclude='node_modules' -cvf deploy.tar .
 
-      # 7️⃣ Deploy a CapRover
+      # 8️⃣ Deploy a CapRover
       - name: Deploy to CapRover
         uses: caprover/deploy-from-github@v1.1.2
         with:
