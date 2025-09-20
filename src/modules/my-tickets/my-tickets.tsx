@@ -238,15 +238,15 @@ export const MyTicketsPage = () => {
     "all" | "active" | "used" | "cancelled"
   >("all");
 
-  const { data, loading, error } = useGetDataFromBackend<{ data: Ticket[] }>({
+  const { data, loading, error } = useGetDataFromBackend<Ticket[]>({
     url: getUserTickets(user?.id || ""),
     options: { method: "GET" },
     executeAutomatically: !!user?.id,
   });
 
   useEffect(() => {
-    if (data?.data) {
-      setTickets(data.data);
+    if (data) {
+      setTickets(data);
     }
   }, [data]);
 
