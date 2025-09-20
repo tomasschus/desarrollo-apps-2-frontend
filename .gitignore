@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+coverage
+
+.github/chatmodes
+
 .env
 
 # Editor directories and files

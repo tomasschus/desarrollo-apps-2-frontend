@@ -6,17 +6,15 @@ export interface DrawerProps extends ChakraDrawer.RootProps {
   portalRef?: React.RefObject<HTMLElement>
 }
 
-export const DrawerRoot = React.forwardRef<HTMLDivElement, DrawerProps>(
-  function DrawerRoot(props) {
-    const { children, portalled = true, portalRef, ...rest } = props
+export const DrawerRoot: React.FC<DrawerProps> = (props) => {
+  const { children, portalled = true, portalRef, ...rest } = props
 
-    return (
-      <ChakraDrawer.Root {...rest}>
-        {children}
-      </ChakraDrawer.Root>
-    )
-  },
-)
+  return (
+    <ChakraDrawer.Root {...rest}>
+      {children}
+    </ChakraDrawer.Root>
+  )
+}
 
 export const DrawerBackdrop = ChakraDrawer.Backdrop
 export const DrawerTrigger = ChakraDrawer.Trigger
