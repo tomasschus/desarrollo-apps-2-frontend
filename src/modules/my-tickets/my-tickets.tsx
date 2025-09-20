@@ -20,6 +20,7 @@ import { Link } from "react-router";
 import { toaster } from "../../components/ui/toaster";
 import { useAuth } from "../../contexts/auth-context";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
+import { getUserTickets } from "./my-tickets.api";
 
 interface Ticket {
   _id: string;
@@ -238,7 +239,7 @@ export const MyTicketsPage = () => {
   >("all");
 
   const { data, loading, error } = useGetDataFromBackend<{ data: Ticket[] }>({
-    url: `/api/v1/tickets/user/${user?.id}`,
+    url: user?.id ? getUserTickets(user.id) : "",
     options: { method: "GET" },
     executeAutomatically: !!user?.id,
   });
