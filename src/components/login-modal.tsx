@@ -18,7 +18,7 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
         role: UserRole.OPERATOR as UserRoleType,
       },
       [UserRole.USER]: {
-        id: "user_123",
+        id: "68c2dd60fb172823da61eb92",
         name: "Juan Pérez",
         email: "juan@usuario.com",
         role: UserRole.USER as UserRoleType,
