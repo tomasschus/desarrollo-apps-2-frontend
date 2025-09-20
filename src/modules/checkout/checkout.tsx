@@ -22,6 +22,7 @@ import { useCart } from "../../contexts/cart-context";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
 import { formatDate } from "../../utils/date.utils";
 import { formatMoney } from "../../utils/money.utils";
+import { purchaseTicketUrl } from "./checkout.api";
 
 export const CheckoutPage = () => {
   const { user, isLogged } = useAuth();
@@ -29,7 +30,7 @@ export const CheckoutPage = () => {
   const navigate = useNavigate();
   const { loading, callback: purchaseMultipleTickets } =
     useGetDataFromBackend<void>({
-      url: "/api/v1/tickets/purchase",
+      url: purchaseTicketUrl(),
       options: {
         method: "POST",
         headers: {
