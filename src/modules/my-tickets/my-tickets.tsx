@@ -239,7 +239,7 @@ export const MyTicketsPage = () => {
   >("all");
 
   const { data, loading, error } = useGetDataFromBackend<{ data: Ticket[] }>({
-    url: user?.id ? getUserTickets(user.id) : "",
+    url: getUserTickets(user?.id || ""),
     options: { method: "GET" },
     executeAutomatically: !!user?.id,
   });
