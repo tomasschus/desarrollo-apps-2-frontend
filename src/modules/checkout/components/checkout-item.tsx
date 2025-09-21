@@ -1,16 +1,5 @@
-import {
-  Badge,
-  Box,
-  Card,
-  Flex,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import {
-  FaCalendarAlt,
-  FaClock,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+import { Badge, Box, Card, Flex, Stack, Text } from "@chakra-ui/react";
+import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import type { CartItem } from "../../../contexts/cart-context";
 import { formatDate } from "../../../utils/date.utils";
 import { formatMoney } from "../../../utils/money.utils";
@@ -25,12 +14,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps) => {
       <Card.Body p={5}>
         <Flex justify="space-between" align="start" gap={4}>
           <Box flex={1}>
-            <Text
-              fontWeight="bold"
-              fontSize="lg"
-              color="gray.800"
-              mb={2}
-            >
+            <Text fontWeight="bold" fontSize="lg" color="gray.800" mb={2}>
               {item.eventName}
             </Text>
 
@@ -42,9 +26,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps) => {
 
               <Flex align="center" gap={2} color="gray.600">
                 <FaCalendarAlt size={14} />
-                <Text fontSize="sm">
-                  {formatDate(item.eventDate)}
-                </Text>
+                <Text fontSize="sm">{formatDate(item.eventDate)}</Text>
               </Flex>
 
               <Flex align="center" gap={2} color="gray.600">

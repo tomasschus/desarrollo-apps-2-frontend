@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  Flex,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Card, Flex, Stack, Text } from "@chakra-ui/react";
 import type { CartItem } from "../../../contexts/cart-context";
 import { formatMoney } from "../../../utils/money.utils";
 
