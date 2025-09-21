@@ -1,5 +1,6 @@
 import axios, { type AxiosResponse } from "axios";
 import { useCallback, useEffect, useState } from "react";
+import { toaster } from "../components/ui/toaster";
 import { useAuth } from "../contexts/auth-context";
 
 interface UseApiRequestOptions {
@@ -52,14 +53,21 @@ export function useGetDataFromBackend<T>({
         onSuccess(response.data);
       }
     } catch (err: any) {
-      setError(err.message || "An error occurred");
+      const errorMessage =
+        err.response?.data?.message || err.message || "An error occurred";
+      setError(errorMessage);
+      toaster.create({
+        title: "Error",
+        description: errorMessage,
+        type: "error",
+      });
       if (onError) {
         onError(err);
       }
     } finally {
       setLoading(false);
     }
-  }, [url, options]);
+  }, [url, options, role, onSuccess, onError]);
 
   useEffect(() => {
     if (executeAutomatically) {

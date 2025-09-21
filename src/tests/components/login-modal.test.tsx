@@ -1,7 +1,7 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
 import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
-import { useAuth, UserRole } from "../../contexts/auth-context";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { LoginModal } from "../../components/login-modal";
+import { useAuth, UserRole } from "../../contexts/auth-context";
 
 // Mock dependencies
 jest.mock("../../contexts/auth-context");
@@ -87,7 +87,7 @@ describe("LoginModal", () => {
     fireEvent.click(userButton);
 
     expect(mockLogin).toHaveBeenCalledWith({
-      id: "user_123",
+      id: "68c2dd60fb172823da61eb92",
       name: "Juan Pérez",
       email: "juan@usuario.com",
       role: UserRole.USER,
@@ -144,8 +144,9 @@ describe("LoginModal", () => {
     await screen.findByText("Iniciar Sesión");
 
     // Find backdrop element
-    const backdrop = document.querySelector('[data-scope="dialog"][data-part="backdrop"]') ||
-                     document.querySelector('[data-part="backdrop"]');
+    const backdrop =
+      document.querySelector('[data-scope="dialog"][data-part="backdrop"]') ||
+      document.querySelector('[data-part="backdrop"]');
 
     if (backdrop) {
       await act(async () => {

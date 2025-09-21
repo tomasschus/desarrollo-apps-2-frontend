@@ -4,7 +4,7 @@ import { toaster } from "../components/ui/toaster";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useAuth } from "./auth-context";
 
-interface CartItem {
+export interface CartItem {
   eventId: string;
   eventName: string;
   eventDate: string;

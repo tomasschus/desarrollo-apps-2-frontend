@@ -32,7 +32,6 @@ export interface ApiError {
   timestamp: string;
 }
 
-// Endpoints URL generators (siguiendo el patrón de otros módulos)
 export const createTicketUrl = () => `${API_BASE_URL}/api/v1/tickets`;
 export const purchaseTicketUrl = () =>
   `${API_BASE_URL}/api/v1/tickets/purchase`;
