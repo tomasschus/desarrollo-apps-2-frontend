@@ -1,7 +1,7 @@
 import {
   Box,
   Button,
-  Drawer,
+  Dialog,
   HStack,
   IconButton,
   Input,
@@ -158,27 +158,29 @@ export const EditEventModal = ({
   if (!isOpen || !event) return null;
 
   return (
-    <Drawer.Root
+    <Dialog.Root
       open={isOpen}
       onOpenChange={(details) => {
         if (!details.open) onClose();
       }}
       size="lg"
-      placement="bottom"
     >
-      <Drawer.Backdrop />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Drawer.Content>
-          <Drawer.Header>
-            <HStack justifyContent="space-between">
-              <Drawer.Title fontSize="xl" fontWeight="bold">
-                Editar Evento
-              </Drawer.Title>
-              <Drawer.CloseTrigger />
-            </HStack>
-          </Drawer.Header>
+      <Dialog.Backdrop />
+      <Dialog.Positioner>
+        <Dialog.Content
+          as={'form'}
+          onSubmit={handleSubmit(onSubmit)}
+          maxW="4xl"
+          w="90vw"
+        >
+          <Dialog.CloseTrigger />
+          <Dialog.Header>
+            <Dialog.Title fontSize="xl" fontWeight="bold">
+              Editar Evento
+            </Dialog.Title>
+          </Dialog.Header>
 
-          <Drawer.Body>
+          <Dialog.Body>
             <VStack gap={6} align="stretch">
               <Box>
                 <Text fontWeight="medium" mb={2}>
@@ -389,9 +391,9 @@ export const EditEventModal = ({
                 </Stack>
               </Box>
             </VStack>
-          </Drawer.Body>
+          </Dialog.Body>
 
-          <Drawer.Footer>
+          <Dialog.Footer>
             <HStack gap={3}>
               <Button variant="outline" onClick={handleClose} type="button">
                 Cancelar
@@ -405,9 +407,9 @@ export const EditEventModal = ({
                 {isSubmitting ? 'Actualizando...' : 'Actualizar Evento'}
               </Button>
             </HStack>
-          </Drawer.Footer>
-        </Drawer.Content>
-      </form>
-    </Drawer.Root>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Positioner>
+    </Dialog.Root>
   );
 };

@@ -324,11 +324,7 @@ export const AdminTickets = () => {
                   <Button size="xs" variant="outline">
                     Ver
                   </Button>
-                  {ticket.status === 'active' && (
-                    <Button size="xs" colorScheme="blue" variant="outline">
-                      Utilizar
-                    </Button>
-                  )}
+
                   {ticket.status === 'active' && (
                     <Button size="xs" colorScheme="red" variant="outline">
                       Cancelar
