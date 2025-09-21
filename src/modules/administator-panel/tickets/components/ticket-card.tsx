@@ -210,7 +210,7 @@ export const TicketCard = ({ ticket, onTicketUpdate }: TicketCardProps) => {
             <Button
               size="xs"
               variant="outline"
-              colorPalette="blue"
+              colorPalette="green"
               onClick={() => setIsDetailModalOpen(true)}
             >
               Ver Detalle

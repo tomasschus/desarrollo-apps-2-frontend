@@ -15,7 +15,7 @@ export const StatsCards = ({ stats }: { stats: DashboardStats }) => {
         shadow="sm"
       >
         <HStack>
-          <Icon as={FiCalendar} boxSize={8} color="blue.500" />
+          <Icon as={FiCalendar} boxSize={8} color="green.500" />
           <Stack gap={1}>
             <Text fontSize="sm" color="gray.600">
               Total Eventos

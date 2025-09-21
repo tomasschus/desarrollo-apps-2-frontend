@@ -83,7 +83,7 @@ export const Detail = () => {
       <Header
         image={culturalPlace.image}
         name={culturalPlace.name}
-        color={culturalPlace.color || 'blue'}
+        color={culturalPlace.color || 'green'}
         culturalPlace={culturalPlace.category}
         rating={culturalPlace.rating}
         reviews={culturalPlace.reviews}

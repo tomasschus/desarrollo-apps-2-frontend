@@ -90,7 +90,7 @@ export const EventTickets = ({
                       Disponibles: {availableQuantity}
                     </Text>
                     {inCartQuantity > 0 && (
-                      <Text fontSize="sm" color="blue.600" fontWeight="medium">
+                      <Text fontSize="sm" color="green.600" fontWeight="medium">
                         En carrito: {inCartQuantity}
                       </Text>
                     )}

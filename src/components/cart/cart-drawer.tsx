@@ -135,7 +135,7 @@ export const CartDrawer = ({
                       <HStack justify="space-between">
                         <Stack gap={1}>
                           <Badge
-                            colorPalette="blue"
+                            colorPalette="brand"
                             textTransform="capitalize"
                             variant="subtle"
                           >
@@ -231,7 +231,7 @@ export const CartDrawer = ({
                 <HStack gap={3}>
                   <Drawer.CloseTrigger asChild />
                   <Button
-                    colorPalette="blue"
+                    colorPalette="brand"
                     onClick={onCheckout}
                     flex={1}
                     size="lg"

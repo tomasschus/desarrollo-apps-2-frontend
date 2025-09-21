@@ -6,7 +6,7 @@ export const getStatusColor = (status: string) => {
     case 'active':
       return 'green';
     case 'used':
-      return 'blue';
+      return 'green';
     case 'cancelled':
       return 'red';
     case 'refunded':
@@ -35,7 +35,7 @@ export const getStatusLabel = (status: string) => {
 export const getTicketTypeColor = (type: string) => {
   switch (type.toLowerCase()) {
     case 'general':
-      return 'blue';
+      return 'green';
     case 'vip':
       return 'purple';
     case 'jubilados':

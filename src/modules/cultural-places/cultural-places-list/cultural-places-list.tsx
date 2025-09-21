@@ -52,7 +52,7 @@ export const CulturalPlacesList = () => {
 
   const getCategoryColor = (category: string) => {
     const colorMap: { [key: string]: string } = {
-      'Centro Cultural': 'blue',
+      'Centro Cultural': 'green',
       Museo: 'purple',
       Teatro: 'red',
       Biblioteca: 'green',

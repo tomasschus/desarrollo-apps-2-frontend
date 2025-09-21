@@ -11,7 +11,7 @@ export const TicketStatsCards = ({ stats }: TicketStatsCardProps) => {
     {
       label: 'Total Tickets',
       value: stats.totalTickets.toString(),
-      color: 'blue.600',
+      color: 'green.600',
     },
     {
       label: 'Activos',
@@ -21,7 +21,7 @@ export const TicketStatsCards = ({ stats }: TicketStatsCardProps) => {
     {
       label: 'Utilizados',
       value: stats.usedTickets.toString(),
-      color: 'blue.600',
+      color: 'green.600',
     },
     {
       label: 'Cancelados',

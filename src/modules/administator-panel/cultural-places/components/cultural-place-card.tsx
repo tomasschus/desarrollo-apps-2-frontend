@@ -67,7 +67,7 @@ export const CulturalPlaceCard = ({
   const getCategoryColor = (category: string) => {
     switch (category.toLowerCase()) {
       case 'centro cultural':
-        return 'blue';
+        return 'green';
       case 'museo':
         return 'purple';
       case 'teatro':
@@ -110,7 +110,7 @@ export const CulturalPlaceCard = ({
             <HStack>
               <Button
                 size="sm"
-                colorPalette="blue"
+                colorPalette="green"
                 variant="outline"
                 onClick={() => setIsEditModalOpen(true)}
               >
@@ -154,7 +154,7 @@ export const CulturalPlaceCard = ({
             {place.contact.website && (
               <HStack>
                 <Icon as={FiGlobe} color="gray.400" size="sm" />
-                <Text fontSize="sm" color="blue.600" textDecor="underline">
+                <Text fontSize="sm" color="green.600" textDecor="underline">
                   Sitio web
                 </Text>
               </HStack>

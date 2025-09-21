@@ -273,7 +273,7 @@ export const EditEventModal = ({
                   <Text fontWeight="medium">Tipos de Entrada</Text>
                   <Button
                     size="sm"
-                    colorPalette="blue"
+                    colorPalette="green"
                     variant="outline"
                     onClick={addTicketType}
                     type="button"
@@ -399,7 +399,7 @@ export const EditEventModal = ({
                 Cancelar
               </Button>
               <Button
-                colorPalette="blue"
+                colorPalette="green"
                 type="submit"
                 loading={isSubmitting}
                 disabled={isSubmitting}

@@ -63,7 +63,7 @@ export const AdminCulturalPlaces = () => {
         <Heading size="lg" color="gray.800">
           Gestión de Lugares Culturales
         </Heading>
-        <Button colorPalette="blue">
+        <Button colorPalette="green">
           <Icon as={FiPlus} mr={2} />
           Agregar Lugar
         </Button>
@@ -78,7 +78,7 @@ export const AdminCulturalPlaces = () => {
           borderColor="gray.200"
           textAlign="center"
         >
-          <Text fontSize="2xl" fontWeight="bold" color="blue.600">
+          <Text fontSize="2xl" fontWeight="bold" color="green.600">
             {places?.length || 0}
           </Text>
           <Text fontSize="sm" color="gray.600">

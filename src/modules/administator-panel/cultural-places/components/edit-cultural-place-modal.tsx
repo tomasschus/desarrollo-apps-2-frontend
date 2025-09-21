@@ -347,7 +347,7 @@ export const EditCulturalPlaceModal = ({
                   <Text fontWeight="medium">Características</Text>
                   <Button
                     size="sm"
-                    colorPalette="blue"
+                    colorPalette="green"
                     variant="outline"
                     onClick={addCharacteristic}
                     type="button"
@@ -433,7 +433,7 @@ export const EditCulturalPlaceModal = ({
               Cancelar
             </Button>
             <Button
-              colorPalette="blue"
+              colorPalette="green"
               type="submit"
               loading={isSubmitting}
               disabled={isSubmitting}

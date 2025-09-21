@@ -82,7 +82,7 @@ export const UserTickets = () => {
       case 'active':
         return 'green';
       case 'used':
-        return 'blue';
+        return 'green';
       case 'cancelled':
         return 'red';
       case 'refunded':
@@ -139,7 +139,7 @@ export const UserTickets = () => {
             Explora eventos y compra tus entradas
           </Text>
           <Button
-            colorPalette="blue"
+            colorPalette="green"
             mt={4}
             onClick={() => (window.location.href = '/eventos')}
           >
@@ -188,7 +188,7 @@ export const UserTickets = () => {
 
                   <HStack gap={3}>
                     <Badge
-                      colorPalette="blue"
+                      colorPalette="green"
                       variant="subtle"
                       textTransform="capitalize"
                     >

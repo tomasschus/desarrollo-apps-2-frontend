@@ -27,7 +27,7 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
           </HStack>
           <VStack align="start" gap={3} pl={5}>
             <HStack gap={2}>
-              <Box as={FaMapMarkerAlt} color="blue.400" />
+              <Box as={FaMapMarkerAlt} color="green.400" />
               <Link
                 href={`https://maps.google.com/maps?q=${encodeURIComponent(
                   address
@@ -43,7 +43,7 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
               </Link>
             </HStack>
             <HStack gap={2}>
-              <Box as={FaPhone} color="blue.400" />
+              <Box as={FaPhone} color="green.400" />
               <Link
                 href={`tel:${phone}`}
                 fontSize="md"
@@ -55,7 +55,7 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
               </Link>
             </HStack>
             <HStack gap={2}>
-              <Box as={FaGlobe} color="blue.400" />
+              <Box as={FaGlobe} color="green.400" />
               <Link
                 href={website}
                 target="_blank"
@@ -69,7 +69,7 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
               </Link>
             </HStack>
             <HStack gap={2}>
-              <Box as={FaEnvelope} color="blue.400" />
+              <Box as={FaEnvelope} color="green.400" />
               <Link
                 href={`mailto:${email}`}
                 fontSize="md"

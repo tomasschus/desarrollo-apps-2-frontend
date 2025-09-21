@@ -46,7 +46,7 @@ export const AdminEvents = () => {
     <Stack gap={6}>
       <HStack justifyContent="space-between">
         <Heading size="lg">Gestión de Eventos</Heading>
-        <Button colorPalette="blue" onClick={() => setIsCreateModalOpen(true)}>
+        <Button colorPalette="green" onClick={() => setIsCreateModalOpen(true)}>
           <Icon as={FiPlus} mr={2} />
           Crear Evento
         </Button>

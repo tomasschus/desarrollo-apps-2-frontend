@@ -69,7 +69,7 @@ export const EventCard = ({ event, onEdit, onDeleted }: EventCardProps) => {
             <HStack>
               <Button
                 size="sm"
-                colorPalette="blue"
+                colorPalette="green"
                 variant="outline"
                 onClick={() => onEdit(event)}
               >
@@ -149,7 +149,7 @@ export const EventCard = ({ event, onEdit, onDeleted }: EventCardProps) => {
             <Text fontSize="sm" color="gray.500">
               Disponibles:
             </Text>
-            <Text fontSize="sm" fontWeight="bold" color="blue.600">
+            <Text fontSize="sm" fontWeight="bold" color="green.600">
               {event.ticketTypes.reduce(
                 (total, ticket) =>
                   total + (ticket.initialQuantity - ticket.soldQuantity),

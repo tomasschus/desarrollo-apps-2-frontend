@@ -48,7 +48,7 @@ export const ValidatingTicketState = ({
             Validando Ticket...
           </Heading>
           <Badge
-            colorPalette="blue"
+            colorPalette="brand"
             variant="solid"
             px={4}
             py={1}

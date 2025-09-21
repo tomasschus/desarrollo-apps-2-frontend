@@ -99,7 +99,7 @@ export const TicketFilters = ({
 
       <HStack gap={2}>
         <Button
-          colorPalette="blue"
+          colorPalette="green"
           variant="outline"
           size="sm"
           onClick={onExport}

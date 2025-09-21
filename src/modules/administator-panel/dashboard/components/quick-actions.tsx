@@ -25,7 +25,7 @@ export const QuickActions = () => {
         <Heading size="md">Acciones Rápidas</Heading>
         <SimpleGrid columns={2} gap={4}>
           <Button
-            colorPalette="blue"
+            colorPalette="green"
             size="lg"
             onClick={() => navigate('/admin/eventos')}
           >
