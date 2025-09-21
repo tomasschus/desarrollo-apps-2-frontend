@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react';
-import { AdminCulturalPlaces } from './cultural-places/cultural-places-management';
+import { AdminCulturalPlaces } from './cultural-places/cultural-places';
 import { AdminDashboard } from './dashboard/dashboard';
 import { AdminEvents } from './events/events-management';
 import { AdminTickets } from './tickets/tickets-management';

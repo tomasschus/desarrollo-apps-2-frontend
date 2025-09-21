@@ -12,7 +12,7 @@ import {
 import { useState } from 'react';
 import { FiEdit, FiGlobe, FiMapPin, FiPhone, FiTrash2 } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
-import { deleteCulturalPlace } from '../../api/admin.api';
+import { deleteCulturalPlace } from '../cultural-places.api';
 import { EditCulturalPlaceModal } from './edit-cultural-place-modal';
 
 interface CulturalPlace {

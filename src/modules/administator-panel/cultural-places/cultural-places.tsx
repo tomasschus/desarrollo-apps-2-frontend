@@ -10,29 +10,8 @@ import {
 } from '@chakra-ui/react';
 import { FiPlus } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
-import { getCulturalPlaces } from '../api/admin.api';
 import { CulturalPlaceCard } from './components/cultural-place-card';
-
-interface CulturalPlace {
-  _id: string;
-  name: string;
-  description: string;
-  category: string;
-  characteristics: string[];
-  contact: {
-    address: string;
-    coordinates: {
-      lat: number;
-      lng: number;
-    };
-    phone: string;
-    website: string;
-    email: string;
-  };
-  image: string;
-  rating: number;
-  isActive?: boolean;
-}
+import { getCulturalPlaces, type CulturalPlace } from './cultural-places.api';
 
 export const AdminCulturalPlaces = () => {
   const {
@@ -44,10 +23,6 @@ export const AdminCulturalPlaces = () => {
     options: { method: 'GET' },
     executeAutomatically: true,
   });
-
-  const handleRefreshPlaces = () => {
-    fetchCulturalPlaces();
-  };
 
   if (loading) {
     return (
@@ -124,7 +99,7 @@ export const AdminCulturalPlaces = () => {
           <CulturalPlaceCard
             key={place._id}
             place={place}
-            onDeleted={handleRefreshPlaces}
+            onDeleted={fetchCulturalPlaces}
           />
         ))}
       </SimpleGrid>

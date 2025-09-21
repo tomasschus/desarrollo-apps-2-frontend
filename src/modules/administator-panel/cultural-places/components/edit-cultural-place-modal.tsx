@@ -12,7 +12,7 @@ import {
 import { useEffect } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2, FiX } from 'react-icons/fi';
-import { updateCulturalPlace } from '../../api/admin.api';
+import { updateCulturalPlace } from '../cultural-places.api';
 
 interface CulturalPlaceFormData {
   name: string;

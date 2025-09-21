@@ -42,9 +42,9 @@ const AdminEvents = lazy(() =>
 );
 
 const AdminCulturalPlaces = lazy(() =>
-  import(
-    './modules/administator-panel/cultural-places/cultural-places-management'
-  ).then((module) => ({ default: module.AdminCulturalPlaces }))
+  import('./modules/administator-panel/cultural-places/cultural-places').then(
+    (module) => ({ default: module.AdminCulturalPlaces })
+  )
 );
 
 const AdminTickets = lazy(() =>
