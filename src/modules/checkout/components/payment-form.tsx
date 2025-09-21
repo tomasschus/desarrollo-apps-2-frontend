@@ -1,4 +1,4 @@
-import { Box, Card, Text, VStack, HStack } from "@chakra-ui/react";
+import { Box, Card, HStack, Text, VStack } from "@chakra-ui/react";
 import type { PaymentData } from "../checkout.utils";
 import { formatCardNumber } from "../checkout.utils";
 
@@ -13,16 +13,16 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
 }) => {
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatCardNumber(e.target.value);
-    onPaymentDataChange('cardNumber', formatted);
+    onPaymentDataChange("cardNumber", formatted);
   };
 
   const inputStyle = {
-    padding: '12px',
-    border: '1px solid #d1d5db',
-    borderRadius: '6px',
-    width: '100%',
-    outline: 'none',
-    transition: 'border-color 0.2s ease'
+    padding: "12px",
+    border: "1px solid #d1d5db",
+    borderRadius: "6px",
+    width: "100%",
+    outline: "none",
+    transition: "border-color 0.2s ease",
   };
 
   const selectStyle = {
@@ -50,11 +50,11 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
               autoComplete="cc-number"
               style={{
                 ...inputStyle,
-                fontFamily: 'monospace',
-                fontSize: '16px',
+                fontFamily: "monospace",
+                fontSize: "16px",
               }}
-              onFocus={(e) => e.target.style.borderColor = '#04BF8A'}
-              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+              onFocus={(e) => (e.target.style.borderColor = "#04BF8A")}
+              onBlur={(e) => (e.target.style.borderColor = "#d1d5db")}
             />
           </Box>
 
@@ -66,14 +66,16 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
               type="text"
               placeholder="Como aparece en la tarjeta"
               value={paymentData.cardholderName}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => onPaymentDataChange('cardholderName', e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onPaymentDataChange("cardholderName", e.target.value)
+              }
               autoComplete="cc-name"
               style={{
                 ...inputStyle,
-                textTransform: 'uppercase',
+                textTransform: "uppercase",
               }}
-              onFocus={(e) => e.target.style.borderColor = '#04BF8A'}
-              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+              onFocus={(e) => (e.target.style.borderColor = "#04BF8A")}
+              onBlur={(e) => (e.target.style.borderColor = "#d1d5db")}
             />
           </Box>
 
@@ -84,15 +86,17 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
               </Text>
               <select
                 value={paymentData.expiryMonth}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => onPaymentDataChange('expiryMonth', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  onPaymentDataChange("expiryMonth", e.target.value)
+                }
                 autoComplete="cc-exp-month"
                 style={selectStyle}
-                onFocus={(e) => e.target.style.borderColor = '#04BF8A'}
-                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+                onFocus={(e) => (e.target.style.borderColor = "#04BF8A")}
+                onBlur={(e) => (e.target.style.borderColor = "#d1d5db")}
               >
                 <option value="">MM</option>
                 {Array.from({ length: 12 }, (_, i) => {
-                  const month = (i + 1).toString().padStart(2, '0');
+                  const month = (i + 1).toString().padStart(2, "0");
                   return (
                     <option key={month} value={month}>
                       {month}
@@ -108,15 +112,19 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
               </Text>
               <select
                 value={paymentData.expiryYear}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => onPaymentDataChange('expiryYear', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  onPaymentDataChange("expiryYear", e.target.value)
+                }
                 autoComplete="cc-exp-year"
                 style={selectStyle}
-                onFocus={(e) => e.target.style.borderColor = '#04BF8A'}
-                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+                onFocus={(e) => (e.target.style.borderColor = "#04BF8A")}
+                onBlur={(e) => (e.target.style.borderColor = "#d1d5db")}
               >
                 <option value="">YY</option>
                 {Array.from({ length: 10 }, (_, i) => {
-                  const year = (new Date().getFullYear() + i).toString().slice(-2);
+                  const year = (new Date().getFullYear() + i)
+                    .toString()
+                    .slice(-2);
                   return (
                     <option key={year} value={year}>
                       {year}
@@ -134,15 +142,20 @@ export const PaymentForm: React.FC<PaymentFormProps> = ({
                 type="password"
                 placeholder="123"
                 value={paymentData.cvv}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => onPaymentDataChange('cvv', e.target.value.replace(/[^0-9]/g, '').slice(0, 4))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  onPaymentDataChange(
+                    "cvv",
+                    e.target.value.replace(/[^0-9]/g, "").slice(0, 4)
+                  )
+                }
                 maxLength={4}
                 autoComplete="cc-csc"
                 style={{
                   ...inputStyle,
-                  fontFamily: 'monospace',
+                  fontFamily: "monospace",
                 }}
-                onFocus={(e) => e.target.style.borderColor = '#04BF8A'}
-                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+                onFocus={(e) => (e.target.style.borderColor = "#04BF8A")}
+                onBlur={(e) => (e.target.style.borderColor = "#d1d5db")}
               />
             </Box>
           </HStack>

@@ -60,7 +60,11 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
               w="full"
               transition="all 0.2s ease-in-out"
             >
-              {loading ? "Procesando compra..." : !isPaymentValid ? "Complete los datos de pago" : "✨ Confirmar Compra"}
+              {loading
+                ? "Procesando compra..."
+                : !isPaymentValid
+                ? "Complete los datos de pago"
+                : "✨ Confirmar Compra"}
             </Button>
 
             <Button

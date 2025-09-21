@@ -1,19 +1,25 @@
 import { Container, Flex, Stack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Confetti from "react-confetti";
 import { toaster } from "../../components/ui/toaster";
 import { useAuth } from "../../contexts/auth-context";
 import { useCart } from "../../contexts/cart-context";
+import { useConfetti } from "../../contexts/confetti-context";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
 import { purchaseTicketUrl } from "./checkout.api";
-import { CheckoutItem, OrderSummary, PageHeader, PaymentForm } from "./components";
 import type { PaymentData } from "./checkout.utils";
 import { isPaymentValid } from "./checkout.utils";
+import {
+  CheckoutItem,
+  OrderSummary,
+  PageHeader,
+  PaymentForm,
+} from "./components";
 
 export const CheckoutPage = () => {
   const { user, isLogged } = useAuth();
   const { items, totalPrice, clearCart } = useCart();
+  const { triggerConfetti } = useConfetti();
   const navigate = useNavigate();
 
   const [paymentData, setPaymentData] = useState<PaymentData>({
@@ -24,14 +30,11 @@ export const CheckoutPage = () => {
     cardholderName: "",
   });
 
-  const [showConfetti, setShowConfetti] = useState(false);
-
   const handleInputChange = (field: keyof PaymentData, value: string) => {
-    setPaymentData(prev => ({ ...prev, [field]: value }));
+    setPaymentData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleConfirmPurchase = () => {
-    // Validación de datos de pago
     if (!isPaymentValid(paymentData)) {
       toaster.create({
         title: "Datos incompletos",
@@ -40,7 +43,6 @@ export const CheckoutPage = () => {
       });
       return;
     }
-    console.log('Datos de pago:', paymentData);
     purchaseMultipleTickets();
   };
 
@@ -74,18 +76,13 @@ export const CheckoutPage = () => {
         },
       },
       onSuccess: () => {
-        clearCart();
-        setShowConfetti(true);
+        triggerConfetti();
         toaster.create({
           title: "Compra exitosa",
           description: "Tus entradas han sido compradas con éxito",
           type: "success",
         });
-        // Ocultar confeti después de 5 segundos y navegar
-        setTimeout(() => {
-          setShowConfetti(false);
-          navigate("/mis-tickets");
-        }, 5000);
+        clearCart();
       },
       onError: () => {
         toaster.create({
@@ -103,7 +100,11 @@ export const CheckoutPage = () => {
       return;
     }
     if (items.length === 0) {
-      navigate("/");
+      if (isLogged) {
+        navigate("/mis-tickets");
+      } else {
+        navigate("/");
+      }
       return;
     }
   }, [isLogged, items.length, navigate]);
@@ -143,16 +144,6 @@ export const CheckoutPage = () => {
           />
         </Flex>
       </Stack>
-
-      {showConfetti && (
-        <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
-          recycle={false}
-          numberOfPieces={200}
-          gravity={0.3}
-        />
-      )}
     </Container>
   );
 };
