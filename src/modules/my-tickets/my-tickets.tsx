@@ -15,8 +15,10 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FiCalendar, FiClock, FiMapPin } from "react-icons/fi";
+import { FaQrcode } from "react-icons/fa";
 import { MdConfirmationNumber } from "react-icons/md";
 import { Link } from "react-router";
+import { QRModal } from "../../components/qr-modal";
 import { toaster } from "../../components/ui/toaster";
 import { useAuth } from "../../contexts/auth-context";
 import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
@@ -101,12 +103,17 @@ const formatTime = (timeString: string) => {
   return timeString;
 };
 
-const TicketCard = ({ ticket }: { ticket: Ticket }) => {
+const TicketCard = ({ 
+  ticket, 
+  onOpenQR 
+}: { 
+  ticket: Ticket; 
+  onOpenQR: (qrCode: string, status: string) => void;
+}) => {
   const isExpired = new Date(ticket.eventId.date) < new Date();
   const eventImage =
     ticket.eventId.images?.[0] ||
-    ticket.eventId.culturalPlaceId.images?.[0] ||
-    "/placeholder-image.jpg";
+    ticket.eventId.culturalPlaceId.images?.[0];
 
   return (
     <Card.Root
@@ -121,13 +128,28 @@ const TicketCard = ({ ticket }: { ticket: Ticket }) => {
       }}
     >
       <Box position="relative" height="200px" overflow="hidden">
-        <Image
-          src={eventImage}
-          alt={ticket.eventId.name}
-          objectFit="cover"
-          width="100%"
-          height="100%"
-        />
+        {eventImage ? (
+          <Image
+            src={eventImage}
+            alt={ticket.eventId.name}
+            objectFit="cover"
+            width="100%"
+            height="100%"
+          />
+        ) : (
+          <Box
+            bg="gray.100"
+            width="100%"
+            height="100%"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text color="gray.500" fontSize="sm">
+              Sin imagen
+            </Text>
+          </Box>
+        )}
         <Box
           position="absolute"
           top={3}
@@ -208,6 +230,18 @@ const TicketCard = ({ ticket }: { ticket: Ticket }) => {
               Este evento ya finalizó
             </Text>
           )}
+
+          <Button
+            variant="outline"
+            colorScheme="brand"
+            size="sm"
+            width="100%"
+            mt={2}
+            onClick={() => onOpenQR(ticket.qrCode || "", ticket.status)}
+          >
+            <FaQrcode style={{ marginRight: "8px" }} />
+            Ver QR
+          </Button>
         </VStack>
       </Card.Body>
     </Card.Root>
@@ -237,6 +271,15 @@ export const MyTicketsPage = () => {
   const [activeFilter, setActiveFilter] = useState<
     "all" | "active" | "used" | "cancelled"
   >("all");
+  const [qrModal, setQrModal] = useState<{
+    isOpen: boolean;
+    qrCode: string;
+    status: string;
+  }>({
+    isOpen: false,
+    qrCode: "",
+    status: "",
+  });
 
   const { data, loading, error } = useGetDataFromBackend<Ticket[]>({
     url: getUserTickets(user?.id || ""),
@@ -268,6 +311,22 @@ export const MyTicketsPage = () => {
   const activeTickets = tickets.filter((t) => t.status === "active");
   const usedTickets = tickets.filter((t) => t.status === "used");
   const cancelledTickets = tickets.filter((t) => t.status === "cancelled");
+
+  const handleOpenQR = (qrCode: string, status: string) => {
+    setQrModal({
+      isOpen: true,
+      qrCode,
+      status,
+    });
+  };
+
+  const handleCloseQR = () => {
+    setQrModal({
+      isOpen: false,
+      qrCode: "",
+      status: "",
+    });
+  };
 
   if (!user) {
     return (
@@ -413,11 +472,23 @@ export const MyTicketsPage = () => {
             gap={6}
           >
             {filteredTickets.map((ticket) => (
-              <TicketCard key={ticket._id} ticket={ticket} />
+              <TicketCard 
+                key={ticket._id} 
+                ticket={ticket} 
+                onOpenQR={handleOpenQR}
+              />
             ))}
           </Grid>
         )}
       </VStack>
+
+      {/* QR Modal */}
+      <QRModal
+        isOpen={qrModal.isOpen}
+        onClose={handleCloseQR}
+        qrCode={qrModal.qrCode}
+        status={qrModal.status as "active" | "used" | "cancelled"}
+      />
     </Container>
   );
 };
