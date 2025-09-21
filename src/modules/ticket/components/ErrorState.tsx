@@ -8,8 +8,8 @@ import {
   Icon,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { FaExclamationTriangle, FaTimesCircle } from "react-icons/fa";
+} from '@chakra-ui/react';
+import { FaExclamationTriangle, FaTimesCircle } from 'react-icons/fa';
 
 interface ErrorStateProps {
   error: string;
@@ -27,7 +27,6 @@ export const ErrorState = ({ error }: ErrorStateProps) => (
       border="1px solid"
       borderColor="red.200"
     >
-      {/* Header con gradiente rojo */}
       <Box
         bg="linear-gradient(135deg, #e53e3e 0%, #c53030 100%)"
         p={6}
@@ -62,7 +61,6 @@ export const ErrorState = ({ error }: ErrorStateProps) => (
 
       <Card.Body p={8}>
         <VStack gap={6} align="stretch">
-          {/* Información del error */}
           <Box textAlign="center">
             <VStack gap={4}>
               <HStack justify="center" gap={2}>
@@ -93,7 +91,6 @@ export const ErrorState = ({ error }: ErrorStateProps) => (
 
           <Box borderTop="1px solid" borderColor="gray.200" my={4} />
 
-          {/* Acción */}
           <Box textAlign="center">
             <VStack gap={3}>
               <Text color="gray.500" fontSize="sm">
@@ -102,14 +99,14 @@ export const ErrorState = ({ error }: ErrorStateProps) => (
               <Button
                 colorScheme="brand"
                 size="lg"
-                onClick={() => (window.location.href = "/")}
+                onClick={() => (window.location.href = '/')}
                 px={8}
                 py={3}
                 borderRadius="full"
                 fontWeight="bold"
                 _hover={{
-                  transform: "translateY(-1px)",
-                  shadow: "lg",
+                  transform: 'translateY(-1px)',
+                  shadow: 'lg',
                 }}
                 transition="all 0.2s"
               >

@@ -1,10 +1,10 @@
 // Mock dependencies
-jest.mock("../../../contexts/cart-context");
+jest.mock('../../../contexts/cart-context');
 
-import { fireEvent, render, screen } from "@testing-library/react";
-import { CartButton } from "../../../components/cart/cart-button";
-import { useCart } from "../../../contexts/cart-context";
-jest.mock("@chakra-ui/react", () => ({
+import { fireEvent, render, screen } from '@testing-library/react';
+import { CartButton } from '../../../components/cart/cart-button';
+import { useCart } from '../../../contexts/cart-context';
+jest.mock('@chakra-ui/react', () => ({
   Box: ({ children, ...props }: any) => <div {...props}>{children}</div>,
   IconButton: ({ children, onClick, ...props }: any) => (
     <button onClick={onClick} {...props}>
@@ -18,20 +18,20 @@ jest.mock("@chakra-ui/react", () => ({
   ),
 }));
 
-jest.mock("react-icons/fi", () => ({
+jest.mock('react-icons/fi', () => ({
   FiShoppingCart: () => <span data-testid="cart-icon" />,
 }));
 
 const mockUseCart = useCart as jest.MockedFunction<typeof useCart>;
 
-describe("CartButton", () => {
+describe('CartButton', () => {
   const mockOnClick = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should render cart icon without badge when cart is empty", () => {
+  it('should render cart icon without badge when cart is empty', () => {
     mockUseCart.mockReturnValue({
       totalItems: 0,
       items: [],
@@ -46,11 +46,11 @@ describe("CartButton", () => {
 
     render(<CartButton onClick={mockOnClick} />);
 
-    expect(screen.getByTestId("cart-icon")).toBeInTheDocument();
-    expect(screen.queryByTestId("badge")).not.toBeInTheDocument();
+    expect(screen.getByTestId('cart-icon')).toBeInTheDocument();
+    expect(screen.queryByTestId('badge')).not.toBeInTheDocument();
   });
 
-  it("should render cart icon with badge when cart has items", () => {
+  it('should render cart icon with badge when cart has items', () => {
     mockUseCart.mockReturnValue({
       totalItems: 3,
       items: [],
@@ -65,12 +65,12 @@ describe("CartButton", () => {
 
     render(<CartButton onClick={mockOnClick} />);
 
-    expect(screen.getByTestId("cart-icon")).toBeInTheDocument();
-    expect(screen.getByTestId("badge")).toBeInTheDocument();
-    expect(screen.getByTestId("badge")).toHaveTextContent("3");
+    expect(screen.getByTestId('cart-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('badge')).toBeInTheDocument();
+    expect(screen.getByTestId('badge')).toHaveTextContent('3');
   });
 
-  it("should call onClick when button is clicked", () => {
+  it('should call onClick when button is clicked', () => {
     mockUseCart.mockReturnValue({
       totalItems: 0,
       items: [],
@@ -85,12 +85,12 @@ describe("CartButton", () => {
 
     render(<CartButton onClick={mockOnClick} />);
 
-    fireEvent.click(screen.getByRole("button"));
+    fireEvent.click(screen.getByRole('button'));
 
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 
-  it("should have correct accessibility attributes", () => {
+  it('should have correct accessibility attributes', () => {
     mockUseCart.mockReturnValue({
       totalItems: 0,
       items: [],
@@ -105,11 +105,11 @@ describe("CartButton", () => {
 
     render(<CartButton onClick={mockOnClick} />);
 
-    const button = screen.getByRole("button");
-    expect(button).toHaveAttribute("aria-label", "Abrir carrito");
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('aria-label', 'Abrir carrito');
   });
 
-  it("should display correct badge styles when items > 0", () => {
+  it('should display correct badge styles when items > 0', () => {
     mockUseCart.mockReturnValue({
       totalItems: 5,
       items: [],
@@ -124,13 +124,13 @@ describe("CartButton", () => {
 
     render(<CartButton onClick={mockOnClick} />);
 
-    const badge = screen.getByTestId("badge");
-    expect(badge).toHaveAttribute("position", "absolute");
-    expect(badge).toHaveAttribute("colorScheme", "red");
-    expect(badge).toHaveAttribute("variant", "solid");
+    const badge = screen.getByTestId('badge');
+    expect(badge).toHaveAttribute('position', 'absolute');
+    expect(badge).toHaveAttribute('colorScheme', 'red');
+    expect(badge).toHaveAttribute('variant', 'solid');
   });
 
-  it("should handle large item counts", () => {
+  it('should handle large item counts', () => {
     mockUseCart.mockReturnValue({
       totalItems: 99,
       items: [],
@@ -145,6 +145,6 @@ describe("CartButton", () => {
 
     render(<CartButton onClick={mockOnClick} />);
 
-    expect(screen.getByTestId("badge")).toHaveTextContent("99");
+    expect(screen.getByTestId('badge')).toHaveTextContent('99');
   });
 });

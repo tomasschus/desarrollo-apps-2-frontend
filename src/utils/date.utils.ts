@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
 export type FormatDateOptions = {
   format?: string;
@@ -14,37 +14,37 @@ export const daysOfWeek: {
   order: number;
 }[] = [
   {
-    label: "Domingo",
+    label: 'Domingo',
     value: 0,
     order: 0,
   },
   {
-    label: "Lunes",
+    label: 'Lunes',
     value: 1,
     order: 1,
   },
   {
-    label: "Martes",
+    label: 'Martes',
     value: 2,
     order: 2,
   },
   {
-    label: "Miércoles",
+    label: 'Miércoles',
     value: 3,
     order: 3,
   },
   {
-    label: "Jueves",
+    label: 'Jueves',
     value: 4,
     order: 4,
   },
   {
-    label: "Viernes",
+    label: 'Viernes',
     value: 5,
     order: 5,
   },
   {
-    label: "Sábado",
+    label: 'Sábado',
     value: 6,
     order: 6,
   },
@@ -53,7 +53,7 @@ export const daysOfWeek: {
 export const formatUnixDate = (
   date: number,
   {
-    format = "DD/MM/YYYY",
+    format = 'DD/MM/YYYY',
     utc = false,
     keepLocalTime = false,
   }: FormatDateOptions = {}
@@ -66,14 +66,14 @@ export const formatUnixDate = (
 
 export const formatUnixDateTime = (
   date: number,
-  { format = "DD/MM/YYYY HH:mm", ...options }: FormatDateOptions = {}
+  { format = 'DD/MM/YYYY HH:mm', ...options }: FormatDateOptions = {}
 ) => {
   return formatUnixDate(date, { format, ...options });
 };
 
 export const formatUnixDateWithFromNow = (
   date: number,
-  { format = "DD/MM/YYYY", utc = false }: FormatDateOptions = {}
+  { format = 'DD/MM/YYYY', utc = false }: FormatDateOptions = {}
 ) => {
   const dayJsDate = utc ? dayjs.unix(date).utc() : dayjs.unix(date);
   return `${dayJsDate.format(format)} (${dayJsDate.fromNow()})`;
@@ -81,7 +81,7 @@ export const formatUnixDateWithFromNow = (
 
 export const formatIsoDate = (
   date: string,
-  { format = "DD/MM/YYYY", utc, keepLocalTime }: FormatDateOptions = {}
+  { format = 'DD/MM/YYYY', utc, keepLocalTime }: FormatDateOptions = {}
 ) => {
   const dayJsDate = utc ? dayjs(date).utc(keepLocalTime) : dayjs(date);
   return dayJsDate.format(format);
@@ -89,12 +89,12 @@ export const formatIsoDate = (
 
 export const formatIsoDateTime = (
   date: string,
-  { format = "DD/MM/YYYY HH:mm", ...options }: FormatDateOptions = {}
+  { format = 'DD/MM/YYYY HH:mm', ...options }: FormatDateOptions = {}
 ) => formatIsoDate(date, { format, ...options });
 
 export const formatIsoDateWithFromNow = (
   date: string,
-  format = "DD/MM/YYYY"
+  format = 'DD/MM/YYYY'
 ) => {
   const dayJsDate = dayjs(date);
   return `${dayJsDate.format(format)} (${dayJsDate.fromNow()})`;
@@ -102,8 +102,8 @@ export const formatIsoDateWithFromNow = (
 
 export const formatDate = (
   date: string,
-  inputFormat = "YYYY-MM-DD",
-  outputFormat = "DD/MM/YYYY"
+  inputFormat = 'YYYY-MM-DD',
+  outputFormat = 'DD/MM/YYYY'
 ) => {
   const dayJsDate = dayjs(date, inputFormat);
   return dayJsDate.format(outputFormat);

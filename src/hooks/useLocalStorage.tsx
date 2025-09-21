@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 type StorageValue<T> = T;
 
@@ -16,12 +16,12 @@ function useLocalStorage<T>(
   const [value, setValue] = useState<StorageValue<T>>(() => {
     try {
       const item = localStorage.getItem(key);
-      if (typeof initialValue === "string") {
+      if (typeof initialValue === 'string') {
         return item ?? initialValue ?? null;
       }
-      return item ? JSON.parse(item) : initialValue ?? null;
+      return item ? JSON.parse(item) : (initialValue ?? null);
     } catch (err) {
-      console.error("Error al inicializar localStorage:", err);
+      console.error('Error al inicializar localStorage:', err);
       return initialValue ?? null;
     }
   });
@@ -35,7 +35,7 @@ function useLocalStorage<T>(
         const valueToStore =
           newValue instanceof Function ? newValue(valueRef.current) : newValue;
         // Si es string, guarda directo
-        if (typeof valueToStore === "string") {
+        if (typeof valueToStore === 'string') {
           localStorage.setItem(key, valueToStore);
         } else {
           localStorage.setItem(key, JSON.stringify(valueToStore));
@@ -47,7 +47,7 @@ function useLocalStorage<T>(
         const error =
           err instanceof Error
             ? err
-            : new Error("Error al guardar en localStorage");
+            : new Error('Error al guardar en localStorage');
         setError(error);
       }
     },
@@ -64,7 +64,7 @@ function useLocalStorage<T>(
       const error =
         err instanceof Error
           ? err
-          : new Error("Error al eliminar del localStorage");
+          : new Error('Error al eliminar del localStorage');
       setError(error);
     }
   }, [key]);
@@ -73,7 +73,7 @@ function useLocalStorage<T>(
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === key) {
         try {
-          if (typeof initialValue === "string") {
+          if (typeof initialValue === 'string') {
             valueRef.current = e.newValue as unknown as T;
             setValue(e.newValue as unknown as T);
           } else {
@@ -82,13 +82,13 @@ function useLocalStorage<T>(
             setValue(newValue);
           }
         } catch (err) {
-          console.error("Error al sincronizar localStorage:", err);
+          console.error('Error al sincronizar localStorage:', err);
         }
       }
     };
 
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, [key, initialValue]);
 
   return {

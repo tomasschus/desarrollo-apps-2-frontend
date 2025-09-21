@@ -12,16 +12,16 @@ import {
   Stack,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { useMemo, useState } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import { FiCalendar, FiClock, FiMapPin } from "react-icons/fi";
-import { useNavigate } from "react-router";
-import "../../calendar-styles.css";
-import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
-import { formatIsoDate } from "../../utils/date.utils";
-import { getEvents } from "./events-calendar.api";
+} from '@chakra-ui/react';
+import { useMemo, useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import { FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
+import { useNavigate } from 'react-router';
+import '../../calendar-styles.css';
+import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { formatIsoDate } from '../../utils/date.utils';
+import { getEvents } from './events-calendar.api';
 
 interface Event {
   _id: string;
@@ -49,7 +49,7 @@ export const EventsCalendar = () => {
 
   const { data: events, loading } = useGetDataFromBackend<Event[]>({
     url: getEvents(),
-    options: { method: "GET" },
+    options: { method: 'GET' },
     executeAutomatically: true,
   });
 
@@ -71,17 +71,17 @@ export const EventsCalendar = () => {
     return grouped;
   }, [events]);
   const tileClassName = ({ date, view }: { date: Date; view: string }) => {
-    if (view === "month") {
+    if (view === 'month') {
       const dateKey = date.toDateString();
       const hasEvents =
         eventsByDate[dateKey] && eventsByDate[dateKey].length > 0;
-      return hasEvents ? "has-events" : null;
+      return hasEvents ? 'has-events' : null;
     }
     return null;
   };
 
   const tileContent = ({ date, view }: { date: Date; view: string }) => {
-    if (view === "month") {
+    if (view === 'month') {
       const dateKey = date.toDateString();
       const dayEvents = eventsByDate[dateKey];
 
@@ -149,8 +149,7 @@ export const EventsCalendar = () => {
         </Text>
       </Flex>
 
-      <Grid templateColumns={{ base: "1fr", xl: "2fr 1fr" }} gap={6}>
-        {/* Calendario principal */}
+      <Grid templateColumns={{ base: '1fr', xl: '2fr 1fr' }} gap={6}>
         <Box bg="white" p={6} borderRadius="lg" boxShadow="lg">
           <Calendar
             tileClassName={tileClassName}
@@ -164,7 +163,6 @@ export const EventsCalendar = () => {
           />
         </Box>
 
-        {/* Panel lateral con eventos próximos */}
         <VStack gap={4} align="stretch">
           <Box bg="white" p={6} borderRadius="lg">
             <Heading size="md" mb={4} color="brand.700">
@@ -186,7 +184,7 @@ export const EventsCalendar = () => {
                     borderColor="gray.200"
                     borderRadius="md"
                     cursor="pointer"
-                    _hover={{ borderColor: "brand.300", boxShadow: "sm" }}
+                    _hover={{ borderColor: 'brand.300', boxShadow: 'sm' }}
                     transition="all 0.2s"
                     onClick={() => handleEventClick(event._id)}
                   >
@@ -203,7 +201,7 @@ export const EventsCalendar = () => {
                     <HStack fontSize="xs" color="gray.600" mt={1}>
                       <Icon as={FiCalendar} />
                       <Text>
-                        {formatIsoDate(event.date, { format: "DD/MM/YYYY" })}
+                        {formatIsoDate(event.date, { format: 'DD/MM/YYYY' })}
                       </Text>
                       <Icon as={FiClock} ml={2} />
                       <Text>{event.time}</Text>
@@ -223,7 +221,6 @@ export const EventsCalendar = () => {
             </VStack>
           </Box>
 
-          {/* Estadísticas */}
           <Box bg="white" p={6} borderRadius="lg" boxShadow="lg">
             <Heading size="md" mb={4} color="brand.700">
               Estadísticas
@@ -257,7 +254,6 @@ export const EventsCalendar = () => {
         </VStack>
       </Grid>
 
-      {/* Modal con eventos del día seleccionado */}
       <Dialog.Root
         open={isModalOpen}
         onOpenChange={(open) => {
@@ -272,10 +268,10 @@ export const EventsCalendar = () => {
                 <HStack>
                   <Icon as={FiCalendar} color="brand.500" />
                   <Text fontWeight="bold" fontSize="lg">
-                    Eventos del{" "}
+                    Eventos del{' '}
                     {selectedDate &&
                       formatIsoDate(selectedDate.toISOString(), {
-                        format: "DD/MM/YYYY",
+                        format: 'DD/MM/YYYY',
                       })}
                   </Text>
                 </HStack>
@@ -301,7 +297,7 @@ export const EventsCalendar = () => {
                     borderColor="gray.200"
                     borderRadius="md"
                     cursor="pointer"
-                    _hover={{ borderColor: "brand.300", boxShadow: "sm" }}
+                    _hover={{ borderColor: 'brand.300', boxShadow: 'sm' }}
                     transition="all 0.2s"
                     onClick={() => handleEventClick(event._id)}
                   >
@@ -334,7 +330,7 @@ export const EventsCalendar = () => {
                           display="-webkit-box"
                           style={{
                             WebkitLineClamp: 2,
-                            WebkitBoxOrient: "vertical" as any,
+                            WebkitBoxOrient: 'vertical' as any,
                           }}
                         >
                           {event.description}

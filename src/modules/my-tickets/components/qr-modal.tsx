@@ -1,23 +1,23 @@
-import { Box, Button, Dialog, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Dialog, Image, Text, VStack } from '@chakra-ui/react';
 
 interface QRModalProps {
   isOpen: boolean;
   onClose: () => void;
   qrCode: string;
-  status: "active" | "used" | "cancelled";
+  status: 'active' | 'used' | 'cancelled';
 }
 
 export const QRModal = ({ isOpen, onClose, qrCode, status }: QRModalProps) => {
   const getStatusDisplay = (status: string) => {
     switch (status) {
-      case "active":
-        return { text: "✅ Activo", color: "green.600" };
-      case "used":
-        return { text: "❌ Usado", color: "red.600" };
-      case "cancelled":
-        return { text: "⚠️ Cancelado", color: "orange.600" };
+      case 'active':
+        return { text: '✅ Activo', color: 'green.600' };
+      case 'used':
+        return { text: '❌ Usado', color: 'red.600' };
+      case 'cancelled':
+        return { text: '⚠️ Cancelado', color: 'orange.600' };
       default:
-        return { text: "❓ Desconocido", color: "gray.600" };
+        return { text: '❓ Desconocido', color: 'gray.600' };
     }
   };
 
@@ -53,7 +53,6 @@ export const QRModal = ({ isOpen, onClose, qrCode, status }: QRModalProps) => {
 
           <Dialog.Body>
             <VStack gap={6} align="center">
-              {/* QR Code Image */}
               {qrCode ? (
                 <Box
                   p={4}
@@ -86,7 +85,6 @@ export const QRModal = ({ isOpen, onClose, qrCode, status }: QRModalProps) => {
                 </Box>
               )}
 
-              {/* Status */}
               <VStack gap={2} align="center">
                 <Text fontSize="sm" color="gray.600" fontWeight="medium">
                   Estado del ticket:

@@ -1,22 +1,26 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
-import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
-import { ScreenLayout } from "../../components/screen-layout";
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
+import { ScreenLayout } from '../../components/screen-layout';
 
 // Mock useNavigate and useLocation
 const mockNavigate = jest.fn();
 
-jest.mock("react-router", () => ({
-  ...jest.requireActual("react-router"),
+jest.mock('react-router', () => ({
+  ...jest.requireActual('react-router'),
   useNavigate: () => mockNavigate,
 }));
 
 // Mock useAuth
-jest.mock("../../contexts/auth-context", () => ({
-  useAuth: jest.fn(() => ({ isLogged: false, isAdmin: false, isOperator: false })),
+jest.mock('../../contexts/auth-context', () => ({
+  useAuth: jest.fn(() => ({
+    isLogged: false,
+    isAdmin: false,
+    isOperator: false,
+  })),
 }));
 
-describe("ScreenLayout", () => {
+describe('ScreenLayout', () => {
   const renderWithProviders = (component: React.ReactElement) =>
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
@@ -28,17 +32,17 @@ describe("ScreenLayout", () => {
     jest.clearAllMocks();
   });
 
-  it("renders ScreenLayout with Outlet", () => {
+  it('renders ScreenLayout with Outlet', () => {
     renderWithProviders(<ScreenLayout />);
 
-    expect(screen.getByText("Cultura")).toBeInTheDocument();
+    expect(screen.getByText('Cultura')).toBeInTheDocument();
   });
 
-  it("renders children if provided", () => {
+  it('renders children if provided', () => {
     const testChild = <div>Test Child</div>;
 
     renderWithProviders(<ScreenLayout>{testChild}</ScreenLayout>);
 
-    expect(screen.getByText("Test Child")).toBeInTheDocument();
+    expect(screen.getByText('Test Child')).toBeInTheDocument();
   });
 });

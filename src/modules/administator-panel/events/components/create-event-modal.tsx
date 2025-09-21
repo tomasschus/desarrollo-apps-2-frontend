@@ -8,11 +8,11 @@ import {
   Text,
   Textarea,
   VStack,
-} from "@chakra-ui/react";
-import { useFieldArray, useForm } from "react-hook-form";
-import { FiPlus, FiTrash2, FiX } from "react-icons/fi";
-import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
-import { getCulturalPlaces, getEvents } from "../../api/admin.api";
+} from '@chakra-ui/react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { FiPlus, FiTrash2, FiX } from 'react-icons/fi';
+import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { getCulturalPlaces, getEvents } from '../../api/admin.api';
 
 interface CulturalPlace {
   _id: string;
@@ -58,15 +58,15 @@ export const CreateEventModal = ({
     formState: { isSubmitting },
   } = useForm<EventFormData>({
     defaultValues: {
-      culturalPlaceId: "",
-      name: "",
-      description: "",
-      date: "",
-      time: "",
+      culturalPlaceId: '',
+      name: '',
+      description: '',
+      date: '',
+      time: '',
       isActive: true,
       ticketTypes: [
         {
-          type: "general",
+          type: 'general',
           price: 0,
           initialQuantity: 0,
           soldQuantity: 0,
@@ -78,19 +78,19 @@ export const CreateEventModal = ({
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "ticketTypes",
+    name: 'ticketTypes',
   });
 
   const { data: culturalPlaces, loading: loadingPlaces } =
     useGetDataFromBackend<CulturalPlace[]>({
       url: getCulturalPlaces(),
-      options: { method: "GET" },
+      options: { method: 'GET' },
       executeAutomatically: true,
     });
 
   const addTicketType = () => {
     append({
-      type: "",
+      type: '',
       price: 0,
       initialQuantity: 0,
       soldQuantity: 0,
@@ -107,24 +107,23 @@ export const CreateEventModal = ({
   const onSubmit = async (data: EventFormData) => {
     try {
       const response = await fetch(getEvents(), {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
       if (response.ok) {
-        alert("Evento creado correctamente");
+        alert('Evento creado correctamente');
         onEventCreated();
         handleClose();
       } else {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Error al crear el evento");
+        throw new Error(errorData.message || 'Error al crear el evento');
       }
     } catch (error) {
-      alert(error instanceof Error ? error.message : "Error desconocido");
+      alert(error instanceof Error ? error.message : 'Error desconocido');
     }
   };
 
@@ -157,7 +156,6 @@ export const CreateEventModal = ({
         maxH="90vh"
         overflow="auto"
       >
-        {/* Header */}
         <HStack
           justifyContent="space-between"
           p={6}
@@ -172,23 +170,21 @@ export const CreateEventModal = ({
           </IconButton>
         </HStack>
 
-        {/* Body */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box p={6}>
             <VStack gap={6} align="stretch">
-              {/* Lugar Cultural */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Lugar Cultural *
                 </Text>
                 <select
-                  {...register("culturalPlaceId", { required: true })}
+                  {...register('culturalPlaceId', { required: true })}
                   style={{
-                    width: "100%",
-                    padding: "8px 12px",
-                    border: "1px solid #E2E8F0",
-                    borderRadius: "6px",
-                    backgroundColor: "white",
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #E2E8F0',
+                    borderRadius: '6px',
+                    backgroundColor: 'white',
                   }}
                   disabled={loadingPlaces}
                 >
@@ -201,30 +197,27 @@ export const CreateEventModal = ({
                 </select>
               </Box>
 
-              {/* Nombre del evento */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Nombre del Evento *
                 </Text>
                 <Input
-                  {...register("name", { required: true })}
+                  {...register('name', { required: true })}
                   placeholder="Ej: Concierto de Jazz"
                 />
               </Box>
 
-              {/* Descripción */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Descripción
                 </Text>
                 <Textarea
-                  {...register("description")}
+                  {...register('description')}
                   placeholder="Descripción del evento..."
                   rows={3}
                 />
               </Box>
 
-              {/* Fecha y Hora */}
               <HStack gap={4}>
                 <Box flex="1">
                   <Text fontWeight="medium" mb={2}>
@@ -232,7 +225,7 @@ export const CreateEventModal = ({
                   </Text>
                   <Input
                     type="date"
-                    {...register("date", { required: true })}
+                    {...register('date', { required: true })}
                   />
                 </Box>
 
@@ -242,12 +235,11 @@ export const CreateEventModal = ({
                   </Text>
                   <Input
                     type="time"
-                    {...register("time", { required: true })}
+                    {...register('time', { required: true })}
                   />
                 </Box>
               </HStack>
 
-              {/* Tipos de Entrada */}
               <Box>
                 <HStack justifyContent="space-between" mb={3}>
                   <Text fontWeight="medium">Tipos de Entrada</Text>
@@ -258,7 +250,7 @@ export const CreateEventModal = ({
                     onClick={addTicketType}
                     type="button"
                   >
-                    <FiPlus style={{ marginRight: "4px" }} />
+                    <FiPlus style={{ marginRight: '4px' }} />
                     Agregar Tipo
                   </Button>
                 </HStack>
@@ -300,11 +292,11 @@ export const CreateEventModal = ({
                               required: true,
                             })}
                             style={{
-                              width: "100%",
-                              padding: "8px 12px",
-                              border: "1px solid #E2E8F0",
-                              borderRadius: "6px",
-                              backgroundColor: "white",
+                              width: '100%',
+                              padding: '8px 12px',
+                              border: '1px solid #E2E8F0',
+                              borderRadius: '6px',
+                              backgroundColor: 'white',
                             }}
                           >
                             <option value="">Seleccionar tipo</option>
@@ -357,7 +349,6 @@ export const CreateEventModal = ({
             </VStack>
           </Box>
 
-          {/* Footer */}
           <HStack
             justifyContent="flex-end"
             p={6}
@@ -374,7 +365,7 @@ export const CreateEventModal = ({
               loading={isSubmitting}
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Creando..." : "Crear Evento"}
+              {isSubmitting ? 'Creando...' : 'Crear Evento'}
             </Button>
           </HStack>
         </form>

@@ -1,18 +1,18 @@
-import { HStack, Stack } from "@chakra-ui/react";
-import { Outlet } from "react-router";
-import { Topbar } from "./topbar";
+import { HStack, Stack } from '@chakra-ui/react';
+import { Outlet } from 'react-router';
+import { Topbar } from './topbar';
 
 export const ScreenLayout = ({ children }: { children?: React.ReactNode }) => {
   return (
     <Stack gap={6} pb={6}>
       <Topbar />
-      <HStack justifyContent={"center"} w={"full"}>
+      <HStack justifyContent={'center'} w={'full'}>
         <Stack
           w={{
-            base: "full",
-            md: "2xl",
-            lg: "4xl",
-            xl: "6xl",
+            base: 'full',
+            md: '2xl',
+            lg: '4xl',
+            xl: '6xl',
           }}
           px={{
             base: 4,

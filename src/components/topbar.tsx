@@ -7,39 +7,39 @@ import {
   Image,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { FiHeart, FiSearch, FiUser } from "react-icons/fi";
-import { Link, useNavigate } from "react-router";
-import { useAuth } from "../contexts/auth-context";
-import { FestivalAnnouncement } from "../modules/festival-announcement/festival-announcement";
-import { CartButton } from "./cart/cart-button";
-import { CartDrawer } from "./cart/cart-drawer";
-import { LoginModal } from "./login-modal";
-import { MobileMenu } from "./topbar-mobile-menu";
-import { UserMenu } from "./user-menu";
-import { WhatToDoModal } from "./what-to-do-modal";
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { FiHeart, FiSearch, FiUser } from 'react-icons/fi';
+import { Link, useNavigate } from 'react-router';
+import { useAuth } from '../contexts/auth-context';
+import { FestivalAnnouncement } from '../modules/festival-announcement/festival-announcement';
+import { CartButton } from './cart/cart-button';
+import { CartDrawer } from './cart/cart-drawer';
+import { LoginModal } from './login-modal';
+import { MobileMenu } from './topbar-mobile-menu';
+import { UserMenu } from './user-menu';
+import { WhatToDoModal } from './what-to-do-modal';
 
 const culturalCategories = [
   {
-    name: "Arte",
-    filter: (event: string) => event === "Arte",
+    name: 'Arte',
+    filter: (event: string) => event === 'Arte',
   },
   {
-    name: "Música",
-    filter: (event: string) => event === "Música",
+    name: 'Música',
+    filter: (event: string) => event === 'Música',
   },
   {
-    name: "Cine",
-    filter: (event: string) => event === "Cine",
+    name: 'Cine',
+    filter: (event: string) => event === 'Cine',
   },
   {
-    name: "Teatro",
-    filter: (event: string) => event === "Teatro",
+    name: 'Teatro',
+    filter: (event: string) => event === 'Teatro',
   },
   {
-    name: "Eventos",
-    to: "/eventos",
+    name: 'Eventos',
+    to: '/eventos',
   },
 ];
 
@@ -53,7 +53,7 @@ export const Topbar = () => {
 
   const handleCheckout = () => {
     setCartOpen(false);
-    navigate("/checkout");
+    navigate('/checkout');
   };
 
   return (
@@ -67,11 +67,11 @@ export const Topbar = () => {
       borderColor="gray.200"
       boxShadow="sm"
     >
-      <Box bg={"black"}>
+      <Box bg={'black'}>
         {(isAdmin || isOperator) && (
-          <HStack py={1} justifyContent={"center"}>
+          <HStack py={1} justifyContent={'center'}>
             <Link to="/admin">
-              <Button size={"xs"} variant={"outline"}>
+              <Button size={'xs'} variant={'outline'}>
                 Entrar al administrador
               </Button>
             </Link>
@@ -89,7 +89,7 @@ export const Topbar = () => {
             align="center"
             gap={3}
             cursor="pointer"
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
           >
             <Image src="/monumento.svg" alt="Monumento" boxSize={12} />
             <Flex direction="column" gap={0}>
@@ -97,7 +97,7 @@ export const Topbar = () => {
                 fontSize="xl"
                 fontWeight="bold"
                 letterSpacing="tight"
-                color={"brand.600"}
+                color={'brand.600'}
               >
                 Cultura
               </Text>
@@ -113,11 +113,11 @@ export const Topbar = () => {
               size="md"
               color="brand.700"
               _hover={{
-                bg: "gray.100",
+                bg: 'gray.100',
               }}
               display={{
-                base: "none",
-                md: "flex",
+                base: 'none',
+                md: 'flex',
               }}
               onClick={() => setWhatToDoModalOpen(true)}
             >
@@ -129,11 +129,11 @@ export const Topbar = () => {
               size="md"
               color="gray.700"
               _hover={{
-                bg: "gray.100",
+                bg: 'gray.100',
               }}
               display={{
-                base: "none",
-                md: "flex",
+                base: 'none',
+                md: 'flex',
               }}
             >
               <FiHeart /> Lugares favoritos
@@ -161,9 +161,9 @@ export const Topbar = () => {
             <Button
               variant="ghost"
               size="md"
-              display={{ base: "flex", md: "none" }}
+              display={{ base: 'flex', md: 'none' }}
               color="gray.700"
-              _hover={{ bg: "gray.100" }}
+              _hover={{ bg: 'gray.100' }}
               onClick={() => setMenuOpen(true)}
               aria-label="Abrir menú"
             >
@@ -181,9 +181,9 @@ export const Topbar = () => {
         <Stack>
           <Flex
             gap={8}
-            display={{ base: "none", md: "flex" }}
-            width={"full"}
-            justifyContent={"center"}
+            display={{ base: 'none', md: 'flex' }}
+            width={'full'}
+            justifyContent={'center'}
             pb={2}
           >
             {culturalCategories.map((category) => {
@@ -203,8 +203,8 @@ export const Topbar = () => {
                   size="md"
                   color="gray.700"
                   _hover={{
-                    bg: "gray.100",
-                    color: "brand.600",
+                    bg: 'gray.100',
+                    color: 'brand.600',
                   }}
                   transition="all 0.2s"
                 >

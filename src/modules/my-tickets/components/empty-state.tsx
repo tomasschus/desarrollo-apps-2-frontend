@@ -1,9 +1,9 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
-import { Link } from "react-router";
-import { getStatusText } from "../my-tickets.utils";
+import { Box, Button, Heading, Text } from '@chakra-ui/react';
+import { Link } from 'react-router';
+import { getStatusText } from '../my-tickets.utils';
 
 interface EmptyStateProps {
-  activeFilter: "all" | "active" | "used" | "cancelled";
+  activeFilter: 'all' | 'active' | 'used' | 'cancelled';
 }
 
 export const EmptyState = ({ activeFilter }: EmptyStateProps) => {
@@ -13,18 +13,18 @@ export const EmptyState = ({ activeFilter }: EmptyStateProps) => {
         🎟️
       </Text>
       <Heading size="lg" mb={4} color="gray.600">
-        {activeFilter === "all"
-          ? "No tienes tickets aún"
+        {activeFilter === 'all'
+          ? 'No tienes tickets aún'
           : `No tienes tickets ${getStatusText(activeFilter).toLowerCase()}`}
       </Heading>
       <Text color="gray.500" mb={6}>
-        {activeFilter === "all"
-          ? "¡Explora eventos culturales y compra tus primeros tickets!"
+        {activeFilter === 'all'
+          ? '¡Explora eventos culturales y compra tus primeros tickets!'
           : `Actualmente no tienes tickets con estado ${getStatusText(
               activeFilter
             ).toLowerCase()}`}
       </Text>
-      {activeFilter === "all" && (
+      {activeFilter === 'all' && (
         <Link to="/">
           <Button colorScheme="brand" size="lg">
             Explorar Eventos

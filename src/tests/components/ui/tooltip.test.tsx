@@ -1,10 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
-import { Tooltip } from "../../../components/ui/tooltip";
+import { render, screen } from '@testing-library/react';
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
+import { Tooltip } from '../../../components/ui/tooltip';
 
 // Mock Portal
-jest.mock("@chakra-ui/react", () => {
-  const actual = jest.requireActual("@chakra-ui/react");
+jest.mock('@chakra-ui/react', () => {
+  const actual = jest.requireActual('@chakra-ui/react');
   return {
     ...actual,
     Portal: ({ children, disabled }: any) =>
@@ -34,7 +34,7 @@ jest.mock("@chakra-ui/react", () => {
   };
 });
 
-describe("Tooltip", () => {
+describe('Tooltip', () => {
   const renderWithProviders = (component: React.ReactElement) =>
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
@@ -42,68 +42,68 @@ describe("Tooltip", () => {
       </ChakraProvider>
     );
 
-  it("renders children when not disabled", () => {
+  it('renders children when not disabled', () => {
     renderWithProviders(
       <Tooltip content="Tooltip text">
         <button>Hover me</button>
       </Tooltip>
     );
 
-    expect(screen.getByText("Hover me")).toBeInTheDocument();
-    expect(screen.getByTestId("tooltip-root")).toBeInTheDocument();
-    expect(screen.getByTestId("portal")).toBeInTheDocument();
+    expect(screen.getByText('Hover me')).toBeInTheDocument();
+    expect(screen.getByTestId('tooltip-root')).toBeInTheDocument();
+    expect(screen.getByTestId('portal')).toBeInTheDocument();
   });
 
-  it("renders content in tooltip", () => {
+  it('renders content in tooltip', () => {
     renderWithProviders(
       <Tooltip content="Tooltip text">
         <button>Hover me</button>
       </Tooltip>
     );
 
-    expect(screen.getByText("Tooltip text")).toBeInTheDocument();
+    expect(screen.getByText('Tooltip text')).toBeInTheDocument();
   });
 
-  it("renders arrow when showArrow is true", () => {
+  it('renders arrow when showArrow is true', () => {
     renderWithProviders(
       <Tooltip content="Tooltip text" showArrow>
         <button>Hover me</button>
       </Tooltip>
     );
 
-    expect(screen.getByTestId("tooltip-arrow")).toBeInTheDocument();
-    expect(screen.getByTestId("tooltip-arrow-tip")).toBeInTheDocument();
+    expect(screen.getByTestId('tooltip-arrow')).toBeInTheDocument();
+    expect(screen.getByTestId('tooltip-arrow-tip')).toBeInTheDocument();
   });
 
-  it("does not render arrow when showArrow is false", () => {
+  it('does not render arrow when showArrow is false', () => {
     renderWithProviders(
       <Tooltip content="Tooltip text" showArrow={false}>
         <button>Hover me</button>
       </Tooltip>
     );
 
-    expect(screen.queryByTestId("tooltip-arrow")).not.toBeInTheDocument();
+    expect(screen.queryByTestId('tooltip-arrow')).not.toBeInTheDocument();
   });
 
-  it("renders children directly when disabled", () => {
+  it('renders children directly when disabled', () => {
     renderWithProviders(
       <Tooltip content="Tooltip text" disabled>
         <button>Hover me</button>
       </Tooltip>
     );
 
-    expect(screen.getByText("Hover me")).toBeInTheDocument();
-    expect(screen.queryByTestId("tooltip-root")).not.toBeInTheDocument();
+    expect(screen.getByText('Hover me')).toBeInTheDocument();
+    expect(screen.queryByTestId('tooltip-root')).not.toBeInTheDocument();
   });
 
-  it("does not render portal when portalled is false", () => {
+  it('does not render portal when portalled is false', () => {
     renderWithProviders(
       <Tooltip content="Tooltip text" portalled={false}>
         <button>Hover me</button>
       </Tooltip>
     );
 
-    expect(screen.queryByTestId("portal")).not.toBeInTheDocument();
-    expect(screen.getByTestId("tooltip-positioner")).toBeInTheDocument();
+    expect(screen.queryByTestId('portal')).not.toBeInTheDocument();
+    expect(screen.getByTestId('tooltip-positioner')).toBeInTheDocument();
   });
 });

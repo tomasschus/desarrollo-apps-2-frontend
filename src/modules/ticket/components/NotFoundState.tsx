@@ -8,8 +8,8 @@ import {
   Icon,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { FaQuestionCircle, FaSearch } from "react-icons/fa";
+} from '@chakra-ui/react';
+import { FaQuestionCircle, FaSearch } from 'react-icons/fa';
 
 export const NotFoundState = () => (
   <Box minH="100vh" bg="gray.50" p={4} pt={8}>
@@ -23,7 +23,6 @@ export const NotFoundState = () => (
       border="1px solid"
       borderColor="orange.200"
     >
-      {/* Header con gradiente naranja */}
       <Box
         bg="linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)"
         p={6}
@@ -58,7 +57,6 @@ export const NotFoundState = () => (
 
       <Card.Body p={8}>
         <VStack gap={6} align="stretch">
-          {/* Información del error */}
           <Box textAlign="center">
             <VStack gap={4}>
               <HStack justify="center" gap={2}>
@@ -89,7 +87,6 @@ export const NotFoundState = () => (
 
           <Box borderTop="1px solid" borderColor="gray.200" my={4} />
 
-          {/* Acción */}
           <Box textAlign="center">
             <VStack gap={3}>
               <Text color="gray.500" fontSize="sm">
@@ -98,14 +95,14 @@ export const NotFoundState = () => (
               <Button
                 colorScheme="brand"
                 size="lg"
-                onClick={() => (window.location.href = "/")}
+                onClick={() => (window.location.href = '/')}
                 px={8}
                 py={3}
                 borderRadius="full"
                 fontWeight="bold"
                 _hover={{
-                  transform: "translateY(-1px)",
-                  shadow: "lg",
+                  transform: 'translateY(-1px)',
+                  shadow: 'lg',
                 }}
                 transition="all 0.2s"
               >

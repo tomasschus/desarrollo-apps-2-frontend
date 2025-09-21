@@ -1,9 +1,9 @@
-import { Box, Text } from "@chakra-ui/react";
-import { useMemo } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import "../../../calendar-styles.css";
-import { formatIsoDate } from "../../../utils/date.utils";
+import { Box, Text } from '@chakra-ui/react';
+import { useMemo } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import '../../../calendar-styles.css';
+import { formatIsoDate } from '../../../utils/date.utils';
 
 interface EventCalendarProps {
   eventDate: string;
@@ -14,19 +14,19 @@ export const EventCalendar = ({ eventDate, eventName }: EventCalendarProps) => {
   const eventDateObj = useMemo(() => new Date(eventDate), [eventDate]);
 
   const tileClassName = ({ date, view }: { date: Date; view: string }) => {
-    if (view === "month") {
+    if (view === 'month') {
       const isEventDay =
         date.getDate() === eventDateObj.getDate() &&
         date.getMonth() === eventDateObj.getMonth() &&
         date.getFullYear() === eventDateObj.getFullYear();
 
-      return isEventDay ? "event-day" : null;
+      return isEventDay ? 'event-day' : null;
     }
     return null;
   };
 
   const tileContent = ({ date, view }: { date: Date; view: string }) => {
-    if (view === "month") {
+    if (view === 'month') {
       const isEventDay =
         date.getDate() === eventDateObj.getDate() &&
         date.getMonth() === eventDateObj.getMonth() &&
@@ -72,7 +72,7 @@ export const EventCalendar = ({ eventDate, eventName }: EventCalendarProps) => {
         </Text>
         <Text fontSize="sm" color="gray.600">
           {formatIsoDate(eventDate, {
-            format: "dddd, D [de] MMMM [de] YYYY",
+            format: 'dddd, D [de] MMMM [de] YYYY',
           })}
         </Text>
       </Box>

@@ -8,9 +8,9 @@ import {
   Spinner,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { FaClock, FaMapMarkerAlt, FaTicketAlt, FaUser } from "react-icons/fa";
-import type { TicketData } from "../ticket.api";
+} from '@chakra-ui/react';
+import { FaClock, FaMapMarkerAlt, FaTicketAlt, FaUser } from 'react-icons/fa';
+import type { TicketData } from '../ticket.api';
 
 interface ValidatingTicketStateProps {
   ticket: TicketData;
@@ -30,7 +30,6 @@ export const ValidatingTicketState = ({
       border="1px solid"
       borderColor="brand.200"
     >
-      {/* Header con gradiente */}
       <Box
         bg="linear-gradient(135deg, #04BF8A 0%, #03A64A 100%)"
         p={6}
@@ -66,7 +65,6 @@ export const ValidatingTicketState = ({
 
       <Card.Body p={8}>
         <VStack gap={6} align="stretch">
-          {/* Información del ticket */}
           <Box>
             <HStack justify="center" mb={4}>
               <Icon as={FaTicketAlt} color="brand.500" boxSize="20px" />
@@ -133,7 +131,6 @@ export const ValidatingTicketState = ({
 
           <Box borderTop="1px solid" borderColor="gray.200" my={4} />
 
-          {/* Estado de validación */}
           <Box textAlign="center">
             <VStack gap={4}>
               <HStack justify="center" gap={2}>

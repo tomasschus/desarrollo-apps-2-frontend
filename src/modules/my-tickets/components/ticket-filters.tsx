@@ -1,8 +1,8 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex } from '@chakra-ui/react';
 
 interface TicketFiltersProps {
-  activeFilter: "all" | "active" | "used" | "cancelled";
-  onFilterChange: (filter: "all" | "active" | "used" | "cancelled") => void;
+  activeFilter: 'all' | 'active' | 'used' | 'cancelled';
+  onFilterChange: (filter: 'all' | 'active' | 'used' | 'cancelled') => void;
   totalTickets: number;
   activeTickets: number;
   usedTickets: number;
@@ -20,34 +20,34 @@ export const TicketFilters = ({
   return (
     <Flex gap={2} flexWrap="wrap" justify="center">
       <Button
-        variant={activeFilter === "all" ? "solid" : "outline"}
+        variant={activeFilter === 'all' ? 'solid' : 'outline'}
         colorScheme="brand"
         size="sm"
-        onClick={() => onFilterChange("all")}
+        onClick={() => onFilterChange('all')}
       >
         Todos ({totalTickets})
       </Button>
       <Button
-        variant={activeFilter === "active" ? "solid" : "outline"}
+        variant={activeFilter === 'active' ? 'solid' : 'outline'}
         colorScheme="green"
         size="sm"
-        onClick={() => onFilterChange("active")}
+        onClick={() => onFilterChange('active')}
       >
         Activos ({activeTickets})
       </Button>
       <Button
-        variant={activeFilter === "used" ? "solid" : "outline"}
+        variant={activeFilter === 'used' ? 'solid' : 'outline'}
         colorScheme="gray"
         size="sm"
-        onClick={() => onFilterChange("used")}
+        onClick={() => onFilterChange('used')}
       >
         Usados ({usedTickets})
       </Button>
       <Button
-        variant={activeFilter === "cancelled" ? "solid" : "outline"}
+        variant={activeFilter === 'cancelled' ? 'solid' : 'outline'}
         colorScheme="red"
         size="sm"
-        onClick={() => onFilterChange("cancelled")}
+        onClick={() => onFilterChange('cancelled')}
       >
         Cancelados ({cancelledTickets})
       </Button>

@@ -1,4 +1,4 @@
-import { Box, Card, HStack, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { Box, Card, HStack, SimpleGrid, Text, VStack } from '@chakra-ui/react';
 
 interface FeaturesProps {
   characteristics: string[];

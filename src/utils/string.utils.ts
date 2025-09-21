@@ -18,12 +18,12 @@ export const hashCode = (str: string) => {
  * a dot as a decimal separator.
  */
 export const normalizeDecimalNumber = (str: string): string => {
-  if (str.includes(",") || str.includes(".")) {
-    const [head, ...tail] = str.includes(",") ? str.split(",") : str.split(".");
-    const res = [head!, tail.join()].map((w) => w.replace(/\D/g, "")).join(".");
-    return res.startsWith(".") ? "0" + res : res;
+  if (str.includes(',') || str.includes('.')) {
+    const [head, ...tail] = str.includes(',') ? str.split(',') : str.split('.');
+    const res = [head!, tail.join()].map((w) => w.replace(/\D/g, '')).join('.');
+    return res.startsWith('.') ? '0' + res : res;
   }
-  return str.replace(/\D/g, "");
+  return str.replace(/\D/g, '');
 };
 
 export const exchangeChars = (str: string, char1: string, char2: string) =>
@@ -33,13 +33,13 @@ export const exchangeChars = (str: string, char1: string, char2: string) =>
     .join(char2);
 
 export const removeAccents = (str: string) =>
-  str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
 export const toKebabCase = (str: string) =>
   removeAccents(str)
-    .replace(/[^a-zA-Z0-9]+/g, "-")
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
     .toLowerCase();
 
 export const firstLetterToUpperCase = (str: string) =>
-  str !== "" ? str.charAt(0).toUpperCase() + str.slice(1) : "";
+  str !== '' ? str.charAt(0).toUpperCase() + str.slice(1) : '';

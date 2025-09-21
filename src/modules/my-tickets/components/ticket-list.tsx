@@ -1,7 +1,7 @@
-import { Grid } from "@chakra-ui/react";
-import type { Ticket } from "../my-tickets.api";
-import { TicketCard } from "./ticket-card";
-import { TicketSkeleton } from "./ticket-skeleton";
+import { Grid } from '@chakra-ui/react';
+import type { Ticket } from '../my-tickets.api';
+import { TicketCard } from './ticket-card';
+import { TicketSkeleton } from './ticket-skeleton';
 
 interface TicketListProps {
   tickets: Ticket[];
@@ -13,9 +13,9 @@ export const TicketList = ({ tickets, loading }: TicketListProps) => {
     return (
       <Grid
         templateColumns={{
-          base: "1fr",
-          md: "repeat(2, 1fr)",
-          lg: "repeat(3, 1fr)",
+          base: '1fr',
+          md: 'repeat(2, 1fr)',
+          lg: 'repeat(3, 1fr)',
         }}
         gap={6}
       >
@@ -29,9 +29,9 @@ export const TicketList = ({ tickets, loading }: TicketListProps) => {
   return (
     <Grid
       templateColumns={{
-        base: "1fr",
-        md: "repeat(2, 1fr)",
-        lg: "repeat(3, 1fr)",
+        base: '1fr',
+        md: 'repeat(2, 1fr)',
+        lg: 'repeat(3, 1fr)',
       }}
       gap={6}
     >

@@ -1,10 +1,10 @@
-import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
-import { render } from "@testing-library/react";
-import { Toaster, toaster } from "../../../components/ui/toaster";
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
+import { render } from '@testing-library/react';
+import { Toaster, toaster } from '../../../components/ui/toaster';
 
 // Mock Portal
-jest.mock("@chakra-ui/react", () => {
-  const actual = jest.requireActual("@chakra-ui/react");
+jest.mock('@chakra-ui/react', () => {
+  const actual = jest.requireActual('@chakra-ui/react');
   return {
     ...actual,
     Portal: ({ children }: any) => <div data-testid="portal">{children}</div>,
@@ -50,7 +50,7 @@ jest.mock("@chakra-ui/react", () => {
   };
 });
 
-describe("Toaster", () => {
+describe('Toaster', () => {
   const renderWithProviders = (component: React.ReactElement) =>
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
@@ -58,11 +58,11 @@ describe("Toaster", () => {
       </ChakraProvider>
     );
 
-  it("renders Toaster component", () => {
+  it('renders Toaster component', () => {
     expect(() => renderWithProviders(<Toaster />)).not.toThrow();
   });
 
-  it("toaster is created with correct config", () => {
+  it('toaster is created with correct config', () => {
     expect(toaster.create).toBeDefined();
   });
 });

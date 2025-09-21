@@ -1,11 +1,11 @@
-import { Box, Card, HStack, Link, Text, VStack } from "@chakra-ui/react";
+import { Box, Card, HStack, Link, Text, VStack } from '@chakra-ui/react';
 import {
   FaEnvelope,
   FaGlobe,
   FaInfoCircle,
   FaMapMarkerAlt,
   FaPhone,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
 interface ContactProps {
   address: string;
@@ -37,7 +37,7 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
                 fontSize="md"
                 color="brand.700"
                 textDecoration="no"
-                _hover={{ color: "brand.800" }}
+                _hover={{ color: 'brand.800' }}
               >
                 {address}
               </Link>
@@ -49,7 +49,7 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
                 fontSize="md"
                 color="brand.700"
                 textDecoration="no"
-                _hover={{ color: "brand.800" }}
+                _hover={{ color: 'brand.800' }}
               >
                 {phone}
               </Link>
@@ -63,7 +63,7 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
                 fontSize="md"
                 color="brand.700"
                 textDecoration="no"
-                _hover={{ color: "brand.800" }}
+                _hover={{ color: 'brand.800' }}
               >
                 {website}
               </Link>
@@ -75,7 +75,7 @@ export const Contact = ({ address, phone, website, email }: ContactProps) => {
                 fontSize="md"
                 color="brand.700"
                 textDecoration="no"
-                _hover={{ color: "brand.800" }}
+                _hover={{ color: 'brand.800' }}
               >
                 {email}
               </Link>

@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import { useParams } from "react-router";
-import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
 
-import { ErrorState } from "./components/ErrorState";
-import { LoadingState } from "./components/LoadingState";
-import { NotFoundState } from "./components/NotFoundState";
-import { ValidTicketState } from "./components/ValidTicketState";
-import { ValidatingTicketState } from "./components/ValidatingTicketState";
-import type { TicketData } from "./ticket.api";
-import { getTicket, useTicket } from "./ticket.api";
+import { ErrorState } from './components/ErrorState';
+import { LoadingState } from './components/LoadingState';
+import { NotFoundState } from './components/NotFoundState';
+import { ValidTicketState } from './components/ValidTicketState';
+import { ValidatingTicketState } from './components/ValidatingTicketState';
+import type { TicketData } from './ticket.api';
+import { getTicket, useTicket } from './ticket.api';
 
 export const TicketPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,7 +21,7 @@ export const TicketPage = () => {
   } = useGetDataFromBackend<TicketData>({
     url: getTicket(id!),
     options: {
-      method: "GET",
+      method: 'GET',
     },
     executeAutomatically: !!id,
   });
@@ -29,7 +29,7 @@ export const TicketPage = () => {
   const { callback: useTicketCallback } = useGetDataFromBackend<TicketData>({
     url: useTicket(id!),
     options: {
-      method: "PATCH",
+      method: 'PATCH',
     },
     executeAutomatically: false,
     onSuccess: (_updatedTicket) => {
@@ -38,7 +38,7 @@ export const TicketPage = () => {
   });
 
   useEffect(() => {
-    if (ticket && ticket.status === "active") {
+    if (ticket && ticket.status === 'active') {
       useTicketCallback();
     }
   }, [ticket, useTicketCallback]);
@@ -49,7 +49,7 @@ export const TicketPage = () => {
 
   if (!ticket) return <NotFoundState />;
 
-  return ticket.status === "used" ? (
+  return ticket.status === 'used' ? (
     <ValidTicketState ticket={ticket} />
   ) : (
     <ValidatingTicketState ticket={ticket} />

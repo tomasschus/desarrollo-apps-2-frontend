@@ -1,5 +1,5 @@
-import { Badge, Box, HStack, Text, VStack } from "@chakra-ui/react";
-import { FaMapMarkerAlt, FaPhone, FaStar } from "react-icons/fa";
+import { Badge, Box, HStack, Text, VStack } from '@chakra-ui/react';
+import { FaMapMarkerAlt, FaPhone, FaStar } from 'react-icons/fa';
 
 interface CulturalPlaceInfoProps {
   name: string;

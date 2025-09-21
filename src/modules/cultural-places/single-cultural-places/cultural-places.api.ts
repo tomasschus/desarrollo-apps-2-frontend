@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../../../config/api.config";
+import { API_BASE_URL } from '../../../config/api.config';
 
 export const getCulturalPlaceById = (id: string) =>
   `${API_BASE_URL}/api/v1/cultural-places/${id}`;

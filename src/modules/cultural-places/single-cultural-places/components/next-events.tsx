@@ -8,12 +8,12 @@ import {
   Spinner,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { FaCalendarAlt, FaClock } from "react-icons/fa";
-import { useNavigate, useParams } from "react-router";
-import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
-import { formatIsoDate } from "../../../../utils/date.utils";
-import { getEventsByCulturalPlace } from "../cultural-places.api";
+} from '@chakra-ui/react';
+import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+import { useNavigate, useParams } from 'react-router';
+import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { formatIsoDate } from '../../../../utils/date.utils';
+import { getEventsByCulturalPlace } from '../cultural-places.api';
 
 interface Event {
   _id: string;
@@ -37,7 +37,7 @@ export const NextEvents = () => {
   const { data, loading, error } = useGetDataFromBackend<Event[]>({
     url: getEventsByCulturalPlace(id!),
     options: {
-      method: "GET",
+      method: 'GET',
     },
     executeAutomatically: !!id,
   });
@@ -109,9 +109,9 @@ export const NextEvents = () => {
                 borderColor="gray.200"
                 borderRadius="md"
                 _hover={{
-                  borderColor: "brand.300",
-                  boxShadow: "md",
-                  transform: "translateY(-2px)",
+                  borderColor: 'brand.300',
+                  boxShadow: 'md',
+                  transform: 'translateY(-2px)',
                 }}
                 transition="all 0.2s"
                 cursor="pointer"
@@ -131,7 +131,7 @@ export const NextEvents = () => {
                         display="-webkit-box"
                         style={{
                           WebkitLineClamp: 2,
-                          WebkitBoxOrient: "vertical" as const,
+                          WebkitBoxOrient: 'vertical' as const,
                         }}
                       >
                         {event.description}
@@ -146,7 +146,7 @@ export const NextEvents = () => {
                           fontSize="sm"
                         />
                         <Text fontSize="sm" color="gray.600">
-                          {formatIsoDate(event.date, { format: "DD/MM" })}
+                          {formatIsoDate(event.date, { format: 'DD/MM' })}
                         </Text>
                       </HStack>
                       <HStack gap={1}>
@@ -195,7 +195,7 @@ export const NextEvents = () => {
                         e.stopPropagation();
                         navigate(`/evento/${event._id}`);
                       }}
-                      _hover={{ transform: "translateY(-1px)" }}
+                      _hover={{ transform: 'translateY(-1px)' }}
                       transition="all 0.2s"
                     >
                       Comprar Entradas

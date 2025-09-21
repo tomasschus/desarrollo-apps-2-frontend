@@ -1,15 +1,15 @@
-import { Box, Grid, Spinner, Stack, Text, VStack } from "@chakra-ui/react";
-import { FiXCircle } from "react-icons/fi";
-import { useParams } from "react-router";
-import { Maps } from "../../components/ui/maps";
-import { useAuth } from "../../contexts/auth-context";
-import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
-import { CulturalPlaceInfo } from "./components/cultural-place-info";
-import { EventAbout } from "./components/event-about";
-import { EventCalendar } from "./components/event-calendar";
-import { EventHeader } from "./components/event-header";
-import { EventTickets } from "./components/event-tickets";
-import { getEventById } from "./single-event.api";
+import { Box, Grid, Spinner, Stack, Text, VStack } from '@chakra-ui/react';
+import { FiXCircle } from 'react-icons/fi';
+import { useParams } from 'react-router';
+import { Maps } from '../../components/ui/maps';
+import { useAuth } from '../../contexts/auth-context';
+import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { CulturalPlaceInfo } from './components/cultural-place-info';
+import { EventAbout } from './components/event-about';
+import { EventCalendar } from './components/event-calendar';
+import { EventHeader } from './components/event-header';
+import { EventTickets } from './components/event-tickets';
+import { getEventById } from './single-event.api';
 
 interface Event {
   _id: string;
@@ -48,8 +48,8 @@ export const SingleEvent = () => {
   const { isLogged } = useAuth();
 
   const { data: event, loading } = useGetDataFromBackend<Event>({
-    url: id ? getEventById(id) : "",
-    options: { method: "GET" },
+    url: id ? getEventById(id) : '',
+    options: { method: 'GET' },
     executeAutomatically: !!id,
   });
 
@@ -65,7 +65,7 @@ export const SingleEvent = () => {
   if (!event) {
     return (
       <Stack align="center" justify="center" minH="400px">
-        <FiXCircle size={"50"} />
+        <FiXCircle size={'50'} />
         <Text fontSize="lg" color="gray.500">
           Evento no encontrado.
         </Text>
@@ -85,7 +85,7 @@ export const SingleEvent = () => {
       />
 
       <Box mx="auto" px={4} position="relative">
-        <Grid templateColumns={{ base: "1fr", xl: "2fr 1fr" }} gap={6}>
+        <Grid templateColumns={{ base: '1fr', xl: '2fr 1fr' }} gap={6}>
           <VStack gap={6} align="stretch">
             <EventAbout description={event.description} />
             <EventTickets

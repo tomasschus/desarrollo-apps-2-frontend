@@ -1,8 +1,8 @@
-import { Box, Text } from "@chakra-ui/react";
-import { AdminCulturalPlaces } from "./cultural-places/cultural-places-management";
-import { AdminDashboard } from "./dashboard/dashboard";
-import { AdminEvents } from "./events/events-management";
-import { AdminTickets } from "./tickets/tickets-management";
+import { Box, Text } from '@chakra-ui/react';
+import { AdminCulturalPlaces } from './cultural-places/cultural-places-management';
+import { AdminDashboard } from './dashboard/dashboard';
+import { AdminEvents } from './events/events-management';
+import { AdminTickets } from './tickets/tickets-management';
 
 interface AdminPanelProps {
   activeSection?: string;
@@ -19,23 +19,23 @@ const ComingSoon = ({ title }: { title: string }) => (
 );
 
 export const AdminPanel = ({
-  activeSection = "dashboard",
+  activeSection = 'dashboard',
 }: AdminPanelProps) => {
   const renderSection = () => {
     switch (activeSection) {
-      case "dashboard":
+      case 'dashboard':
         return <AdminDashboard />;
-      case "events":
+      case 'events':
         return <AdminEvents />;
-      case "places":
+      case 'places':
         return <AdminCulturalPlaces />;
-      case "tickets":
+      case 'tickets':
         return <AdminTickets />;
-      case "users":
+      case 'users':
         return <ComingSoon title="Gestión de Usuarios" />;
-      case "reports":
+      case 'reports':
         return <ComingSoon title="Reportes" />;
-      case "settings":
+      case 'settings':
         return <ComingSoon title="Configuración" />;
       default:
         return <AdminDashboard />;

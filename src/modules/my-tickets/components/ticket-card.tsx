@@ -9,20 +9,20 @@ import {
   Stack,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { FiCalendar, FiClock, FiMapPin } from "react-icons/fi";
-import { MdConfirmationNumber, MdQrCode } from "react-icons/md";
-import { Link } from "react-router";
-import { formatDate, formatIsoDateTime } from "../../../utils/date.utils";
-import type { PopulatedEvent, Ticket } from "../my-tickets.api";
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
+import { MdConfirmationNumber, MdQrCode } from 'react-icons/md';
+import { Link } from 'react-router';
+import { formatDate, formatIsoDateTime } from '../../../utils/date.utils';
+import type { PopulatedEvent, Ticket } from '../my-tickets.api';
 import {
   getStatusColor,
   getStatusText,
   getTicketTypeText,
   isPopulatedEvent,
-} from "../my-tickets.utils";
-import { QRModal } from "./qr-modal";
+} from '../my-tickets.utils';
+import { QRModal } from './qr-modal';
 
 interface TicketCardProps {
   ticket: Ticket;
@@ -33,17 +33,17 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
 
   const formatPurchaseDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("es-ES", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
+    return date.toLocaleDateString('es-ES', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
     });
   };
 
   const isPopulated = isPopulatedEvent(ticket.eventId);
   let eventData: PopulatedEvent | null = null;
   let isExpired = false;
-  let eventImage = "/placeholder-image.jpg";
+  let eventImage = '/placeholder-image.jpg';
 
   if (isPopulated) {
     eventData = ticket.eventId as PopulatedEvent;
@@ -51,7 +51,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
     eventImage =
       eventData.images?.[0] ||
       eventData.culturalPlaceId?.images?.[0] ||
-      "/placeholder-image.jpg";
+      '/placeholder-image.jpg';
   }
 
   return (
@@ -63,8 +63,8 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
         borderRadius="xl"
         transition="all 0.2s"
         _hover={{
-          shadow: "xl",
-          transform: "translateY(-2px)",
+          shadow: 'xl',
+          transform: 'translateY(-2px)',
         }}
         border="1px solid"
         borderColor="gray.200"
@@ -73,7 +73,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
           <Box position="relative" height="180px" overflow="hidden">
             <Image
               src={eventImage}
-              alt={isPopulated ? eventData!.name : "Evento"}
+              alt={isPopulated ? eventData!.name : 'Evento'}
               objectFit="cover"
               width="100%"
               height="100%"
@@ -127,10 +127,10 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                 size="sm"
                 lineHeight="short"
                 css={{
-                  display: "-webkit-box",
+                  display: '-webkit-box',
                   WebkitLineClamp: 2,
-                  WebkitBoxOrient: "vertical",
-                  overflow: "hidden",
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
                 }}
               >
                 {eventData!.name}
@@ -169,7 +169,6 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
               </Badge>
             </Flex>
 
-            {/* Icono decorativo */}
             <Box position="absolute" right={2} top={2} opacity={0.2}>
               <MdConfirmationNumber size={40} color="white" />
             </Box>
@@ -178,7 +177,6 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
 
         <Card.Body p={5}>
           <VStack align="stretch" gap={4}>
-            {/* Información del evento - condicional */}
             {isPopulated ? (
               <Stack gap={2}>
                 <Flex align="center" gap={2} color="gray.600">
@@ -217,7 +215,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                 <Flex align="center" gap={2}>
                   <Box w={2} h={2} bg="purple.400" borderRadius="full" />
                   <Text fontSize="sm" color="gray.600">
-                    Comprado:{" "}
+                    Comprado:{' '}
                     {formatPurchaseDate(
                       ticket.createdAt || ticket.purchaseDate
                     )}
@@ -226,7 +224,6 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
               </Stack>
             )}
 
-            {/* Detalles del ticket */}
             <Flex
               justify="space-between"
               align="center"
@@ -236,7 +233,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
             >
               <VStack align="start" gap={1}>
                 <Text fontSize="xs" color="gray.500" fontWeight="medium">
-                  {isPopulated ? "TIPO DE ENTRADA" : "PRECIO PAGADO"}
+                  {isPopulated ? 'TIPO DE ENTRADA' : 'PRECIO PAGADO'}
                 </Text>
                 {isPopulated ? (
                   <Badge colorScheme="brand" variant="subtle" size="sm">
@@ -253,7 +250,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                   PRECIO
                 </Text>
                 <Text
-                  fontSize={isPopulated ? "lg" : "sm"}
+                  fontSize={isPopulated ? 'lg' : 'sm'}
                   fontWeight="bold"
                   color="brand.600"
                 >
@@ -262,8 +259,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
               </VStack>
             </Flex>
 
-            {/* Acciones - condicionales */}
-            {ticket.status === "active" && (
+            {ticket.status === 'active' && (
               <>
                 {isPopulated && !isExpired ? (
                   <Flex gap={2} pt={2}>
@@ -314,8 +310,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
               </>
             )}
 
-            {/* Mensajes informativos */}
-            {isExpired && ticket.status === "active" && (
+            {isExpired && ticket.status === 'active' && (
               <Box
                 bg="red.50"
                 p={3}
@@ -337,7 +332,6 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
         </Card.Body>
       </Card.Root>
 
-      {/* QR Modal compartido */}
       {ticket.qrCode && (
         <QRModal
           isOpen={isQRModalOpen}

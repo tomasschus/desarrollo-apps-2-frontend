@@ -9,12 +9,12 @@ import {
   Spinner,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { FiMapPin } from "react-icons/fi";
-import { useNavigate } from "react-router";
-import { TruncatedText } from "../../../components/ui/truncated-text";
-import { useGetDataFromBackend } from "../../../hooks/useGetDataFromBackend";
-import { getCulturalPlaces } from "./cultural-places-list.api";
+} from '@chakra-ui/react';
+import { FiMapPin } from 'react-icons/fi';
+import { useNavigate } from 'react-router';
+import { TruncatedText } from '../../../components/ui/truncated-text';
+import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { getCulturalPlaces } from './cultural-places-list.api';
 
 interface CulturalPlace {
   _id: string;
@@ -45,23 +45,23 @@ export const CulturalPlacesList = () => {
   } = useGetDataFromBackend<CulturalPlace[]>({
     url: getCulturalPlaces(),
     options: {
-      method: "GET",
+      method: 'GET',
     },
     executeAutomatically: true,
   });
 
   const getCategoryColor = (category: string) => {
     const colorMap: { [key: string]: string } = {
-      "Centro Cultural": "blue",
-      Museo: "purple",
-      Teatro: "red",
-      Biblioteca: "green",
-      Galería: "orange",
-      Parque: "teal",
-      Plaza: "cyan",
-      Monumento: "gray",
+      'Centro Cultural': 'blue',
+      Museo: 'purple',
+      Teatro: 'red',
+      Biblioteca: 'green',
+      Galería: 'orange',
+      Parque: 'teal',
+      Plaza: 'cyan',
+      Monumento: 'gray',
     };
-    return colorMap[category] || "gray";
+    return colorMap[category] || 'gray';
   };
 
   if (loading) {
@@ -96,10 +96,10 @@ export const CulturalPlacesList = () => {
       </Text>
       <Grid
         templateColumns={{
-          base: "1fr",
-          sm: "1fr",
-          md: "repeat(2, 1fr)",
-          lg: "repeat(3, 1fr)",
+          base: '1fr',
+          sm: '1fr',
+          md: 'repeat(2, 1fr)',
+          lg: 'repeat(3, 1fr)',
         }}
         gap={{ base: 4, md: 6 }}
       >
@@ -114,9 +114,9 @@ export const CulturalPlacesList = () => {
             overflow="hidden"
             cursor="pointer"
             _hover={{
-              boxShadow: "md",
-              transform: "translateY(-2px)",
-              borderColor: "brand.500",
+              boxShadow: 'md',
+              transform: 'translateY(-2px)',
+              borderColor: 'brand.500',
             }}
             transition="all 0.2s"
             display="flex"
@@ -124,7 +124,6 @@ export const CulturalPlacesList = () => {
             minW={0}
             position="relative"
           >
-            {/* Imagen con badge de categoría */}
             {space.image && (
               <Box position="relative">
                 <Image
@@ -132,7 +131,7 @@ export const CulturalPlacesList = () => {
                   alt={space.name}
                   objectFit="cover"
                   w="100%"
-                  h={{ base: "120px", sm: "140px", md: "160px" }}
+                  h={{ base: '120px', sm: '140px', md: '160px' }}
                 />
                 <Badge
                   position="absolute"
@@ -145,7 +144,6 @@ export const CulturalPlacesList = () => {
                 >
                   {space.category}
                 </Badge>
-                {/* Rating badge */}
               </Box>
             )}
 
@@ -159,7 +157,7 @@ export const CulturalPlacesList = () => {
               <Text
                 fontWeight="bold"
                 color="brand.500"
-                fontSize={{ base: "md", md: "lg" }}
+                fontSize={{ base: 'md', md: 'lg' }}
                 lineHeight="1.2"
               >
                 {space.name}
@@ -167,7 +165,6 @@ export const CulturalPlacesList = () => {
 
               <TruncatedText text={space.description} maxLength={85} />
 
-              {/* Ubicación */}
               <HStack color="gray.600" fontSize="sm" mt="auto">
                 <Icon as={FiMapPin} boxSize="14px" />
                 <Text
@@ -180,7 +177,6 @@ export const CulturalPlacesList = () => {
                 </Text>
               </HStack>
 
-              {/* Características principales */}
               {space.characteristics && space.characteristics.length > 0 && (
                 <HStack flexWrap="wrap" gap={1} mt={1}>
                   {space.characteristics.slice(0, 2).map((char, index) => (

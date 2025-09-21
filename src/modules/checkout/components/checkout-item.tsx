@@ -1,8 +1,8 @@
-import { Badge, Box, Card, Flex, Stack, Text } from "@chakra-ui/react";
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
-import type { CartItem } from "../../../contexts/cart-context";
-import { formatDate } from "../../../utils/date.utils";
-import { formatMoney } from "../../../utils/money.utils";
+import { Badge, Box, Card, Flex, Stack, Text } from '@chakra-ui/react';
+import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
+import type { CartItem } from '../../../contexts/cart-context';
+import { formatDate } from '../../../utils/date.utils';
+import { formatMoney } from '../../../utils/money.utils';
 
 interface CheckoutItemProps {
   item: CartItem;

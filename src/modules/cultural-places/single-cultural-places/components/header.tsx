@@ -1,5 +1,5 @@
-import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import { FaStar } from "react-icons/fa";
+import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react';
+import { FaStar } from 'react-icons/fa';
 
 interface HeaderProps {
   image: string;
@@ -74,8 +74,8 @@ export const Header = ({
 
 const getIconFromCategory = (category: string) => {
   switch (category) {
-    case "Centro Cultural":
-    case "Cultural Center":
+    case 'Centro Cultural':
+    case 'Cultural Center':
       return (
         <Image
           src="/assets/cultural-center.svg"
@@ -84,25 +84,25 @@ const getIconFromCategory = (category: string) => {
           h="30px"
         />
       );
-    case "Teatro":
-    case "Theater":
+    case 'Teatro':
+    case 'Theater':
       return <Image src="/assets/theater.svg" alt="Teatro" w="30px" h="30px" />;
-    case "Museo":
-    case "Museum":
-      return "🏛️"; // Emoji for museum
-    case "Cine":
-    case "Cinema":
-      return "🎥"; // Emoji for cinema
-    case "Galería":
-    case "Gallery":
-      return "🖼️"; // Emoji for gallery
-    case "Biblioteca":
-    case "Library":
-      return "📚"; // Emoji for library
-    case "Auditorio":
-    case "Auditorium":
-      return "🎤"; // Emoji for auditorium
+    case 'Museo':
+    case 'Museum':
+      return '🏛️'; // Emoji for museum
+    case 'Cine':
+    case 'Cinema':
+      return '🎥'; // Emoji for cinema
+    case 'Galería':
+    case 'Gallery':
+      return '🖼️'; // Emoji for gallery
+    case 'Biblioteca':
+    case 'Library':
+      return '📚'; // Emoji for library
+    case 'Auditorio':
+    case 'Auditorium':
+      return '🎤'; // Emoji for auditorium
     default:
-      return "🎨"; // Default emoji
+      return '🎨'; // Default emoji
   }
 };

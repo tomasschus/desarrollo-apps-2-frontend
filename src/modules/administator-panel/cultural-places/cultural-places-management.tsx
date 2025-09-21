@@ -7,11 +7,11 @@ import {
   SimpleGrid,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { FiPlus } from "react-icons/fi";
-import { useGetDataFromBackend } from "../../../hooks/useGetDataFromBackend";
-import { getCulturalPlaces } from "../api/admin.api";
-import { CulturalPlaceCard } from "./components/cultural-place-card";
+} from '@chakra-ui/react';
+import { FiPlus } from 'react-icons/fi';
+import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { getCulturalPlaces } from '../api/admin.api';
+import { CulturalPlaceCard } from './components/cultural-place-card';
 
 interface CulturalPlace {
   _id: string;
@@ -41,7 +41,7 @@ export const AdminCulturalPlaces = () => {
     callback: fetchCulturalPlaces,
   } = useGetDataFromBackend<CulturalPlace[]>({
     url: getCulturalPlaces(),
-    options: { method: "GET" },
+    options: { method: 'GET' },
     executeAutomatically: true,
   });
 
@@ -69,7 +69,6 @@ export const AdminCulturalPlaces = () => {
         </Button>
       </HStack>
 
-      {/* Estadísticas rápidas */}
       <SimpleGrid columns={{ base: 1, md: 3 }} gap={4}>
         <Box
           bg="white"
@@ -120,7 +119,6 @@ export const AdminCulturalPlaces = () => {
         </Box>
       </SimpleGrid>
 
-      {/* Lista de lugares */}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={6}>
         {places?.map((place) => (
           <CulturalPlaceCard

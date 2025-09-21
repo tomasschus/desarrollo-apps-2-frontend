@@ -1,8 +1,8 @@
-import type { ReactNode } from "react";
-import { createContext, useContext, useEffect, useState } from "react";
-import { toaster } from "../components/ui/toaster";
-import useLocalStorage from "../hooks/useLocalStorage";
-import { useAuth } from "./auth-context";
+import type { ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { toaster } from '../components/ui/toaster';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { useAuth } from './auth-context';
 
 export interface CartItem {
   eventId: string;
@@ -20,7 +20,7 @@ interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
-  addToCart: (item: Omit<CartItem, "tempId" | "quantity">) => void;
+  addToCart: (item: Omit<CartItem, 'tempId' | 'quantity'>) => void;
   removeFromCart: (tempId: string) => void;
   updateQuantity: (tempId: string, quantity: number) => void;
   clearCart: () => void;
@@ -37,7 +37,7 @@ interface CartProviderProps {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const { user } = useAuth();
 
-  const cartKey = user?.id ? `${user.id}_cart_items` : "guest_cart_items";
+  const cartKey = user?.id ? `${user.id}_cart_items` : 'guest_cart_items';
 
   const [items, setItems] = useState<CartItem[]>([]);
   const [lastUserId, setLastUserId] = useState<string | null>(null);
@@ -70,12 +70,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const generateTempId = () =>
     `cart_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-  const addToCart = (item: Omit<CartItem, "tempId" | "quantity">) => {
+  const addToCart = (item: Omit<CartItem, 'tempId' | 'quantity'>) => {
     if (!user) {
       toaster.create({
-        title: "Error",
-        description: "Debes iniciar sesión para agregar elementos al carrito",
-        type: "error",
+        title: 'Error',
+        description: 'Debes iniciar sesión para agregar elementos al carrito',
+        type: 'error',
       });
       return;
     }
@@ -102,9 +102,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       };
       newItems = [...items, newItem];
       toaster.create({
-        title: "Agregado al carrito",
+        title: 'Agregado al carrito',
         description: `${item.eventName} - ${item.ticketType}`,
-        type: "success",
+        type: 'success',
       });
     }
 
@@ -119,9 +119,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
     if (itemToRemove) {
       toaster.create({
-        title: "Eliminado del carrito",
+        title: 'Eliminado del carrito',
         description: `${itemToRemove.eventName} - ${itemToRemove.ticketType}`,
-        type: "success",
+        type: 'success',
       });
     }
 
@@ -184,7 +184,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 export const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error("useCart must be used within a CartProvider");
+    throw new Error('useCart must be used within a CartProvider');
   }
   return context;
 };

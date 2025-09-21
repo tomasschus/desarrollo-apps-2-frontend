@@ -1,5 +1,5 @@
-import { Box, Text } from "@chakra-ui/react";
-import { FaShoppingCart } from "react-icons/fa";
+import { Box, Text } from '@chakra-ui/react';
+import { FaShoppingCart } from 'react-icons/fa';
 
 export const PageHeader = () => {
   return (

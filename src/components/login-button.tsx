@@ -1,5 +1,5 @@
-import { Button } from "@chakra-ui/react";
-import { FiUser } from "react-icons/fi";
+import { Button } from '@chakra-ui/react';
+import { FiUser } from 'react-icons/fi';
 
 export const LoginButton = ({ onClick }: { onClick: () => void }) => {
   return (

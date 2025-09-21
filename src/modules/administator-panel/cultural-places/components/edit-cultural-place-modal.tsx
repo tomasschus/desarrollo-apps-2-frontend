@@ -8,11 +8,11 @@ import {
   Text,
   Textarea,
   VStack,
-} from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import { FiPlus, FiTrash2, FiX } from "react-icons/fi";
-import { updateCulturalPlace } from "../../api/admin.api";
+} from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { FiPlus, FiTrash2, FiX } from 'react-icons/fi';
+import { updateCulturalPlace } from '../../api/admin.api';
 
 interface CulturalPlaceFormData {
   name: string;
@@ -82,7 +82,7 @@ export const EditCulturalPlaceModal = ({
     remove: removeCharacteristic,
   } = useFieldArray({
     control,
-    name: "characteristics",
+    name: 'characteristics',
   });
 
   // Cargar datos del lugar cuando se abre el modal
@@ -113,7 +113,7 @@ export const EditCulturalPlaceModal = ({
   }, [isOpen, place, reset]);
 
   const addCharacteristic = () => {
-    appendCharacteristic({ value: "" });
+    appendCharacteristic({ value: '' });
   };
 
   const removeCharacteristicItem = (index: number) => {
@@ -135,25 +135,25 @@ export const EditCulturalPlaceModal = ({
       };
 
       const response = await fetch(updateCulturalPlace(place._id), {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(submitData),
       });
 
       if (response.ok) {
-        alert("Lugar cultural actualizado correctamente");
+        alert('Lugar cultural actualizado correctamente');
         onPlaceUpdated();
         handleClose();
       } else {
         const errorData = await response.json();
         throw new Error(
-          errorData.message || "Error al actualizar el lugar cultural"
+          errorData.message || 'Error al actualizar el lugar cultural'
         );
       }
     } catch (error) {
-      alert(error instanceof Error ? error.message : "Error desconocido");
+      alert(error instanceof Error ? error.message : 'Error desconocido');
     }
   };
 
@@ -186,7 +186,6 @@ export const EditCulturalPlaceModal = ({
         maxH="90vh"
         overflow="auto"
       >
-        {/* Header */}
         <HStack
           justifyContent="space-between"
           p={6}
@@ -201,46 +200,42 @@ export const EditCulturalPlaceModal = ({
           </IconButton>
         </HStack>
 
-        {/* Body */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box p={6}>
             <VStack gap={6} align="stretch">
-              {/* Nombre */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Nombre del Lugar *
                 </Text>
                 <Input
-                  {...register("name", { required: true })}
+                  {...register('name', { required: true })}
                   placeholder="Ej: Museo de Arte Moderno"
                 />
               </Box>
 
-              {/* Descripción */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Descripción
                 </Text>
                 <Textarea
-                  {...register("description")}
+                  {...register('description')}
                   placeholder="Descripción del lugar cultural..."
                   rows={3}
                 />
               </Box>
 
-              {/* Categoría */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Categoría *
                 </Text>
                 <select
-                  {...register("category", { required: true })}
+                  {...register('category', { required: true })}
                   style={{
-                    width: "100%",
-                    padding: "8px 12px",
-                    border: "1px solid #E2E8F0",
-                    borderRadius: "6px",
-                    backgroundColor: "white",
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #E2E8F0',
+                    borderRadius: '6px',
+                    backgroundColor: 'white',
                   }}
                 >
                   <option value="">Selecciona una categoría</option>
@@ -254,37 +249,33 @@ export const EditCulturalPlaceModal = ({
                 </select>
               </Box>
 
-              {/* Imagen */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   URL de la Imagen
                 </Text>
                 <Input
-                  {...register("image")}
+                  {...register('image')}
                   placeholder="https://ejemplo.com/imagen.jpg"
                   type="url"
                 />
               </Box>
 
-              {/* Información de Contacto */}
               <Box>
                 <Text fontWeight="medium" mb={4} fontSize="lg">
                   Información de Contacto
                 </Text>
 
                 <VStack gap={4} align="stretch">
-                  {/* Dirección */}
                   <Box>
                     <Text fontWeight="medium" mb={2}>
                       Dirección *
                     </Text>
                     <Input
-                      {...register("contact.address", { required: true })}
+                      {...register('contact.address', { required: true })}
                       placeholder="Ej: Av. Corrientes 123, Buenos Aires"
                     />
                   </Box>
 
-                  {/* Coordenadas */}
                   <HStack gap={4}>
                     <Box flex="1">
                       <Text fontWeight="medium" mb={2}>
@@ -293,7 +284,7 @@ export const EditCulturalPlaceModal = ({
                       <Input
                         type="number"
                         step="any"
-                        {...register("contact.coordinates.lat", {
+                        {...register('contact.coordinates.lat', {
                           required: true,
                           valueAsNumber: true,
                         })}
@@ -308,7 +299,7 @@ export const EditCulturalPlaceModal = ({
                       <Input
                         type="number"
                         step="any"
-                        {...register("contact.coordinates.lng", {
+                        {...register('contact.coordinates.lng', {
                           required: true,
                           valueAsNumber: true,
                         })}
@@ -317,36 +308,33 @@ export const EditCulturalPlaceModal = ({
                     </Box>
                   </HStack>
 
-                  {/* Teléfono */}
                   <Box>
                     <Text fontWeight="medium" mb={2}>
                       Teléfono
                     </Text>
                     <Input
-                      {...register("contact.phone")}
+                      {...register('contact.phone')}
                       placeholder="Ej: +54 11 1234-5678"
                     />
                   </Box>
 
-                  {/* Website */}
                   <Box>
                     <Text fontWeight="medium" mb={2}>
                       Sitio Web
                     </Text>
                     <Input
-                      {...register("contact.website")}
+                      {...register('contact.website')}
                       placeholder="https://ejemplo.com"
                       type="url"
                     />
                   </Box>
 
-                  {/* Email */}
                   <Box>
                     <Text fontWeight="medium" mb={2}>
                       Email
                     </Text>
                     <Input
-                      {...register("contact.email")}
+                      {...register('contact.email')}
                       placeholder="contacto@ejemplo.com"
                       type="email"
                     />
@@ -354,7 +342,6 @@ export const EditCulturalPlaceModal = ({
                 </VStack>
               </Box>
 
-              {/* Características */}
               <Box>
                 <HStack justifyContent="space-between" mb={3}>
                   <Text fontWeight="medium">Características</Text>
@@ -365,7 +352,7 @@ export const EditCulturalPlaceModal = ({
                     onClick={addCharacteristic}
                     type="button"
                   >
-                    <FiPlus style={{ marginRight: "4px" }} />
+                    <FiPlus style={{ marginRight: '4px' }} />
                     Agregar Característica
                   </Button>
                 </HStack>
@@ -394,7 +381,6 @@ export const EditCulturalPlaceModal = ({
                 </Stack>
               </Box>
 
-              {/* Rating y Estado */}
               <HStack gap={4}>
                 <Box flex="1">
                   <Text fontWeight="medium" mb={2}>
@@ -405,7 +391,7 @@ export const EditCulturalPlaceModal = ({
                     step="0.1"
                     min="1"
                     max="5"
-                    {...register("rating", {
+                    {...register('rating', {
                       valueAsNumber: true,
                       min: 1,
                       max: 5,
@@ -419,13 +405,13 @@ export const EditCulturalPlaceModal = ({
                     Estado
                   </Text>
                   <select
-                    {...register("isActive")}
+                    {...register('isActive')}
                     style={{
-                      width: "100%",
-                      padding: "8px 12px",
-                      border: "1px solid #E2E8F0",
-                      borderRadius: "6px",
-                      backgroundColor: "white",
+                      width: '100%',
+                      padding: '8px 12px',
+                      border: '1px solid #E2E8F0',
+                      borderRadius: '6px',
+                      backgroundColor: 'white',
                     }}
                   >
                     <option value="true">Activo</option>
@@ -436,7 +422,6 @@ export const EditCulturalPlaceModal = ({
             </VStack>
           </Box>
 
-          {/* Footer */}
           <HStack
             justifyContent="flex-end"
             p={6}
@@ -453,7 +438,7 @@ export const EditCulturalPlaceModal = ({
               loading={isSubmitting}
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Actualizando..." : "Actualizar Lugar"}
+              {isSubmitting ? 'Actualizando...' : 'Actualizar Lugar'}
             </Button>
           </HStack>
         </form>

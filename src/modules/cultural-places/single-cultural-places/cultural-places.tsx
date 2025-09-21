@@ -1,1 +1,1 @@
-export { Detail as SingleCulturalPlaces } from "./components/detail";
+export { Detail as SingleCulturalPlaces } from './components/detail';

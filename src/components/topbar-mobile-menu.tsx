@@ -1,4 +1,4 @@
-import { Button, Drawer, Separator, Stack, Text } from "@chakra-ui/react";
+import { Button, Drawer, Separator, Stack, Text } from '@chakra-ui/react';
 import {
   FiCamera,
   FiHeart,
@@ -7,8 +7,8 @@ import {
   FiSearch,
   FiStar,
   FiUsers,
-} from "react-icons/fi";
-import { Link } from "react-router";
+} from 'react-icons/fi';
+import { Link } from 'react-router';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -26,15 +26,15 @@ export const MobileMenu = ({
 }: MobileMenuProps) => {
   const getCategoryIcon = (category: string) => {
     switch (category.toLowerCase()) {
-      case "arte":
+      case 'arte':
         return <FiStar />;
-      case "música":
+      case 'música':
         return <FiMusic />;
-      case "cine":
+      case 'cine':
         return <FiCamera />;
-      case "teatro":
+      case 'teatro':
         return <FiUsers />;
-      case "eventos":
+      case 'eventos':
         return <FiMapPin />;
       default:
         return <FiStar />;
@@ -84,7 +84,7 @@ export const MobileMenu = ({
                   py={6}
                   justifyContent="flex-start"
                   w="full"
-                  _hover={{ bg: "brand.50" }}
+                  _hover={{ bg: 'brand.50' }}
                 >
                   <FiSearch /> Que hacer hoy
                 </Button>
@@ -96,7 +96,7 @@ export const MobileMenu = ({
                   py={6}
                   justifyContent="flex-start"
                   w="full"
-                  _hover={{ bg: "brand.50" }}
+                  _hover={{ bg: 'brand.50' }}
                 >
                   <FiHeart /> Lugares favoritos
                 </Button>
@@ -119,7 +119,7 @@ export const MobileMenu = ({
                           fontSize="lg"
                           py={6}
                           onClick={onClose}
-                          _hover={{ bg: "brand.50", color: "brand.600" }}
+                          _hover={{ bg: 'brand.50', color: 'brand.600' }}
                         >
                           {getCategoryIcon(category.name)} {category.name}
                         </Button>
@@ -138,7 +138,7 @@ export const MobileMenu = ({
                       fontSize="lg"
                       py={6}
                       onClick={onClose}
-                      _hover={{ bg: "brand.50", color: "brand.600" }}
+                      _hover={{ bg: 'brand.50', color: 'brand.600' }}
                     >
                       {getCategoryIcon(category.name)} {category.name}
                     </Button>

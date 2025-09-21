@@ -1,14 +1,14 @@
-import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
-import { act, fireEvent, render, screen } from "@testing-library/react";
-import { LoginModal } from "../../components/login-modal";
-import { useAuth, UserRole } from "../../contexts/auth-context";
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { LoginModal } from '../../components/login-modal';
+import { useAuth, UserRole } from '../../contexts/auth-context';
 
 // Mock dependencies
-jest.mock("../../contexts/auth-context");
+jest.mock('../../contexts/auth-context');
 
 const mockUseAuth = useAuth as jest.MockedFunction<typeof useAuth>;
 
-describe("LoginModal", () => {
+describe('LoginModal', () => {
   const mockLogin = jest.fn();
 
   beforeEach(() => {
@@ -27,33 +27,33 @@ describe("LoginModal", () => {
     });
   });
 
-  it("should render login modal when open", () => {
+  it('should render login modal when open', () => {
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
         <LoginModal isOpen={true} onClose={jest.fn()} />
       </ChakraProvider>
     );
 
-    expect(screen.getByText("Iniciar Sesión")).toBeInTheDocument();
+    expect(screen.getByText('Iniciar Sesión')).toBeInTheDocument();
     expect(
-      screen.getByText("Selecciona tu rol para continuar:")
+      screen.getByText('Selecciona tu rol para continuar:')
     ).toBeInTheDocument();
-    expect(screen.getByText("🛡️ Iniciar como Admin")).toBeInTheDocument();
-    expect(screen.getByText("👤 Iniciar como Usuario")).toBeInTheDocument();
-    expect(screen.getByText("👨‍💼 Iniciar como Operador")).toBeInTheDocument();
+    expect(screen.getByText('🛡️ Iniciar como Admin')).toBeInTheDocument();
+    expect(screen.getByText('👤 Iniciar como Usuario')).toBeInTheDocument();
+    expect(screen.getByText('👨‍💼 Iniciar como Operador')).toBeInTheDocument();
   });
 
-  it("should not render when closed", () => {
+  it('should not render when closed', () => {
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
         <LoginModal isOpen={false} onClose={jest.fn()} />
       </ChakraProvider>
     );
 
-    expect(screen.queryByText("Iniciar Sesión")).not.toBeInTheDocument();
+    expect(screen.queryByText('Iniciar Sesión')).not.toBeInTheDocument();
   });
 
-  it("should handle admin login", async () => {
+  it('should handle admin login', async () => {
     const mockOnClose = jest.fn();
 
     render(
@@ -62,19 +62,19 @@ describe("LoginModal", () => {
       </ChakraProvider>
     );
 
-    const adminButton = screen.getByText("🛡️ Iniciar como Admin");
+    const adminButton = screen.getByText('🛡️ Iniciar como Admin');
     fireEvent.click(adminButton);
 
     expect(mockLogin).toHaveBeenCalledWith({
-      id: "admin_456",
-      name: "María Admin",
-      email: "maria@admin.com",
+      id: 'admin_456',
+      name: 'María Admin',
+      email: 'maria@admin.com',
       role: UserRole.ADMIN,
     });
     expect(mockOnClose).toHaveBeenCalled();
   });
 
-  it("should handle user login", async () => {
+  it('should handle user login', async () => {
     const mockOnClose = jest.fn();
 
     render(
@@ -83,19 +83,19 @@ describe("LoginModal", () => {
       </ChakraProvider>
     );
 
-    const userButton = screen.getByText("👤 Iniciar como Usuario");
+    const userButton = screen.getByText('👤 Iniciar como Usuario');
     fireEvent.click(userButton);
 
     expect(mockLogin).toHaveBeenCalledWith({
-      id: "68c2dd60fb172823da61eb92",
-      name: "Juan Pérez",
-      email: "juan@usuario.com",
+      id: '68c2dd60fb172823da61eb92',
+      name: 'Juan Pérez',
+      email: 'juan@usuario.com',
       role: UserRole.USER,
     });
     expect(mockOnClose).toHaveBeenCalled();
   });
 
-  it("should handle operator login", async () => {
+  it('should handle operator login', async () => {
     const mockOnClose = jest.fn();
 
     render(
@@ -104,19 +104,19 @@ describe("LoginModal", () => {
       </ChakraProvider>
     );
 
-    const operatorButton = screen.getByText("👨‍💼 Iniciar como Operador");
+    const operatorButton = screen.getByText('👨‍💼 Iniciar como Operador');
     fireEvent.click(operatorButton);
 
     expect(mockLogin).toHaveBeenCalledWith({
-      id: "operator_789",
-      name: "Carlos Operador",
-      email: "carlos@operador.com",
+      id: 'operator_789',
+      name: 'Carlos Operador',
+      email: 'carlos@operador.com',
       role: UserRole.OPERATOR,
     });
     expect(mockOnClose).toHaveBeenCalled();
   });
 
-  it("should close modal when close button is clicked", () => {
+  it('should close modal when close button is clicked', () => {
     const mockOnClose = jest.fn();
 
     render(
@@ -125,13 +125,13 @@ describe("LoginModal", () => {
       </ChakraProvider>
     );
 
-    const closeButton = screen.getByLabelText("Cerrar modal");
+    const closeButton = screen.getByLabelText('Cerrar modal');
     fireEvent.click(closeButton);
 
     expect(mockOnClose).toHaveBeenCalled();
   });
 
-  it("should not close when clicking on backdrop (functionality not implemented)", async () => {
+  it('should not close when clicking on backdrop (functionality not implemented)', async () => {
     const mockOnClose = jest.fn();
 
     render(
@@ -141,7 +141,7 @@ describe("LoginModal", () => {
     );
 
     // Wait for modal to be rendered
-    await screen.findByText("Iniciar Sesión");
+    await screen.findByText('Iniciar Sesión');
 
     // Find backdrop element
     const backdrop =
@@ -157,23 +157,23 @@ describe("LoginModal", () => {
       expect(mockOnClose).not.toHaveBeenCalled();
 
       // Modal should still be visible
-      expect(screen.getByText("Iniciar Sesión")).toBeInTheDocument();
+      expect(screen.getByText('Iniciar Sesión')).toBeInTheDocument();
     } else {
       // If no backdrop found, just pass the test
       expect(true).toBe(true);
     }
   });
 
-  it("should display all role options with correct styling", () => {
+  it('should display all role options with correct styling', () => {
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
         <LoginModal isOpen={true} onClose={jest.fn()} />
       </ChakraProvider>
     );
 
-    const adminButton = screen.getByText("🛡️ Iniciar como Admin");
-    const userButton = screen.getByText("👤 Iniciar como Usuario");
-    const operatorButton = screen.getByText("👨‍💼 Iniciar como Operador");
+    const adminButton = screen.getByText('🛡️ Iniciar como Admin');
+    const userButton = screen.getByText('👤 Iniciar como Usuario');
+    const operatorButton = screen.getByText('👨‍💼 Iniciar como Operador');
 
     expect(adminButton).toBeInTheDocument();
     expect(userButton).toBeInTheDocument();
@@ -185,20 +185,20 @@ describe("LoginModal", () => {
     expect(operatorButton).not.toBeDisabled();
   });
 
-  it("should have correct modal title and description", () => {
+  it('should have correct modal title and description', () => {
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
         <LoginModal isOpen={true} onClose={jest.fn()} />
       </ChakraProvider>
     );
 
-    expect(screen.getByText("Iniciar Sesión")).toBeInTheDocument();
+    expect(screen.getByText('Iniciar Sesión')).toBeInTheDocument();
     expect(
-      screen.getByText("Selecciona tu rol para continuar:")
+      screen.getByText('Selecciona tu rol para continuar:')
     ).toBeInTheDocument();
   });
 
-  it("should maintain modal state correctly", async () => {
+  it('should maintain modal state correctly', async () => {
     // Test when modal is closed
     const { rerender } = render(
       <ChakraProvider value={createSystem(defaultConfig)}>
@@ -207,7 +207,7 @@ describe("LoginModal", () => {
     );
 
     // Modal should not be visible
-    expect(screen.queryByText("Iniciar Sesión")).not.toBeInTheDocument();
+    expect(screen.queryByText('Iniciar Sesión')).not.toBeInTheDocument();
 
     // Reopen modal
     await act(async () => {
@@ -219,6 +219,6 @@ describe("LoginModal", () => {
     });
 
     // Modal should be visible
-    expect(screen.getByText("Iniciar Sesión")).toBeInTheDocument();
+    expect(screen.getByText('Iniciar Sesión')).toBeInTheDocument();
   });
 });

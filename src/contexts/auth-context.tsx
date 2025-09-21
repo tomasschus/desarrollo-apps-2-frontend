@@ -1,11 +1,11 @@
-import type { ReactNode } from "react";
-import { createContext, useContext, useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import type { ReactNode } from 'react';
+import { createContext, useContext, useState } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const UserRole = {
-  ADMIN: "admin",
-  USER: "user",
-  OPERATOR: "operator",
+  ADMIN: 'admin',
+  USER: 'user',
+  OPERATOR: 'operator',
 } as const;
 
 export type UserRoleType = (typeof UserRole)[keyof typeof UserRole];
@@ -40,9 +40,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     value: storedUser,
     setValue: setStoredUser,
     removeValue: removeStoredUser,
-  } = useLocalStorage<User | null>("auth_user", null);
+  } = useLocalStorage<User | null>('auth_user', null);
   const { value: storedIsLogged, setValue: setStoredIsLogged } =
-    useLocalStorage<boolean>("auth_isLogged", false);
+    useLocalStorage<boolean>('auth_isLogged', false);
 
   const [user, setUser] = useState<User | null>(storedUser);
   const [isLogged, setIsLogged] = useState<boolean>(storedIsLogged);
@@ -87,7 +87,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };

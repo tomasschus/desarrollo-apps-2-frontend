@@ -8,21 +8,21 @@ import {
   SimpleGrid,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import {
   FiCalendar,
   FiFileText,
   FiMapPin,
   FiTrendingUp,
   FiUsers,
-} from "react-icons/fi";
-import { useGetDataFromBackend } from "../../../hooks/useGetDataFromBackend";
+} from 'react-icons/fi';
+import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import {
   getActiveEvents,
   getCulturalPlaces,
   getEvents,
-} from "../api/admin.api";
+} from '../api/admin.api';
 
 interface DashboardStats {
   totalEvents: number;
@@ -51,7 +51,7 @@ export const AdminDashboard = () => {
   const { data: events, loading: eventsLoading } = useGetDataFromBackend<any[]>(
     {
       url: getEvents(),
-      options: { method: "GET" },
+      options: { method: 'GET' },
       executeAutomatically: true,
     }
   );
@@ -59,14 +59,14 @@ export const AdminDashboard = () => {
   const { data: activeEvents, loading: activeEventsLoading } =
     useGetDataFromBackend<any[]>({
       url: getActiveEvents(),
-      options: { method: "GET" },
+      options: { method: 'GET' },
       executeAutomatically: true,
     });
 
   const { data: culturalPlaces, loading: placesLoading } =
     useGetDataFromBackend<any[]>({
       url: getCulturalPlaces(),
-      options: { method: "GET" },
+      options: { method: 'GET' },
       executeAutomatically: true,
     });
 
@@ -93,22 +93,22 @@ export const AdminDashboard = () => {
         totalRevenue,
         recentActivity: [
           {
-            id: "1",
-            type: "event",
-            description: "Nuevo evento creado",
-            timestamp: "Hace 2 horas",
+            id: '1',
+            type: 'event',
+            description: 'Nuevo evento creado',
+            timestamp: 'Hace 2 horas',
           },
           {
-            id: "2",
-            type: "ticket",
-            description: "10 entradas vendidas",
-            timestamp: "Hace 4 horas",
+            id: '2',
+            type: 'ticket',
+            description: '10 entradas vendidas',
+            timestamp: 'Hace 4 horas',
           },
           {
-            id: "3",
-            type: "place",
-            description: "Centro cultural actualizado",
-            timestamp: "Hace 1 día",
+            id: '3',
+            type: 'place',
+            description: 'Centro cultural actualizado',
+            timestamp: 'Hace 1 día',
           },
         ],
       });
@@ -116,9 +116,9 @@ export const AdminDashboard = () => {
   }, [events, activeEvents, culturalPlaces]);
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "ARS",
+    return new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
     }).format(amount);
   };
 
@@ -136,7 +136,6 @@ export const AdminDashboard = () => {
         Dashboard de Administración
       </Heading>
 
-      {/* Estadísticas principales */}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={6}>
         <Box
           bg="white"
@@ -235,8 +234,7 @@ export const AdminDashboard = () => {
         </Box>
       </SimpleGrid>
 
-      <Grid templateColumns={{ base: "1fr", lg: "2fr 1fr" }} gap={6}>
-        {/* Acciones rápidas */}
+      <Grid templateColumns={{ base: '1fr', lg: '2fr 1fr' }} gap={6}>
         <Box
           bg="white"
           p={6}
@@ -268,7 +266,6 @@ export const AdminDashboard = () => {
           </Stack>
         </Box>
 
-        {/* Actividad reciente */}
         <Box
           bg="white"
           p={6}

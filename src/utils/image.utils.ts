@@ -1,9 +1,9 @@
 export const createHTMLImage = (url: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject) => {
     const image = new Image();
-    image.addEventListener("load", () => resolve(image));
-    image.addEventListener("error", (error) => reject(error));
-    image.setAttribute("crossOrigin", "anonymous"); // needed to avoid cross-origin issues on CodeSandbox
+    image.addEventListener('load', () => resolve(image));
+    image.addEventListener('error', (error) => reject(error));
+    image.setAttribute('crossOrigin', 'anonymous'); // needed to avoid cross-origin issues on CodeSandbox
     image.src = url;
   });
 
@@ -13,11 +13,11 @@ export const createHTMLImage = (url: string): Promise<HTMLImageElement> =>
  */
 export const cropImage = async (
   imageSrc: string,
-  pixelCrop: { x: number; y: number; width: number; height: number },
+  pixelCrop: { x: number; y: number; width: number; height: number }
 ): Promise<Blob | null> => {
   const image = await createHTMLImage(imageSrc);
-  const croppedCanvas = document.createElement("canvas");
-  const croppedCtx = croppedCanvas.getContext("2d");
+  const croppedCanvas = document.createElement('canvas');
+  const croppedCtx = croppedCanvas.getContext('2d');
   if (!croppedCtx) {
     return null;
   }
@@ -36,12 +36,12 @@ export const cropImage = async (
     0,
     0,
     pixelCrop.width,
-    pixelCrop.height,
+    pixelCrop.height
   );
 
   return new Promise((resolve) => {
     croppedCanvas.toBlob((file) => {
       resolve(file);
-    }, "image/jpeg");
+    }, 'image/jpeg');
   });
 };

@@ -6,7 +6,7 @@ import {
   Icon,
   Text,
   VStack,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import {
   FiBarChart,
   FiCalendar,
@@ -15,69 +15,69 @@ import {
   FiMapPin,
   FiSettings,
   FiUsers,
-} from "react-icons/fi";
-import { Link } from "react-router";
-import { version } from "../../package.json";
+} from 'react-icons/fi';
+import { Link } from 'react-router';
+import { version } from '../../package.json';
 
 interface AdminSidebarProps {
   activeSection?: string;
 }
 
 export const AdminSidebar = ({
-  activeSection = "dashboard",
+  activeSection = 'dashboard',
 }: AdminSidebarProps) => {
   const menuItems = [
     {
-      id: "dashboard",
-      label: "Dashboard",
+      id: 'dashboard',
+      label: 'Dashboard',
       icon: FiHome,
-      path: "/admin/dashboard",
+      path: '/admin/dashboard',
     },
     {
-      id: "events",
-      label: "Eventos",
+      id: 'events',
+      label: 'Eventos',
       icon: FiCalendar,
-      path: "/admin/eventos",
+      path: '/admin/eventos',
     },
     {
-      id: "places",
-      label: "Lugares Culturales",
+      id: 'places',
+      label: 'Lugares Culturales',
       icon: FiMapPin,
-      path: "/admin/lugares",
+      path: '/admin/lugares',
     },
     {
-      id: "tickets",
-      label: "Tickets",
+      id: 'tickets',
+      label: 'Tickets',
       icon: FiFileText,
-      path: "/admin/tickets",
+      path: '/admin/tickets',
     },
     {
-      id: "users",
-      label: "Usuarios",
+      id: 'users',
+      label: 'Usuarios',
       icon: FiUsers,
-      path: "/admin/usuarios",
+      path: '/admin/usuarios',
     },
     {
-      id: "reports",
-      label: "Reportes",
+      id: 'reports',
+      label: 'Reportes',
       icon: FiBarChart,
-      path: "/admin/reportes",
+      path: '/admin/reportes',
     },
     {
-      id: "settings",
-      label: "Configuración",
+      id: 'settings',
+      label: 'Configuración',
       icon: FiSettings,
-      path: "/admin/configuracion",
+      path: '/admin/configuracion',
     },
   ];
 
   return (
     <Box
-      w={{ base: "full", md: "250px" }}
+      w={{ base: 'full', md: '250px' }}
       bg="white"
       shadow="md"
-      position={{ base: "relative", md: "fixed" }}
-      h={{ base: "auto", md: "100vh" }}
+      position={{ base: 'relative', md: 'fixed' }}
+      h={{ base: 'auto', md: '100vh' }}
       zIndex={10}
       display="flex"
       flexDirection="column"
@@ -88,13 +88,13 @@ export const AdminSidebar = ({
         </Text>
 
         {menuItems.map((item) => (
-          <Link key={item.id} to={item.path} style={{ textDecoration: "none" }}>
+          <Link key={item.id} to={item.path} style={{ textDecoration: 'none' }}>
             <Button
-              variant={activeSection === item.id ? "solid" : "ghost"}
-              colorScheme={activeSection === item.id ? "blue" : "gray"}
+              variant={activeSection === item.id ? 'solid' : 'ghost'}
+              colorScheme={activeSection === item.id ? 'blue' : 'gray'}
               justifyContent="flex-start"
               width="full"
-              _hover={{ textDecoration: "none" }}
+              _hover={{ textDecoration: 'none' }}
             >
               <Icon as={item.icon} mr={2} />
               {item.label}
@@ -102,7 +102,7 @@ export const AdminSidebar = ({
           </Link>
         ))}
       </VStack>
-      <HStack py={3} px={4} justifyContent={"center"} borderTop="1px">
+      <HStack py={3} px={4} justifyContent={'center'} borderTop="1px">
         <Badge colorPalette="green" borderRadius="md">
           Versión {version}
         </Badge>

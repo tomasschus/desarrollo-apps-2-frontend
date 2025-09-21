@@ -1,6 +1,6 @@
-import { Box, Button, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import { FaTicketAlt } from "react-icons/fa";
-import { useCart } from "../../../contexts/cart-context";
+import { Box, Button, Flex, HStack, Text, VStack } from '@chakra-ui/react';
+import { FaTicketAlt } from 'react-icons/fa';
+import { useCart } from '../../../contexts/cart-context';
 
 interface TicketType {
   type: string;
@@ -74,7 +74,7 @@ export const EventTickets = ({
                 borderColor="gray.200"
                 borderRadius="md"
                 p={4}
-                _hover={{ borderColor: "brand.300", boxShadow: "sm" }}
+                _hover={{ borderColor: 'brand.300', boxShadow: 'sm' }}
                 transition="all 0.2s"
               >
                 <Flex justify="space-between" align="center">
@@ -105,12 +105,12 @@ export const EventTickets = ({
                       colorScheme="brand"
                       size="md"
                       onClick={() => handleAddToCart(ticket)}
-                      _hover={{ transform: "translateY(-1px)" }}
+                      _hover={{ transform: 'translateY(-1px)' }}
                       transition="all 0.2s"
                     >
                       {isInCart(eventId, ticket.type)
-                        ? "Agregar más"
-                        : "Agregar al carrito"}
+                        ? 'Agregar más'
+                        : 'Agregar al carrito'}
                     </Button>
                   </HStack>
                 </Flex>

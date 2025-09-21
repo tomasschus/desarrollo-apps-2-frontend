@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { createContext, useContext, useState } from "react";
+import type { ReactNode } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 interface ConfettiContextType {
   showConfetti: boolean;
@@ -43,7 +43,7 @@ export const ConfettiProvider: React.FC<ConfettiProviderProps> = ({
 export const useConfetti = () => {
   const context = useContext(ConfettiContext);
   if (context === undefined) {
-    throw new Error("useConfetti must be used within a ConfettiProvider");
+    throw new Error('useConfetti must be used within a ConfettiProvider');
   }
   return context;
 };

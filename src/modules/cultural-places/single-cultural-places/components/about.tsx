@@ -1,4 +1,4 @@
-import { Card, Text, VStack } from "@chakra-ui/react";
+import { Card, Text, VStack } from '@chakra-ui/react';
 
 interface AboutProps {
   longDescription: string;

@@ -9,14 +9,14 @@ import {
   SimpleGrid,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { FiCalendar, FiEdit, FiMapPin, FiPlus, FiTrash2 } from "react-icons/fi";
-import { useGetDataFromBackend } from "../../../hooks/useGetDataFromBackend";
-import { formatMoney } from "../../../utils/money.utils";
-import { deleteEvent, getEvents } from "../api/admin.api";
-import { CreateEventModal } from "./components/create-event-modal";
-import { EditEventModal } from "./components/edit-event-modal";
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { FiCalendar, FiEdit, FiMapPin, FiPlus, FiTrash2 } from 'react-icons/fi';
+import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { formatMoney } from '../../../utils/money.utils';
+import { deleteEvent, getEvents } from '../api/admin.api';
+import { CreateEventModal } from './components/create-event-modal';
+import { EditEventModal } from './components/edit-event-modal';
 
 interface Event {
   _id: string;
@@ -51,22 +51,22 @@ export const AdminEvents = () => {
     callback: fetchEvents,
   } = useGetDataFromBackend<Event[]>({
     url: getEvents(),
-    options: { method: "GET" },
+    options: { method: 'GET' },
     executeAutomatically: true,
   });
 
   const handleDeleteEvent = async (eventId: string) => {
-    if (confirm("¿Estás seguro de que deseas eliminar este evento?")) {
+    if (confirm('¿Estás seguro de que deseas eliminar este evento?')) {
       try {
         const response = await fetch(deleteEvent(eventId), {
-          method: "DELETE",
+          method: 'DELETE',
         });
 
         if (response.ok) {
           fetchEvents();
         }
       } catch (error) {
-        console.error("Error deleting event:", error);
+        console.error('Error deleting event:', error);
       }
     }
   };
@@ -91,7 +91,7 @@ export const AdminEvents = () => {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("es-AR");
+    return new Date(dateString).toLocaleDateString('es-AR');
   };
 
   if (loading) {
@@ -175,10 +175,10 @@ export const AdminEvents = () => {
 
                 <HStack justifyContent="space-between">
                   <Badge
-                    colorScheme={event.isActive ? "green" : "red"}
+                    colorScheme={event.isActive ? 'green' : 'red'}
                     variant="subtle"
                   >
-                    {event.isActive ? "Activo" : "Inactivo"}
+                    {event.isActive ? 'Activo' : 'Inactivo'}
                   </Badge>
 
                   <Text fontSize="sm" fontWeight="medium">
@@ -188,7 +188,7 @@ export const AdminEvents = () => {
 
                 {event.ticketTypes.length > 0 && (
                   <Text fontSize="sm" color="gray.600">
-                    Desde{" "}
+                    Desde{' '}
                     {formatMoney(
                       Math.min(...event.ticketTypes.map((t) => t.price))
                     )}
@@ -200,14 +200,12 @@ export const AdminEvents = () => {
         ))}
       </SimpleGrid>
 
-      {/* Modal de Creación */}
       <CreateEventModal
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         onEventCreated={handleEventCreated}
       />
 
-      {/* Modal de Edición */}
       <EditEventModal
         isOpen={isEditModalOpen}
         onClose={handleCloseEditModal}

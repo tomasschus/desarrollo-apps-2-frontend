@@ -1,5 +1,5 @@
 // Extend Jest matchers
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
 import { TextEncoder, TextDecoder } from 'util';
 
 // Polyfill for TextEncoder and TextDecoder
@@ -16,13 +16,13 @@ const localStorageMock = {
   clear: jest.fn(),
 };
 
-Object.defineProperty(window, "localStorage", {
+Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,
   writable: true,
 });
 
 // Mock para window.matchMedia
-Object.defineProperty(window, "matchMedia", {
+Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation((query) => ({
     matches: false,
@@ -38,7 +38,8 @@ Object.defineProperty(window, "matchMedia", {
 
 // Mock structuredClone para Node.js < 17
 global.structuredClone =
-  global.structuredClone || ((obj: any) => {
+  global.structuredClone ||
+  ((obj: any) => {
     try {
       return JSON.parse(JSON.stringify(obj));
     } catch {
@@ -68,10 +69,10 @@ const originalError = console.error;
 beforeAll(() => {
   console.error = (...args: any[]) => {
     if (
-      typeof args[0] === "string" &&
-      (args[0].includes("React does not recognize") ||
-        args[0].includes("Invalid value for prop") ||
-        args[0].includes("validateDOMNesting"))
+      typeof args[0] === 'string' &&
+      (args[0].includes('React does not recognize') ||
+        args[0].includes('Invalid value for prop') ||
+        args[0].includes('validateDOMNesting'))
     ) {
       return;
     }

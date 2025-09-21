@@ -8,12 +8,12 @@ import {
   Text,
   Textarea,
   VStack,
-} from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import { FiPlus, FiTrash2, FiX } from "react-icons/fi";
-import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
-import { getCulturalPlaces, updateEvent } from "../../api/admin.api";
+} from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { FiPlus, FiTrash2, FiX } from 'react-icons/fi';
+import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { getCulturalPlaces, updateEvent } from '../../api/admin.api';
 
 interface CulturalPlace {
   _id: string;
@@ -78,13 +78,13 @@ export const EditEventModal = ({
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "ticketTypes",
+    name: 'ticketTypes',
   });
 
   const { data: culturalPlaces, loading: loadingPlaces } =
     useGetDataFromBackend<CulturalPlace[]>({
       url: getCulturalPlaces(),
-      options: { method: "GET" },
+      options: { method: 'GET' },
       executeAutomatically: true,
     });
 
@@ -94,12 +94,12 @@ export const EditEventModal = ({
       // Formatear la fecha para el input de fecha (YYYY-MM-DD)
       const formatDate = (dateString: string) => {
         const date = new Date(dateString);
-        return date.toISOString().split("T")[0];
+        return date.toISOString().split('T')[0];
       };
 
       const formData: EventFormData = {
         culturalPlaceId:
-          typeof event.culturalPlaceId === "object"
+          typeof event.culturalPlaceId === 'object'
             ? event.culturalPlaceId._id
             : event.culturalPlaceId,
         name: event.name,
@@ -116,7 +116,7 @@ export const EditEventModal = ({
 
   const addTicketType = () => {
     append({
-      type: "",
+      type: '',
       price: 0,
       initialQuantity: 0,
       soldQuantity: 0,
@@ -135,23 +135,23 @@ export const EditEventModal = ({
 
     try {
       const response = await fetch(updateEvent(event._id), {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
 
       if (response.ok) {
-        alert("Evento actualizado correctamente");
+        alert('Evento actualizado correctamente');
         onEventUpdated();
         handleClose();
       } else {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Error al actualizar el evento");
+        throw new Error(errorData.message || 'Error al actualizar el evento');
       }
     } catch (error) {
-      alert(error instanceof Error ? error.message : "Error desconocido");
+      alert(error instanceof Error ? error.message : 'Error desconocido');
     }
   };
 
@@ -184,7 +184,6 @@ export const EditEventModal = ({
         maxH="90vh"
         overflow="auto"
       >
-        {/* Header */}
         <HStack
           justifyContent="space-between"
           p={6}
@@ -199,23 +198,21 @@ export const EditEventModal = ({
           </IconButton>
         </HStack>
 
-        {/* Body */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box p={6}>
             <VStack gap={6} align="stretch">
-              {/* Lugar Cultural */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Lugar Cultural *
                 </Text>
                 <select
-                  {...register("culturalPlaceId", { required: true })}
+                  {...register('culturalPlaceId', { required: true })}
                   style={{
-                    width: "100%",
-                    padding: "8px 12px",
-                    border: "1px solid #E2E8F0",
-                    borderRadius: "6px",
-                    backgroundColor: "white",
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #E2E8F0',
+                    borderRadius: '6px',
+                    backgroundColor: 'white',
                   }}
                   disabled={loadingPlaces}
                 >
@@ -228,30 +225,27 @@ export const EditEventModal = ({
                 </select>
               </Box>
 
-              {/* Nombre del evento */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Nombre del Evento *
                 </Text>
                 <Input
-                  {...register("name", { required: true })}
+                  {...register('name', { required: true })}
                   placeholder="Ej: Concierto de Jazz"
                 />
               </Box>
 
-              {/* Descripción */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Descripción
                 </Text>
                 <Textarea
-                  {...register("description")}
+                  {...register('description')}
                   placeholder="Descripción del evento..."
                   rows={3}
                 />
               </Box>
 
-              {/* Fecha y Hora */}
               <HStack gap={4}>
                 <Box flex="1">
                   <Text fontWeight="medium" mb={2}>
@@ -259,7 +253,7 @@ export const EditEventModal = ({
                   </Text>
                   <Input
                     type="date"
-                    {...register("date", { required: true })}
+                    {...register('date', { required: true })}
                   />
                 </Box>
 
@@ -269,24 +263,23 @@ export const EditEventModal = ({
                   </Text>
                   <Input
                     type="time"
-                    {...register("time", { required: true })}
+                    {...register('time', { required: true })}
                   />
                 </Box>
               </HStack>
 
-              {/* Estado activo */}
               <Box>
                 <Text fontWeight="medium" mb={2}>
                   Estado
                 </Text>
                 <select
-                  {...register("isActive")}
+                  {...register('isActive')}
                   style={{
-                    width: "100%",
-                    padding: "8px 12px",
-                    border: "1px solid #E2E8F0",
-                    borderRadius: "6px",
-                    backgroundColor: "white",
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #E2E8F0',
+                    borderRadius: '6px',
+                    backgroundColor: 'white',
                   }}
                 >
                   <option value="true">Activo</option>
@@ -294,7 +287,6 @@ export const EditEventModal = ({
                 </select>
               </Box>
 
-              {/* Tipos de Entrada */}
               <Box>
                 <HStack justifyContent="space-between" mb={3}>
                   <Text fontWeight="medium">Tipos de Entrada</Text>
@@ -305,7 +297,7 @@ export const EditEventModal = ({
                     onClick={addTicketType}
                     type="button"
                   >
-                    <FiPlus style={{ marginRight: "4px" }} />
+                    <FiPlus style={{ marginRight: '4px' }} />
                     Agregar Tipo
                   </Button>
                 </HStack>
@@ -347,11 +339,11 @@ export const EditEventModal = ({
                               required: true,
                             })}
                             style={{
-                              width: "100%",
-                              padding: "8px 12px",
-                              border: "1px solid #E2E8F0",
-                              borderRadius: "6px",
-                              backgroundColor: "white",
+                              width: '100%',
+                              padding: '8px 12px',
+                              border: '1px solid #E2E8F0',
+                              borderRadius: '6px',
+                              backgroundColor: 'white',
                             }}
                           >
                             <option value="">Seleccionar tipo</option>
@@ -420,7 +412,6 @@ export const EditEventModal = ({
             </VStack>
           </Box>
 
-          {/* Footer */}
           <HStack
             justifyContent="flex-end"
             p={6}
@@ -437,7 +428,7 @@ export const EditEventModal = ({
               loading={isSubmitting}
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Actualizando..." : "Actualizar Evento"}
+              {isSubmitting ? 'Actualizando...' : 'Actualizar Evento'}
             </Button>
           </HStack>
         </form>

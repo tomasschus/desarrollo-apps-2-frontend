@@ -1,5 +1,5 @@
-import { Box, Card, Heading, Spinner, Text, VStack } from "@chakra-ui/react";
-import { FaSearch } from "react-icons/fa";
+import { Box, Card, Heading, Spinner, Text, VStack } from '@chakra-ui/react';
+import { FaSearch } from 'react-icons/fa';
 
 export const LoadingState = () => (
   <Box minH="100vh" bg="gray.50" p={4} pt={8}>
@@ -13,7 +13,6 @@ export const LoadingState = () => (
       border="1px solid"
       borderColor="brand.200"
     >
-      {/* Header con gradiente */}
       <Box
         bg="linear-gradient(135deg, #04BF8A 0%, #03A64A 100%)"
         p={6}

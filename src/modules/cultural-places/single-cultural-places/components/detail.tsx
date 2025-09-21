@@ -1,15 +1,15 @@
-import { Box, Grid, Spinner, Stack, Text, VStack } from "@chakra-ui/react";
-import { FiXCircle } from "react-icons/fi";
-import { useParams } from "react-router";
-import { Maps } from "../../../../components/ui/maps";
-import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
-import { getCulturalPlaceById } from "../cultural-places.api";
-import { About } from "./about";
-import { Contact } from "./contact";
-import { Features } from "./features";
-import { Header } from "./header";
-import { Hours } from "./hours";
-import { NextEvents } from "./next-events";
+import { Box, Grid, Spinner, Stack, Text, VStack } from '@chakra-ui/react';
+import { FiXCircle } from 'react-icons/fi';
+import { useParams } from 'react-router';
+import { Maps } from '../../../../components/ui/maps';
+import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { getCulturalPlaceById } from '../cultural-places.api';
+import { About } from './about';
+import { Contact } from './contact';
+import { Features } from './features';
+import { Header } from './header';
+import { Hours } from './hours';
+import { NextEvents } from './next-events';
 
 interface CulturalPlace {
   _id: string;
@@ -52,7 +52,7 @@ export const Detail = () => {
     {
       url: getCulturalPlaceById(id!),
       options: {
-        method: "GET",
+        method: 'GET',
       },
       executeAutomatically: !!id,
     }
@@ -70,7 +70,7 @@ export const Detail = () => {
   if (!culturalPlace) {
     return (
       <Stack align="center" justify="center" minH="400px">
-        <FiXCircle size={"50"} />
+        <FiXCircle size={'50'} />
         <Text fontSize="lg" color="gray.500">
           Espacio cultural no encontrado.
         </Text>
@@ -83,39 +83,39 @@ export const Detail = () => {
       <Header
         image={culturalPlace.image}
         name={culturalPlace.name}
-        color={culturalPlace.color || "blue"}
+        color={culturalPlace.color || 'blue'}
         culturalPlace={culturalPlace.category}
         rating={culturalPlace.rating}
         reviews={culturalPlace.reviews}
       />
 
       <Box mx="auto" px={4} position="relative">
-        <Grid templateColumns={{ base: "1fr", xl: "2fr 1fr" }} gap={6}>
+        <Grid templateColumns={{ base: '1fr', xl: '2fr 1fr' }} gap={6}>
           <VStack gap={2} align="stretch">
             <About longDescription={culturalPlace.description} />
             <Features characteristics={culturalPlace.characteristics} />
             <Hours
               openingHours={{
                 monday: culturalPlace.schedules.monday.closed
-                  ? "Cerrado"
+                  ? 'Cerrado'
                   : `${culturalPlace.schedules.monday.open} - ${culturalPlace.schedules.monday.close}`,
                 tuesday: culturalPlace.schedules.tuesday.closed
-                  ? "Cerrado"
+                  ? 'Cerrado'
                   : `${culturalPlace.schedules.tuesday.open} - ${culturalPlace.schedules.tuesday.close}`,
                 wednesday: culturalPlace.schedules.wednesday.closed
-                  ? "Cerrado"
+                  ? 'Cerrado'
                   : `${culturalPlace.schedules.wednesday.open} - ${culturalPlace.schedules.wednesday.close}`,
                 thursday: culturalPlace.schedules.thursday.closed
-                  ? "Cerrado"
+                  ? 'Cerrado'
                   : `${culturalPlace.schedules.thursday.open} - ${culturalPlace.schedules.thursday.close}`,
                 friday: culturalPlace.schedules.friday.closed
-                  ? "Cerrado"
+                  ? 'Cerrado'
                   : `${culturalPlace.schedules.friday.open} - ${culturalPlace.schedules.friday.close}`,
                 saturday: culturalPlace.schedules.saturday.closed
-                  ? "Cerrado"
+                  ? 'Cerrado'
                   : `${culturalPlace.schedules.saturday.open} - ${culturalPlace.schedules.saturday.close}`,
                 sunday: culturalPlace.schedules.sunday.closed
-                  ? "Cerrado"
+                  ? 'Cerrado'
                   : `${culturalPlace.schedules.sunday.open} - ${culturalPlace.schedules.sunday.close}`,
               }}
             />
@@ -137,7 +137,6 @@ export const Detail = () => {
                 description: culturalPlace.name,
               }}
             />
-            {/* <Tickets ticketPrices={culturalPlace.ticketPrices} /> */}
           </VStack>
         </Grid>
       </Box>

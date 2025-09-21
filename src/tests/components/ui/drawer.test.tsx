@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
+import { render, screen } from '@testing-library/react';
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
 import {
   DrawerRoot,
   DrawerBackdrop,
@@ -12,9 +12,9 @@ import {
   DrawerBody,
   DrawerFooter,
   Drawer,
-} from "../../../components/ui/drawer";
+} from '../../../components/ui/drawer';
 
-describe("Drawer", () => {
+describe('Drawer', () => {
   const renderWithProviders = (component: React.ReactElement) =>
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
@@ -22,20 +22,20 @@ describe("Drawer", () => {
       </ChakraProvider>
     );
 
-  describe("DrawerRoot", () => {
-    it("renders children", () => {
+  describe('DrawerRoot', () => {
+    it('renders children', () => {
       renderWithProviders(
         <DrawerRoot>
           <div>Test Child</div>
         </DrawerRoot>
       );
 
-      expect(screen.getByText("Test Child")).toBeInTheDocument();
+      expect(screen.getByText('Test Child')).toBeInTheDocument();
     });
   });
 
-  describe("Drawer components", () => {
-    it("Drawer object has all components", () => {
+  describe('Drawer components', () => {
+    it('Drawer object has all components', () => {
       expect(Drawer.Root).toBe(DrawerRoot);
       expect(Drawer.Backdrop).toBe(DrawerBackdrop);
       expect(Drawer.Trigger).toBe(DrawerTrigger);

@@ -1,4 +1,4 @@
-import { Card, Grid, Text } from "@chakra-ui/react";
+import { Card, Grid, Text } from '@chakra-ui/react';
 
 interface TicketStatsProps {
   activeTickets: number;
@@ -12,7 +12,7 @@ export const TicketStats = ({
   cancelledTickets,
 }: TicketStatsProps) => {
   return (
-    <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={4}>
+    <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
       <Card.Root bg="green.50" borderColor="green.200" borderWidth={1}>
         <Card.Body textAlign="center">
           <Text fontSize="2xl" fontWeight="bold" color="green.600">

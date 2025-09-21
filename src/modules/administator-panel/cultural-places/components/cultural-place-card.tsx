@@ -8,12 +8,12 @@ import {
   Image,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { FiEdit, FiGlobe, FiMapPin, FiPhone, FiTrash2 } from "react-icons/fi";
-import { useGetDataFromBackend } from "../../../../hooks/useGetDataFromBackend";
-import { deleteCulturalPlace } from "../../api/admin.api";
-import { EditCulturalPlaceModal } from "./edit-cultural-place-modal";
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { FiEdit, FiGlobe, FiMapPin, FiPhone, FiTrash2 } from 'react-icons/fi';
+import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { deleteCulturalPlace } from '../../api/admin.api';
+import { EditCulturalPlaceModal } from './edit-cultural-place-modal';
 
 interface CulturalPlace {
   _id: string;
@@ -50,34 +50,34 @@ export const CulturalPlaceCard = ({
   const { loading: deleteLoading, callback: onDeleteCulturalPlace } =
     useGetDataFromBackend<any>({
       url: deleteCulturalPlace(place._id),
-      options: { method: "DELETE" },
+      options: { method: 'DELETE' },
     });
 
   const handleDeletePlace = async () => {
-    if (confirm("¿Estás seguro de que deseas eliminar este lugar cultural?")) {
+    if (confirm('¿Estás seguro de que deseas eliminar este lugar cultural?')) {
       try {
         await onDeleteCulturalPlace();
         onDeleted();
       } catch (error) {
-        console.error("Error deleting place:", error);
+        console.error('Error deleting place:', error);
       }
     }
   };
 
   const getCategoryColor = (category: string) => {
     switch (category.toLowerCase()) {
-      case "centro cultural":
-        return "blue";
-      case "museo":
-        return "purple";
-      case "teatro":
-        return "red";
-      case "biblioteca":
-        return "green";
-      case "galería":
-        return "orange";
+      case 'centro cultural':
+        return 'blue';
+      case 'museo':
+        return 'purple';
+      case 'teatro':
+        return 'red';
+      case 'biblioteca':
+        return 'green';
+      case 'galería':
+        return 'orange';
       default:
-        return "gray";
+        return 'gray';
     }
   };
 
@@ -134,7 +134,6 @@ export const CulturalPlaceCard = ({
             {place.description}
           </Text>
 
-          {/* Información de contacto */}
           <Stack gap={2}>
             <HStack>
               <Icon as={FiMapPin} color="gray.400" size="sm" />
@@ -162,7 +161,6 @@ export const CulturalPlaceCard = ({
             )}
           </Stack>
 
-          {/* Características */}
           <Box>
             <Text fontSize="sm" fontWeight="medium" mb={2}>
               Características:
@@ -186,7 +184,6 @@ export const CulturalPlaceCard = ({
             </Stack>
           </Box>
 
-          {/* Rating */}
           <HStack justifyContent="space-between">
             <Text fontSize="sm" color="gray.500">
               Rating:
@@ -203,7 +200,6 @@ export const CulturalPlaceCard = ({
         </Stack>
       </Box>
 
-      {/* Modal de Edición */}
       <EditCulturalPlaceModal
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}

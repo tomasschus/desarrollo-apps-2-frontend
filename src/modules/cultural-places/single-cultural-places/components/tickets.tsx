@@ -6,17 +6,17 @@ import {
   HStack,
   Text,
   VStack,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import {
   FaCalendarAlt,
   FaChild,
   FaGraduationCap,
   FaUsers,
   FaUserTie,
-} from "react-icons/fa";
-import { Tooltip } from "../../../../components/ui/tooltip";
-import { useAuth } from "../../../../contexts/auth-context";
-import { formatMoney } from "../../../../utils/money.utils";
+} from 'react-icons/fa';
+import { Tooltip } from '../../../../components/ui/tooltip';
+import { useAuth } from '../../../../contexts/auth-context';
+import { formatMoney } from '../../../../utils/money.utils';
 
 interface TicketsProps {
   ticketPrices: {
@@ -100,8 +100,8 @@ export const Tickets = ({ ticketPrices }: TicketsProps) => {
           <Tooltip
             content={
               !isLogged
-                ? "Inicia sesión para comprar entradas"
-                : "Tocá acá para comprar entradas"
+                ? 'Inicia sesión para comprar entradas'
+                : 'Tocá acá para comprar entradas'
             }
             openDelay={10}
           >

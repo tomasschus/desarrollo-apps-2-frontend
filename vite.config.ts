@@ -1,5 +1,5 @@
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -8,10 +8,10 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ["react", "react-dom", "react-router"],
-          ui: ["@chakra-ui/react", "@emotion/react"],
-          maps: ["leaflet", "react-leaflet"],
-          utils: ["axios", "dayjs", "react-hook-form", "react-icons"],
+          vendor: ['react', 'react-dom', 'react-router'],
+          ui: ['@chakra-ui/react', '@emotion/react'],
+          maps: ['leaflet', 'react-leaflet'],
+          utils: ['axios', 'dayjs', 'react-hook-form', 'react-icons'],
         },
       },
     },

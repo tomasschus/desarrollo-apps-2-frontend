@@ -1,6 +1,6 @@
-import { Box, Button, Card, Flex, Stack, Text } from "@chakra-ui/react";
-import type { CartItem } from "../../../contexts/cart-context";
-import { formatMoney } from "../../../utils/money.utils";
+import { Box, Button, Card, Flex, Stack, Text } from '@chakra-ui/react';
+import type { CartItem } from '../../../contexts/cart-context';
+import { formatMoney } from '../../../utils/money.utils';
 
 interface OrderSummaryProps {
   items: CartItem[];
@@ -20,14 +20,14 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
   isPaymentValid = false,
 }) => {
   return (
-    <Box w={{ base: "full", lg: "400px" }}>
+    <Box w={{ base: 'full', lg: '400px' }}>
       <Card.Root position="sticky" borderRadius="2xl" overflow="hidden">
         <Card.Body p={6}>
           <Stack gap={4}>
             <Flex justify="space-between" align="center">
               <Text color="gray.600">
                 Subtotal ({items.length} entrada
-                {items.length !== 1 ? "s" : ""})
+                {items.length !== 1 ? 's' : ''})
               </Text>
               <Text fontWeight="semibold">{formatMoney(totalPrice)}</Text>
             </Flex>
@@ -61,10 +61,10 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
               transition="all 0.2s ease-in-out"
             >
               {loading
-                ? "Procesando compra..."
+                ? 'Procesando compra...'
                 : !isPaymentValid
-                ? "Complete los datos de pago"
-                : "✨ Confirmar Compra"}
+                  ? 'Complete los datos de pago'
+                  : '✨ Confirmar Compra'}
             </Button>
 
             <Button

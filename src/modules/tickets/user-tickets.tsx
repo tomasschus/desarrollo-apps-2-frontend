@@ -6,11 +6,11 @@ import {
   HStack,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { FiCalendar, FiMapPin } from "react-icons/fi";
-import { API_BASE_URL } from "../../config/api.config";
-import { useAuth } from "../../contexts/auth-context";
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { FiCalendar, FiMapPin } from 'react-icons/fi';
+import { API_BASE_URL } from '../../config/api.config';
+import { useAuth } from '../../contexts/auth-context';
 
 interface UserTicket {
   _id: string;
@@ -26,7 +26,7 @@ interface UserTicket {
   };
   ticketType: string;
   price: number;
-  status: "active" | "used" | "cancelled" | "refunded";
+  status: 'active' | 'used' | 'cancelled' | 'refunded';
   purchaseDate: string;
   usedAt?: string;
 }
@@ -49,7 +49,7 @@ export const UserTickets = () => {
           setTickets(data.data || []);
         }
       } catch (error) {
-        console.error("Error fetching user tickets:", error);
+        console.error('Error fetching user tickets:', error);
       } finally {
         setLoading(false);
       }
@@ -59,17 +59,17 @@ export const UserTickets = () => {
   }, [user]);
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "ARS",
+    return new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
     }).format(amount);
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("es-AR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
+    return new Date(dateString).toLocaleDateString('es-AR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
     });
   };
 
@@ -79,31 +79,31 @@ export const UserTickets = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active":
-        return "green";
-      case "used":
-        return "blue";
-      case "cancelled":
-        return "red";
-      case "refunded":
-        return "orange";
+      case 'active':
+        return 'green';
+      case 'used':
+        return 'blue';
+      case 'cancelled':
+        return 'red';
+      case 'refunded':
+        return 'orange';
       default:
-        return "gray";
+        return 'gray';
     }
   };
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case "active":
-        return "Activa";
-      case "used":
-        return "Utilizada";
-      case "cancelled":
-        return "Cancelada";
-      case "refunded":
-        return "Reembolsada";
+      case 'active':
+        return 'Activa';
+      case 'used':
+        return 'Utilizada';
+      case 'cancelled':
+        return 'Cancelada';
+      case 'refunded':
+        return 'Reembolsada';
       default:
-        return "Desconocido";
+        return 'Desconocido';
     }
   };
 
@@ -141,7 +141,7 @@ export const UserTickets = () => {
           <Button
             colorScheme="blue"
             mt={4}
-            onClick={() => (window.location.href = "/eventos")}
+            onClick={() => (window.location.href = '/eventos')}
           >
             Explorar Eventos
           </Button>
@@ -157,7 +157,7 @@ export const UserTickets = () => {
               borderRadius="lg"
               p={6}
               boxShadow="sm"
-              _hover={{ boxShadow: "md" }}
+              _hover={{ boxShadow: 'md' }}
               transition="all 0.2s"
             >
               <Flex justify="space-between" align="start" mb={4}>
@@ -173,7 +173,7 @@ export const UserTickets = () => {
                     <HStack gap={1}>
                       <FiCalendar size="16px" />
                       <Text fontSize="sm" color="gray.600">
-                        {formatDate(ticket.eventId.date)} -{" "}
+                        {formatDate(ticket.eventId.date)} -{' '}
                         {formatTime(ticket.eventId.time)}
                       </Text>
                     </HStack>
@@ -224,7 +224,7 @@ export const UserTickets = () => {
                   ID: {ticket._id}
                 </Text>
 
-                {ticket.status === "active" && (
+                {ticket.status === 'active' && (
                   <HStack gap={2}>
                     <Button size="sm" variant="outline">
                       Ver QR

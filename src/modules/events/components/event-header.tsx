@@ -1,6 +1,6 @@
-import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import { FaCalendarAlt, FaClock, FaStar } from "react-icons/fa";
-import { formatIsoDate } from "../../../utils/date.utils";
+import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react';
+import { FaCalendarAlt, FaClock, FaStar } from 'react-icons/fa';
+import { formatIsoDate } from '../../../utils/date.utils';
 
 interface EventHeaderProps {
   image: string;
@@ -49,7 +49,7 @@ export const EventHeader = ({
           <HStack gap={1}>
             <Box as={FaCalendarAlt} />
             <Text fontWeight="semibold">
-              {formatIsoDate(date, { format: "DD/MM/YYYY" })}
+              {formatIsoDate(date, { format: 'DD/MM/YYYY' })}
             </Text>
           </HStack>
           <HStack gap={1}>

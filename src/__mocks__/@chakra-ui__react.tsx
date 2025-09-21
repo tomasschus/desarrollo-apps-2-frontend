@@ -89,7 +89,9 @@ export const Flex = ({ children, ...props }: any) => (
 );
 
 export const Grid = ({ children, ...props }: any) => (
-  <div data-testid="grid" {...props}>{children}</div>
+  <div data-testid="grid" {...props}>
+    {children}
+  </div>
 );
 
 export const GridItem = ({ children, ...props }: any) => (
@@ -100,7 +102,9 @@ export const Icon = ({ children, ...props }: any) => (
   <span {...props}>{children}</span>
 );
 
-export const ChakraProvider = ({ children }: any) => <div data-testid="chakra-provider">{children}</div>;
+export const ChakraProvider = ({ children }: any) => (
+  <div data-testid="chakra-provider">{children}</div>
+);
 
 export const ClientOnly = ({ children, fallback }: any) => children || fallback;
 

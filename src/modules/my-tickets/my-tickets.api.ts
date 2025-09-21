@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../../config/api.config";
+import { API_BASE_URL } from '../../config/api.config';
 
 export interface PopulatedEvent {
   _id: string;
@@ -19,9 +19,9 @@ export interface Ticket {
   _id: string;
   eventId: string | PopulatedEvent;
   userId: string;
-  ticketType: "general" | "vip" | "jubilados" | "niños";
+  ticketType: 'general' | 'vip' | 'jubilados' | 'niños';
   price: number;
-  status: "active" | "used" | "cancelled";
+  status: 'active' | 'used' | 'cancelled';
   purchaseDate: string;
   createdAt?: string;
   updatedAt?: string;

@@ -1,4 +1,4 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Text, VStack } from '@chakra-ui/react';
 
 interface TruncatedTextProps {
   text: string;
@@ -10,7 +10,7 @@ export const TruncatedText = ({
   maxLength = 100,
 }: TruncatedTextProps) => {
   const isTruncated = text.length > maxLength;
-  const displayText = isTruncated ? text.substring(0, maxLength) + "..." : text;
+  const displayText = isTruncated ? text.substring(0, maxLength) + '...' : text;
 
   return (
     <VStack align="start" gap={1}>
@@ -24,7 +24,7 @@ export const TruncatedText = ({
           fontSize="sm"
           fontWeight="semibold"
           cursor="pointer"
-          _hover={{ textDecoration: "underline", color: "brand.600" }}
+          _hover={{ textDecoration: 'underline', color: 'brand.600' }}
           transition="all 0.2s"
         >
           Ver más

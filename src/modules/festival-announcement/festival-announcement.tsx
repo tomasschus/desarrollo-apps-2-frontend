@@ -1,9 +1,9 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { keyframes } from "@emotion/react";
-import { useNavigate } from "react-router";
-import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
-import { formatIsoDate, isLessThanOneWeek } from "../../utils/date.utils";
-import { getActiveEvents } from "./festival-announcement.api";
+import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { keyframes } from '@emotion/react';
+import { useNavigate } from 'react-router';
+import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { formatIsoDate, isLessThanOneWeek } from '../../utils/date.utils';
+import { getActiveEvents } from './festival-announcement.api';
 
 // Definimos la animación de pulso
 const pulse = keyframes`
@@ -24,7 +24,7 @@ export const FestivalAnnouncement = () => {
   const { data } = useGetDataFromBackend<Event[]>({
     url: getActiveEvents(),
     options: {
-      method: "GET",
+      method: 'GET',
     },
     executeAutomatically: true,
   });
@@ -64,8 +64,8 @@ export const FestivalAnnouncement = () => {
           ¡Nuevo!
         </Box>
         <Text fontWeight="medium">
-          {nextEvent.name} -{" "}
-          {formatIsoDate(nextEvent.date, { format: "DD/MM/YYYY" })}{" "}
+          {nextEvent.name} -{' '}
+          {formatIsoDate(nextEvent.date, { format: 'DD/MM/YYYY' })}{' '}
           {nextEvent.time}
         </Text>
         <Button

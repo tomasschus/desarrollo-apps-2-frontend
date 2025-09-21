@@ -1,16 +1,16 @@
 // Mock useCart
-jest.mock("../../../contexts/cart-context", () => ({
+jest.mock('../../../contexts/cart-context', () => ({
   useCart: jest.fn(),
 }));
 
-import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { CartDrawer } from "../../../components/cart/cart-drawer";
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { CartDrawer } from '../../../components/cart/cart-drawer';
 
-const mockUseCart = require("../../../contexts/cart-context").useCart;
+const mockUseCart = require('../../../contexts/cart-context').useCart;
 
-describe("CartDrawer", () => {
+describe('CartDrawer', () => {
   const renderWithProviders = (component: React.ReactElement) =>
     render(
       <ChakraProvider value={createSystem(defaultConfig)}>
@@ -22,7 +22,7 @@ describe("CartDrawer", () => {
     jest.clearAllMocks();
   });
 
-  it("renders CartDrawer when open with empty cart", () => {
+  it('renders CartDrawer when open with empty cart', () => {
     mockUseCart.mockReturnValue({
       items: [],
       totalItems: 0,
@@ -42,19 +42,19 @@ describe("CartDrawer", () => {
       />
     );
 
-    expect(screen.getByText("Carrito de Compras")).toBeInTheDocument();
-    expect(screen.getByText("Tu carrito está vacío")).toBeInTheDocument();
+    expect(screen.getByText('Carrito de Compras')).toBeInTheDocument();
+    expect(screen.getByText('Tu carrito está vacío')).toBeInTheDocument();
   });
 
-  it("renders CartDrawer with items", () => {
+  it('renders CartDrawer with items', () => {
     const mockItems = [
       {
-        tempId: "1",
-        eventName: "Concierto",
-        culturalPlaceName: "Teatro",
-        eventDate: "2025-09-20",
-        eventTime: "20:00",
-        ticketType: "General",
+        tempId: '1',
+        eventName: 'Concierto',
+        culturalPlaceName: 'Teatro',
+        eventDate: '2025-09-20',
+        eventTime: '20:00',
+        ticketType: 'General',
         price: 100,
         quantity: 2,
       },
@@ -79,12 +79,12 @@ describe("CartDrawer", () => {
       />
     );
 
-    expect(screen.getByText("Carrito de Compras")).toBeInTheDocument();
-    expect(screen.getByText("Concierto")).toBeInTheDocument();
-    expect(screen.getAllByText("$ 200,00")).toHaveLength(2);
+    expect(screen.getByText('Carrito de Compras')).toBeInTheDocument();
+    expect(screen.getByText('Concierto')).toBeInTheDocument();
+    expect(screen.getAllByText('$ 200,00')).toHaveLength(2);
   });
 
-  it("does not render when closed", () => {
+  it('does not render when closed', () => {
     mockUseCart.mockReturnValue({
       items: [],
       totalItems: 0,
@@ -104,10 +104,10 @@ describe("CartDrawer", () => {
       />
     );
 
-    expect(screen.queryByText("Carrito de Compras")).not.toBeInTheDocument();
+    expect(screen.queryByText('Carrito de Compras')).not.toBeInTheDocument();
   });
 
-  it("calls onClose when close button is clicked", async () => {
+  it('calls onClose when close button is clicked', async () => {
     const user = userEvent.setup();
     mockUseCart.mockReturnValue({
       items: [],
@@ -128,7 +128,7 @@ describe("CartDrawer", () => {
       />
     );
 
-    const closeButton = screen.getByLabelText("Cerrar carrito");
+    const closeButton = screen.getByLabelText('Cerrar carrito');
     await user.click(closeButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);

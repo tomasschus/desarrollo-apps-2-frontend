@@ -1,25 +1,25 @@
-import { act, renderHook } from "@testing-library/react";
-import axios from "axios";
-import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
+import { act, renderHook } from '@testing-library/react';
+import axios from 'axios';
+import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
 
 // Mock axios
-jest.mock("axios", () => ({
+jest.mock('axios', () => ({
   __esModule: true,
   default: jest.fn(),
 }));
 
 const mockedAxios = axios as jest.MockedFunction<typeof axios>;
 
-describe("useGetDataFromBackend", () => {
-  const mockUrl = "https://api.example.com/data";
-  const mockOptions = { method: "GET" as const };
-  const mockResponseData = { id: 1, name: "Test Data" };
+describe('useGetDataFromBackend', () => {
+  const mockUrl = 'https://api.example.com/data';
+  const mockOptions = { method: 'GET' as const };
+  const mockResponseData = { id: 1, name: 'Test Data' };
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should initialize with correct default values", () => {
+  it('should initialize with correct default values', () => {
     const { result } = renderHook(() =>
       useGetDataFromBackend({
         url: mockUrl,
@@ -31,10 +31,10 @@ describe("useGetDataFromBackend", () => {
     expect(result.current.data).toBe(null);
     expect(result.current.loading).toBe(false);
     expect(result.current.error).toBe(null);
-    expect(typeof result.current.callback).toBe("function");
+    expect(typeof result.current.callback).toBe('function');
   });
 
-  it("should execute automatically when executeAutomatically is true", async () => {
+  it('should execute automatically when executeAutomatically is true', async () => {
     mockedAxios.mockResolvedValueOnce({
       data: mockResponseData,
     } as any);
@@ -48,14 +48,14 @@ describe("useGetDataFromBackend", () => {
     );
 
     expect(mockedAxios).toHaveBeenCalledWith({
-      method: "GET",
+      method: 'GET',
       url: mockUrl,
       data: undefined,
       headers: undefined,
     });
   });
 
-  it("should handle successful API call", async () => {
+  it('should handle successful API call', async () => {
     mockedAxios.mockResolvedValueOnce({
       data: mockResponseData,
     } as any);
@@ -77,8 +77,8 @@ describe("useGetDataFromBackend", () => {
     expect(result.current.error).toBe(null);
   });
 
-  it("should handle API error", async () => {
-    const errorMessage = "Network Error";
+  it('should handle API error', async () => {
+    const errorMessage = 'Network Error';
     mockedAxios.mockRejectedValueOnce(new Error(errorMessage));
 
     const { result } = renderHook(() =>
@@ -98,7 +98,7 @@ describe("useGetDataFromBackend", () => {
     expect(result.current.error).toBe(errorMessage);
   });
 
-  it("should set loading state correctly during API call", async () => {
+  it('should set loading state correctly during API call', async () => {
     let resolvePromise: (value: any) => void;
     const promise = new Promise((resolve) => {
       resolvePromise = resolve;
@@ -127,7 +127,7 @@ describe("useGetDataFromBackend", () => {
     expect(result.current.loading).toBe(false);
   });
 
-  it("should call onSuccess callback when provided", async () => {
+  it('should call onSuccess callback when provided', async () => {
     const onSuccess = jest.fn();
     mockedAxios.mockResolvedValueOnce({
       data: mockResponseData,
@@ -149,9 +149,9 @@ describe("useGetDataFromBackend", () => {
     expect(onSuccess).toHaveBeenCalledWith(mockResponseData);
   });
 
-  it("should call onError callback when provided", async () => {
+  it('should call onError callback when provided', async () => {
     const onError = jest.fn();
-    const error = new Error("Test error");
+    const error = new Error('Test error');
     mockedAxios.mockRejectedValueOnce(error);
 
     const { result } = renderHook(() =>
@@ -170,11 +170,11 @@ describe("useGetDataFromBackend", () => {
     expect(onError).toHaveBeenCalledWith(error);
   });
 
-  it("should handle different HTTP methods", async () => {
+  it('should handle different HTTP methods', async () => {
     const postOptions = {
-      method: "POST" as const,
-      body: { name: "test" },
-      headers: { "Content-Type": "application/json" },
+      method: 'POST' as const,
+      body: { name: 'test' },
+      headers: { 'Content-Type': 'application/json' },
     };
 
     mockedAxios.mockResolvedValueOnce({
@@ -194,10 +194,10 @@ describe("useGetDataFromBackend", () => {
     });
 
     expect(mockedAxios).toHaveBeenCalledWith({
-      method: "POST",
+      method: 'POST',
       url: mockUrl,
-      data: { name: "test" },
-      headers: { "Content-Type": "application/json" },
+      data: { name: 'test' },
+      headers: { 'Content-Type': 'application/json' },
     });
   });
 });

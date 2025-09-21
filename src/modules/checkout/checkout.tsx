@@ -1,20 +1,20 @@
-import { Container, Flex, Stack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { toaster } from "../../components/ui/toaster";
-import { useAuth } from "../../contexts/auth-context";
-import { useCart } from "../../contexts/cart-context";
-import { useConfetti } from "../../contexts/confetti-context";
-import { useGetDataFromBackend } from "../../hooks/useGetDataFromBackend";
-import { purchaseTicketUrl } from "./checkout.api";
-import type { PaymentData } from "./checkout.utils";
-import { isPaymentValid } from "./checkout.utils";
+import { Container, Flex, Stack } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { toaster } from '../../components/ui/toaster';
+import { useAuth } from '../../contexts/auth-context';
+import { useCart } from '../../contexts/cart-context';
+import { useConfetti } from '../../contexts/confetti-context';
+import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { purchaseTicketUrl } from './checkout.api';
+import type { PaymentData } from './checkout.utils';
+import { isPaymentValid } from './checkout.utils';
 import {
   CheckoutItem,
   OrderSummary,
   PageHeader,
   PaymentForm,
-} from "./components";
+} from './components';
 
 export const CheckoutPage = () => {
   const { user, isLogged } = useAuth();
@@ -23,11 +23,11 @@ export const CheckoutPage = () => {
   const navigate = useNavigate();
 
   const [paymentData, setPaymentData] = useState<PaymentData>({
-    cardNumber: "",
-    expiryMonth: "",
-    expiryYear: "",
-    cvv: "",
-    cardholderName: "",
+    cardNumber: '',
+    expiryMonth: '',
+    expiryYear: '',
+    cvv: '',
+    cardholderName: '',
   });
 
   const handleInputChange = (field: keyof PaymentData, value: string) => {
@@ -37,9 +37,9 @@ export const CheckoutPage = () => {
   const handleConfirmPurchase = () => {
     if (!isPaymentValid(paymentData)) {
       toaster.create({
-        title: "Datos incompletos",
-        description: "Por favor complete todos los campos de pago",
-        type: "warning",
+        title: 'Datos incompletos',
+        description: 'Por favor complete todos los campos de pago',
+        type: 'warning',
       });
       return;
     }
@@ -49,11 +49,11 @@ export const CheckoutPage = () => {
   useEffect(() => {
     if (!isLogged || !user?.id) {
       toaster.create({
-        title: "Autenticación requerida",
-        description: "Debes iniciar sesión para realizar una compra",
-        type: "warning",
+        title: 'Autenticación requerida',
+        description: 'Debes iniciar sesión para realizar una compra',
+        type: 'warning',
       });
-      navigate("/login");
+      navigate('/login');
       return;
     }
   }, [isLogged, user?.id, navigate]);
@@ -62,9 +62,9 @@ export const CheckoutPage = () => {
     useGetDataFromBackend<void>({
       url: purchaseTicketUrl(),
       options: {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: {
           tickets: items.map((item) => ({
@@ -78,32 +78,32 @@ export const CheckoutPage = () => {
       onSuccess: () => {
         triggerConfetti();
         toaster.create({
-          title: "Compra exitosa",
-          description: "Tus entradas han sido compradas con éxito",
-          type: "success",
+          title: 'Compra exitosa',
+          description: 'Tus entradas han sido compradas con éxito',
+          type: 'success',
         });
         clearCart();
       },
       onError: () => {
         toaster.create({
-          title: "Error en la compra",
+          title: 'Error en la compra',
           description:
-            "Ocurrió un error al procesar tu compra. Por favor, intenta nuevamente.",
-          type: "error",
+            'Ocurrió un error al procesar tu compra. Por favor, intenta nuevamente.',
+          type: 'error',
         });
       },
     });
 
   useEffect(() => {
     if (!isLogged) {
-      navigate("/");
+      navigate('/');
       return;
     }
     if (items.length === 0) {
       if (isLogged) {
-        navigate("/mis-tickets");
+        navigate('/mis-tickets');
       } else {
-        navigate("/");
+        navigate('/');
       }
       return;
     }
@@ -120,7 +120,7 @@ export const CheckoutPage = () => {
 
         <Flex
           gap={8}
-          direction={{ base: "column", lg: "row" }}
+          direction={{ base: 'column', lg: 'row' }}
           justify="center"
         >
           <Stack flex={1} maxW="600px" gap={6}>

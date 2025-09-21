@@ -1,6 +1,6 @@
-import { Badge, Box, IconButton } from "@chakra-ui/react";
-import { FiShoppingCart } from "react-icons/fi";
-import { useCart } from "../../contexts/cart-context";
+import { Badge, Box, IconButton } from '@chakra-ui/react';
+import { FiShoppingCart } from 'react-icons/fi';
+import { useCart } from '../../contexts/cart-context';
 
 interface CartButtonProps {
   onClick: () => void;
@@ -16,11 +16,11 @@ export const CartButton = ({ onClick }: CartButtonProps) => {
         variant="ghost"
         size="md"
         onClick={onClick}
-        _hover={{ bg: "gray.100" }}
+        _hover={{ bg: 'gray.100' }}
       >
         <FiShoppingCart size="20px" />
       </IconButton>
-      
+
       {totalItems > 0 && (
         <Badge
           position="absolute"

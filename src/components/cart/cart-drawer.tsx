@@ -8,9 +8,9 @@ import {
   IconButton,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { FiMinus, FiPlus, FiShoppingCart, FiTrash2, FiX } from "react-icons/fi";
-import { useCart } from "../../contexts/cart-context";
+} from '@chakra-ui/react';
+import { FiMinus, FiPlus, FiShoppingCart, FiTrash2, FiX } from 'react-icons/fi';
+import { useCart } from '../../contexts/cart-context';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -27,17 +27,17 @@ export const CartDrawer = ({
     useCart();
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "ARS",
+    return new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
     }).format(amount);
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("es-AR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
+    return new Date(dateString).toLocaleDateString('es-AR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
     });
   };
 
@@ -74,8 +74,8 @@ export const CartDrawer = ({
                 variant="ghost"
                 borderRadius="full"
                 _hover={{
-                  bg: "gray.100",
-                  transform: "rotate(90deg)",
+                  bg: 'gray.100',
+                  transform: 'rotate(90deg)',
                 }}
                 transition="all 0.2s ease"
               >
@@ -113,9 +113,9 @@ export const CartDrawer = ({
                     bg="white"
                     boxShadow="sm"
                     _hover={{
-                      boxShadow: "md",
-                      transform: "translateY(-2px)",
-                      borderColor: "brand.200",
+                      boxShadow: 'md',
+                      transform: 'translateY(-2px)',
+                      borderColor: 'brand.200',
                     }}
                     transition="all 0.2s ease"
                   >

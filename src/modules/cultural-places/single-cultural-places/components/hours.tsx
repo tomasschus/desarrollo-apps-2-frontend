@@ -1,5 +1,5 @@
-import { Box, Card, Grid, HStack, Text, VStack } from "@chakra-ui/react";
-import { FaClock } from "react-icons/fa";
+import { Box, Card, Grid, HStack, Text, VStack } from '@chakra-ui/react';
+import { FaClock } from 'react-icons/fa';
 
 interface HoursProps {
   openingHours: Record<string, string>;
@@ -17,7 +17,7 @@ export const Hours = ({ openingHours }: HoursProps) => {
             </Text>
           </HStack>
           <Grid
-            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+            templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
             gap={2}
             w="100%"
           >
@@ -34,23 +34,23 @@ export const Hours = ({ openingHours }: HoursProps) => {
                   fontWeight="medium"
                   fontSize="md"
                 >
-                  {day === "monday"
-                    ? "Lunes"
-                    : day === "tuesday"
-                    ? "Martes"
-                    : day === "wednesday"
-                    ? "Miércoles"
-                    : day === "thursday"
-                    ? "Jueves"
-                    : day === "friday"
-                    ? "Viernes"
-                    : day === "saturday"
-                    ? "Sábado"
-                    : "Domingo"}
+                  {day === 'monday'
+                    ? 'Lunes'
+                    : day === 'tuesday'
+                      ? 'Martes'
+                      : day === 'wednesday'
+                        ? 'Miércoles'
+                        : day === 'thursday'
+                          ? 'Jueves'
+                          : day === 'friday'
+                            ? 'Viernes'
+                            : day === 'saturday'
+                              ? 'Sábado'
+                              : 'Domingo'}
                 </Text>
                 <Text
                   color="gray.600"
-                  fontWeight={hours === "Cerrado" ? "semibold" : "normal"}
+                  fontWeight={hours === 'Cerrado' ? 'semibold' : 'normal'}
                   fontSize="md"
                 >
                   {hours}

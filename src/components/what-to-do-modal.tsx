@@ -7,8 +7,8 @@ import {
   RadioGroup,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
 
 type WhatToDoFormData = {
   activity: string;
@@ -34,27 +34,27 @@ export const WhatToDoModal = ({
     setValue,
   } = useForm<WhatToDoFormData>({
     defaultValues: {
-      activity: "",
+      activity: '',
       peopleCount: 1,
-      date: "",
+      date: '',
       hasMinors: false,
-      activityCount: "",
-      hasCar: "",
+      activityCount: '',
+      hasCar: '',
     },
   });
 
   const onSubmit = async (data: WhatToDoFormData) => {
     // Validar campos requeridos manualmente
     if (!data.activityCount) {
-      alert("Por favor selecciona cuántas actividades quieres hacer");
+      alert('Por favor selecciona cuántas actividades quieres hacer');
       return;
     }
     if (!data.hasCar) {
-      alert("Por favor indica si tienes auto disponible");
+      alert('Por favor indica si tienes auto disponible');
       return;
     }
 
-    console.log("Datos del formulario:", data);
+    console.log('Datos del formulario:', data);
     // Aquí iría la lógica para enviar los datos al backend
     // Por ahora solo mostramos en consola
 
@@ -69,11 +69,11 @@ export const WhatToDoModal = ({
   };
 
   const handleActivityCountChange = (details: any) => {
-    setValue("activityCount", details.value);
+    setValue('activityCount', details.value);
   };
 
   const handleHasCarChange = (details: any) => {
-    setValue("hasCar", details.value);
+    setValue('hasCar', details.value);
   };
 
   return (
@@ -93,20 +93,20 @@ export const WhatToDoModal = ({
                     Describe la actividad que tienes en mente
                   </Text>
                   <Input
-                    {...register("activity", {
-                      required: "Por favor describe la actividad",
+                    {...register('activity', {
+                      required: 'Por favor describe la actividad',
                       minLength: {
                         value: 5,
                         message:
-                          "La descripción debe tener al menos 5 caracteres",
+                          'La descripción debe tener al menos 5 caracteres',
                       },
                     })}
                     placeholder="Ej: Visitar un museo, ir al teatro..."
                     size="lg"
                     focusRingColor="orange.400"
                     _focus={{
-                      borderColor: "orange.400",
-                      boxShadow: "0 0 0 1px orange.400",
+                      borderColor: 'orange.400',
+                      boxShadow: '0 0 0 1px orange.400',
                     }}
                   />
                   {errors.activity && (
@@ -122,15 +122,15 @@ export const WhatToDoModal = ({
                       ¿Cuántas personas van?
                     </Text>
                     <Input
-                      {...register("peopleCount", {
-                        required: "Indica el número de personas",
+                      {...register('peopleCount', {
+                        required: 'Indica el número de personas',
                         min: {
                           value: 1,
-                          message: "Debe ser al menos 1 persona",
+                          message: 'Debe ser al menos 1 persona',
                         },
                         max: {
                           value: 20,
-                          message: "Máximo 20 personas",
+                          message: 'Máximo 20 personas',
                         },
                         valueAsNumber: true,
                       })}
@@ -151,8 +151,8 @@ export const WhatToDoModal = ({
                       ¿Qué día?
                     </Text>
                     <Input
-                      {...register("date", {
-                        required: "Selecciona una fecha",
+                      {...register('date', {
+                        required: 'Selecciona una fecha',
                       })}
                       type="date"
                     />
@@ -166,7 +166,7 @@ export const WhatToDoModal = ({
 
                 <VStack gap={4} align="stretch">
                   <Checkbox.Root colorScheme="orange">
-                    <Checkbox.HiddenInput {...register("hasMinors")} />
+                    <Checkbox.HiddenInput {...register('hasMinors')} />
                     <Checkbox.Control />
                     <Checkbox.Label fontSize="sm">
                       ¿Hay menores de edad?

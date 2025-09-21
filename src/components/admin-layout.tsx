@@ -1,8 +1,8 @@
-import { Grid, GridItem, Stack } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router";
-import { useAuth } from "../contexts/auth-context";
-import { AdminSidebar } from "./admin-sidebar";
+import { Grid, GridItem, Stack } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router';
+import { useAuth } from '../contexts/auth-context';
+import { AdminSidebar } from './admin-sidebar';
 
 export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
   const navigate = useNavigate();
@@ -11,25 +11,25 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
 
   const getActiveSection = () => {
     const path = location.pathname;
-    if (path === "/admin" || path === "/admin/dashboard") return "dashboard";
-    if (path.includes("/admin/eventos")) return "events";
-    if (path.includes("/admin/lugares")) return "places";
-    if (path.includes("/admin/tickets")) return "tickets";
-    if (path.includes("/admin/usuarios")) return "users";
-    if (path.includes("/admin/reportes")) return "reports";
-    if (path.includes("/admin/configuracion")) return "settings";
-    return "dashboard";
+    if (path === '/admin' || path === '/admin/dashboard') return 'dashboard';
+    if (path.includes('/admin/eventos')) return 'events';
+    if (path.includes('/admin/lugares')) return 'places';
+    if (path.includes('/admin/tickets')) return 'tickets';
+    if (path.includes('/admin/usuarios')) return 'users';
+    if (path.includes('/admin/reportes')) return 'reports';
+    if (path.includes('/admin/configuracion')) return 'settings';
+    return 'dashboard';
   };
 
   useEffect(() => {
     if (isUser) {
-      navigate("/");
+      navigate('/');
     }
   }, [isUser]);
 
   return (
     <Grid
-      templateColumns={{ base: "1fr", md: "250px 1fr" }}
+      templateColumns={{ base: '1fr', md: '250px 1fr' }}
       minH="100vh"
       bg="gray.50"
       w="100vw"
@@ -47,10 +47,10 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
       >
         <Stack
           w={{
-            base: "full",
-            md: "2xl",
-            lg: "4xl",
-            xl: "6xl",
+            base: 'full',
+            md: '2xl',
+            lg: '4xl',
+            xl: '6xl',
           }}
           maxW="100%"
           px={{

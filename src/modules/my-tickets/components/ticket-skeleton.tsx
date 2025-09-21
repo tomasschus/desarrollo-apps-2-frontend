@@ -1,4 +1,4 @@
-import { Card, Flex, Skeleton, VStack } from "@chakra-ui/react";
+import { Card, Flex, Skeleton, VStack } from '@chakra-ui/react';
 
 export const TicketSkeleton = () => (
   <Card.Root>

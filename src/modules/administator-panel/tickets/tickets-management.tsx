@@ -8,10 +8,10 @@ import {
   SimpleGrid,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useGetDataFromBackend } from "../../../hooks/useGetDataFromBackend";
-import { getEvents } from "../api/admin.api";
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { getEvents } from '../api/admin.api';
 
 interface Ticket {
   _id: string;
@@ -19,7 +19,7 @@ interface Ticket {
   userId: string;
   ticketType: string;
   price: number;
-  status: "active" | "used" | "cancelled" | "refunded";
+  status: 'active' | 'used' | 'cancelled' | 'refunded';
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -45,7 +45,7 @@ export const AdminTickets = () => {
 
   const { data: events, loading } = useGetDataFromBackend<any[]>({
     url: getEvents(),
-    options: { method: "GET" },
+    options: { method: 'GET' },
     executeAutomatically: true,
   });
 
@@ -65,14 +65,14 @@ export const AdminTickets = () => {
           for (let i = 0; i < soldQuantity; i++) {
             const status =
               Math.random() > 0.7
-                ? "used"
+                ? 'used'
                 : Math.random() > 0.9
-                ? "cancelled"
-                : "active";
+                  ? 'cancelled'
+                  : 'active';
 
-            if (status === "active") activeCount++;
-            if (status === "used") usedCount++;
-            if (status === "cancelled") cancelledCount++;
+            if (status === 'active') activeCount++;
+            if (status === 'used') usedCount++;
+            if (status === 'cancelled') cancelledCount++;
 
             totalRevenue += ticketType.price;
 
@@ -83,7 +83,7 @@ export const AdminTickets = () => {
               ticketType: ticketType.type,
               price: ticketType.price,
               status,
-              isActive: status === "active",
+              isActive: status === 'active',
               createdAt: new Date(
                 Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000
               ).toISOString(),
@@ -105,47 +105,47 @@ export const AdminTickets = () => {
   }, [events]);
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "ARS",
+    return new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
     }).format(amount);
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("es-AR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
+    return new Date(dateString).toLocaleDateString('es-AR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
     });
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active":
-        return "green";
-      case "used":
-        return "blue";
-      case "cancelled":
-        return "red";
-      case "refunded":
-        return "orange";
+      case 'active':
+        return 'green';
+      case 'used':
+        return 'blue';
+      case 'cancelled':
+        return 'red';
+      case 'refunded':
+        return 'orange';
       default:
-        return "gray";
+        return 'gray';
     }
   };
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case "active":
-        return "Activa";
-      case "used":
-        return "Utilizada";
-      case "cancelled":
-        return "Cancelada";
-      case "refunded":
-        return "Reembolsada";
+      case 'active':
+        return 'Activa';
+      case 'used':
+        return 'Utilizada';
+      case 'cancelled':
+        return 'Cancelada';
+      case 'refunded':
+        return 'Reembolsada';
       default:
-        return "Desconocido";
+        return 'Desconocido';
     }
   };
 
@@ -163,7 +163,6 @@ export const AdminTickets = () => {
         Gestión de Tickets
       </Heading>
 
-      {/* Estadísticas de tickets */}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} gap={4}>
         <Box
           bg="white"
@@ -246,7 +245,6 @@ export const AdminTickets = () => {
         </Box>
       </SimpleGrid>
 
-      {/* Acciones */}
       <HStack>
         <Button colorScheme="blue" variant="outline">
           Exportar Reporte
@@ -259,7 +257,6 @@ export const AdminTickets = () => {
         </Button>
       </HStack>
 
-      {/* Lista de tickets */}
       <Box>
         <Heading size="md" mb={4}>
           Últimos Tickets (50)
@@ -277,7 +274,7 @@ export const AdminTickets = () => {
               shadow="sm"
             >
               <Grid
-                templateColumns={{ base: "1fr", md: "2fr 1fr 1fr 1fr 1fr 2fr" }}
+                templateColumns={{ base: '1fr', md: '2fr 1fr 1fr 1fr 1fr 2fr' }}
                 gap={4}
                 alignItems="center"
               >
@@ -336,12 +333,12 @@ export const AdminTickets = () => {
                   <Button size="xs" variant="outline">
                     Ver
                   </Button>
-                  {ticket.status === "active" && (
+                  {ticket.status === 'active' && (
                     <Button size="xs" colorScheme="blue" variant="outline">
                       Utilizar
                     </Button>
                   )}
-                  {ticket.status === "active" && (
+                  {ticket.status === 'active' && (
                     <Button size="xs" colorScheme="red" variant="outline">
                       Cancelar
                     </Button>

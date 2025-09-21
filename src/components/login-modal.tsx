@@ -1,5 +1,5 @@
-import { Button, Dialog, Stack, Text } from "@chakra-ui/react";
-import { useAuth, UserRole, type UserRoleType } from "../contexts/auth-context";
+import { Button, Dialog, Stack, Text } from '@chakra-ui/react';
+import { useAuth, UserRole, type UserRoleType } from '../contexts/auth-context';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -12,21 +12,21 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   const handleRoleLogin = (role: UserRoleType) => {
     const mockUsers = {
       [UserRole.OPERATOR]: {
-        id: "operator_789",
-        name: "Carlos Operador",
-        email: "carlos@operador.com",
+        id: 'operator_789',
+        name: 'Carlos Operador',
+        email: 'carlos@operador.com',
         role: UserRole.OPERATOR as UserRoleType,
       },
       [UserRole.USER]: {
-        id: "68c2dd60fb172823da61eb92",
-        name: "Juan Pérez",
-        email: "juan@usuario.com",
+        id: '68c2dd60fb172823da61eb92',
+        name: 'Juan Pérez',
+        email: 'juan@usuario.com',
         role: UserRole.USER as UserRoleType,
       },
       [UserRole.ADMIN]: {
-        id: "admin_456",
-        name: "María Admin",
-        email: "maria@admin.com",
+        id: 'admin_456',
+        name: 'María Admin',
+        email: 'maria@admin.com',
         role: UserRole.ADMIN as UserRoleType,
       },
     };

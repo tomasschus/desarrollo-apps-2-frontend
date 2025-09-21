@@ -1,10 +1,10 @@
-import axios, { type AxiosResponse } from "axios";
-import { useCallback, useEffect, useState } from "react";
-import { toaster } from "../components/ui/toaster";
-import { useAuth } from "../contexts/auth-context";
+import axios, { type AxiosResponse } from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { toaster } from '../components/ui/toaster';
+import { useAuth } from '../contexts/auth-context';
 
 interface UseApiRequestOptions {
-  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   body?: any;
   headers?: Record<string, string>;
 }
@@ -39,12 +39,12 @@ export function useGetDataFromBackend<T>({
     setError(null);
     try {
       const config = {
-        method: options.method || "GET",
+        method: options.method || 'GET',
         url,
         data: options.body,
         headers: {
           ...options.headers,
-          "x-user-role": role || "unlogged",
+          'x-user-role': role || 'unlogged',
         },
       };
       const response: AxiosResponse<T> = await axios(config);
@@ -54,12 +54,12 @@ export function useGetDataFromBackend<T>({
       }
     } catch (err: any) {
       const errorMessage =
-        err.response?.data?.message || err.message || "An error occurred";
+        err.response?.data?.message || err.message || 'An error occurred';
       setError(errorMessage);
       toaster.create({
-        title: "Error",
+        title: 'Error',
         description: errorMessage,
-        type: "error",
+        type: 'error',
       });
       if (onError) {
         onError(err);

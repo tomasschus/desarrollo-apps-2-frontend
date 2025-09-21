@@ -7,15 +7,15 @@ import {
   Icon,
   Text,
   VStack,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import {
   FaCalendarAlt,
   FaCheckCircle,
   FaMapMarkerAlt,
   FaTicketAlt,
   FaUser,
-} from "react-icons/fa";
-import type { TicketData } from "../ticket.api";
+} from 'react-icons/fa';
+import type { TicketData } from '../ticket.api';
 
 interface ValidTicketStateProps {
   ticket: TicketData;
@@ -33,7 +33,6 @@ export const ValidTicketState = ({ ticket }: ValidTicketStateProps) => (
       border="1px solid"
       borderColor="green.200"
     >
-      {/* Header con gradiente */}
       <Box
         bg="linear-gradient(135deg, #04BF8A 0%, #03A64A 100%)"
         p={6}
@@ -69,7 +68,6 @@ export const ValidTicketState = ({ ticket }: ValidTicketStateProps) => (
 
       <Card.Body p={8}>
         <VStack gap={6} align="stretch">
-          {/* Información del ticket */}
           <Box>
             <HStack justify="center" mb={4}>
               <Icon as={FaTicketAlt} color="brand.500" boxSize="20px" />
@@ -136,7 +134,6 @@ export const ValidTicketState = ({ ticket }: ValidTicketStateProps) => (
 
           <Box borderTop="1px solid" borderColor="gray.200" my={4} />
 
-          {/* Información de validación */}
           <Box textAlign="center">
             <HStack justify="center" gap={2} mb={2}>
               <Icon as={FaCalendarAlt} color="green.500" boxSize="16px" />
@@ -155,17 +152,16 @@ export const ValidTicketState = ({ ticket }: ValidTicketStateProps) => (
               border="1px solid"
               borderColor="green.200"
             >
-              {new Date(ticket.updatedAt).toLocaleString("es-ES", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
+              {new Date(ticket.updatedAt).toLocaleString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
               })}
             </Text>
           </Box>
 
-          {/* Mensaje final */}
           <Box textAlign="center" pt={2}>
             <Text
               fontSize="lg"

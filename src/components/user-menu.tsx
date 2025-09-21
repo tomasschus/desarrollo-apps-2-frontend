@@ -1,8 +1,8 @@
-import { Button, Menu, Portal, Text } from "@chakra-ui/react";
-import { FiLogOut, FiUser } from "react-icons/fi";
-import { MdConfirmationNumber } from "react-icons/md";
-import { Link } from "react-router";
-import { useAuth } from "../contexts/auth-context";
+import { Button, Menu, Portal, Text } from '@chakra-ui/react';
+import { FiLogOut, FiUser } from 'react-icons/fi';
+import { MdConfirmationNumber } from 'react-icons/md';
+import { Link } from 'react-router';
+import { useAuth } from '../contexts/auth-context';
 
 export const UserMenu = () => {
   const { user, logout } = useAuth();
@@ -47,7 +47,7 @@ export const UserMenu = () => {
             <Menu.Item
               value="logout"
               color="fg.error"
-              _hover={{ bg: "bg.error", color: "fg.error" }}
+              _hover={{ bg: 'bg.error', color: 'fg.error' }}
               onClick={logout}
             >
               <FiLogOut />
