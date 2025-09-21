@@ -1,6 +1,5 @@
 import { Box, Button, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { FaTicketAlt } from "react-icons/fa";
-import { Tooltip } from "../../../components/ui/tooltip";
 import { useCart } from "../../../contexts/cart-context";
 
 interface TicketType {
@@ -65,8 +64,9 @@ export const EventTickets = ({
         <VStack gap={3} align="stretch">
           {availableTickets.map((ticket) => {
             const inCartQuantity = getItemQuantity(eventId, ticket.type);
-            const availableQuantity = ticket.initialQuantity - ticket.soldQuantity;
-            
+            const availableQuantity =
+              ticket.initialQuantity - ticket.soldQuantity;
+
             return (
               <Box
                 key={ticket.type}
@@ -99,25 +99,19 @@ export const EventTickets = ({
                     <Text fontSize="xl" fontWeight="bold" color="brand.600">
                       ${ticket.price}
                     </Text>
-                    <Tooltip
-                      positioning={{ placement: "top" }}
-                      content={
-                        !isLogged ? "Inicia sesión para comprar entradas" : ""
-                      }
-                      openDelay={100}
-                      showArrow
+
+                    <Button
+                      disabled={!isLogged}
+                      colorScheme="brand"
+                      size="md"
+                      onClick={() => handleAddToCart(ticket)}
+                      _hover={{ transform: "translateY(-1px)" }}
+                      transition="all 0.2s"
                     >
-                      <Button
-                        disabled={!isLogged}
-                        colorScheme="brand"
-                        size="md"
-                        onClick={() => handleAddToCart(ticket)}
-                        _hover={{ transform: "translateY(-1px)" }}
-                        transition="all 0.2s"
-                      >
-                        {isInCart(eventId, ticket.type) ? "Agregar más" : "Agregar al carrito"}
-                      </Button>
-                    </Tooltip>
+                      {isInCart(eventId, ticket.type)
+                        ? "Agregar más"
+                        : "Agregar al carrito"}
+                    </Button>
                   </HStack>
                 </Flex>
               </Box>

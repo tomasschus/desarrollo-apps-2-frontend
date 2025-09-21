@@ -1,4 +1,5 @@
 import {
+  Alert,
   Badge,
   Box,
   Grid,
@@ -77,6 +78,14 @@ export const CulturalPlacesList = () => {
       <Text color="red.500" textAlign="center">
         Error al cargar espacios culturales: {error}
       </Text>
+    );
+  }
+
+  if (!places) {
+    return (
+      <Alert.Root status="info" textAlign="center">
+        No se encontraron espacios culturales disponibles.
+      </Alert.Root>
     );
   }
 
