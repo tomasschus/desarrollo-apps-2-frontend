@@ -1,3 +1,4 @@
+import { arraysACSV } from '../../../utils/csv';
 import type { Ticket, TicketStats } from './tickets-management.api';
 
 // Utilidades para el estado de los tickets
@@ -176,7 +177,7 @@ export const sortTickets = (
 };
 
 // Función para exportar tickets a CSV
-export const exportTicketsToCSV = (tickets: Ticket[]): string => {
+export const exportTicketsToCSV = (tickets: Ticket[]): void => {
   const headers = [
     'ID',
     'Evento ID',
@@ -188,23 +189,22 @@ export const exportTicketsToCSV = (tickets: Ticket[]): string => {
     'Última Actualización',
   ];
 
-  const csvContent = [
-    headers.join(','),
-    ...tickets.map((ticket) =>
-      [
-        ticket._id,
-        ticket.eventId,
-        ticket.userId,
-        ticket.ticketType,
-        ticket.price,
-        getStatusLabel(ticket.status),
-        new Date(ticket.createdAt).toLocaleDateString(),
-        new Date(ticket.updatedAt).toLocaleDateString(),
-      ].join(',')
-    ),
-  ].join('\n');
+  const data = tickets.map((ticket) => [
+    ticket._id,
+    ticket.eventId,
+    ticket.userId,
+    ticket.ticketType,
+    ticket.price.toString(),
+    getStatusLabel(ticket.status),
+    new Date(ticket.createdAt).toLocaleDateString(),
+    new Date(ticket.updatedAt).toLocaleDateString(),
+  ]);
 
-  return csvContent;
+  arraysACSV(
+    headers,
+    data,
+    `tickets-report-${new Date().toISOString().split('T')[0]}.csv`
+  );
 };
 
 // Función para validar si un ticket se puede cancelar

@@ -1,4 +1,11 @@
-import { Button, HStack, Input, Stack } from '@chakra-ui/react';
+import {
+  Button,
+  Card,
+  Input,
+  Select,
+  Stack,
+  createListCollection,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 
 interface TicketFiltersProps {
@@ -22,6 +29,16 @@ export const TicketFilters = ({
     dateTo: '',
   });
 
+  const statusOptions = createListCollection({
+    items: [
+      { label: 'Todos los estados', value: '' },
+      { label: 'Activos', value: 'active' },
+      { label: 'Utilizados', value: 'used' },
+      { label: 'Cancelados', value: 'cancelled' },
+      { label: 'Reembolsados', value: 'refunded' },
+    ],
+  });
+
   const handleFilterChange = (key: string, value: string) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
@@ -37,77 +54,85 @@ export const TicketFilters = ({
   const hasActiveFilters = Object.values(filters).some((value) => value !== '');
 
   return (
-    <Stack
-      direction={{ base: 'column', md: 'row' }}
-      gap={4}
-      align="center"
-      justify="space-between"
-    >
-      <HStack gap={3} wrap="wrap">
-        <select
-          value={filters.status}
-          onChange={(e) => handleFilterChange('status', e.target.value)}
-          style={{
-            padding: '6px 12px',
-            border: '1px solid #E2E8F0',
-            borderRadius: '6px',
-            backgroundColor: 'white',
-            fontSize: '14px',
-            minWidth: '150px',
-          }}
+    <Card.Root>
+      <Card.Body>
+        <Stack
+          direction={{ base: 'column', md: 'row' }}
+          gap={4}
+          align="center"
+          justify="space-between"
         >
-          <option value="">Filtrar por estado</option>
-          <option value="active">Activos</option>
-          <option value="used">Utilizados</option>
-          <option value="cancelled">Cancelados</option>
-          <option value="refunded">Reembolsados</option>
-        </select>
+          <Stack direction={{ base: 'column', sm: 'row' }} gap={3}>
+            <Select.Root
+              size="sm"
+              collection={statusOptions}
+              value={[filters.status]}
+              onValueChange={(details) =>
+                handleFilterChange('status', details.value[0] || '')
+              }
+            >
+              <Select.HiddenSelect />
+              <Select.Control>
+                <Select.Trigger>
+                  <Select.ValueText placeholder="Todos los estados" />
+                </Select.Trigger>
+              </Select.Control>
+              <Select.Positioner>
+                <Select.Content>
+                  {statusOptions.items.map((item) => (
+                    <Select.Item key={item.value} item={item}>
+                      <Select.ItemText>{item.label}</Select.ItemText>
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Positioner>
+            </Select.Root>
 
-        <Input
-          type="date"
-          placeholder="Desde"
-          size="sm"
-          maxW="150px"
-          value={filters.dateFrom}
-          onChange={(e) => handleFilterChange('dateFrom', e.target.value)}
-          bg="white"
-          borderColor="gray.200"
-        />
+            <Input
+              type="date"
+              placeholder="Desde"
+              size="sm"
+              value={filters.dateFrom}
+              onChange={(e) => handleFilterChange('dateFrom', e.target.value)}
+              bg="white"
+              borderColor="gray.200"
+              maxW="140px"
+            />
 
-        <Input
-          type="date"
-          placeholder="Hasta"
-          size="sm"
-          maxW="150px"
-          value={filters.dateTo}
-          onChange={(e) => handleFilterChange('dateTo', e.target.value)}
-          bg="white"
-          borderColor="gray.200"
-        />
+            <Input
+              type="date"
+              placeholder="Hasta"
+              size="sm"
+              value={filters.dateTo}
+              onChange={(e) => handleFilterChange('dateTo', e.target.value)}
+              bg="white"
+              borderColor="gray.200"
+              maxW="140px"
+            />
 
-        {hasActiveFilters && (
+            {hasActiveFilters && (
+              <Button
+                size="sm"
+                variant="ghost"
+                colorPalette="gray"
+                onClick={handleClearFilters}
+              >
+                Limpiar
+              </Button>
+            )}
+          </Stack>
+
           <Button
+            colorPalette="green"
+            variant="outline"
             size="sm"
-            variant="ghost"
-            colorPalette="gray"
-            onClick={handleClearFilters}
+            onClick={onExport}
+            disabled={loading}
           >
-            Limpiar Filtros
+            Exportar Reporte
           </Button>
-        )}
-      </HStack>
-
-      <HStack gap={2}>
-        <Button
-          colorPalette="green"
-          variant="outline"
-          size="sm"
-          onClick={onExport}
-          disabled={loading}
-        >
-          Exportar Reporte
-        </Button>
-      </HStack>
-    </Stack>
+        </Stack>
+      </Card.Body>
+    </Card.Root>
   );
 };
