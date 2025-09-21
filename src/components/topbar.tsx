@@ -145,7 +145,7 @@ export const Topbar = () => {
               <UserMenu />
             ) : (
               <Button
-                colorScheme="brand"
+                colorPalette="brand"
                 variant="solid"
                 size="md"
                 borderRadius="full"

@@ -34,7 +34,7 @@ export const CulturalPlaceInfo = ({
         </Text>
 
         <HStack gap={2}>
-          <Badge colorScheme="blue" fontSize="sm">
+          <Badge colorPalette="blue" fontSize="sm">
             {category}
           </Badge>
           <HStack gap={1}>

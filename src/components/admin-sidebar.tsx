@@ -91,7 +91,7 @@ export const AdminSidebar = ({
           <Link key={item.id} to={item.path} style={{ textDecoration: 'none' }}>
             <Button
               variant={activeSection === item.id ? 'solid' : 'ghost'}
-              colorScheme={activeSection === item.id ? 'blue' : 'gray'}
+              colorPalette={activeSection === item.id ? 'blue' : 'gray'}
               justifyContent="flex-start"
               width="full"
               _hover={{ textDecoration: 'none' }}

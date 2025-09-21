@@ -174,7 +174,7 @@ describe('useGetDataFromBackend', () => {
     const postOptions = {
       method: 'POST' as const,
       body: { name: 'test' },
-      headers: { 'Content-Type': 'application/json' },
+      ,
     };
 
     mockedAxios.mockResolvedValueOnce({
@@ -197,7 +197,7 @@ describe('useGetDataFromBackend', () => {
       method: 'POST',
       url: mockUrl,
       data: { name: 'test' },
-      headers: { 'Content-Type': 'application/json' },
+      ,
     });
   });
 });

@@ -102,7 +102,7 @@ export const EventTickets = ({
 
                     <Button
                       disabled={!isLogged}
-                      colorScheme="brand"
+                      colorPalette="brand"
                       size="md"
                       onClick={() => handleAddToCart(ticket)}
                       _hover={{ transform: 'translateY(-1px)' }}

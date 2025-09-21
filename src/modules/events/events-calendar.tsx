@@ -339,7 +339,7 @@ export const EventsCalendar = () => {
                     </HStack>
                     <Button
                       size="sm"
-                      colorScheme="brand"
+                      colorPalette="brand"
                       variant="outline"
                       mt={3}
                       onClick={(e) => {

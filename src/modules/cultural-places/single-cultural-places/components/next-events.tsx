@@ -95,7 +95,7 @@ export const NextEvents = () => {
             <Text fontSize="lg" fontWeight="bold" color="brand.700">
               Próximos Eventos
             </Text>
-            <Badge colorScheme="brand" variant="subtle" fontSize="xs">
+            <Badge colorPalette="brand" variant="subtle" fontSize="xs">
               {events.length}
             </Badge>
           </HStack>
@@ -165,7 +165,7 @@ export const NextEvents = () => {
                         {event.ticketTypes.slice(0, 3).map((ticket, index) => (
                           <Badge
                             key={index}
-                            colorScheme="brand"
+                            colorPalette="brand"
                             variant="outline"
                             fontSize="xs"
                             px={2}
@@ -188,7 +188,7 @@ export const NextEvents = () => {
 
                     <Button
                       size="sm"
-                      colorScheme="brand"
+                      colorPalette="brand"
                       w="100%"
                       mt={2}
                       onClick={(e) => {

@@ -43,6 +43,7 @@ export function useGetDataFromBackend<T>({
         url,
         data: options.body,
         headers: {
+          'Content-Type': 'application/json',
           ...options.headers,
           'x-user-role': role || 'unlogged',
         },

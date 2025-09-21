@@ -48,7 +48,7 @@ export const ValidatingTicketState = ({
             Validando Ticket...
           </Heading>
           <Badge
-            colorScheme="blue"
+            colorPalette="blue"
             variant="solid"
             px={4}
             py={1}
@@ -81,7 +81,7 @@ export const ValidatingTicketState = ({
                     Tipo:
                   </Text>
                 </HStack>
-                <Badge colorScheme="brand" variant="subtle" px={3} py={1}>
+                <Badge colorPalette="brand" variant="subtle" px={3} py={1}>
                   {ticket.ticketType}
                 </Badge>
               </HStack>

@@ -273,7 +273,7 @@ export const EditEventModal = ({
                   <Text fontWeight="medium">Tipos de Entrada</Text>
                   <Button
                     size="sm"
-                    colorScheme="blue"
+                    colorPalette="blue"
                     variant="outline"
                     onClick={addTicketType}
                     type="button"
@@ -299,7 +299,7 @@ export const EditEventModal = ({
                         {fields.length > 1 && (
                           <IconButton
                             size="sm"
-                            colorScheme="red"
+                            colorPalette="red"
                             variant="outline"
                             aria-label="Eliminar tipo"
                             onClick={() => removeTicketType(index)}
@@ -399,7 +399,7 @@ export const EditEventModal = ({
                 Cancelar
               </Button>
               <Button
-                colorScheme="blue"
+                colorPalette="blue"
                 type="submit"
                 loading={isSubmitting}
                 disabled={isSubmitting}

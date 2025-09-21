@@ -102,7 +102,7 @@ export const CulturalPlaceCard = ({
         <Stack gap={3}>
           <HStack justifyContent="space-between">
             <Badge
-              colorScheme={getCategoryColor(place.category)}
+              colorPalette={getCategoryColor(place.category)}
               variant="solid"
             >
               {place.category}
@@ -110,7 +110,7 @@ export const CulturalPlaceCard = ({
             <HStack>
               <Button
                 size="sm"
-                colorScheme="blue"
+                colorPalette="blue"
                 variant="outline"
                 onClick={() => setIsEditModalOpen(true)}
               >
@@ -118,7 +118,7 @@ export const CulturalPlaceCard = ({
               </Button>
               <Button
                 size="sm"
-                colorScheme="red"
+                colorPalette="red"
                 variant="outline"
                 onClick={handleDeletePlace}
                 loading={deleteLoading}
@@ -171,13 +171,13 @@ export const CulturalPlaceCard = ({
                   key={index}
                   size="sm"
                   variant="outline"
-                  colorScheme="gray"
+                  colorPalette="gray"
                 >
                   {char}
                 </Badge>
               ))}
               {place.characteristics.length > 3 && (
-                <Badge size="sm" variant="outline" colorScheme="gray">
+                <Badge size="sm" variant="outline" colorPalette="gray">
                   +{place.characteristics.length - 3}
                 </Badge>
               )}

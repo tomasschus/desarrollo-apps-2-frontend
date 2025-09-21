@@ -347,7 +347,7 @@ export const EditCulturalPlaceModal = ({
                   <Text fontWeight="medium">Características</Text>
                   <Button
                     size="sm"
-                    colorScheme="blue"
+                    colorPalette="blue"
                     variant="outline"
                     onClick={addCharacteristic}
                     type="button"
@@ -367,7 +367,7 @@ export const EditCulturalPlaceModal = ({
                       {characteristicFields.length > 1 && (
                         <IconButton
                           size="sm"
-                          colorScheme="red"
+                          colorPalette="red"
                           variant="outline"
                           aria-label="Eliminar característica"
                           onClick={() => removeCharacteristicItem(index)}
@@ -433,7 +433,7 @@ export const EditCulturalPlaceModal = ({
               Cancelar
             </Button>
             <Button
-              colorScheme="blue"
+              colorPalette="blue"
               type="submit"
               loading={isSubmitting}
               disabled={isSubmitting}

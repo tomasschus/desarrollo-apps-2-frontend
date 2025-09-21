@@ -58,7 +58,7 @@ export const CartDrawer = ({
               </Drawer.Title>
               {totalItems > 0 && (
                 <Badge
-                  colorScheme="brand"
+                  colorPalette="brand"
                   variant="solid"
                   borderRadius="full"
                   px={2}
@@ -135,7 +135,7 @@ export const CartDrawer = ({
                       <HStack justify="space-between">
                         <Stack gap={1}>
                           <Badge
-                            colorScheme="blue"
+                            colorPalette="blue"
                             textTransform="capitalize"
                             variant="subtle"
                           >
@@ -185,7 +185,7 @@ export const CartDrawer = ({
                           <IconButton
                             aria-label="Eliminar del carrito"
                             size="sm"
-                            colorScheme="red"
+                            colorPalette="red"
                             variant="ghost"
                             onClick={() => removeFromCart(item.tempId)}
                             alignSelf="center"
@@ -231,7 +231,7 @@ export const CartDrawer = ({
                 <HStack gap={3}>
                   <Drawer.CloseTrigger asChild />
                   <Button
-                    colorScheme="blue"
+                    colorPalette="blue"
                     onClick={onCheckout}
                     flex={1}
                     size="lg"

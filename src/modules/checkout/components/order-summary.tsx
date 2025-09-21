@@ -59,7 +59,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
 
           <Stack gap={3}>
             <Button
-              colorScheme="green"
+              colorPalette="green"
               size="lg"
               onClick={onConfirmPurchase}
               disabled={loading || !isPaymentValid}

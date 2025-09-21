@@ -137,7 +137,7 @@ export const CulturalPlacesList = () => {
                   position="absolute"
                   top="3"
                   left="3"
-                  colorScheme={getCategoryColor(space.category)}
+                  colorPalette={getCategoryColor(space.category)}
                   variant="solid"
                   fontSize="xs"
                   borderRadius="md"
@@ -184,7 +184,7 @@ export const CulturalPlacesList = () => {
                       key={index}
                       size="sm"
                       variant="outline"
-                      colorScheme="gray"
+                      colorPalette="gray"
                       fontSize="2xs"
                     >
                       {char}
@@ -194,7 +194,7 @@ export const CulturalPlacesList = () => {
                     <Badge
                       size="sm"
                       variant="outline"
-                      colorScheme="gray"
+                      colorPalette="gray"
                       fontSize="2xs"
                     >
                       +{space.characteristics.length - 2}

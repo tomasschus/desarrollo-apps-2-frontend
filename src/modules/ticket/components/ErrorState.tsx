@@ -44,7 +44,7 @@ export const ErrorState = ({ error }: ErrorStateProps) => (
             Ticket Inválido
           </Heading>
           <Badge
-            colorScheme="red"
+            colorPalette="red"
             variant="solid"
             px={4}
             py={1}
@@ -97,7 +97,7 @@ export const ErrorState = ({ error }: ErrorStateProps) => (
                 ¿Necesitas ayuda? Contacta al soporte técnico
               </Text>
               <Button
-                colorScheme="brand"
+                colorPalette="brand"
                 size="lg"
                 onClick={() => (window.location.href = '/')}
                 px={8}

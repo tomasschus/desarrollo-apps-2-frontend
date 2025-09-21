@@ -97,7 +97,7 @@ export const QRModal = ({ isOpen, onClose, qrCode, status }: QRModalProps) => {
           </Dialog.Body>
 
           <Dialog.Footer>
-            <Button colorScheme="brand" onClick={onClose} width="100%">
+            <Button colorPalette="brand" onClick={onClose} width="100%">
               Cerrar
             </Button>
           </Dialog.Footer>

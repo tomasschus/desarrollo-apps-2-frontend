@@ -63,7 +63,7 @@ export const AdminCulturalPlaces = () => {
         <Heading size="lg" color="gray.800">
           Gestión de Lugares Culturales
         </Heading>
-        <Button colorScheme="blue">
+        <Button colorPalette="blue">
           <Icon as={FiPlus} mr={2} />
           Agregar Lugar
         </Button>

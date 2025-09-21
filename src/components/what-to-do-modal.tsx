@@ -165,7 +165,7 @@ export const WhatToDoModal = ({
                 </Grid>
 
                 <VStack gap={4} align="stretch">
-                  <Checkbox.Root colorScheme="orange">
+                  <Checkbox.Root colorPalette="orange">
                     <Checkbox.HiddenInput {...register('hasMinors')} />
                     <Checkbox.Control />
                     <Checkbox.Label fontSize="sm">
@@ -251,7 +251,7 @@ export const WhatToDoModal = ({
               Cancelar
             </Button>
             <Button
-              colorScheme="orange"
+              colorPalette="orange"
               onClick={handleSubmit(onSubmit)}
               loading={isSubmitting}
             >
