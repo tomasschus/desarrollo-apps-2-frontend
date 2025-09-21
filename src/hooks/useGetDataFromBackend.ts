@@ -4,7 +4,7 @@ import { toaster } from "../components/ui/toaster";
 import { useAuth } from "../contexts/auth-context";
 
 interface UseApiRequestOptions {
-  method?: "GET" | "POST" | "PUT" | "DELETE";
+  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
   body?: any;
   headers?: Record<string, string>;
 }
@@ -30,7 +30,7 @@ export function useGetDataFromBackend<T>({
   onError?: (error: any) => void;
 }): UseApiRequestReturn<T> {
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(executeAutomatically);
   const [error, setError] = useState<string | null>(null);
   const { role } = useAuth();
 

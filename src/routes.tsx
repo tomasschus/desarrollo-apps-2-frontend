@@ -65,6 +65,12 @@ const MyTicketsPage = lazy(() =>
   }))
 );
 
+const TicketPage = lazy(() =>
+  import("./modules/ticket/ticket").then((module) => ({
+    default: module.TicketPage,
+  }))
+);
+
 const ComingSoon = ({ title }: { title: string }) => (
   <div style={{ textAlign: "center", padding: "2rem" }}>
     <h2>{title}</h2>
@@ -100,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: "mis-tickets",
         element: <LazyPage Component={MyTicketsPage} />,
+      },
+      {
+        path: "ticket/:id",
+        element: <LazyPage Component={TicketPage} />,
       },
     ],
   },
