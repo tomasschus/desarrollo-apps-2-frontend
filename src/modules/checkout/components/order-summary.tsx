@@ -8,15 +8,17 @@ interface OrderSummaryProps {
   loading: boolean;
   onConfirmPurchase: () => void;
   onContinueShopping: () => void;
+  isPaymentValid?: boolean;
 }
 
-export const OrderSummary = ({
+export const OrderSummary: React.FC<OrderSummaryProps> = ({
   items,
   totalPrice,
   loading,
   onConfirmPurchase,
   onContinueShopping,
-}: OrderSummaryProps) => {
+  isPaymentValid = false,
+}) => {
   return (
     <Box w={{ base: "full", lg: "400px" }}>
       <Card.Root position="sticky" borderRadius="2xl" overflow="hidden">
@@ -54,11 +56,11 @@ export const OrderSummary = ({
               colorScheme="green"
               size="lg"
               onClick={onConfirmPurchase}
-              disabled={loading}
+              disabled={loading || !isPaymentValid}
               w="full"
               transition="all 0.2s ease-in-out"
             >
-              {loading ? "Procesando compra..." : "✨ Confirmar Compra"}
+              {loading ? "Procesando compra..." : !isPaymentValid ? "Complete los datos de pago" : "✨ Confirmar Compra"}
             </Button>
 
             <Button
