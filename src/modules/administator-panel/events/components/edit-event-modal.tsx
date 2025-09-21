@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Drawer,
   HStack,
   IconButton,
   Input,
@@ -11,9 +12,10 @@ import {
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { FiPlus, FiTrash2, FiX } from 'react-icons/fi';
+import { FiPlus, FiTrash2 } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
-import { getCulturalPlaces, updateEvent } from '../../api/admin.api';
+import { formatDate } from '../../../../utils/date.utils';
+import { getCulturalPlaces, updateEvent } from '../events-management.api';
 
 interface CulturalPlace {
   _id: string;
@@ -88,15 +90,8 @@ export const EditEventModal = ({
       executeAutomatically: true,
     });
 
-  // Cargar datos del evento cuando se abre el modal
   useEffect(() => {
     if (isOpen && event) {
-      // Formatear la fecha para el input de fecha (YYYY-MM-DD)
-      const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toISOString().split('T')[0];
-      };
-
       const formData: EventFormData = {
         culturalPlaceId:
           typeof event.culturalPlaceId === 'object'
@@ -163,43 +158,27 @@ export const EditEventModal = ({
   if (!isOpen || !event) return null;
 
   return (
-    <Box
-      position="fixed"
-      top="0"
-      left="0"
-      right="0"
-      bottom="0"
-      bg="rgba(0, 0, 0, 0.5)"
-      zIndex={1000}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      p={4}
+    <Drawer.Root
+      open={isOpen}
+      onOpenChange={(details) => {
+        if (!details.open) onClose();
+      }}
+      size="lg"
+      placement="bottom"
     >
-      <Box
-        bg="white"
-        borderRadius="lg"
-        maxW="600px"
-        w="full"
-        maxH="90vh"
-        overflow="auto"
-      >
-        <HStack
-          justifyContent="space-between"
-          p={6}
-          borderBottom="1px solid"
-          borderColor="gray.200"
-        >
-          <Text fontSize="xl" fontWeight="bold">
-            Editar Evento
-          </Text>
-          <IconButton aria-label="Cerrar" variant="ghost" onClick={handleClose}>
-            <FiX />
-          </IconButton>
-        </HStack>
+      <Drawer.Backdrop />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Drawer.Content>
+          <Drawer.Header>
+            <HStack justifyContent="space-between">
+              <Drawer.Title fontSize="xl" fontWeight="bold">
+                Editar Evento
+              </Drawer.Title>
+              <Drawer.CloseTrigger />
+            </HStack>
+          </Drawer.Header>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Box p={6}>
+          <Drawer.Body>
             <VStack gap={6} align="stretch">
               <Box>
                 <Text fontWeight="medium" mb={2}>
@@ -410,29 +389,25 @@ export const EditEventModal = ({
                 </Stack>
               </Box>
             </VStack>
-          </Box>
+          </Drawer.Body>
 
-          <HStack
-            justifyContent="flex-end"
-            p={6}
-            borderTop="1px solid"
-            borderColor="gray.200"
-            gap={3}
-          >
-            <Button variant="outline" onClick={handleClose} type="button">
-              Cancelar
-            </Button>
-            <Button
-              colorScheme="blue"
-              type="submit"
-              loading={isSubmitting}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Actualizando...' : 'Actualizar Evento'}
-            </Button>
-          </HStack>
-        </form>
-      </Box>
-    </Box>
+          <Drawer.Footer>
+            <HStack gap={3}>
+              <Button variant="outline" onClick={handleClose} type="button">
+                Cancelar
+              </Button>
+              <Button
+                colorScheme="blue"
+                type="submit"
+                loading={isSubmitting}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Actualizando...' : 'Actualizar Evento'}
+              </Button>
+            </HStack>
+          </Drawer.Footer>
+        </Drawer.Content>
+      </form>
+    </Drawer.Root>
   );
 };

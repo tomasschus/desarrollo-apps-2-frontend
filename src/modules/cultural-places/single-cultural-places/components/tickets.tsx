@@ -50,7 +50,9 @@ export const Tickets = ({ ticketPrices }: TicketsProps) => {
                 <Text fontSize="md">General</Text>
               </HStack>
               <Text fontWeight="bold" color="brand.600" fontSize="md">
-                {formatMoney(ticketPrices.general)}
+                {formatMoney(ticketPrices.general, {
+                  inputDecimalScale: 0,
+                })}
               </Text>
             </HStack>
             <HStack
@@ -64,7 +66,9 @@ export const Tickets = ({ ticketPrices }: TicketsProps) => {
                 <Text fontSize="md">Estudiantes</Text>
               </HStack>
               <Text fontWeight="bold" color="brand.600" fontSize="md">
-                {formatMoney(ticketPrices.students)}
+                {formatMoney(ticketPrices.students, {
+                  inputDecimalScale: 0,
+                })}
               </Text>
             </HStack>
             <HStack
@@ -78,7 +82,9 @@ export const Tickets = ({ ticketPrices }: TicketsProps) => {
                 <Text fontSize="md">Jubilados</Text>
               </HStack>
               <Text fontWeight="bold" color="brand.600" fontSize="md">
-                {formatMoney(ticketPrices.seniors)}
+                {formatMoney(ticketPrices.seniors, {
+                  inputDecimalScale: 0,
+                })}
               </Text>
             </HStack>
             <HStack

@@ -11,6 +11,8 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { formatDate } from '../../../utils/date.utils';
+import { formatMoney } from '../../../utils/money.utils';
 import { getEvents } from '../api/admin.api';
 
 interface Ticket {
@@ -103,21 +105,6 @@ export const AdminTickets = () => {
       });
     }
   }, [events]);
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-    }).format(amount);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('es-AR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
-  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -237,7 +224,9 @@ export const AdminTickets = () => {
           textAlign="center"
         >
           <Text fontSize="lg" fontWeight="bold" color="orange.600">
-            {formatCurrency(stats.totalRevenue)}
+            {formatMoney(stats.totalRevenue, {
+              inputDecimalScale: 0,
+            })}
           </Text>
           <Text fontSize="sm" color="gray.600">
             Ingresos Totales
@@ -305,7 +294,9 @@ export const AdminTickets = () => {
                     PRECIO
                   </Text>
                   <Text fontSize="sm" fontWeight="bold" color="green.600">
-                    {formatCurrency(ticket.price)}
+                    {formatMoney(ticket.price, {
+                      inputDecimalScale: 0,
+                    })}
                   </Text>
                 </Box>
 

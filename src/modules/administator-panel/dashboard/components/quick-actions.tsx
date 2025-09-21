@@ -1,0 +1,63 @@
+import {
+  Box,
+  Button,
+  Heading,
+  Icon,
+  SimpleGrid,
+  Stack,
+} from '@chakra-ui/react';
+import { FiCalendar, FiFileText, FiMapPin, FiUsers } from 'react-icons/fi';
+import { useNavigate } from 'react-router';
+
+export const QuickActions = () => {
+  const navigate = useNavigate();
+
+  return (
+    <Box
+      bg="white"
+      p={6}
+      borderRadius="lg"
+      border="1px solid"
+      borderColor="gray.200"
+      shadow="sm"
+    >
+      <Stack gap={4}>
+        <Heading size="md">Acciones Rápidas</Heading>
+        <SimpleGrid columns={2} gap={4}>
+          <Button
+            colorScheme="blue"
+            size="lg"
+            onClick={() => navigate('/admin/eventos')}
+          >
+            <Icon as={FiCalendar} mr={2} />
+            Crear Evento
+          </Button>
+          <Button
+            colorScheme="green"
+            size="lg"
+            onClick={() => navigate('/admin/lugares')}
+          >
+            <Icon as={FiMapPin} mr={2} />
+            Agregar Lugar
+          </Button>
+          <Button
+            colorScheme="purple"
+            size="lg"
+            onClick={() => navigate('/admin/tickets')}
+          >
+            <Icon as={FiFileText} mr={2} />
+            Ver Tickets
+          </Button>
+          <Button
+            colorScheme="orange"
+            size="lg"
+            onClick={() => navigate('/admin/usuarios')}
+          >
+            <Icon as={FiUsers} mr={2} />
+            Gestionar Usuarios
+          </Button>
+        </SimpleGrid>
+      </Stack>
+    </Box>
+  );
+};

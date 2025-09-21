@@ -55,7 +55,9 @@ export const CheckoutItem = ({ item }: CheckoutItemProps) => {
               Subtotal
             </Text>
             <Text fontWeight="bold" color="green.600" fontSize="xl">
-              {formatMoney(item.price * item.quantity)}
+              {formatMoney(item.price * item.quantity, {
+                inputDecimalScale: 0,
+              })}
             </Text>
           </Box>
         </Flex>

@@ -29,7 +29,11 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
                 Subtotal ({items.length} entrada
                 {items.length !== 1 ? 's' : ''})
               </Text>
-              <Text fontWeight="semibold">{formatMoney(totalPrice)}</Text>
+              <Text fontWeight="semibold">
+                {formatMoney(totalPrice, {
+                  inputDecimalScale: 0,
+                })}
+              </Text>
             </Flex>
 
             <Flex justify="space-between" align="center">
@@ -46,7 +50,9 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({
                 Total a pagar
               </Text>
               <Text fontSize="2xl" fontWeight="bold" color="green.600">
-                {formatMoney(totalPrice)}
+                {formatMoney(totalPrice, {
+                  inputDecimalScale: 0,
+                })}
               </Text>
             </Flex>
           </Stack>
