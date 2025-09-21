@@ -23,7 +23,7 @@ const SingleEvent = lazy(() =>
 );
 
 const EventsCalendar = lazy(() =>
-  import('./modules/events/events-calendar').then((module) => ({
+  import('./modules/calendar-events/events-calendar').then((module) => ({
     default: module.EventsCalendar,
   }))
 );
