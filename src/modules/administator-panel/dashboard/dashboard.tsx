@@ -1,5 +1,6 @@
-import { Box, Grid, Heading, Stack, Text } from '@chakra-ui/react';
+import { Grid, Heading, Stack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { LoadingIndicator } from '../../../components/ui/loading-indicator';
 import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import { QuickActions } from './components/quick-actions';
 import { RecentActivity } from './components/recent-activity';
@@ -49,26 +50,24 @@ export const AdminDashboard = () => {
     }
   }, [events, activeEvents, culturalPlaces]);
 
-  if (loading) {
-    return (
-      <Box textAlign="center" py={10}>
-        <Text>Cargando estadísticas...</Text>
-      </Box>
-    );
-  }
-
   return (
     <Stack gap={6}>
       <Heading size="lg" color="gray.800">
         Dashboard de Administración
       </Heading>
 
-      <StatsCards stats={stats} />
+      {loading ? (
+        <LoadingIndicator text="Cargando información..." />
+      ) : (
+        <>
+          <StatsCards stats={stats} />
 
-      <Grid templateColumns={{ base: '1fr', lg: '2fr 1fr' }} gap={6}>
-        <QuickActions />
-        <RecentActivity recentActivity={stats.recentActivity} />
-      </Grid>
+          <Grid templateColumns={{ base: '1fr', lg: '2fr 1fr' }} gap={6}>
+            <QuickActions />
+            <RecentActivity recentActivity={stats.recentActivity} />
+          </Grid>
+        </>
+      )}
     </Stack>
   );
 };

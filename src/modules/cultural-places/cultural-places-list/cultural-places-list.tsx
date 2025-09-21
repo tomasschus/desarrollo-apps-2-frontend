@@ -6,12 +6,12 @@ import {
   HStack,
   Icon,
   Image,
-  Spinner,
   Stack,
   Text,
 } from '@chakra-ui/react';
 import { FiMapPin } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
+import { LoadingIndicator } from '../../../components/ui/loading-indicator';
 import { TruncatedText } from '../../../components/ui/truncated-text';
 import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import { getCulturalPlaces } from './cultural-places-list.api';
@@ -65,12 +65,7 @@ export const CulturalPlacesList = () => {
   };
 
   if (loading) {
-    return (
-      <Stack align="center" justify="center" minH="200px">
-        <Spinner size="xl" />
-        <Text>Cargando espacios culturales...</Text>
-      </Stack>
-    );
+    return <LoadingIndicator text="Cargando espacios culturales..." />;
   }
 
   if (error) {

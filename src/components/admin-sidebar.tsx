@@ -41,9 +41,9 @@ export const AdminSidebar = ({
     },
     {
       id: 'places',
-      label: 'Lugares Culturales',
+      label: 'Espacios Culturales',
       icon: FiMapPin,
-      path: '/admin/lugares',
+      path: '/admin/espacios-culturales',
     },
     {
       id: 'tickets',

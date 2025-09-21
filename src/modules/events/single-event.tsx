@@ -1,6 +1,7 @@
-import { Box, Grid, Spinner, Stack, Text, VStack } from '@chakra-ui/react';
+import { Box, Grid, Stack, Text, VStack } from '@chakra-ui/react';
 import { FiXCircle } from 'react-icons/fi';
 import { useParams } from 'react-router';
+import { LoadingIndicator } from '../../components/ui/loading-indicator';
 import { Maps } from '../../components/ui/maps';
 import { useAuth } from '../../contexts/auth-context';
 import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
@@ -54,12 +55,7 @@ export const SingleEvent = () => {
   });
 
   if (loading) {
-    return (
-      <Stack align="center" justify="center" minH="400px">
-        <Spinner size="xl" />
-        <Text>Cargando evento...</Text>
-      </Stack>
-    );
+    return <LoadingIndicator text="Cargando evento..." />;
   }
 
   if (!event) {

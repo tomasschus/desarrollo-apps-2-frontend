@@ -1,4 +1,5 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
+import { LoadingIndicator } from '../../../../components/ui/loading-indicator';
 import type { Ticket } from '../tickets-management.api';
 import { TicketCard } from './ticket-card';
 
@@ -16,7 +17,7 @@ export const TicketList = ({
   if (loading) {
     return (
       <Box textAlign="center" py={10}>
-        <Text color="gray.500">Cargando tickets...</Text>
+        <LoadingIndicator text="Cargando tickets..." />
       </Box>
     );
   }

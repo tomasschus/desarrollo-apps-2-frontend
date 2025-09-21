@@ -1,4 +1,5 @@
-import { Box, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, EmptyState, SimpleGrid, Text } from '@chakra-ui/react';
+import { LoadingIndicator } from '../../../../components/ui/loading-indicator';
 import type { Event } from '../events-management.utils';
 import { EventCard } from './event-card';
 
@@ -17,22 +18,40 @@ export const EventList = ({
 }: EventListProps) => {
   if (loading) {
     return (
-      <Box textAlign="center" py={10}>
-        <Text>Cargando eventos...</Text>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minH="200px"
+        w="full"
+      >
+        <LoadingIndicator text="Cargando eventos..." />
       </Box>
     );
   }
 
   if (!events || events.length === 0) {
     return (
-      <Box textAlign="center" py={8}>
-        <Text color="gray.500">No hay eventos disponibles</Text>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minH="200px"
+        w="full"
+      >
+        <EmptyState.Root>
+          <EmptyState.Content>
+            <Text fontSize="lg" fontWeight="medium" color="gray.500" mt={2}>
+              No hay eventos para mostrar
+            </Text>
+          </EmptyState.Content>
+        </EmptyState.Root>
       </Box>
     );
   }
 
   return (
-    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={6}>
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={6} w={'full'}>
       {events.map((event) => (
         <EventCard
           key={event._id}

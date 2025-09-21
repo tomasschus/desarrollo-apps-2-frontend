@@ -35,7 +35,7 @@ export const QuickActions = () => {
           <Button
             colorPalette="green"
             size="lg"
-            onClick={() => navigate('/admin/lugares')}
+            onClick={() => navigate('/admin/espacios-culturales')}
           >
             <Icon as={FiMapPin} mr={2} />
             Agregar Lugar

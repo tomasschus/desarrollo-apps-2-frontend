@@ -8,7 +8,6 @@ import {
   HStack,
   Icon,
   Image,
-  Spinner,
   Stack,
   Text,
   VStack,
@@ -19,6 +18,7 @@ import 'react-calendar/dist/Calendar.css';
 import { FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 import '../../calendar-styles.css';
+import { LoadingIndicator } from '../../components/ui/loading-indicator';
 import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
 import { formatIsoDate } from '../../utils/date.utils';
 import { getEvents } from './events-calendar.api';
@@ -129,12 +129,7 @@ export const EventsCalendar = () => {
   };
 
   if (loading) {
-    return (
-      <Stack align="center" justify="center" minH="400px">
-        <Spinner size="xl" />
-        <Text>Cargando calendario de eventos...</Text>
-      </Stack>
-    );
+    return <LoadingIndicator text="Cargando calendario de eventos..." />;
   }
 
   return (

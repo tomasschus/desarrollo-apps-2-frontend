@@ -4,7 +4,6 @@ import { AdminLayout } from './components/admin-layout';
 import { LazyPage } from './components/lazy-page';
 import { ScreenLayout } from './components/screen-layout';
 
-// Lazy loading para componentes principales
 const CulturalPlacesList = lazy(() =>
   import(
     './modules/cultural-places/cultural-places-list/cultural-places-list'
@@ -50,6 +49,12 @@ const AdminCulturalPlaces = lazy(() =>
 const AdminTickets = lazy(() =>
   import('./modules/administator-panel/tickets/tickets-management').then(
     (module) => ({ default: module.AdminTickets })
+  )
+);
+
+const AdminUsers = lazy(() =>
+  import('./modules/administator-panel/users/users-management').then(
+    (module) => ({ default: module.AdminUsers })
   )
 );
 
@@ -130,7 +135,7 @@ const router = createBrowserRouter([
         element: <LazyPage Component={AdminEvents} />,
       },
       {
-        path: 'lugares',
+        path: 'espacios-culturales',
         element: <LazyPage Component={AdminCulturalPlaces} />,
       },
       {
@@ -139,7 +144,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'usuarios',
-        element: <ComingSoon title="Gestión de Usuarios" />,
+        element: <LazyPage Component={AdminUsers} />,
       },
       {
         path: 'reportes',
