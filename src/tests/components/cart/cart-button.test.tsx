@@ -126,7 +126,7 @@ describe('CartButton', () => {
 
     const badge = screen.getByTestId('badge');
     expect(badge).toHaveAttribute('position', 'absolute');
-    expect(badge).toHaveAttribute('colorScheme', 'red');
+    expect(badge).toHaveAttribute('colorPalette', 'red');
     expect(badge).toHaveAttribute('variant', 'solid');
   });
 

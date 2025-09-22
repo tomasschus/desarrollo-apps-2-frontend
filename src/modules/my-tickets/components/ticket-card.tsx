@@ -104,7 +104,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
               position="absolute"
               top={3}
               right={3}
-              colorScheme={getStatusColor(ticket.status)}
+              colorPalette={getStatusColor(ticket.status)}
               variant="solid"
               size="sm"
               px={3}
@@ -158,7 +158,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                 </Heading>
               </VStack>
               <Badge
-                colorScheme={getStatusColor(ticket.status)}
+                colorPalette={getStatusColor(ticket.status)}
                 variant="solid"
                 size="sm"
                 px={3}
@@ -236,7 +236,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                   {isPopulated ? 'TIPO DE ENTRADA' : 'PRECIO PAGADO'}
                 </Text>
                 {isPopulated ? (
-                  <Badge colorScheme="brand" variant="subtle" size="sm">
+                  <Badge colorPalette="brand" variant="subtle" size="sm">
                     {getTicketTypeText(ticket.ticketType)}
                   </Badge>
                 ) : (
@@ -267,14 +267,14 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                       <Button
                         size="sm"
                         variant="outline"
-                        colorScheme="brand"
+                        colorPalette="brand"
                         width="100%"
                       >
                         Ver Evento
                       </Button>
                     </Link>
                     <Link to={`/ticket/${ticket._id}`}>
-                      <Button size="sm" colorScheme="brand">
+                      <Button size="sm" colorPalette="brand">
                         <MdConfirmationNumber style={{ marginRight: 4 }} />
                         Mi Ticket
                       </Button>
@@ -283,7 +283,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                       <Button
                         size="sm"
                         variant="outline"
-                        colorScheme="brand"
+                        colorPalette="brand"
                         onClick={() => setIsQRModalOpen(true)}
                       >
                         <MdQrCode />
@@ -297,7 +297,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                         size="sm"
                         disabled={!ticket.qrCode}
                         variant="outline"
-                        colorScheme="brand"
+                        colorPalette="brand"
                         borderRadius="full"
                         onClick={() => setIsQRModalOpen(true)}
                       >

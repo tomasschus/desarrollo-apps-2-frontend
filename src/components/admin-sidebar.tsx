@@ -41,9 +41,9 @@ export const AdminSidebar = ({
     },
     {
       id: 'places',
-      label: 'Lugares Culturales',
+      label: 'Espacios Culturales',
       icon: FiMapPin,
-      path: '/admin/lugares',
+      path: '/admin/espacios-culturales',
     },
     {
       id: 'tickets',
@@ -91,7 +91,7 @@ export const AdminSidebar = ({
           <Link key={item.id} to={item.path} style={{ textDecoration: 'none' }}>
             <Button
               variant={activeSection === item.id ? 'solid' : 'ghost'}
-              colorScheme={activeSection === item.id ? 'blue' : 'gray'}
+              colorPalette={activeSection === item.id ? 'green' : 'gray'}
               justifyContent="flex-start"
               width="full"
               _hover={{ textDecoration: 'none' }}

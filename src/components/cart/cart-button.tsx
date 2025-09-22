@@ -26,7 +26,7 @@ export const CartButton = ({ onClick }: CartButtonProps) => {
           position="absolute"
           top="-2px"
           right="-2px"
-          colorScheme="red"
+          colorPalette="red"
           variant="solid"
           fontSize="xs"
           borderRadius="full"

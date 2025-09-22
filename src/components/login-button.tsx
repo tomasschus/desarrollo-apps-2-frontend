@@ -4,7 +4,7 @@ import { FiUser } from 'react-icons/fi';
 export const LoginButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <Button
-      colorScheme="brand"
+      colorPalette="brand"
       variant="solid"
       size="md"
       borderRadius="full"

@@ -61,7 +61,7 @@ export const EventCard = ({ event, onEdit, onDeleted }: EventCardProps) => {
         <Stack gap={3}>
           <HStack justifyContent="space-between">
             <Badge
-              colorScheme={event.isActive ? 'green' : 'red'}
+              colorPalette={event.isActive ? 'green' : 'red'}
               variant="solid"
             >
               {event.isActive ? 'Activo' : 'Inactivo'}
@@ -69,7 +69,7 @@ export const EventCard = ({ event, onEdit, onDeleted }: EventCardProps) => {
             <HStack>
               <Button
                 size="sm"
-                colorScheme="blue"
+                colorPalette="green"
                 variant="outline"
                 onClick={() => onEdit(event)}
               >
@@ -77,7 +77,7 @@ export const EventCard = ({ event, onEdit, onDeleted }: EventCardProps) => {
               </Button>
               <Button
                 size="sm"
-                colorScheme="red"
+                colorPalette="red"
                 variant="outline"
                 onClick={handleDelete}
                 loading={deleteLoading}
@@ -131,13 +131,13 @@ export const EventCard = ({ event, onEdit, onDeleted }: EventCardProps) => {
                     key={index}
                     size="sm"
                     variant="outline"
-                    colorScheme="gray"
+                    colorPalette="gray"
                   >
                     {ticket.type} ${ticket.price}
                   </Badge>
                 ))}
                 {event.ticketTypes.length > 3 && (
-                  <Badge size="sm" variant="outline" colorScheme="gray">
+                  <Badge size="sm" variant="outline" colorPalette="gray">
                     +{event.ticketTypes.length - 3}
                   </Badge>
                 )}
@@ -149,7 +149,7 @@ export const EventCard = ({ event, onEdit, onDeleted }: EventCardProps) => {
             <Text fontSize="sm" color="gray.500">
               Disponibles:
             </Text>
-            <Text fontSize="sm" fontWeight="bold" color="blue.600">
+            <Text fontSize="sm" fontWeight="bold" color="green.600">
               {event.ticketTypes.reduce(
                 (total, ticket) =>
                   total + (ticket.initialQuantity - ticket.soldQuantity),

@@ -12,7 +12,7 @@ import {
 import { useEffect } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2, FiX } from 'react-icons/fi';
-import { updateCulturalPlace } from '../../api/admin.api';
+import { updateCulturalPlace } from '../cultural-places.api';
 
 interface CulturalPlaceFormData {
   name: string;
@@ -347,7 +347,7 @@ export const EditCulturalPlaceModal = ({
                   <Text fontWeight="medium">Características</Text>
                   <Button
                     size="sm"
-                    colorScheme="blue"
+                    colorPalette="green"
                     variant="outline"
                     onClick={addCharacteristic}
                     type="button"
@@ -367,7 +367,7 @@ export const EditCulturalPlaceModal = ({
                       {characteristicFields.length > 1 && (
                         <IconButton
                           size="sm"
-                          colorScheme="red"
+                          colorPalette="red"
                           variant="outline"
                           aria-label="Eliminar característica"
                           onClick={() => removeCharacteristicItem(index)}
@@ -433,7 +433,7 @@ export const EditCulturalPlaceModal = ({
               Cancelar
             </Button>
             <Button
-              colorScheme="blue"
+              colorPalette="green"
               type="submit"
               loading={isSubmitting}
               disabled={isSubmitting}

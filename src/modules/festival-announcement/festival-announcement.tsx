@@ -70,7 +70,7 @@ export const FestivalAnnouncement = () => {
         </Text>
         <Button
           size="xs"
-          colorScheme="brand"
+          colorPalette="brand"
           variant="outline"
           borderRadius="full"
           onClick={handleBuyTickets}

@@ -82,7 +82,7 @@ export const UserTickets = () => {
       case 'active':
         return 'green';
       case 'used':
-        return 'blue';
+        return 'green';
       case 'cancelled':
         return 'red';
       case 'refunded':
@@ -139,7 +139,7 @@ export const UserTickets = () => {
             Explora eventos y compra tus entradas
           </Text>
           <Button
-            colorScheme="blue"
+            colorPalette="green"
             mt={4}
             onClick={() => (window.location.href = '/eventos')}
           >
@@ -188,7 +188,7 @@ export const UserTickets = () => {
 
                   <HStack gap={3}>
                     <Badge
-                      colorScheme="blue"
+                      colorPalette="green"
                       variant="subtle"
                       textTransform="capitalize"
                     >
@@ -196,7 +196,7 @@ export const UserTickets = () => {
                     </Badge>
 
                     <Badge
-                      colorScheme={getStatusColor(ticket.status)}
+                      colorPalette={getStatusColor(ticket.status)}
                       variant="solid"
                     >
                       {getStatusLabel(ticket.status)}
@@ -229,7 +229,7 @@ export const UserTickets = () => {
                     <Button size="sm" variant="outline">
                       Ver QR
                     </Button>
-                    <Button size="sm" colorScheme="red" variant="outline">
+                    <Button size="sm" colorPalette="red" variant="outline">
                       Cancelar
                     </Button>
                   </HStack>

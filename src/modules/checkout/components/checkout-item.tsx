@@ -37,7 +37,7 @@ export const CheckoutItem = ({ item }: CheckoutItemProps) => {
 
             <Flex align="center" justify="space-between">
               <Badge
-                colorScheme="purple"
+                colorPalette="purple"
                 variant="subtle"
                 px={3}
                 py={1}

@@ -6,12 +6,12 @@ import {
   HStack,
   Icon,
   Image,
-  Spinner,
   Stack,
   Text,
 } from '@chakra-ui/react';
 import { FiMapPin } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
+import { LoadingIndicator } from '../../../components/ui/loading-indicator';
 import { TruncatedText } from '../../../components/ui/truncated-text';
 import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import { getCulturalPlaces } from './cultural-places-list.api';
@@ -52,7 +52,7 @@ export const CulturalPlacesList = () => {
 
   const getCategoryColor = (category: string) => {
     const colorMap: { [key: string]: string } = {
-      'Centro Cultural': 'blue',
+      'Centro Cultural': 'green',
       Museo: 'purple',
       Teatro: 'red',
       Biblioteca: 'green',
@@ -65,12 +65,7 @@ export const CulturalPlacesList = () => {
   };
 
   if (loading) {
-    return (
-      <Stack align="center" justify="center" minH="200px">
-        <Spinner size="xl" />
-        <Text>Cargando espacios culturales...</Text>
-      </Stack>
-    );
+    return <LoadingIndicator text="Cargando espacios culturales..." />;
   }
 
   if (error) {
@@ -137,7 +132,7 @@ export const CulturalPlacesList = () => {
                   position="absolute"
                   top="3"
                   left="3"
-                  colorScheme={getCategoryColor(space.category)}
+                  colorPalette={getCategoryColor(space.category)}
                   variant="solid"
                   fontSize="xs"
                   borderRadius="md"
@@ -184,7 +179,7 @@ export const CulturalPlacesList = () => {
                       key={index}
                       size="sm"
                       variant="outline"
-                      colorScheme="gray"
+                      colorPalette="gray"
                       fontSize="2xs"
                     >
                       {char}
@@ -194,7 +189,7 @@ export const CulturalPlacesList = () => {
                     <Badge
                       size="sm"
                       variant="outline"
-                      colorScheme="gray"
+                      colorPalette="gray"
                       fontSize="2xs"
                     >
                       +{space.characteristics.length - 2}

@@ -13,7 +13,7 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
     const path = location.pathname;
     if (path === '/admin' || path === '/admin/dashboard') return 'dashboard';
     if (path.includes('/admin/eventos')) return 'events';
-    if (path.includes('/admin/lugares')) return 'places';
+    if (path.includes('/admin/espacios-culturales')) return 'places';
     if (path.includes('/admin/tickets')) return 'tickets';
     if (path.includes('/admin/usuarios')) return 'users';
     if (path.includes('/admin/reportes')) return 'reports';

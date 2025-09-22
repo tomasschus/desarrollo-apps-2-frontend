@@ -97,7 +97,7 @@ export const Tickets = ({ ticketPrices }: TicketsProps) => {
                 <Box as={FaChild} color="gray.500" />
                 <Text fontSize="md">Niños</Text>
               </HStack>
-              <Badge colorScheme="green" fontSize="sm" px={2} py={1}>
+              <Badge colorPalette="green" fontSize="sm" px={2} py={1}>
                 GRATIS
               </Badge>
             </HStack>
@@ -112,7 +112,7 @@ export const Tickets = ({ ticketPrices }: TicketsProps) => {
             openDelay={10}
           >
             <Button
-              colorScheme="brand"
+              colorPalette="brand"
               size="lg"
               w="100%"
               h={10}

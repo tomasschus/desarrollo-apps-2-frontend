@@ -26,7 +26,7 @@ export const EmptyState = ({ activeFilter }: EmptyStateProps) => {
       </Text>
       {activeFilter === 'all' && (
         <Link to="/">
-          <Button colorScheme="brand" size="lg">
+          <Button colorPalette="brand" size="lg">
             Explorar Eventos
           </Button>
         </Link>

@@ -40,7 +40,7 @@ export const NotFoundState = () => (
             Ticket No Encontrado
           </Heading>
           <Badge
-            colorScheme="orange"
+            colorPalette="orange"
             variant="solid"
             px={4}
             py={1}
@@ -93,7 +93,7 @@ export const NotFoundState = () => (
                 ¿El ticket debería existir? Contacta al soporte
               </Text>
               <Button
-                colorScheme="brand"
+                colorPalette="brand"
                 size="lg"
                 onClick={() => (window.location.href = '/')}
                 px={8}

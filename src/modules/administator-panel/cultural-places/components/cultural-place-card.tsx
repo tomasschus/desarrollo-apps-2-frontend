@@ -12,7 +12,7 @@ import {
 import { useState } from 'react';
 import { FiEdit, FiGlobe, FiMapPin, FiPhone, FiTrash2 } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
-import { deleteCulturalPlace } from '../../api/admin.api';
+import { deleteCulturalPlace } from '../cultural-places.api';
 import { EditCulturalPlaceModal } from './edit-cultural-place-modal';
 
 interface CulturalPlace {
@@ -67,7 +67,7 @@ export const CulturalPlaceCard = ({
   const getCategoryColor = (category: string) => {
     switch (category.toLowerCase()) {
       case 'centro cultural':
-        return 'blue';
+        return 'green';
       case 'museo':
         return 'purple';
       case 'teatro':
@@ -102,7 +102,7 @@ export const CulturalPlaceCard = ({
         <Stack gap={3}>
           <HStack justifyContent="space-between">
             <Badge
-              colorScheme={getCategoryColor(place.category)}
+              colorPalette={getCategoryColor(place.category)}
               variant="solid"
             >
               {place.category}
@@ -110,7 +110,7 @@ export const CulturalPlaceCard = ({
             <HStack>
               <Button
                 size="sm"
-                colorScheme="blue"
+                colorPalette="green"
                 variant="outline"
                 onClick={() => setIsEditModalOpen(true)}
               >
@@ -118,7 +118,7 @@ export const CulturalPlaceCard = ({
               </Button>
               <Button
                 size="sm"
-                colorScheme="red"
+                colorPalette="red"
                 variant="outline"
                 onClick={handleDeletePlace}
                 loading={deleteLoading}
@@ -154,7 +154,7 @@ export const CulturalPlaceCard = ({
             {place.contact.website && (
               <HStack>
                 <Icon as={FiGlobe} color="gray.400" size="sm" />
-                <Text fontSize="sm" color="blue.600" textDecor="underline">
+                <Text fontSize="sm" color="green.600" textDecor="underline">
                   Sitio web
                 </Text>
               </HStack>
@@ -171,13 +171,13 @@ export const CulturalPlaceCard = ({
                   key={index}
                   size="sm"
                   variant="outline"
-                  colorScheme="gray"
+                  colorPalette="gray"
                 >
                   {char}
                 </Badge>
               ))}
               {place.characteristics.length > 3 && (
-                <Badge size="sm" variant="outline" colorScheme="gray">
+                <Badge size="sm" variant="outline" colorPalette="gray">
                   +{place.characteristics.length - 3}
                 </Badge>
               )}

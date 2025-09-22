@@ -1,7 +1,7 @@
 import {
   Box,
   Button,
-  Drawer,
+  Dialog,
   HStack,
   IconButton,
   Input,
@@ -13,32 +13,8 @@ import {
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import type { CulturalPlace, EventFormData } from '../events-management.api';
 import { getCulturalPlaces, getEvents } from '../events-management.api';
-
-interface CulturalPlace {
-  _id: string;
-  name: string;
-  description: string;
-  image: string;
-}
-
-interface TicketType {
-  type: string;
-  price: number;
-  initialQuantity: number;
-  soldQuantity: number;
-  isActive: boolean;
-}
-
-interface EventFormData {
-  culturalPlaceId: string;
-  name: string;
-  description: string;
-  date: string;
-  time: string;
-  isActive: boolean;
-  ticketTypes: TicketType[];
-}
 
 interface CreateEventModalProps {
   isOpen: boolean;
@@ -136,27 +112,29 @@ export const CreateEventModal = ({
   if (!isOpen) return null;
 
   return (
-    <Drawer.Root
+    <Dialog.Root
       open={isOpen}
       onOpenChange={(details) => {
         if (!details.open) onClose();
       }}
       size="lg"
-      placement="bottom"
     >
-      <Drawer.Backdrop />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Drawer.Content>
-          <Drawer.Header>
-            <HStack justifyContent="space-between">
-              <Drawer.Title fontSize="xl" fontWeight="bold">
-                Crear Nuevo Evento
-              </Drawer.Title>
-              <Drawer.CloseTrigger />
-            </HStack>
-          </Drawer.Header>
+      <Dialog.Backdrop />
+      <Dialog.Positioner>
+        <Dialog.Content
+          as={'form'}
+          onSubmit={handleSubmit(onSubmit)}
+          maxW="4xl"
+          w="90vw"
+        >
+          <Dialog.CloseTrigger />
+          <Dialog.Header>
+            <Dialog.Title fontSize="xl" fontWeight="bold">
+              Crear Nuevo Evento
+            </Dialog.Title>
+          </Dialog.Header>
 
-          <Drawer.Body>
+          <Dialog.Body>
             <VStack gap={6} align="stretch">
               <Box>
                 <Text fontWeight="medium" mb={2}>
@@ -230,7 +208,7 @@ export const CreateEventModal = ({
                   <Text fontWeight="medium">Tipos de Entrada</Text>
                   <Button
                     size="sm"
-                    colorScheme="blue"
+                    colorPalette="green"
                     variant="outline"
                     onClick={addTicketType}
                     type="button"
@@ -256,7 +234,7 @@ export const CreateEventModal = ({
                         {fields.length > 1 && (
                           <IconButton
                             size="sm"
-                            colorScheme="red"
+                            colorPalette="red"
                             variant="outline"
                             aria-label="Eliminar tipo"
                             onClick={() => removeTicketType(index)}
@@ -332,15 +310,15 @@ export const CreateEventModal = ({
                 </Stack>
               </Box>
             </VStack>
-          </Drawer.Body>
+          </Dialog.Body>
 
-          <Drawer.Footer>
+          <Dialog.Footer>
             <HStack gap={3}>
               <Button variant="outline" onClick={handleClose} type="button">
                 Cancelar
               </Button>
               <Button
-                colorScheme="blue"
+                colorPalette="green"
                 type="submit"
                 loading={isSubmitting}
                 disabled={isSubmitting}
@@ -348,9 +326,9 @@ export const CreateEventModal = ({
                 {isSubmitting ? 'Creando...' : 'Crear Evento'}
               </Button>
             </HStack>
-          </Drawer.Footer>
-        </Drawer.Content>
-      </form>
-    </Drawer.Root>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Positioner>
+    </Dialog.Root>
   );
 };

@@ -25,7 +25,7 @@ export const QuickActions = () => {
         <Heading size="md">Acciones Rápidas</Heading>
         <SimpleGrid columns={2} gap={4}>
           <Button
-            colorScheme="blue"
+            colorPalette="green"
             size="lg"
             onClick={() => navigate('/admin/eventos')}
           >
@@ -33,15 +33,15 @@ export const QuickActions = () => {
             Crear Evento
           </Button>
           <Button
-            colorScheme="green"
+            colorPalette="green"
             size="lg"
-            onClick={() => navigate('/admin/lugares')}
+            onClick={() => navigate('/admin/espacios-culturales')}
           >
             <Icon as={FiMapPin} mr={2} />
             Agregar Lugar
           </Button>
           <Button
-            colorScheme="purple"
+            colorPalette="purple"
             size="lg"
             onClick={() => navigate('/admin/tickets')}
           >
@@ -49,7 +49,7 @@ export const QuickActions = () => {
             Ver Tickets
           </Button>
           <Button
-            colorScheme="orange"
+            colorPalette="orange"
             size="lg"
             onClick={() => navigate('/admin/usuarios')}
           >

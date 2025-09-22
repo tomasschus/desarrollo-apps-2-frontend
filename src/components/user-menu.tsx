@@ -13,7 +13,7 @@ export const UserMenu = () => {
     <Menu.Root>
       <Menu.Trigger asChild>
         <Button
-          colorScheme="brand"
+          colorPalette="brand"
           variant="solid"
           size="md"
           borderRadius="full"

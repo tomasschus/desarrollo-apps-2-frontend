@@ -4,7 +4,6 @@ import { AdminLayout } from './components/admin-layout';
 import { LazyPage } from './components/lazy-page';
 import { ScreenLayout } from './components/screen-layout';
 
-// Lazy loading para componentes principales
 const CulturalPlacesList = lazy(() =>
   import(
     './modules/cultural-places/cultural-places-list/cultural-places-list'
@@ -24,7 +23,7 @@ const SingleEvent = lazy(() =>
 );
 
 const EventsCalendar = lazy(() =>
-  import('./modules/events/events-calendar').then((module) => ({
+  import('./modules/calendar-events/events-calendar').then((module) => ({
     default: module.EventsCalendar,
   }))
 );
@@ -42,14 +41,20 @@ const AdminEvents = lazy(() =>
 );
 
 const AdminCulturalPlaces = lazy(() =>
-  import(
-    './modules/administator-panel/cultural-places/cultural-places-management'
-  ).then((module) => ({ default: module.AdminCulturalPlaces }))
+  import('./modules/administator-panel/cultural-places/cultural-places').then(
+    (module) => ({ default: module.AdminCulturalPlaces })
+  )
 );
 
 const AdminTickets = lazy(() =>
   import('./modules/administator-panel/tickets/tickets-management').then(
     (module) => ({ default: module.AdminTickets })
+  )
+);
+
+const AdminUsers = lazy(() =>
+  import('./modules/administator-panel/users/users-management').then(
+    (module) => ({ default: module.AdminUsers })
   )
 );
 
@@ -68,6 +73,12 @@ const MyTicketsPage = lazy(() =>
 const TicketPage = lazy(() =>
   import('./modules/ticket/ticket').then((module) => ({
     default: module.TicketPage,
+  }))
+);
+
+const RecomendationPage = lazy(() =>
+  import('./modules/recomendations/recomendation').then((module) => ({
+    default: module.Recomendation,
   }))
 );
 
@@ -111,6 +122,10 @@ const router = createBrowserRouter([
         path: 'ticket/:id/use',
         element: <LazyPage Component={TicketPage} />,
       },
+      {
+        path: 'recomendaciones',
+        element: <LazyPage Component={RecomendationPage} />,
+      },
     ],
   },
   {
@@ -130,7 +145,7 @@ const router = createBrowserRouter([
         element: <LazyPage Component={AdminEvents} />,
       },
       {
-        path: 'lugares',
+        path: 'espacios-culturales',
         element: <LazyPage Component={AdminCulturalPlaces} />,
       },
       {
@@ -139,7 +154,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'usuarios',
-        element: <ComingSoon title="Gestión de Usuarios" />,
+        element: <LazyPage Component={AdminUsers} />,
       },
       {
         path: 'reportes',

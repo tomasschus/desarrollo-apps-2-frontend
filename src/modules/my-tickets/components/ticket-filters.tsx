@@ -21,7 +21,7 @@ export const TicketFilters = ({
     <Flex gap={2} flexWrap="wrap" justify="center">
       <Button
         variant={activeFilter === 'all' ? 'solid' : 'outline'}
-        colorScheme="brand"
+        colorPalette="brand"
         size="sm"
         onClick={() => onFilterChange('all')}
       >
@@ -29,7 +29,7 @@ export const TicketFilters = ({
       </Button>
       <Button
         variant={activeFilter === 'active' ? 'solid' : 'outline'}
-        colorScheme="green"
+        colorPalette="green"
         size="sm"
         onClick={() => onFilterChange('active')}
       >
@@ -37,7 +37,7 @@ export const TicketFilters = ({
       </Button>
       <Button
         variant={activeFilter === 'used' ? 'solid' : 'outline'}
-        colorScheme="gray"
+        colorPalette="gray"
         size="sm"
         onClick={() => onFilterChange('used')}
       >
@@ -45,7 +45,7 @@ export const TicketFilters = ({
       </Button>
       <Button
         variant={activeFilter === 'cancelled' ? 'solid' : 'outline'}
-        colorScheme="red"
+        colorPalette="red"
         size="sm"
         onClick={() => onFilterChange('cancelled')}
       >

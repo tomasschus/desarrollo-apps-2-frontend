@@ -1,6 +1,6 @@
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
-import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
 import { AdminSidebar } from '../../components/admin-sidebar';
 
 // Mock react-icons
@@ -56,7 +56,7 @@ describe('AdminSidebar', () => {
     );
     expect(
       screen.getByRole('link', { name: /Lugares Culturales/ })
-    ).toHaveAttribute('href', '/admin/lugares');
+    ).toHaveAttribute('href', '/admin/espacios-culturales');
     expect(screen.getByRole('link', { name: /Tickets/ })).toHaveAttribute(
       'href',
       '/admin/tickets'

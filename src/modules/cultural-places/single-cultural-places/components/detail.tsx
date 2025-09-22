@@ -1,6 +1,7 @@
-import { Box, Grid, Spinner, Stack, Text, VStack } from '@chakra-ui/react';
+import { Box, Grid, Stack, Text, VStack } from '@chakra-ui/react';
 import { FiXCircle } from 'react-icons/fi';
 import { useParams } from 'react-router';
+import { LoadingIndicator } from '../../../../components/ui/loading-indicator';
 import { Maps } from '../../../../components/ui/maps';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
 import { getCulturalPlaceById } from '../cultural-places.api';
@@ -59,12 +60,7 @@ export const Detail = () => {
   );
 
   if (loading) {
-    return (
-      <Stack align="center" justify="center" minH="400px">
-        <Spinner size="xl" />
-        <Text>Cargando espacio cultural...</Text>
-      </Stack>
-    );
+    return <LoadingIndicator text="Cargando espacio cultural..." />;
   }
 
   if (!culturalPlace) {
@@ -83,7 +79,7 @@ export const Detail = () => {
       <Header
         image={culturalPlace.image}
         name={culturalPlace.name}
-        color={culturalPlace.color || 'blue'}
+        color={culturalPlace.color || 'green'}
         culturalPlace={culturalPlace.category}
         rating={culturalPlace.rating}
         reviews={culturalPlace.reviews}
