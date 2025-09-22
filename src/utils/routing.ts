@@ -1,4 +1,4 @@
-import * as polyline from 'polyline';
+import * as polyline from '@mapbox/polyline';
 
 export interface RoutePoint {
   lat: number;
