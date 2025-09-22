@@ -108,7 +108,7 @@ const router = createBrowserRouter([
         element: <LazyPage Component={MyTicketsPage} />,
       },
       {
-        path: 'ticket/:id',
+        path: 'ticket/:id/use',
         element: <LazyPage Component={TicketPage} />,
       },
     ],

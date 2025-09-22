@@ -61,7 +61,7 @@ export const FestivalAnnouncement = () => {
           boxShadow="sm"
           animation={`${pulse} 2s infinite`}
         >
-          ¡Nuevo!
+          ¡Próximo!
         </Box>
         <Text fontWeight="medium">
           {nextEvent.name} -{' '}
