@@ -24,53 +24,42 @@ export interface RecomendationRequest {
 }
 
 export interface RecomendationResponse {
-  summary: string;
-  recommendations: Event[];
+  events: Event[];
 }
 
 export interface Event {
   _id: string;
-  culturalPlaceId: CulturalPlace;
   name: string;
   description: string;
   date: string;
   time: string;
   ticketTypes: TicketType[];
+  culturalPlaceId: CulturalPlace;
   isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  image: string[];
-  availableQuantity: number;
-  id: string;
 }
 
 export interface CulturalPlace {
   _id: string;
   name: string;
+  description: string;
   category: string;
   characteristics: string[];
   contact: Contact;
   image: string;
   rating: number;
-  description?: string;
 }
 
 export interface Contact {
-  coordinates: Coordinates;
   address: string;
+  coordinates: Coordinates;
   phone: string;
   website: string;
   email: string;
-  _id: string;
-  type?: string;
 }
 
 export interface Coordinates {
   lat: number;
   lng: number;
-  type?: string;
-  coordinates?: number[];
 }
 
 export interface TicketType {
@@ -79,8 +68,6 @@ export interface TicketType {
   initialQuantity: number;
   soldQuantity: number;
   isActive: boolean;
-  _id: string;
-  id: string;
 }
 
 export const getRecomendations = () => {
