@@ -76,6 +76,12 @@ const TicketPage = lazy(() =>
   }))
 );
 
+const RecomendationPage = lazy(() =>
+  import('./modules/recomendations/recomendation').then((module) => ({
+    default: module.Recomendation,
+  }))
+);
+
 const ComingSoon = ({ title }: { title: string }) => (
   <div style={{ textAlign: 'center', padding: '2rem' }}>
     <h2>{title}</h2>
@@ -115,6 +121,10 @@ const router = createBrowserRouter([
       {
         path: 'ticket/:id',
         element: <LazyPage Component={TicketPage} />,
+      },
+      {
+        path: 'recomendaciones',
+        element: <LazyPage Component={RecomendationPage} />,
       },
     ],
   },

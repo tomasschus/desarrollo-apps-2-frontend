@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
-import { Maps, MapsRoutes } from '../../../components/ui/maps';
+import { render, screen } from '@testing-library/react';
+import { Maps } from '../../../components/ui/maps';
+import { MapsMultiple } from '../../../components/ui/maps-multiple';
 
 // Mock react-leaflet
 jest.mock('react-leaflet', () => ({
@@ -79,32 +80,38 @@ describe('Maps', () => {
     });
   });
 
-  describe('MapsRoutes', () => {
-    it('renders map with markers and polyline when coordinates provided', () => {
+  describe('MapsMultiple', () => {
+    it('renders map with markers when coordinates provided', () => {
       const coordinates = [
         {
           lat: -34.6037,
           lng: -58.3816,
           description: 'Buenos Aires',
+          eventName: 'Test Event',
+          eventId: '1',
         },
         {
           lat: -34.6137,
           lng: -58.3916,
           description: 'Another Point',
+          eventName: 'Another Event',
+          eventId: '2',
         },
       ];
 
-      renderWithProviders(<MapsRoutes coordinates={coordinates} />);
+      renderWithProviders(
+        <MapsMultiple coordinates={coordinates} cardTitle="Test Map" />
+      );
 
+      expect(screen.getByText('Test Map')).toBeInTheDocument();
       expect(screen.getByTestId('map-container')).toBeInTheDocument();
       expect(screen.getAllByTestId('marker')).toHaveLength(2);
-      expect(screen.getByTestId('polyline')).toBeInTheDocument();
-      expect(screen.getByText('Buenos Aires')).toBeInTheDocument();
-      expect(screen.getByText('Another Point')).toBeInTheDocument();
+      expect(screen.getByText('Test Event')).toBeInTheDocument();
+      expect(screen.getByText('Another Event')).toBeInTheDocument();
     });
 
     it('renders no coordinates message when coordinates is empty', () => {
-      renderWithProviders(<MapsRoutes coordinates={[]} />);
+      renderWithProviders(<MapsMultiple coordinates={[]} cardTitle="" />);
 
       expect(screen.getByText('No coordinates to display')).toBeInTheDocument();
     });

@@ -174,7 +174,6 @@ describe('useGetDataFromBackend', () => {
     const postOptions = {
       method: 'POST' as const,
       body: { name: 'test' },
-      ,
     };
 
     mockedAxios.mockResolvedValueOnce({
@@ -197,7 +196,6 @@ describe('useGetDataFromBackend', () => {
       method: 'POST',
       url: mockUrl,
       data: { name: 'test' },
-      ,
     });
   });
 });

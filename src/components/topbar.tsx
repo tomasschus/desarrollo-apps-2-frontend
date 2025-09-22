@@ -13,12 +13,12 @@ import { FiHeart, FiSearch, FiUser } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../contexts/auth-context';
 import { FestivalAnnouncement } from '../modules/festival-announcement/festival-announcement';
+import { RecomendationModal } from '../modules/recomendations/recomendation-modal';
 import { CartButton } from './cart/cart-button';
 import { CartDrawer } from './cart/cart-drawer';
 import { LoginModal } from './login-modal';
 import { MobileMenu } from './topbar-mobile-menu';
 import { UserMenu } from './user-menu';
-import { WhatToDoModal } from './what-to-do-modal';
 
 const culturalCategories = [
   {
@@ -223,7 +223,7 @@ export const Topbar = () => {
         onClose={() => setLoginModalOpen(false)}
       />
 
-      <WhatToDoModal
+      <RecomendationModal
         isOpen={whatToDoModalOpen}
         onOpenChange={() => setWhatToDoModalOpen(!whatToDoModalOpen)}
       />

@@ -22,12 +22,14 @@ export function useGetDataFromBackend<T>({
   executeAutomatically = false,
   onSuccess,
   onError,
+  timeout = 30000,
 }: {
   url: string;
   options: UseApiRequestOptions;
   executeAutomatically?: boolean;
   onSuccess?: (data: T) => void;
   onError?: (error: any) => void;
+  timeout?: number;
 }): UseApiRequestReturn<T> {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(executeAutomatically);
@@ -42,6 +44,7 @@ export function useGetDataFromBackend<T>({
         method: options.method || 'GET',
         url,
         data: options.body,
+        timeout,
         headers: {
           'Content-Type': 'application/json',
           ...options.headers,
