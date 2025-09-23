@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
 import { MdConfirmationNumber, MdQrCode } from 'react-icons/md';
 import { Link } from 'react-router';
-import { formatDate, formatIsoDateTime } from '../../../utils/date.utils';
+import { formatDate, formatIsoDate } from '../../../utils/date.utils';
 import type { PopulatedEvent, Ticket } from '../my-tickets.api';
 import {
   getStatusColor,
@@ -30,15 +30,6 @@ interface TicketCardProps {
 
 export const TicketCard = ({ ticket }: TicketCardProps) => {
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
-
-  const formatPurchaseDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    });
-  };
 
   const isPopulated = isPopulatedEvent(ticket.eventId);
   let eventData: PopulatedEvent | null = null;
@@ -192,7 +183,10 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                 <Flex align="center" gap={2} color="gray.600">
                   <FiClock size={14} />
                   <Text fontSize="sm">
-                    {formatIsoDateTime(eventData!.time)}
+                    {formatIsoDate(eventData!.date, {
+                      utc: true,
+                    })}{' '}
+                    {`${eventData!.time}hs`}
                   </Text>
                 </Flex>
               </Stack>
@@ -216,9 +210,7 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                   <Box w={2} h={2} bg="purple.400" borderRadius="full" />
                   <Text fontSize="sm" color="gray.600">
                     Comprado:{' '}
-                    {formatPurchaseDate(
-                      ticket.createdAt || ticket.purchaseDate
-                    )}
+                    {formatDate(ticket.createdAt || ticket.purchaseDate)}
                   </Text>
                 </Flex>
               </Stack>
@@ -273,16 +265,10 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                         Ver Evento
                       </Button>
                     </Link>
-                    <Link to={`/ticket/${ticket._id}`}>
-                      <Button size="sm" colorPalette="brand">
-                        <MdConfirmationNumber style={{ marginRight: 4 }} />
-                        Mi Ticket
-                      </Button>
-                    </Link>
+
                     {ticket.qrCode && (
                       <Button
                         size="sm"
-                        variant="outline"
                         colorPalette="brand"
                         onClick={() => setIsQRModalOpen(true)}
                       >

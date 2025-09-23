@@ -175,7 +175,6 @@ export const sortTickets = (
   });
 };
 
-// Función para exportar tickets a CSV
 export const exportTicketsToCSV = (tickets: Ticket[]): void => {
   const headers = [
     'ID',
@@ -206,12 +205,6 @@ export const exportTicketsToCSV = (tickets: Ticket[]): void => {
   );
 };
 
-// Función para validar si un ticket se puede cancelar
 export const canCancelTicket = (ticket: Ticket): boolean => {
-  return ticket.status === 'active';
-};
-
-// Función para validar si un ticket se puede usar/marcar como usado
-export const canUseTicket = (ticket: Ticket): boolean => {
   return ticket.status === 'active';
 };
