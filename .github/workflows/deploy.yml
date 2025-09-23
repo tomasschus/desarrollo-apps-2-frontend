@@ -2,12 +2,13 @@ name: Build & Deploy
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: production # 👈 Usar environment
 
     steps:
       # 1️⃣ Checkout del repo
@@ -33,16 +34,38 @@ jobs:
 
       # 5️⃣ Build de la app
       - name: Build app
+        env:
+          # Variables de entorno no sensibles (desde Environment Variables)
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+          VITE_N8N_API_BASE_URL: ${{ vars.VITE_N8N_API_BASE_URL }}
+          VITE_GRAPHHOPPER_URL: ${{ vars.VITE_GRAPHHOPPER_URL }}
+          # Variables sensibles (desde Secrets)
+          VITE_GRAPHHOPPER_API_KEY: ${{ secrets.VITE_GRAPHHOPPER_API_KEY }}
         run: npm run build
 
       # 6️⃣ Ejecutar tests:
       # - name: Run tests
       #   run: npm test
 
-      # 7️⃣ Crear tar para CapRover (incluye todo menos node_modules y .git)
-      - name: Create tar for CapRover
+      # 7️⃣ Crear deploy.tar para CapRover (solo archivos built y config)
+      - name: Create deploy.tar for CapRover
         run: |
-          tar --exclude='.git' --exclude='node_modules' -cvf deploy.tar .
+          # Crear directorio temporal para el deploy
+          mkdir -p deploy-package
+
+          # Copiar solo los archivos necesarios
+          cp -r dist deploy-package/
+          cp Dockerfile.production deploy-package/Dockerfile
+          cp captain-definition deploy-package/
+          cp nginx.conf deploy-package/
+
+          # Crear deploy.tar en la raíz (nombre exacto que busca la acción)
+          tar -C deploy-package -cf deploy.tar .
+
+          echo "📦 Contenido del deploy.tar:"
+          tar -tvf deploy.tar
+          echo "📏 Tamaño del tar:"
+          ls -lh deploy.tar
 
       # 8️⃣ Deploy a CapRover
       - name: Deploy to CapRover
@@ -51,4 +74,3 @@ jobs:
           server: ${{ secrets.CAPROVER_SERVER }}
           app: ${{ secrets.APP_NAME }}
           token: ${{ secrets.APP_TOKEN }}
-          tarFile: ${{ github.workspace }}/deploy.tar
