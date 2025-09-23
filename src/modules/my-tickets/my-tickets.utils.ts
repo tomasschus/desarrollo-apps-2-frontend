@@ -5,7 +5,7 @@ export const getStatusColor = (status: string) => {
     case 'active':
       return 'green';
     case 'used':
-      return 'gray';
+      return 'teal';
     case 'cancelled':
       return 'red';
     default:

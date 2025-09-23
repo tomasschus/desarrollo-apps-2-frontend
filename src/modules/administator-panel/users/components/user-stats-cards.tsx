@@ -6,6 +6,34 @@ interface UserStatsCardsProps {
 }
 
 export const UserStatsCards = ({ stats }: UserStatsCardsProps) => {
+  const statsArray = [
+    {
+      label: 'Total de Usuarios',
+      value: stats.totalUsers,
+      color: 'blue.600',
+    },
+    {
+      label: 'Usuarios Activos',
+      value: stats.activeUsers,
+      color: 'green.600',
+    },
+    {
+      label: 'Usuarios Inactivos',
+      value: stats.inactiveUsers,
+      color: 'red.600',
+    },
+    {
+      label: 'Administradores',
+      value: stats.adminUsers,
+      color: 'purple.600',
+    },
+    {
+      label: 'Usuarios Regulares',
+      value: stats.regularUsers,
+      color: 'orange.600',
+    },
+  ];
+
   return (
     <Grid
       templateColumns={{
@@ -15,58 +43,20 @@ export const UserStatsCards = ({ stats }: UserStatsCardsProps) => {
       }}
       gap={4}
     >
-      <Card.Root>
-        <Card.Body>
-          <Stat.Root>
-            <Stat.Label>Total de Usuarios</Stat.Label>
-            <Stat.ValueText color="blue.600">{stats.totalUsers}</Stat.ValueText>
-          </Stat.Root>
-        </Card.Body>
-      </Card.Root>
-
-      <Card.Root>
-        <Card.Body>
-          <Stat.Root>
-            <Stat.Label>Usuarios Activos</Stat.Label>
-            <Stat.ValueText color="green.600">
-              {stats.activeUsers}
-            </Stat.ValueText>
-          </Stat.Root>
-        </Card.Body>
-      </Card.Root>
-
-      <Card.Root>
-        <Card.Body>
-          <Stat.Root>
-            <Stat.Label>Usuarios Inactivos</Stat.Label>
-            <Stat.ValueText color="red.600">
-              {stats.inactiveUsers}
-            </Stat.ValueText>
-          </Stat.Root>
-        </Card.Body>
-      </Card.Root>
-
-      <Card.Root>
-        <Card.Body>
-          <Stat.Root>
-            <Stat.Label>Administradores</Stat.Label>
-            <Stat.ValueText color="purple.600">
-              {stats.adminUsers}
-            </Stat.ValueText>
-          </Stat.Root>
-        </Card.Body>
-      </Card.Root>
-
-      <Card.Root>
-        <Card.Body>
-          <Stat.Root>
-            <Stat.Label>Usuarios Regulares</Stat.Label>
-            <Stat.ValueText color="orange.600">
-              {stats.regularUsers}
-            </Stat.ValueText>
-          </Stat.Root>
-        </Card.Body>
-      </Card.Root>
+      {statsArray.map((stat, index) => (
+        <Card.Root key={index}>
+          <Card.Body>
+            <Stat.Root alignItems={'center'}>
+              <Stat.ValueText color={stat.color} textAlign={'center'}>
+                {stat.value}
+              </Stat.ValueText>
+              <Stat.Label fontWeight={'semibold'} textAlign={'center'}>
+                {stat.label}
+              </Stat.Label>
+            </Stat.Root>
+          </Card.Body>
+        </Card.Root>
+      ))}
     </Grid>
   );
 };

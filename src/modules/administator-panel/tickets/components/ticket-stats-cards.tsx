@@ -59,7 +59,7 @@ export const TicketStatsCards = ({ stats }: TicketStatsCardProps) => {
           }}
         >
           <Text
-            fontSize="2xl"
+            fontSize="md"
             fontWeight="bold"
             color={card.color}
             lineHeight="1"

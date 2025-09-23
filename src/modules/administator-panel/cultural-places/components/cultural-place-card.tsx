@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { FiEdit, FiGlobe, FiMapPin, FiPhone, FiTrash2 } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
 import { deleteCulturalPlace } from '../cultural-places.api';
+import { getCategoryColor } from '../cultural-places.utils';
 import { EditCulturalPlaceModal } from './edit-cultural-place-modal';
 
 interface CulturalPlace {
@@ -61,23 +62,6 @@ export const CulturalPlaceCard = ({
       } catch (error) {
         console.error('Error deleting place:', error);
       }
-    }
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'centro cultural':
-        return 'green';
-      case 'museo':
-        return 'purple';
-      case 'teatro':
-        return 'red';
-      case 'biblioteca':
-        return 'green';
-      case 'galería':
-        return 'orange';
-      default:
-        return 'gray';
     }
   };
 

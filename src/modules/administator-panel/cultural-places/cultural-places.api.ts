@@ -22,6 +22,10 @@ export interface CulturalPlace {
 }
 
 export const getCulturalPlaces = () => `${API_BASE_URL}/api/v1/cultural-places`;
+
+export const createCulturalPlace = () =>
+  `${API_BASE_URL}/api/v1/cultural-places`;
+
 export const deleteCulturalPlace = (placeId: string) =>
   `${API_BASE_URL}/api/v1/cultural-places/${placeId}`;
 

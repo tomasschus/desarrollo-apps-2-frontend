@@ -20,7 +20,7 @@ export const StatsCards = ({ stats }: { stats: DashboardStats }) => {
             <Text fontSize="sm" color="gray.600">
               Total Eventos
             </Text>
-            <Text fontSize="2xl" fontWeight="bold">
+            <Text fontSize="2xl" fontWeight="bold" color="green.500">
               {stats.totalEvents}
             </Text>
             <Text fontSize="xs" color="gray.500">
@@ -39,12 +39,12 @@ export const StatsCards = ({ stats }: { stats: DashboardStats }) => {
         shadow="sm"
       >
         <HStack>
-          <Icon as={FiMapPin} boxSize={8} color="green.500" />
+          <Icon as={FiMapPin} boxSize={8} color="yellow.500" />
           <Stack gap={1}>
             <Text fontSize="sm" color="gray.600">
               Lugares Culturales
             </Text>
-            <Text fontSize="2xl" fontWeight="bold">
+            <Text fontSize="2xl" fontWeight="bold" color="yellow.500">
               {stats.totalCulturalPlaces}
             </Text>
             <Text fontSize="xs" color="gray.500">
@@ -68,7 +68,7 @@ export const StatsCards = ({ stats }: { stats: DashboardStats }) => {
             <Text fontSize="sm" color="gray.600">
               Entradas Vendidas
             </Text>
-            <Text fontSize="2xl" fontWeight="bold">
+            <Text fontSize="2xl" fontWeight="bold" color="purple.500">
               {stats.totalTicketsSold}
             </Text>
             <Text fontSize="xs" color="gray.500">
@@ -92,7 +92,7 @@ export const StatsCards = ({ stats }: { stats: DashboardStats }) => {
             <Text fontSize="sm" color="gray.600">
               Ingresos Totales
             </Text>
-            <Text fontSize="lg" fontWeight="bold">
+            <Text fontSize="lg" fontWeight="bold" color="orange.500">
               {formatMoney(stats.totalRevenue, {
                 inputDecimalScale: 0,
               })}

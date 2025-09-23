@@ -32,7 +32,8 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
       templateColumns={{ base: '1fr', md: '250px 1fr' }}
       minH="100vh"
       bg="gray.50"
-      w="100vw"
+      w="100%"
+      maxW="100vw"
       overflow="hidden"
     >
       <GridItem>
@@ -46,16 +47,11 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
         minW={0}
       >
         <Stack
-          w={{
-            base: 'full',
-            md: '2xl',
-            lg: '4xl',
-            xl: '6xl',
-          }}
+          w="full"
           maxW="100%"
           px={{
             base: 4,
-            md: 0,
+            md: 6,
           }}
           gap={6}
           pb={6}

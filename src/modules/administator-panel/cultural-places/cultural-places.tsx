@@ -9,13 +9,17 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { LoadingIndicator } from '../../../components/ui/loading-indicator';
 import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { CreateCulturalPlaceModal } from './components/create-cultural-place-modal';
 import { CulturalPlaceCard } from './components/cultural-place-card';
 import { getCulturalPlaces, type CulturalPlace } from './cultural-places.api';
 
 export const AdminCulturalPlaces = () => {
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
   const {
     data: places,
     loading,
@@ -26,13 +30,17 @@ export const AdminCulturalPlaces = () => {
     executeAutomatically: true,
   });
 
+  const handlePlaceCreated = () => {
+    fetchCulturalPlaces();
+  };
+
   return (
     <Stack gap={6}>
       <HStack justifyContent="space-between">
         <Heading size="lg" color="gray.800">
           Gestión de Lugares Culturales
         </Heading>
-        <Button colorPalette="green">
+        <Button colorPalette="green" onClick={() => setIsCreateModalOpen(true)}>
           <Icon as={FiPlus} mr={2} />
           Agregar Lugar
         </Button>
@@ -106,6 +114,14 @@ export const AdminCulturalPlaces = () => {
             />
           ))}
         </SimpleGrid>
+      )}
+
+      {isCreateModalOpen && (
+        <CreateCulturalPlaceModal
+          isOpen={isCreateModalOpen}
+          onClose={() => setIsCreateModalOpen(false)}
+          onPlaceCreated={handlePlaceCreated}
+        />
       )}
     </Stack>
   );

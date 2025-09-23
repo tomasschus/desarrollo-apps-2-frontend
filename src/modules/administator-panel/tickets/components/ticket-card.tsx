@@ -124,7 +124,7 @@ export const TicketCard = ({ ticket, onTicketUpdate }: TicketCardProps) => {
               Usuario
             </Text>
             <Text fontSize="sm" fontWeight="medium" color="gray.700">
-              {ticket.userId.slice(-6)}
+              ID: {ticket.userId.slice(-6)}...
             </Text>
           </Box>
 

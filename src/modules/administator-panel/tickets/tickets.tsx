@@ -1,5 +1,5 @@
 import { Box, Heading, Stack, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import { TicketFilters } from './components/ticket-filters';
 import { TicketList } from './components/ticket-list';
@@ -30,8 +30,7 @@ export const AdminTickets = () => {
     executeAutomatically: true,
   });
 
-  // Calculate stats whenever tickets change
-  React.useEffect(() => {
+  useEffect(() => {
     if (allTickets) {
       const newStats: TicketStats = {
         totalTickets: allTickets.length,
@@ -78,13 +77,11 @@ export const AdminTickets = () => {
     try {
       exportTicketsToCSV(filteredTickets);
     } catch (err) {
-      console.error('Error exporting tickets:', err);
       alert('Error al exportar el reporte');
     }
   };
 
   const handleTicketUpdate = () => {
-    // Reload tickets when a ticket is updated
     refetchTickets();
   };
 

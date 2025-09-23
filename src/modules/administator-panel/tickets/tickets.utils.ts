@@ -1,13 +1,12 @@
 import { arraysACSV } from '../../../utils/csv';
 import type { Ticket, TicketStats } from './tickets.api';
 
-// Utilidades para el estado de los tickets
 export const getStatusColor = (status: string) => {
   switch (status) {
     case 'active':
       return 'green';
     case 'used':
-      return 'green';
+      return 'teal';
     case 'cancelled':
       return 'red';
     case 'refunded':
@@ -40,7 +39,7 @@ export const getTicketTypeColor = (type: string) => {
     case 'vip':
       return 'purple';
     case 'jubilados':
-      return 'green';
+      return 'blue';
     case 'estudiantes':
       return 'orange';
     case 'niños':
