@@ -2,37 +2,68 @@ name: Build & Deploy
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
 
 jobs:
-  build-and-deploy:
+  # 📋 Job 1: Información del release
+  release-info:
+    name: 📋 Release Info
     runs-on: ubuntu-latest
-    environment: production # 👈 Usar environment
-
+    outputs:
+      version: ${{ github.ref_name }}
+      commit: ${{ github.sha }}
+      actor: ${{ github.actor }}
     steps:
-      # 1️⃣ Checkout del repo
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      # 2️⃣ Mostrar información del release
       - name: Show release info
         run: |
           echo "🚀 Deployando versión: ${{ github.ref_name }}"
           echo "📝 Commit: ${{ github.sha }}"
           echo "👤 Autor: ${{ github.actor }}"
 
-      # 3️⃣ Setup Node
+  # 🧪 Job 2: Tests (opcional, puede ejecutarse en paralelo con build)
+  # test:
+  #   name: 🧪 Run Tests
+  #   runs-on: ubuntu-latest
+  #   needs: release-info
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v4
+
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 22
+  #         cache: 'npm'
+
+  #     - name: Install dependencies
+  #       run: npm ci
+
+  #     # - name: Run tests
+  #     #   run: npm test
+
+  #     - name: Run linting
+  #       run: npm run lint --if-present
+
+  # 🏗️ Job 3: Build de la aplicación
+  build:
+    name: 🏗️ Build Application
+    runs-on: ubuntu-latest
+    needs: release-info
+    environment: production
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 22
+          cache: 'npm'
 
-      # 4️⃣ Instalar dependencias
       - name: Install dependencies
         run: npm ci
 
-      # 5️⃣ Build de la app
       - name: Build app
         env:
           # Variables de entorno no sensibles (desde Environment Variables)
@@ -43,22 +74,33 @@ jobs:
           VITE_GRAPHHOPPER_API_KEY: ${{ secrets.VITE_GRAPHHOPPER_API_KEY }}
         run: npm run build
 
-      # 6️⃣ Ejecutar tests:
-      # - name: Run tests
-      #   run: npm test
+      # 📦 Subir los archivos built como artifact
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-files
+          path: |
+            dist/
+            Dockerfile.production
+            captain-definition
+            nginx.conf
+          retention-days: 1
 
-      # 7️⃣ Crear deploy.tar para CapRover (solo archivos built y config)
+  # 🚀 Job 4: Deploy a CapRover
+  deploy:
+    name: 🚀 Deploy to CapRover
+    runs-on: ubuntu-latest
+    needs: [build]
+    environment: production
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-files
+          path: deploy-package/
+
       - name: Create deploy.tar for CapRover
         run: |
-          # Crear directorio temporal para el deploy
-          mkdir -p deploy-package
-
-          # Copiar solo los archivos necesarios
-          cp -r dist deploy-package/
-          cp Dockerfile.production deploy-package/Dockerfile
-          cp captain-definition deploy-package/
-          cp nginx.conf deploy-package/
-
           # Crear deploy.tar en la raíz (nombre exacto que busca la acción)
           tar -C deploy-package -cf deploy.tar .
 
@@ -67,7 +109,6 @@ jobs:
           echo "📏 Tamaño del tar:"
           ls -lh deploy.tar
 
-      # 8️⃣ Deploy a CapRover
       - name: Deploy to CapRover
         uses: caprover/deploy-from-github@v1.1.2
         with:
