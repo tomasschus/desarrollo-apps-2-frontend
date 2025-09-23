@@ -5,10 +5,9 @@ import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
 import { formatDate } from '../../../../utils/date.utils';
 import { formatMoney } from '../../../../utils/money.utils';
 import type { Ticket } from '../tickets-management.api';
-import { cancelTicket, useTicket } from '../tickets-management.api';
+import { cancelTicket } from '../tickets-management.api';
 import {
   canCancelTicket,
-  canUseTicket,
   getStatusColor,
   getStatusLabel,
   getTicketTypeColor,
@@ -40,37 +39,12 @@ export const TicketCard = ({ ticket, onTicketUpdate }: TicketCardProps) => {
       },
     });
 
-  const { loading: useLoading, callback: useTicketCallback } =
-    useGetDataFromBackend<Ticket>({
-      url: useTicket(ticket._id),
-      options: {
-        method: 'PATCH',
-      },
-      executeAutomatically: false,
-      onSuccess: () => {
-        toaster.create({
-          title: 'Ticket marcado como usado exitosamente',
-          type: 'success',
-        });
-        onTicketUpdate?.();
-      },
-    });
-
   const handleCancelTicket = () => {
     const confirmed = window.confirm(
       `¿Estás seguro de que deseas cancelar el ticket #${ticket._id.slice(-8).toUpperCase()}? Esta acción no se puede deshacer.`
     );
     if (confirmed) {
       cancelTicketCallback();
-    }
-  };
-
-  const handleUseTicket = () => {
-    const confirmed = window.confirm(
-      `¿Confirmas que el ticket #${ticket._id.slice(-8).toUpperCase()} ha sido usado? Esta acción no se puede deshacer.`
-    );
-    if (confirmed) {
-      useTicketCallback();
     }
   };
 
@@ -225,18 +199,6 @@ export const TicketCard = ({ ticket, onTicketUpdate }: TicketCardProps) => {
                 onClick={handleCancelTicket}
               >
                 Cancelar
-              </Button>
-            )}
-
-            {canUseTicket(ticket) && (
-              <Button
-                size="xs"
-                colorPalette="green"
-                variant="outline"
-                loading={useLoading}
-                onClick={handleUseTicket}
-              >
-                Marcar Usado
               </Button>
             )}
           </HStack>
