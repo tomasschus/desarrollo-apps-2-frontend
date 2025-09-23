@@ -1,4 +1,4 @@
-import type { User, UserStats } from './users-management.api';
+import type { User, UserStats } from './users.api';
 
 // Utilidades para el rol de usuarios
 export const getRoleColor = (role: string) => {

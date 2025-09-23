@@ -13,8 +13,8 @@ import {
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
-import type { CulturalPlace, EventFormData } from '../events-management.api';
-import { getCulturalPlaces, getEvents } from '../events-management.api';
+import type { CulturalPlace, EventFormData } from '../events.api';
+import { getCulturalPlaces, getEvents } from '../events.api';
 
 interface CreateEventModalProps {
   isOpen: boolean;

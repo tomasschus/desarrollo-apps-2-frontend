@@ -1,5 +1,5 @@
 import { Box, Text, VStack } from '@chakra-ui/react';
-import type { User } from '../users-management.api';
+import type { User } from '../users.api';
 import { UserCard } from './user-card';
 
 interface UserListProps {

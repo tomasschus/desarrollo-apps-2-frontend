@@ -4,15 +4,15 @@ import { toaster } from '../../../../components/ui/toaster';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
 import { formatDate } from '../../../../utils/date.utils';
 import { formatMoney } from '../../../../utils/money.utils';
-import type { Ticket } from '../tickets-management.api';
-import { cancelTicket } from '../tickets-management.api';
+import type { Ticket } from '../tickets.api';
+import { cancelTicket } from '../tickets.api';
 import {
   canCancelTicket,
   getStatusColor,
   getStatusLabel,
   getTicketTypeColor,
   getTicketTypeLabel,
-} from '../tickets-management.utils';
+} from '../tickets.utils';
 import { TicketDetailModal } from './ticket-detail-modal';
 
 interface TicketCardProps {

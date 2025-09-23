@@ -11,15 +11,15 @@ import {
 import { useState } from 'react';
 import { FiEdit, FiMail, FiTrash2, FiUser } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
-import type { User } from '../users-management.api';
-import { deleteUser } from '../users-management.api';
+import type { User } from '../users.api';
+import { deleteUser } from '../users.api';
 import {
   formatLastLogin,
   getRoleColor,
   getRoleLabel,
   getStatusColor,
   getStatusLabel,
-} from '../users-management.utils';
+} from '../users.utils';
 import { UserEditDialog } from './user-edit-dialog';
 
 interface UserCardProps {

@@ -1,5 +1,5 @@
 import { Card, Grid, Stat } from '@chakra-ui/react';
-import type { UserStats } from '../users-management.api';
+import type { UserStats } from '../users.api';
 
 interface UserStatsCardsProps {
   stats: UserStats;

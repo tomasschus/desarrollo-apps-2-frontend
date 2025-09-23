@@ -10,13 +10,13 @@ import {
 } from '@chakra-ui/react';
 import { formatDate } from '../../../../utils/date.utils';
 import { formatMoney } from '../../../../utils/money.utils';
-import type { Ticket } from '../tickets-management.api';
+import type { Ticket } from '../tickets.api';
 import {
   getStatusColor,
   getStatusLabel,
   getTicketTypeColor,
   getTicketTypeLabel,
-} from '../tickets-management.utils';
+} from '../tickets.utils';
 
 interface TicketDetailModalProps {
   isOpen: boolean;

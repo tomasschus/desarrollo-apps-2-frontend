@@ -1,6 +1,6 @@
 import { Box, SimpleGrid, Text } from '@chakra-ui/react';
 import { formatMoney } from '../../../../utils/money.utils';
-import type { TicketStats } from '../tickets-management.api';
+import type { TicketStats } from '../tickets.api';
 
 interface TicketStatsCardProps {
   stats: TicketStats;

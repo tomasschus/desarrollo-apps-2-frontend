@@ -5,9 +5,9 @@ import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import { UserFilters } from './components/user-filters';
 import { UserList } from './components/user-list';
 import { UserStatsCards } from './components/user-stats-cards';
-import type { User, UserStats } from './users-management.api';
-import { getUsers } from './users-management.api';
-import { calculateUserStats, filterUsers } from './users-management.utils';
+import type { User, UserStats } from './users.api';
+import { getUsers } from './users.api';
+import { calculateUserStats, filterUsers } from './users.utils';
 
 export const AdminUsers = () => {
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);

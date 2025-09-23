@@ -11,9 +11,9 @@ import {
 import { useState } from 'react';
 import { toaster } from '../../../../components/ui/toaster';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
-import type { UpdateUserData, User } from '../users-management.api';
-import { updateUser } from '../users-management.api';
-import { getStatusColor } from '../users-management.utils';
+import type { UpdateUserData, User } from '../users.api';
+import { updateUser } from '../users.api';
+import { getStatusColor } from '../users.utils';
 
 interface UserEditDialogProps {
   user: User;

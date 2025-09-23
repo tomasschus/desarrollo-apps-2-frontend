@@ -1,6 +1,6 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
 import { LoadingIndicator } from '../../../../components/ui/loading-indicator';
-import type { Ticket } from '../tickets-management.api';
+import type { Ticket } from '../tickets.api';
 import { TicketCard } from './ticket-card';
 
 interface TicketListProps {

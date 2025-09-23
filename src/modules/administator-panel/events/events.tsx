@@ -5,8 +5,8 @@ import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import { CreateEventModal } from './components/create-event-modal';
 import { EditEventModal } from './components/edit-event-modal';
 import { EventList } from './components/event-list';
-import { getEvents } from './events-management.api';
-import type { Event } from './events-management.utils';
+import { getEvents } from './events.api';
+import type { Event } from './events.utils';
 
 export const AdminEvents = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);

@@ -15,7 +15,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
 import { formatDate } from '../../../../utils/date.utils';
-import { getCulturalPlaces, updateEvent } from '../events-management.api';
+import { getCulturalPlaces, updateEvent } from '../events.api';
 
 interface CulturalPlace {
   _id: string;

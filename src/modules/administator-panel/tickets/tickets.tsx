@@ -4,9 +4,9 @@ import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import { TicketFilters } from './components/ticket-filters';
 import { TicketList } from './components/ticket-list';
 import { TicketStatsCards } from './components/ticket-stats-cards';
-import type { Ticket, TicketStats } from './tickets-management.api';
-import { getTickets } from './tickets-management.api';
-import { exportTicketsToCSV, filterTickets } from './tickets-management.utils';
+import type { Ticket, TicketStats } from './tickets.api';
+import { getTickets } from './tickets.api';
+import { exportTicketsToCSV, filterTickets } from './tickets.utils';
 
 export const AdminTickets = () => {
   const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([]);

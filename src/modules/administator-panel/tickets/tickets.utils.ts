@@ -1,5 +1,5 @@
 import { arraysACSV } from '../../../utils/csv';
-import type { Ticket, TicketStats } from './tickets-management.api';
+import type { Ticket, TicketStats } from './tickets.api';
 
 // Utilidades para el estado de los tickets
 export const getStatusColor = (status: string) => {
