@@ -23,7 +23,13 @@ export const QuickActions = () => {
     >
       <Stack gap={4}>
         <Heading size="md">Acciones Rápidas</Heading>
-        <SimpleGrid columns={2} gap={4}>
+        <SimpleGrid
+          columns={{
+            base: 1,
+            md: 2,
+          }}
+          gap={4}
+        >
           <Button
             colorPalette="green"
             size="lg"

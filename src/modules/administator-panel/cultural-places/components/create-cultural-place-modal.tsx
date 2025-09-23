@@ -254,7 +254,7 @@ export const CreateCulturalPlaceModal = ({
                     Apariencia
                   </Text>
                   <Grid
-                    templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+                    templateColumns={{ base: '1fr', md: '1fr 4fr' }}
                     gap={4}
                   >
                     <GridItem>
@@ -272,6 +272,7 @@ export const CreateCulturalPlaceModal = ({
                         placeholder="#FF6B6B"
                         h={10}
                         bg="white"
+                        p={0}
                       />
                     </GridItem>
 

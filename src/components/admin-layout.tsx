@@ -1,5 +1,5 @@
-import { Grid, GridItem, Stack } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { Box, Flex } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import { useAuth } from '../contexts/auth-context';
 import { AdminSidebar } from './admin-sidebar';
@@ -8,6 +8,7 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isUser } = useAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const getActiveSection = () => {
     const path = location.pathname;
@@ -21,6 +22,10 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
     return 'dashboard';
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   useEffect(() => {
     if (isUser) {
       navigate('/');
@@ -28,37 +33,32 @@ export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {
   }, [isUser]);
 
   return (
-    <Grid
-      templateColumns={{ base: '1fr', md: '250px 1fr' }}
-      minH="100vh"
-      bg="gray.50"
-      w="100%"
-      maxW="100vw"
-      overflow="hidden"
-    >
-      <GridItem>
-        <AdminSidebar activeSection={getActiveSection()} />
-      </GridItem>
-      <GridItem
-        p={6}
-        display="flex"
-        justifyContent="center"
+    <Flex minH="100vh" bg="gray.50" overflow="hidden">
+      <AdminSidebar
+        activeSection={getActiveSection()}
+        isCollapsed={!sidebarOpen}
+        onToggle={toggleSidebar}
+      />
+      <Box
+        flex="1"
+        ml={{ base: sidebarOpen ? '250px' : '60px' }}
+        transition="margin-left 0.3s ease"
         overflow="auto"
-        minW={0}
+        p={6}
+        maxW="100%"
       >
-        <Stack
+        <Box
           w="full"
           maxW="100%"
           px={{
             base: 4,
             md: 6,
           }}
-          gap={6}
           pb={6}
         >
           {children || <Outlet />}
-        </Stack>
-      </GridItem>
-    </Grid>
+        </Box>
+      </Box>
+    </Flex>
   );
 };
