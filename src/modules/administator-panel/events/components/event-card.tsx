@@ -17,8 +17,8 @@ import {
   FiTrash2,
 } from 'react-icons/fi';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import type { Event } from '../events.api';
 import { deleteEvent } from '../events.api';
-import type { Event } from '../events.utils';
 
 interface EventCardProps {
   event: Event;

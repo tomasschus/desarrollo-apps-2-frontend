@@ -5,12 +5,10 @@ import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
 import { CreateEventModal } from './components/create-event-modal';
 import { EditEventModal } from './components/edit-event-modal';
 import { EventList } from './components/event-list';
-import { getEvents } from './events.api';
-import type { Event } from './events.utils';
+import { getEvents, type Event } from './events.api';
 
 export const AdminEvents = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   const {
@@ -24,18 +22,15 @@ export const AdminEvents = () => {
   });
 
   const handleEventCreated = () => {
-    // Refrescar la lista de eventos cuando se crea uno nuevo
     fetchEvents();
   };
 
   const handleEditEvent = (event: Event) => {
     setSelectedEvent(event);
-    setIsEditModalOpen(true);
   };
 
   const handleCloseEditModal = () => {
     setSelectedEvent(null);
-    setIsEditModalOpen(false);
   };
 
   const handleEventUpdated = () => {
@@ -65,12 +60,14 @@ export const AdminEvents = () => {
         onEventCreated={handleEventCreated}
       />
 
-      <EditEventModal
-        isOpen={isEditModalOpen}
-        onClose={handleCloseEditModal}
-        onEventUpdated={handleEventUpdated}
-        event={selectedEvent}
-      />
+      {selectedEvent && (
+        <EditEventModal
+          isOpen={!!selectedEvent}
+          onClose={handleCloseEditModal}
+          onEventUpdated={handleEventUpdated}
+          event={selectedEvent}
+        />
+      )}
     </Stack>
   );
 };

@@ -25,6 +25,21 @@ export interface EventFormData {
   ticketTypes: TicketType[];
 }
 
+export interface Event {
+  _id: string;
+  name: string;
+  description: string;
+  date: string;
+  time: string;
+  culturalPlaceId: {
+    _id: string;
+    name: string;
+    image: string;
+  };
+  ticketTypes: TicketType[];
+  isActive: boolean;
+}
+
 export const getEvents = () => `${API_BASE_URL}/api/v1/events`;
 export const updateEvent = (eventId: string) =>
   `${API_BASE_URL}/api/v1/events/${eventId}`;

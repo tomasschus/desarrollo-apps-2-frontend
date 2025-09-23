@@ -10,58 +10,18 @@ import {
   Textarea,
   VStack,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
+import { toaster } from '../../../../components/ui/toaster';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
 import { formatDate } from '../../../../utils/date.utils';
-import { getCulturalPlaces, updateEvent } from '../events.api';
-
-interface CulturalPlace {
-  _id: string;
-  name: string;
-  description: string;
-  image: string;
-}
-
-interface TicketType {
-  type: string;
-  price: number;
-  initialQuantity: number;
-  soldQuantity: number;
-  isActive: boolean;
-}
-
-interface EventFormData {
-  culturalPlaceId: string;
-  name: string;
-  description: string;
-  date: string;
-  time: string;
-  isActive: boolean;
-  ticketTypes: TicketType[];
-}
-
-interface Event {
-  _id: string;
-  name: string;
-  description: string;
-  date: string;
-  time: string;
-  culturalPlaceId: {
-    _id: string;
-    name: string;
-    image: string;
-  };
-  ticketTypes: TicketType[];
-  isActive: boolean;
-}
+import { updateEvent, type Event, type EventFormData } from '../events.api';
 
 interface EditEventModalProps {
   isOpen: boolean;
   onClose: () => void;
   onEventUpdated: () => void;
-  event: Event | null;
+  event: Event;
 }
 
 export const EditEventModal = ({
@@ -70,44 +30,42 @@ export const EditEventModal = ({
   onEventUpdated,
   event,
 }: EditEventModalProps) => {
-  const {
-    register,
-    control,
-    handleSubmit,
-    reset,
-    formState: { isSubmitting },
-  } = useForm<EventFormData>();
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'ticketTypes',
-  });
-
-  const { data: culturalPlaces, loading: loadingPlaces } =
-    useGetDataFromBackend<CulturalPlace[]>({
-      url: getCulturalPlaces(),
-      options: { method: 'GET' },
-      executeAutomatically: true,
-    });
-
-  useEffect(() => {
-    if (isOpen && event) {
-      const formData: EventFormData = {
+  const { watch, register, control, handleSubmit, reset } =
+    useForm<EventFormData>({
+      defaultValues: {
         culturalPlaceId:
           typeof event.culturalPlaceId === 'object'
             ? event.culturalPlaceId._id
             : event.culturalPlaceId,
         name: event.name,
         description: event.description,
-        date: formatDate(event.date),
+        date: formatDate(event.date, undefined, 'YYYY-MM-DD'),
         time: event.time,
         isActive: event.isActive,
         ticketTypes: event.ticketTypes,
-      };
+      },
+    });
 
-      reset(formData);
-    }
-  }, [isOpen, event, reset]);
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'ticketTypes',
+  });
+
+  const { loading: updatingPlace, callback: onUpdateEvent } =
+    useGetDataFromBackend<Event>({
+      url: updateEvent(event._id),
+      options: { method: 'PUT', body: JSON.stringify(watch()) },
+      onSuccess: () => {
+        toaster.create({
+          type: 'success',
+          title: '¡Listo!',
+          description: 'El evento ha sido actualizado correctamente.',
+        });
+
+        onEventUpdated();
+        handleClose();
+      },
+    });
 
   const addTicketType = () => {
     append({
@@ -122,31 +80,6 @@ export const EditEventModal = ({
   const removeTicketType = (index: number) => {
     if (fields.length > 1) {
       remove(index);
-    }
-  };
-
-  const onSubmit = async (data: EventFormData) => {
-    if (!event) return;
-
-    try {
-      const response = await fetch(updateEvent(event._id), {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        alert('Evento actualizado correctamente');
-        onEventUpdated();
-        handleClose();
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Error al actualizar el evento');
-      }
-    } catch (error) {
-      alert(error instanceof Error ? error.message : 'Error desconocido');
     }
   };
 
@@ -169,7 +102,7 @@ export const EditEventModal = ({
       <Dialog.Positioner>
         <Dialog.Content
           as={'form'}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onUpdateEvent)}
           maxW="4xl"
           w="90vw"
         >
@@ -184,26 +117,21 @@ export const EditEventModal = ({
             <VStack gap={6} align="stretch">
               <Box>
                 <Text fontWeight="medium" mb={2}>
-                  Lugar Cultural *
+                  Lugar Cultural
                 </Text>
-                <select
-                  {...register('culturalPlaceId', { required: true })}
-                  style={{
-                    width: '100%',
-                    padding: '8px 12px',
-                    border: '1px solid #E2E8F0',
-                    borderRadius: '6px',
-                    backgroundColor: 'white',
-                  }}
-                  disabled={loadingPlaces}
+                <Box
+                  p={3}
+                  border="1px solid"
+                  borderColor="gray.200"
+                  borderRadius="md"
+                  bg="gray.50"
                 >
-                  <option value="">Selecciona un lugar cultural</option>
-                  {culturalPlaces?.map((place) => (
-                    <option key={place._id} value={place._id}>
-                      {place.name}
-                    </option>
-                  ))}
-                </select>
+                  <Text>
+                    {typeof event.culturalPlaceId === 'object'
+                      ? event.culturalPlaceId.name
+                      : 'Lugar no especificado'}
+                  </Text>
+                </Box>
               </Box>
 
               <Box>
@@ -401,10 +329,10 @@ export const EditEventModal = ({
               <Button
                 colorPalette="green"
                 type="submit"
-                loading={isSubmitting}
-                disabled={isSubmitting}
+                loading={updatingPlace}
+                disabled={updatingPlace}
               >
-                {isSubmitting ? 'Actualizando...' : 'Actualizar Evento'}
+                {updatingPlace ? 'Actualizando...' : 'Actualizar Evento'}
               </Button>
             </HStack>
           </Dialog.Footer>
