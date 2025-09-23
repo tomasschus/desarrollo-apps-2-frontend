@@ -99,6 +99,14 @@ jobs:
           name: build-files
           path: deploy-package/
 
+      - name: Prepare files for CapRover
+        run: |
+          # Renombrar Dockerfile.production a Dockerfile para CapRover
+          mv deploy-package/Dockerfile.production deploy-package/Dockerfile
+          
+          echo "📁 Archivos preparados para CapRover:"
+          ls -la deploy-package/
+
       - name: Create deploy.tar for CapRover
         run: |
           # Crear deploy.tar en la raíz (nombre exacto que busca la acción)
