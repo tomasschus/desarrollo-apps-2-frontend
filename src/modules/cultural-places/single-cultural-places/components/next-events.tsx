@@ -5,7 +5,7 @@ import {
   Card,
   Flex,
   HStack,
-  Spinner,
+  Skeleton,
   Text,
   VStack,
 } from '@chakra-ui/react';
@@ -44,12 +44,47 @@ export const NextEvents = () => {
 
   if (loading) {
     return (
-      <Box textAlign="center" py={6}>
-        <Spinner size="md" color="brand.500" />
-        <Text mt={2} color="gray.600">
-          Cargando próximos eventos...
-        </Text>
-      </Box>
+      <Card.Root bg="white" borderRadius="lg" w="100%">
+        <Card.Body p={6}>
+          <VStack align="start" gap={4} w="100%">
+            {/* Header skeleton */}
+            <HStack gap={3} w="100%">
+              <Skeleton w="20px" h="20px" borderRadius="md" />
+              <Skeleton h="24px" flex="1" maxW="200px" borderRadius="md" />
+              <Skeleton w="24px" h="20px" borderRadius="full" />
+            </HStack>
+
+            {/* Events skeleton */}
+            <VStack align="stretch" gap={3} w="100%">
+              {Array.from({ length: 3 }).map((_, index) => (
+                <Card.Root
+                  key={index}
+                  bg="gray.50"
+                  border="1px"
+                  borderColor="gray.200"
+                  borderRadius="md"
+                  w="100%"
+                >
+                  <Card.Body p={4}>
+                    <VStack align="start" gap={3}>
+                      <VStack align="start" gap={2} w="100%">
+                        <Skeleton w="130px" h="14px" borderRadius="md" />
+                        <HStack gap={2}>
+                          <Skeleton w="90px" h="24px" borderRadius="md" />
+                          <Skeleton w="100px" h="24px" borderRadius="md" />
+                          <Skeleton w="75px" h="24px" borderRadius="md" />
+                        </HStack>
+                      </VStack>
+
+                      <Skeleton w="100%" h="32px" borderRadius="md" mt={2} />
+                    </VStack>
+                  </Card.Body>
+                </Card.Root>
+              ))}
+            </VStack>
+          </VStack>
+        </Card.Body>
+      </Card.Root>
     );
   }
 
