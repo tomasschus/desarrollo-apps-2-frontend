@@ -1,6 +1,6 @@
 import { Checkbox, VStack } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import type { RecomendationModalData } from '../recomendation.api';
+import type { RecomendationModalData } from '../preference-recommendations.api';
 import { ActivityCountSelector } from './activity-count-selector';
 import { ActivityDescriptionField } from './activity-description-field';
 import { CarAvailabilitySelector } from './car-availability-selector';

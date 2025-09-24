@@ -1,5 +1,5 @@
 import { Grid, Input, Text, VStack } from '@chakra-ui/react';
-import type { FormFieldProps } from '../recomendation.api';
+import type { FormFieldProps } from '../preference-recommendations.api';
 
 export const PeopleAndDateFields = ({ register, errors }: FormFieldProps) => {
   return (

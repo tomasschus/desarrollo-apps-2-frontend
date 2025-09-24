@@ -1,6 +1,6 @@
 import { RadioGroup, Text, VStack } from '@chakra-ui/react';
 import { Controller } from 'react-hook-form';
-import type { FormFieldProps } from '../recomendation.api';
+import type { FormFieldProps } from '../preference-recommendations.api';
 
 export const ActivityCountSelector = ({ control, errors }: FormFieldProps) => {
   return (

@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { FiHeart, FiSearch, FiUser } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router';
 import { FestivalAnnouncement } from '../../modules/festival-announcement/festival-announcement';
-import { RecomendationModal } from '../../modules/recomendations/recomendation-modal';
+import { RecomendationModal } from '../../modules/preference-recommendations/preference-recommendations-modal';
 import { useAuth } from '../contexts/auth-context';
 import { CartButton } from './cart/cart-button';
 import { CartDrawer } from './cart/cart-drawer';
@@ -40,6 +40,10 @@ const culturalCategories = [
   {
     name: 'Eventos',
     to: '/eventos',
+  },
+  {
+    name: 'Recomendaciones',
+    to: '/recomendaciones',
   },
 ];
 

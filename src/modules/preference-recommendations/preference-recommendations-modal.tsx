@@ -3,7 +3,7 @@ import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { RecomendationForm } from './components/recomendation-form';
-import type { RecomendationModalData } from './recomendation.api';
+import type { RecomendationModalData } from './preference-recommendations.api';
 
 export const RecomendationModal = ({
   isOpen,
@@ -33,7 +33,7 @@ export const RecomendationModal = ({
     params.append('hasCar', (data.hasCar === 'si').toString());
     params.append('eventDate', data.date);
 
-    navigate(`/recomendaciones?${params.toString()}`);
+    navigate(`/recomendaciones-con-preferencias?${params.toString()}`);
     onOpenChange();
     form.reset();
   };

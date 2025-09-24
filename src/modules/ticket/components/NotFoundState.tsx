@@ -9,7 +9,9 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { FaQuestionCircle, FaSearch } from 'react-icons/fa';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { FaQuestionCircle } from 'react-icons/fa';
+import error404Animation from '../../../animations/Error404.lottie';
 
 export const NotFoundState = () => (
   <Box minH="100vh" bg="gray.50" p={4} pt={8}>
@@ -31,11 +33,23 @@ export const NotFoundState = () => (
       >
         <VStack gap={4}>
           <Box
-            as={FaSearch}
-            boxSize="80px"
-            color="white"
-            filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"
-          />
+            w="150px"
+            h="150px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <DotLottieReact
+              src={error404Animation}
+              loop
+              autoplay
+              style={{ 
+                width: '100%', 
+                height: '100%',
+                filter: 'brightness(1.2) contrast(1.1) hue-rotate(30deg)'
+              }}
+            />
+          </Box>
           <Heading size="xl" color="white" fontWeight="bold">
             Ticket No Encontrado
           </Heading>

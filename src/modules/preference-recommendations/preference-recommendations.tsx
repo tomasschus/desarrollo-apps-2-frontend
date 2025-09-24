@@ -7,17 +7,18 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
+import noDataFound from '../../animations/NoDataFound.lottie';
+import starLoader from '../../animations/StarLoader.lottie';
 import { RouteMap } from '../../core/components/route-map/route-map';
-import { LoadingIndicator } from '../../core/components/ui/loading-indicator';
 import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 import type {
   RecomendationRequest,
   RecomendationResponse,
-} from './recomendation.api';
-import { getRecomendations } from './recomendation.api';
-
+} from './preference-recommendations.api';
+import { getRecomendations } from './preference-recommendations.api';
 export const Recomendation = () => {
   const [searchParams] = useSearchParams();
   const [requestData, setRequestData] = useState<RecomendationRequest | null>(
@@ -82,7 +83,25 @@ export const Recomendation = () => {
   }
 
   if (loading) {
-    return <LoadingIndicator text="Generando recomendaciones..." />;
+    return (
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection={'column'}
+        p={6}
+      >
+        <DotLottieReact
+          src={starLoader}
+          loop
+          autoplay
+          style={{ width: '200px', height: '200px' }}
+        />
+        <Text>
+          Estamos generando recomendaciones en base a tus preferencias...
+        </Text>
+      </Box>
+    );
   }
 
   if (!displayData?.events || displayData.events.length === 0) {
@@ -97,9 +116,14 @@ export const Recomendation = () => {
         >
           <Card.Root maxW="lg">
             <Card.Body textAlign="center" py={12} px={8}>
-              <Text fontSize="4xl" mb={6}>
-                🔍
-              </Text>
+              <HStack justifyContent={'center'}>
+                <DotLottieReact
+                  src={noDataFound}
+                  loop
+                  autoplay
+                  style={{ width: '200px', height: '200px' }}
+                />
+              </HStack>
               <Text fontSize="2xl" color="gray.700" mb={4} fontWeight="bold">
                 No encontramos recomendaciones
               </Text>
