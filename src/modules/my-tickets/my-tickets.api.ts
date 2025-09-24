@@ -10,9 +10,9 @@ export interface PopulatedEvent {
     _id: string;
     name: string;
     address: string;
-    images: string[];
+    image: string;
   };
-  images: string[];
+  image: string;
 }
 
 export interface Ticket {
