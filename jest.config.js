@@ -8,11 +8,11 @@ export default {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       'jest-transform-stub',
     '^../components/ui/toaster$':
-      '<rootDir>/src/components/ui/__mocks__/toaster.tsx',
+      '<rootDir>/src/core/components/ui/__mocks__/toaster.tsx',
     '^../../components/ui/toaster$':
-      '<rootDir>/src/components/ui/__mocks__/toaster.tsx',
+      '<rootDir>/src/core/components/ui/__mocks__/toaster.tsx',
     '^../../../components/ui/toaster$':
-      '<rootDir>/src/components/ui/__mocks__/toaster.tsx',
+      '<rootDir>/src/core/components/ui/__mocks__/toaster.tsx',
     '^.*/config/api.config$': '<rootDir>/src/__mocks__/api.config.ts',
   },
   transform: {
@@ -31,14 +31,7 @@ export default {
     '<rootDir>/src/**/*.(test|spec).(ts|tsx|js)',
     '<rootDir>/src/tests/**/*.(test|spec).(ts|tsx|js)',
   ],
-  collectCoverageFrom: [
-    'src/components/**/*.{ts,tsx}',
-    'src/config/**/*.{ts,tsx}',
-    'src/contexts/**/*.{ts,tsx}',
-    'src/hooks/**/*.{ts,tsx}',
-    'src/modules/**/*.{ts,tsx}',
-    '!src/utils/**/*',
-  ],
+  collectCoverageFrom: ['src/core/**/*.{ts,tsx}', 'src/modules/**/*.{ts,tsx}'],
   coverageThreshold: {
     global: {
       branches: 60,

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es2019",
+    "jsx": "react-jsx",
+    "noEmit": false,
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src/**/*", "src/tests/**/*"],
+  "exclude": ["node_modules"]
+}
