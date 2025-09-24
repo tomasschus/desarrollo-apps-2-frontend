@@ -40,8 +40,8 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
     eventData = ticket.eventId as PopulatedEvent;
     isExpired = new Date(eventData.date) < new Date();
     eventImage =
-      eventData.images?.[0] ||
-      eventData.culturalPlaceId?.images?.[0] ||
+      eventData.image ||
+      eventData.culturalPlaceId?.image ||
       '/placeholder-image.jpg';
   }
 
