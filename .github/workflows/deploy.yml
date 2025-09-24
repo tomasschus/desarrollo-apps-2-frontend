@@ -70,8 +70,7 @@ jobs:
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
           VITE_N8N_API_BASE_URL: ${{ vars.VITE_N8N_API_BASE_URL }}
           VITE_GRAPHHOPPER_URL: ${{ vars.VITE_GRAPHHOPPER_URL }}
-          # Variables sensibles (desde Secrets)
-          VITE_GRAPHHOPPER_API_KEY: ${{ secrets.VITE_GRAPHHOPPER_API_KEY }}
+          VITE_GRAPHHOPPER_API_KEY: ${{ vars.VITE_GRAPHHOPPER_API_KEY }}
         run: npm run build
 
       # 📦 Subir los archivos built como artifact
