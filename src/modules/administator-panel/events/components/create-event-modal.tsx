@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
+import { toaster } from '../../../../core/components/ui/toaster';
 import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
 import type { CulturalPlace, EventFormData } from '../events.api';
 import { getCulturalPlaces, getEvents } from '../events.api';
@@ -27,31 +28,26 @@ export const CreateEventModal = ({
   onClose,
   onEventCreated,
 }: CreateEventModalProps) => {
-  const {
-    register,
-    control,
-    handleSubmit,
-    reset,
-    formState: { isSubmitting },
-  } = useForm<EventFormData>({
-    defaultValues: {
-      culturalPlaceId: '',
-      name: '',
-      description: '',
-      date: '',
-      time: '',
-      isActive: true,
-      ticketTypes: [
-        {
-          type: 'general',
-          price: 0,
-          initialQuantity: 0,
-          soldQuantity: 0,
-          isActive: true,
-        },
-      ],
-    },
-  });
+  const { watch, register, control, handleSubmit, reset } =
+    useForm<EventFormData>({
+      defaultValues: {
+        culturalPlaceId: '',
+        name: '',
+        description: '',
+        date: '',
+        time: '',
+        isActive: true,
+        ticketTypes: [
+          {
+            type: 'general',
+            price: 0,
+            initialQuantity: 0,
+            soldQuantity: 0,
+            isActive: true,
+          },
+        ],
+      },
+    });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -81,28 +77,22 @@ export const CreateEventModal = ({
     }
   };
 
-  const onSubmit = async (data: EventFormData) => {
-    try {
-      const response = await fetch(getEvents(), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+  const { loading: isLoadingCreate, callback: onCreateEvent } =
+    useGetDataFromBackend({
+      url: getEvents(),
+      options: { method: 'POST', body: JSON.stringify(watch()) },
+      onSuccess: () => {
+        toaster.create({
+          title: '¡Listo!',
+          description: 'El evento ha sido creado exitosamente.',
+          type: 'success',
+          duration: 5000,
+        });
 
-      if (response.ok) {
-        alert('Evento creado correctamente');
         onEventCreated();
         handleClose();
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Error al crear el evento');
-      }
-    } catch (error) {
-      alert(error instanceof Error ? error.message : 'Error desconocido');
-    }
-  };
+      },
+    });
 
   const handleClose = () => {
     reset();
@@ -123,7 +113,7 @@ export const CreateEventModal = ({
       <Dialog.Positioner>
         <Dialog.Content
           as={'form'}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onCreateEvent)}
           maxW="4xl"
           w="90vw"
         >
@@ -320,10 +310,10 @@ export const CreateEventModal = ({
               <Button
                 colorPalette="green"
                 type="submit"
-                loading={isSubmitting}
-                disabled={isSubmitting}
+                loading={isLoadingCreate}
+                loadingText="Creando..."
               >
-                {isSubmitting ? 'Creando...' : 'Crear Evento'}
+                Crear Evento
               </Button>
             </HStack>
           </Dialog.Footer>

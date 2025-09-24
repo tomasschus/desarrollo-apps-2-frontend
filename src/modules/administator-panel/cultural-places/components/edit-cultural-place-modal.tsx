@@ -126,7 +126,7 @@ export const EditCulturalPlaceModal = ({
         <Dialog.Content>
           <Dialog.CloseTrigger />
           <Dialog.Header>
-            <Dialog.Title>Editar Lugar Cultural</Dialog.Title>
+            <Dialog.Title>Editando {place.name}</Dialog.Title>
           </Dialog.Header>
           <Dialog.Body>
             <form onSubmit={handleSubmit(onUpdatePlace)} id={id}>
