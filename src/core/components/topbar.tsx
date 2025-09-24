@@ -42,7 +42,7 @@ const culturalCategories = [
     to: '/eventos',
   },
   {
-    name: 'Recomendaciones',
+    name: 'Recomendaciones ✨',
     to: '/recomendaciones',
   },
 ];

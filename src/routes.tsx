@@ -11,6 +11,7 @@ import { culturalPlacesRoutes } from './modules/cultural-places/cultural-places.
 import { eventsRoutes } from './modules/events/events.routes';
 import { myTicketRoutes } from './modules/my-tickets/my-tickets.routes';
 import { recommendationsRoutes } from './modules/preference-recommendations/preference-recommendations.routes';
+import { recomendationsRoutes } from './modules/recomendations/recomendations.routes';
 import { ticketRoutes } from './modules/ticket/ticket.routes';
 
 const router = createBrowserRouter([
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       ...myTicketRoutes,
       ...checkoutRoutes,
       ...recommendationsRoutes,
+      ...recomendationsRoutes,
     ],
   },
   {

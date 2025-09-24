@@ -6,6 +6,7 @@ import {
   FiMusic,
   FiSearch,
   FiStar,
+  FiTarget,
   FiUsers,
 } from 'react-icons/fi';
 import { Link } from 'react-router';
@@ -36,6 +37,8 @@ export const MobileMenu = ({
         return <FiUsers />;
       case 'eventos':
         return <FiMapPin />;
+      case 'recomendaciones':
+        return <FiTarget />;
       default:
         return <FiStar />;
     }
