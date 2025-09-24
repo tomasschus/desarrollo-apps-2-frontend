@@ -90,7 +90,13 @@ export const EditCulturalPlaceModal = ({
   const { loading: updatingPlace, callback: onUpdatePlace } =
     useGetDataFromBackend<CulturalPlace>({
       url: updateCulturalPlace(place._id),
-      options: { method: 'PUT', body: JSON.stringify(watch()) },
+      options: { 
+        method: 'PUT', 
+        body: JSON.stringify({
+          ...watch(),
+          characteristics: watch().characteristics.map(char => char.value).filter(value => value.trim() !== '')
+        })
+      },
       onSuccess: () => {
         toaster.create({
           type: 'success',
