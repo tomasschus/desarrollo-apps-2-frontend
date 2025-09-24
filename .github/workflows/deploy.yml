@@ -21,31 +21,7 @@ jobs:
           echo "📝 Commit: ${{ github.sha }}"
           echo "👤 Autor: ${{ github.actor }}"
 
-  # 🧪 Job 2: Tests (opcional, puede ejecutarse en paralelo con build)
-  # test:
-  #   name: 🧪 Run Tests
-  #   runs-on: ubuntu-latest
-  #   needs: release-info
-  #   steps:
-  #     - name: Checkout repo
-  #       uses: actions/checkout@v4
-
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 22
-  #         cache: 'npm'
-
-  #     - name: Install dependencies
-  #       run: npm ci
-
-  #     # - name: Run tests
-  #     #   run: npm test
-
-  #     - name: Run linting
-  #       run: npm run lint --if-present
-
-  # 🏗️ Job 3: Build de la aplicación
+  # 🏗️ Job 2: Build de la aplicación
   build:
     name: 🏗️ Build Application
     runs-on: ubuntu-latest
@@ -66,7 +42,6 @@ jobs:
 
       - name: Build app
         env:
-          # Variables de entorno no sensibles (desde Environment Variables)
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
           VITE_N8N_API_BASE_URL: ${{ vars.VITE_N8N_API_BASE_URL }}
           VITE_GRAPHHOPPER_URL: ${{ vars.VITE_GRAPHHOPPER_URL }}
@@ -85,7 +60,7 @@ jobs:
             nginx.conf
           retention-days: 1
 
-  # 🚀 Job 4: Deploy a CapRover
+  # 🚀 Job 3: Deploy a CapRover
   deploy:
     name: 🚀 Deploy to CapRover
     runs-on: ubuntu-latest
@@ -100,7 +75,7 @@ jobs:
 
       - name: Prepare files for CapRover
         run: |
-          # Renombrar Dockerfile.production a Dockerfile para CapRover
+          # Renombrar Dockerfile.production a Dockerfile
           mv deploy-package/Dockerfile.production deploy-package/Dockerfile
 
           echo "📁 Archivos preparados para CapRover:"
@@ -108,13 +83,16 @@ jobs:
 
       - name: Create deploy.tar for CapRover
         run: |
-          # Crear deploy.tar en la raíz (nombre exacto que busca la acción)
+          # Crear deploy.tar en la raíz del workspace
           tar -C deploy-package -cf deploy.tar .
 
           echo "📦 Contenido del deploy.tar:"
           tar -tvf deploy.tar
           echo "📏 Tamaño del tar:"
           ls -lh deploy.tar
+
+      - name: Verify deploy.tar position
+        run: ls -la # 👈 asegurarse de que esté en la raíz
 
       - name: Deploy to CapRover
         uses: caprover/deploy-from-github@v1.1.2
