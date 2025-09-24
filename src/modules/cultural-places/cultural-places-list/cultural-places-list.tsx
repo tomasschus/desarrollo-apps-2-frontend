@@ -13,7 +13,7 @@ import { FiMapPin } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 import { LoadingIndicator } from '../../../components/ui/loading-indicator';
 import { TruncatedText } from '../../../components/ui/truncated-text';
-import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../../core/hooks/useGetDataFromBackend';
 import { getCulturalPlaces } from './cultural-places-list.api';
 
 interface CulturalPlace {

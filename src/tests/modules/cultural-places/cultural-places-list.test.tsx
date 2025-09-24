@@ -5,7 +5,7 @@ jest.mock('react-router', () => ({
 }));
 
 // Mock hook
-jest.mock('../../../hooks/useGetDataFromBackend', () => ({
+jest.mock('../../../core/hooks/useGetDataFromBackend', () => ({
   useGetDataFromBackend: jest.fn(),
 }));
 
@@ -29,7 +29,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { CulturalPlacesList } from '../../../modules/cultural-places/cultural-places-list/cultural-places-list';
 
 const mockUseGetDataFromBackend =
-  require('../../../hooks/useGetDataFromBackend').useGetDataFromBackend;
+  require('../../../core/hooks/useGetDataFromBackend').useGetDataFromBackend;
 
 describe('CulturalPlacesList', () => {
   const renderWithProviders = (component: React.ReactElement) =>

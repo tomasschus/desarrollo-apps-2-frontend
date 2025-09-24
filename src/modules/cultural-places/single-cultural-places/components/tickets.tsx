@@ -15,7 +15,7 @@ import {
   FaUserTie,
 } from 'react-icons/fa';
 import { Tooltip } from '../../../../components/ui/tooltip';
-import { useAuth } from '../../../../contexts/auth-context';
+import { useAuth } from '../../../../core/contexts/auth-context';
 import { formatMoney } from '../../../../utils/money.utils';
 
 interface TicketsProps {

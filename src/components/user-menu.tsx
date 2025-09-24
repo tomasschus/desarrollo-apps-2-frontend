@@ -2,7 +2,7 @@ import { Button, Menu, Portal, Text } from '@chakra-ui/react';
 import { FiLogOut, FiUser } from 'react-icons/fi';
 import { MdConfirmationNumber } from 'react-icons/md';
 import { Link } from 'react-router';
-import { useAuth } from '../contexts/auth-context';
+import { useAuth } from '../core/contexts/auth-context';
 
 export const UserMenu = () => {
   const { user, logout } = useAuth();

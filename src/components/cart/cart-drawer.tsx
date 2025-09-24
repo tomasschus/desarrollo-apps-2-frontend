@@ -10,7 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { FiMinus, FiPlus, FiShoppingCart, FiTrash2, FiX } from 'react-icons/fi';
-import { useCart } from '../../contexts/cart-context';
+import { useCart } from '../../core/contexts/cart-context';
 import { formatIsoDate } from '../../utils/date.utils';
 
 interface CartDrawerProps {
@@ -32,14 +32,6 @@ export const CartDrawer = ({
       style: 'currency',
       currency: 'ARS',
     }).format(amount);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('es-AR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
   };
 
   return (

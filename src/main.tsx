@@ -6,9 +6,9 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import { ConfettiRenderer } from './components/confetti-renderer.tsx';
 import { Provider } from './components/ui/provider.tsx';
-import { AuthProvider } from './contexts/auth-context.tsx';
-import { CartProvider } from './contexts/cart-context.tsx';
-import { ConfettiProvider } from './contexts/confetti-context.tsx';
+import { AuthProvider } from './core/contexts/auth-context.tsx';
+import { CartProvider } from './core/contexts/cart-context.tsx';
+import { ConfettiProvider } from './core/contexts/confetti-context.tsx';
 
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';

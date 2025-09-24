@@ -1,7 +1,7 @@
 import { Button, Heading, HStack, Icon, Stack } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../../core/hooks/useGetDataFromBackend';
 import { CreateEventModal } from './components/create-event-modal';
 import { EditEventModal } from './components/edit-event-modal';
 import { EventList } from './components/event-list';

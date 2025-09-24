@@ -1,6 +1,6 @@
 import { Badge, Box, IconButton } from '@chakra-ui/react';
 import { FiShoppingCart } from 'react-icons/fi';
-import { useCart } from '../../contexts/cart-context';
+import { useCart } from '../../core/contexts/cart-context';
 
 interface CartButtonProps {
   onClick: () => void;

@@ -1,13 +1,13 @@
 import { act, render, screen } from '@testing-library/react';
 import { toaster } from '../../components/ui/toaster';
-import { useAuth } from '../../contexts/auth-context';
-import { CartProvider, useCart } from '../../contexts/cart-context';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import { useAuth } from '../../core/contexts/auth-context';
+import { CartProvider, useCart } from '../../core/contexts/cart-context';
+import useLocalStorage from '../../core/hooks/useLocalStorage';
 
 // Mock dependencies
-jest.mock('../../contexts/auth-context');
-jest.mock('../components/ui/toaster');
-jest.mock('../../hooks/useLocalStorage');
+jest.mock('../../core/contexts/auth-context');
+jest.mock('../../core/components/ui/toaster');
+jest.mock('../../core/hooks/useLocalStorage');
 
 const mockUseAuth = useAuth as jest.MockedFunction<typeof useAuth>;
 const mockUseLocalStorage = useLocalStorage as jest.MockedFunction<

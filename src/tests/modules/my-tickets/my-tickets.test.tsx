@@ -10,7 +10,7 @@ jest.mock('../../../contexts/auth-context', () => ({
 }));
 
 // Mock hook
-jest.mock('../../../hooks/useGetDataFromBackend', () => ({
+jest.mock('../../../core/hooks/useGetDataFromBackend', () => ({
   useGetDataFromBackend: jest.fn(),
 }));
 
@@ -28,7 +28,7 @@ jest.mock('react-router', () => ({
 
 const mockUseAuth = require('../../../contexts/auth-context').useAuth;
 const mockUseGetDataFromBackend =
-  require('../../../hooks/useGetDataFromBackend').useGetDataFromBackend;
+  require('../../../core/hooks/useGetDataFromBackend').useGetDataFromBackend;
 
 describe('MyTicketsPage', () => {
   const renderWithProviders = (component: React.ReactElement) =>

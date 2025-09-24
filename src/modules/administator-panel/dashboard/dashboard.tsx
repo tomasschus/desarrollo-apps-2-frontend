@@ -1,7 +1,7 @@
 import { Grid, Heading, Stack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { LoadingIndicator } from '../../../components/ui/loading-indicator';
-import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../../core/hooks/useGetDataFromBackend';
 import { QuickActions } from './components/quick-actions';
 import { RecentActivity } from './components/recent-activity';
 import { StatsCards } from './components/stats-cards';

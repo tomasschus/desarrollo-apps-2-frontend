@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FiEdit, FiGlobe, FiMapPin, FiPhone, FiTrash2 } from 'react-icons/fi';
-import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
 import { deleteCulturalPlace } from '../cultural-places.api';
 import { getCategoryColor } from '../cultural-places.utils';
 import { EditCulturalPlaceModal } from './edit-cultural-place-modal';

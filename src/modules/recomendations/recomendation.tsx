@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { RouteMap } from '../../components/route-map/route-map';
 import { LoadingIndicator } from '../../components/ui/loading-indicator';
-import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 import type {
   RecomendationRequest,
   RecomendationResponse,

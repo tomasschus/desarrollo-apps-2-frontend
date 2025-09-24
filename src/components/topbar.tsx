@@ -11,7 +11,7 @@ import {
 import { useState } from 'react';
 import { FiHeart, FiSearch, FiUser } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router';
-import { useAuth } from '../contexts/auth-context';
+import { useAuth } from '../core/contexts/auth-context';
 import { FestivalAnnouncement } from '../modules/festival-announcement/festival-announcement';
 import { RecomendationModal } from '../modules/recomendations/recomendation-modal';
 import { CartButton } from './cart/cart-button';

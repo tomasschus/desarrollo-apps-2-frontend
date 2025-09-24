@@ -1,7 +1,7 @@
 import { Badge, Box, Button, Grid, HStack, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { toaster } from '../../../../components/ui/toaster';
-import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
 import { formatIsoDate } from '../../../../utils/date.utils';
 import { formatMoney } from '../../../../utils/money.utils';
 import type { Ticket } from '../tickets.api';

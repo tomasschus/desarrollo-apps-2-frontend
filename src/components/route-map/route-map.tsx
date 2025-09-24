@@ -19,7 +19,7 @@ import {
   TileLayer,
   type MapContainerProps,
 } from 'react-leaflet';
-import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 import {
   decodeRoutePoints,
   optimizeRouteOrder,
