@@ -1,6 +1,6 @@
 import { Box, Button, Card, Flex, Stack, Text } from '@chakra-ui/react';
 import type { CartItem } from '../../../core/contexts/cart-context';
-import { formatMoney } from '../../../utils/money.utils';
+import { formatMoney } from '../../../core/utils/money.utils';
 
 interface OrderSummaryProps {
   items: CartItem[];

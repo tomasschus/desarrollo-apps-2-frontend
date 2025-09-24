@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
 import { useNavigate } from 'react-router';
 import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
-import { formatIsoDate, isLessThanOneWeek } from '../../utils/date.utils';
+import { formatIsoDate, isLessThanOneWeek } from '../../core/utils/date.utils';
 import { getActiveEvents } from './festival-announcement.api';
 
 // Definimos la animación de pulso

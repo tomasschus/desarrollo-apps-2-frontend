@@ -1,9 +1,5 @@
 import { Button, Dialog, Stack, Text } from '@chakra-ui/react';
-import {
-  useAuth,
-  UserRole,
-  type UserRoleType,
-} from '../contexts/auth-context';
+import { useAuth, UserRole, type UserRoleType } from '../contexts/auth-context';
 
 interface LoginModalProps {
   isOpen: boolean;

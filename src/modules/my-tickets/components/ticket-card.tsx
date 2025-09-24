@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
 import { MdConfirmationNumber, MdQrCode } from 'react-icons/md';
 import { Link } from 'react-router';
-import { formatIsoDate } from '../../../utils/date.utils';
+import { formatIsoDate } from '../../../core/utils/date.utils';
 import type { PopulatedEvent, Ticket } from '../my-tickets.api';
 import {
   getStatusColor,

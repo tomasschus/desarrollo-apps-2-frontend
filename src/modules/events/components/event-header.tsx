@@ -1,6 +1,6 @@
 import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react';
 import { FaCalendarAlt, FaClock, FaStar } from 'react-icons/fa';
-import { formatIsoDate } from '../../../utils/date.utils';
+import { formatIsoDate } from '../../../core/utils/date.utils';
 
 interface EventHeaderProps {
   image: string;

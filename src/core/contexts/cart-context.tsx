@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { toaster } from '../components/ui/toaster';
 import useLocalStorage from '../../core/hooks/useLocalStorage';
+import { toaster } from '../components/ui/toaster';
 import { useAuth } from './auth-context';
 
 export interface CartItem {

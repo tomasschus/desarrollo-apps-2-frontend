@@ -12,7 +12,7 @@ import {
 import { FaCalendarAlt, FaClock } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router';
 import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
-import { formatIsoDate } from '../../../../utils/date.utils';
+import { formatIsoDate } from '../../../../core/utils/date.utils';
 import { getEventsByCulturalPlace } from '../cultural-places.api';
 
 interface Event {

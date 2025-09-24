@@ -25,7 +25,7 @@ import {
   optimizeRouteOrder,
   type RoutePoint,
   type RouteResponse,
-} from '../../../utils/routing';
+} from '../../utils/routing';
 import { getRoute } from './route-map.api';
 
 delete (L.Icon.Default.prototype as unknown as { _getIconUrl?: unknown })

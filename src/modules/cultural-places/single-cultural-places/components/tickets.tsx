@@ -16,7 +16,7 @@ import {
 } from 'react-icons/fa';
 import { Tooltip } from '../../../../core/components/ui/tooltip';
 import { useAuth } from '../../../../core/contexts/auth-context';
-import { formatMoney } from '../../../../utils/money.utils';
+import { formatMoney } from '../../../../core/utils/money.utils';
 
 interface TicketsProps {
   ticketPrices: {
