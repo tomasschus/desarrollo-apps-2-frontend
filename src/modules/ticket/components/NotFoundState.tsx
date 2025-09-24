@@ -43,10 +43,10 @@ export const NotFoundState = () => (
               src={error404Animation}
               loop
               autoplay
-              style={{ 
-                width: '100%', 
+              style={{
+                width: '100%',
                 height: '100%',
-                filter: 'brightness(1.2) contrast(1.1) hue-rotate(30deg)'
+                filter: 'brightness(1.2) contrast(1.1) hue-rotate(30deg)',
               }}
             />
           </Box>

@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Heading,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useNavigate } from 'react-router';
 import error404Animation from '../../animations/Error404.lottie';
@@ -40,9 +34,9 @@ export const NotFoundPage = ({
               src={error404Animation}
               loop
               autoplay
-              style={{ 
-                width: '100%', 
-                height: '100%'
+              style={{
+                width: '100%',
+                height: '100%',
               }}
             />
           </Box>
@@ -67,7 +61,7 @@ export const NotFoundPage = ({
             >
               Ir al Inicio
             </Button>
-            
+
             {showBackButton && (
               <Button
                 variant="outline"

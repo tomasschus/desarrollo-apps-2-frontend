@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  Heading,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { Box, Button, Card, Heading, Text, VStack } from '@chakra-ui/react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import noDataAnimation from '../../animations/NoDataFound.lottie';
 
@@ -33,10 +26,10 @@ export const NoDataFound = ({
   const config = sizeConfig[size];
 
   return (
-    <Box 
-      display="flex" 
-      alignItems="center" 
-      justifyContent="center" 
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
       p={4}
       minH={size === 'lg' ? '60vh' : '40vh'}
     >
@@ -51,7 +44,10 @@ export const NoDataFound = ({
         bg="white"
       >
         <Card.Body p={size === 'lg' ? 10 : size === 'md' ? 8 : 6}>
-          <VStack gap={size === 'lg' ? 6 : size === 'md' ? 5 : 4} align="center">
+          <VStack
+            gap={size === 'lg' ? 6 : size === 'md' ? 5 : 4}
+            align="center"
+          >
             {/* Animación */}
             <Box
               w={config.animation}
@@ -64,23 +60,23 @@ export const NoDataFound = ({
                 src={noDataAnimation}
                 loop
                 autoplay
-                style={{ 
-                  width: '100%', 
-                  height: '100%'
+                style={{
+                  width: '100%',
+                  height: '100%',
                 }}
               />
             </Box>
 
             {/* Contenido */}
             <VStack gap={3} align="center" textAlign="center">
-              <Heading 
-                size={config.heading as any} 
-                color="blue.600" 
+              <Heading
+                size={config.heading as any}
+                color="blue.600"
                 fontWeight="bold"
               >
                 {title}
               </Heading>
-              
+
               <Text
                 color="gray.600"
                 fontSize={size === 'lg' ? 'lg' : 'md'}
@@ -94,7 +90,12 @@ export const NoDataFound = ({
             {/* Botón de acción opcional */}
             {actionLabel && onAction && (
               <>
-                <Box borderTop="1px solid" borderColor="gray.200" w="full" my={2} />
+                <Box
+                  borderTop="1px solid"
+                  borderColor="gray.200"
+                  w="full"
+                  my={2}
+                />
                 <Button
                   colorPalette="blue"
                   size={size === 'lg' ? 'lg' : 'md'}
