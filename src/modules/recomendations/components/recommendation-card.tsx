@@ -92,14 +92,14 @@ export const RecommendationCard = ({
         <Button
           size="sm"
           variant="outline"
-          onClick={() => navigate(`/eventos/${recommendation.id}`)}
+          onClick={() => navigate(`/evento/${recommendation.id}`)}
         >
           Ver detalles
         </Button>
         <Button
           size="sm"
           colorScheme="teal"
-          onClick={() => navigate(`/eventos/${recommendation.id}/comprar`)}
+          onClick={() => navigate(`/evento/${recommendation.id}`)}
         >
           Comprar entrada
         </Button>
