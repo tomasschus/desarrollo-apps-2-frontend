@@ -5,6 +5,15 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.lottie'],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://desarrollo-apps2-back-end.vercel.app',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
   build: {
     rollupOptions: {
       output: {

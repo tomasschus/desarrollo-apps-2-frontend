@@ -105,7 +105,13 @@ export const CreateCulturalPlaceModal = ({
   const { loading: creatingPlace, callback: onCreatePlace } =
     useGetDataFromBackend({
       url: createCulturalPlace(),
-      options: { method: 'POST', body: JSON.stringify(watch()) },
+      options: { 
+        method: 'POST', 
+        body: JSON.stringify({
+          ...watch(),
+          characteristics: watch().characteristics.map(char => char.value).filter(value => value.trim() !== '')
+        })
+      },
       onSuccess: () => {
         toaster.create({
           type: 'success',
