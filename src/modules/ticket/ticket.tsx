@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
 
@@ -26,22 +25,16 @@ export const TicketPage = () => {
     executeAutomatically: !!id,
   });
 
-  const { callback: useTicketCallback } = useGetDataFromBackend<TicketData>({
+  useGetDataFromBackend<TicketData>({
     url: useTicket(id!),
     options: {
       method: 'PATCH',
     },
-    executeAutomatically: false,
+    executeAutomatically: Boolean(ticket && ticket.status === 'active'),
     onSuccess: (_updatedTicket) => {
       fetchTicketInfo();
     },
   });
-
-  useEffect(() => {
-    if (ticket && ticket.status === 'active') {
-      useTicketCallback();
-    }
-  }, [ticket, useTicketCallback]);
 
   if (loading) return <LoadingState />;
 

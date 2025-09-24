@@ -103,7 +103,7 @@ jobs:
         run: |
           # Renombrar Dockerfile.production a Dockerfile para CapRover
           mv deploy-package/Dockerfile.production deploy-package/Dockerfile
-          
+
           echo "📁 Archivos preparados para CapRover:"
           ls -la deploy-package/
 
