@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 // Mock de Chakra UI
 jest.mock('@chakra-ui/react', () =>
-  require('../../../tests/__mocks__/@chakra-ui__react')
+  require('../../__mocks__/@chakra-ui__react')
 );
 
 // Mock del contexto de carrito
@@ -18,7 +18,7 @@ const mockCartContext = {
   getItemQuantity: jest.fn(),
 };
 
-jest.mock('../../contexts/cart-context', () => ({
+jest.mock('../../../core/contexts/cart-context', () => ({
   useCart: () => mockCartContext,
 }));
 

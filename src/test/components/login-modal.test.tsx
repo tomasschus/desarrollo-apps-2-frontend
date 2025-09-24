@@ -2,12 +2,12 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 // Mock de Chakra UI
 jest.mock('@chakra-ui/react', () =>
-  require('../../tests/__mocks__/@chakra-ui__react')
+  require('../../__mocks__/@chakra-ui__react')
 );
 
 // Mock del contexto de autenticación
 const mockLogin = jest.fn();
-jest.mock('../contexts/auth-context', () => ({
+jest.mock('../../core/contexts/auth-context', () => ({
   useAuth: () => ({
     login: mockLogin,
   }),

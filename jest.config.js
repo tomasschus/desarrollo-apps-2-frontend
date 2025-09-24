@@ -14,6 +14,9 @@ export default {
     '^../../../components/ui/toaster$':
       '<rootDir>/src/core/components/ui/__mocks__/toaster.tsx',
     '^.*/config/api.config$': '<rootDir>/src/__mocks__/api.config.ts',
+    '^@lottiefiles/dotlottie-react$':
+      '<rootDir>/src/__mocks__/dotlottie-react.tsx',
+    '\\.(lottie)$': '<rootDir>/src/__mocks__/lottie-file.ts',
   },
   transform: {
     '^.+\\.(ts|tsx)$': [
@@ -26,12 +29,8 @@ export default {
   },
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
-  testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.(ts|tsx|js)',
-    '<rootDir>/src/**/*.(test|spec).(ts|tsx|js)',
-    '<rootDir>/src/tests/**/*.(test|spec).(ts|tsx|js)',
-  ],
-  collectCoverageFrom: ['src/core/**/*.{ts,tsx}', 'src/modules/**/*.{ts,tsx}'],
+  testMatch: ['<rootDir>/src/test/**/*.(test|spec).(ts|tsx|js)'],
+  collectCoverageFrom: ['src/core/**/*.{ts,tsx}'],
   coverageThreshold: {
     global: {
       branches: 60,

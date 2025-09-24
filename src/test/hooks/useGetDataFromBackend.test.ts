@@ -1,10 +1,10 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import axios from 'axios';
-import { useGetDataFromBackend } from '../useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 
 // Mock dependencies
 jest.mock('axios');
-jest.mock('../../contexts/auth-context', () => ({
+jest.mock('../../core/contexts/auth-context', () => ({
   useAuth: () => ({
     role: 'user',
     user: null,
@@ -18,14 +18,14 @@ jest.mock('../../contexts/auth-context', () => ({
   }),
 }));
 
-jest.mock('../../components/ui/toaster', () => ({
+jest.mock('../../core/components/ui/toaster', () => ({
   toaster: {
     create: jest.fn(),
   },
 }));
 
 // Importar el toaster mock después de configurarlo
-import { toaster } from '../../components/ui/toaster';
+import { toaster } from '../../core/components/ui/toaster';
 
 const mockedAxios = axios as jest.MockedFunction<typeof axios>;
 const mockToasterCreate = toaster.create as jest.MockedFunction<
@@ -204,8 +204,11 @@ describe('useGetDataFromBackend', () => {
         await result.current.callback();
       });
 
+      await waitFor(() => {
+        expect(result.current.loading).toBe(false);
+      });
+
       expect(result.current.data).toBe(null);
-      expect(result.current.loading).toBe(false);
       expect(result.current.error).toBe('Network Error');
       expect(mockToasterCreate).toHaveBeenCalledWith({
         title: 'Error',
@@ -232,6 +235,10 @@ describe('useGetDataFromBackend', () => {
 
       await act(async () => {
         await result.current.callback();
+      });
+
+      await waitFor(() => {
+        expect(result.current.loading).toBe(false);
       });
 
       expect(result.current.error).toBe('User not found');

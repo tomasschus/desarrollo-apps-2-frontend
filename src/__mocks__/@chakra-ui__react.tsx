@@ -117,3 +117,26 @@ export const Skeleton = ({ children, ...props }: any) => (
 export const Span = ({ children, ...props }: any) => (
   <span {...props}>{children}</span>
 );
+
+export const Card = {
+  Root: ({ children, ...props }: any) => (
+    <div data-testid="card-root" {...props}>
+      {children}
+    </div>
+  ),
+  Body: ({ children, ...props }: any) => (
+    <div data-testid="card-body" {...props}>
+      {children}
+    </div>
+  ),
+  Header: ({ children, ...props }: any) => (
+    <div data-testid="card-header" {...props}>
+      {children}
+    </div>
+  ),
+  Footer: ({ children, ...props }: any) => (
+    <div data-testid="card-footer" {...props}>
+      {children}
+    </div>
+  ),
+};

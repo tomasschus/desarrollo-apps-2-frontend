@@ -12,7 +12,7 @@ jest.mock('react-router', () => ({
 
 // Mock de Chakra UI
 jest.mock('@chakra-ui/react', () =>
-  require('../../tests/__mocks__/@chakra-ui__react')
+  require('../../__mocks__/@chakra-ui__react')
 );
 
 const mockUser = {

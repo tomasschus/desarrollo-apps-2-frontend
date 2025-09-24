@@ -1,4 +1,4 @@
-import { arraysACSV } from '../../../core/utils/csv';
+import { arraysACSV } from '../../../core/utils/csv.utils';
 import type { Ticket, TicketStats } from './tickets.api';
 
 export const getStatusColor = (status: string) => {
