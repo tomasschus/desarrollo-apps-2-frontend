@@ -1,7 +1,7 @@
 import { Badge, Box, Card, Flex, Stack, Text } from '@chakra-ui/react';
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 import type { CartItem } from '../../../contexts/cart-context';
-import { formatDate } from '../../../utils/date.utils';
+import { formatIsoDate } from '../../../utils/date.utils';
 import { formatMoney } from '../../../utils/money.utils';
 
 interface CheckoutItemProps {
@@ -26,7 +26,9 @@ export const CheckoutItem = ({ item }: CheckoutItemProps) => {
 
               <Flex align="center" gap={2} color="gray.600">
                 <FaCalendarAlt size={14} />
-                <Text fontSize="sm">{formatDate(item.eventDate)}</Text>
+                <Text fontSize="sm">
+                  {formatIsoDate(item.eventDate, { utc: true })}
+                </Text>
               </Flex>
 
               <Flex align="center" gap={2} color="gray.600">

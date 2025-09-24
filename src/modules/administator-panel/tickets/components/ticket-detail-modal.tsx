@@ -8,7 +8,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { formatDate } from '../../../../utils/date.utils';
+import { formatIsoDate } from '../../../../utils/date.utils';
 import { formatMoney } from '../../../../utils/money.utils';
 import type { Ticket } from '../tickets.api';
 import {
@@ -180,7 +180,7 @@ export const TicketDetailModal = ({
                     Fecha de Compra
                   </Text>
                   <Text fontSize="sm" color="gray.700">
-                    {formatDate(ticket.createdAt)}
+                    {formatIsoDate(ticket.createdAt)}
                   </Text>
                 </Box>
 
@@ -196,7 +196,7 @@ export const TicketDetailModal = ({
                     Última Actualización
                   </Text>
                   <Text fontSize="sm" color="gray.700">
-                    {formatDate(ticket.updatedAt)}
+                    {formatIsoDate(ticket.updatedAt)}
                   </Text>
                 </Box>
               </Grid>

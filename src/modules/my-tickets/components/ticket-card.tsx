@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
 import { MdConfirmationNumber, MdQrCode } from 'react-icons/md';
 import { Link } from 'react-router';
-import { formatDate, formatIsoDate } from '../../../utils/date.utils';
+import { formatIsoDate } from '../../../utils/date.utils';
 import type { PopulatedEvent, Ticket } from '../my-tickets.api';
 import {
   getStatusColor,
@@ -178,7 +178,9 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                 </Flex>
                 <Flex align="center" gap={2} color="gray.600">
                   <FiCalendar size={14} />
-                  <Text fontSize="sm">{formatDate(eventData!.date)}</Text>
+                  <Text fontSize="sm">
+                    {formatIsoDate(eventData!.date, { utc: true })}
+                  </Text>
                 </Flex>
                 <Flex align="center" gap={2} color="gray.600">
                   <FiClock size={14} />
@@ -210,7 +212,9 @@ export const TicketCard = ({ ticket }: TicketCardProps) => {
                   <Box w={2} h={2} bg="purple.400" borderRadius="full" />
                   <Text fontSize="sm" color="gray.600">
                     Comprado:{' '}
-                    {formatDate(ticket.createdAt || ticket.purchaseDate)}
+                    {formatIsoDate(ticket.createdAt || ticket.purchaseDate, {
+                      utc: true,
+                    })}
                   </Text>
                 </Flex>
               </Stack>

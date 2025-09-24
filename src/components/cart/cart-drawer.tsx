@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { FiMinus, FiPlus, FiShoppingCart, FiTrash2, FiX } from 'react-icons/fi';
 import { useCart } from '../../contexts/cart-context';
+import { formatIsoDate } from '../../utils/date.utils';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -128,7 +129,7 @@ export const CartDrawer = ({
                           {item.culturalPlaceName}
                         </Text>
                         <Text fontSize="sm" color="gray.500">
-                          {formatDate(item.eventDate)} - {item.eventTime}
+                          {formatIsoDate(item.eventDate)} - {item.eventTime}
                         </Text>
                       </Box>
 

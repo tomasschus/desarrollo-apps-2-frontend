@@ -2,7 +2,7 @@ import { Badge, Box, Button, Grid, HStack, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { toaster } from '../../../../components/ui/toaster';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
-import { formatDate } from '../../../../utils/date.utils';
+import { formatIsoDate } from '../../../../utils/date.utils';
 import { formatMoney } from '../../../../utils/money.utils';
 import type { Ticket } from '../tickets.api';
 import { cancelTicket } from '../tickets.api';
@@ -176,7 +176,7 @@ export const TicketCard = ({ ticket, onTicketUpdate }: TicketCardProps) => {
               Fecha Compra
             </Text>
             <Text fontSize="sm" fontWeight="medium" color="gray.700">
-              {formatDate(ticket.createdAt)}
+              {formatIsoDate(ticket.createdAt)}
             </Text>
           </Box>
 

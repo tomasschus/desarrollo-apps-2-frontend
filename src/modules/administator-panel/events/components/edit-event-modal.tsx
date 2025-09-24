@@ -14,7 +14,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
 import { toaster } from '../../../../components/ui/toaster';
 import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
-import { formatDate } from '../../../../utils/date.utils';
+import { formatIsoDate } from '../../../../utils/date.utils';
 import { updateEvent, type Event, type EventFormData } from '../events.api';
 
 interface EditEventModalProps {
@@ -39,7 +39,7 @@ export const EditEventModal = ({
             : event.culturalPlaceId,
         name: event.name,
         description: event.description,
-        date: formatDate(event.date, undefined, 'YYYY-MM-DD'),
+        date: formatIsoDate(event.date, { utc: true, format: 'YYYY-MM-DD' }),
         time: event.time,
         isActive: event.isActive,
         ticketTypes: event.ticketTypes,
