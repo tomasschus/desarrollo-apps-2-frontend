@@ -17,35 +17,9 @@ import { useAuth } from '../contexts/auth-context';
 import { CartButton } from './cart/cart-button';
 import { CartDrawer } from './cart/cart-drawer';
 import { LoginModal } from './login-modal';
+import { culturalCategories } from './topbar-categories';
 import { MobileMenu } from './topbar-mobile-menu';
 import { UserMenu } from './user-menu';
-
-const culturalCategories = [
-  {
-    name: 'Arte',
-    filter: (event: string) => event === 'Arte',
-  },
-  {
-    name: 'Música',
-    filter: (event: string) => event === 'Música',
-  },
-  {
-    name: 'Cine',
-    filter: (event: string) => event === 'Cine',
-  },
-  {
-    name: 'Teatro',
-    filter: (event: string) => event === 'Teatro',
-  },
-  {
-    name: 'Eventos',
-    to: '/eventos',
-  },
-  {
-    name: 'Recomendaciones ✨',
-    to: '/recomendaciones',
-  },
-];
 
 export const Topbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -177,7 +151,7 @@ export const Topbar = () => {
             <MobileMenu
               isOpen={menuOpen}
               onClose={() => setMenuOpen(false)}
-              categories={culturalCategories}
+              setWhatToDoModalOpen={setWhatToDoModalOpen}
             />
           </Flex>
         </Flex>

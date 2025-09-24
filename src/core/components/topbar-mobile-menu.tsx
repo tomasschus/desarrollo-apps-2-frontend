@@ -1,48 +1,19 @@
 import { Button, Drawer, Separator, Stack, Text } from '@chakra-ui/react';
-import {
-  FiCamera,
-  FiHeart,
-  FiMapPin,
-  FiMusic,
-  FiSearch,
-  FiStar,
-  FiTarget,
-  FiUsers,
-} from 'react-icons/fi';
+import { FiHeart, FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router';
+import { culturalCategories } from './topbar-categories';
 
-interface MobileMenuProps {
+export interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  categories: {
-    name: string;
-    to?: string;
-  }[];
+  setWhatToDoModalOpen: (open: boolean) => void;
 }
 
 export const MobileMenu = ({
   isOpen,
   onClose,
-  categories,
+  setWhatToDoModalOpen,
 }: MobileMenuProps) => {
-  const getCategoryIcon = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'arte':
-        return <FiStar />;
-      case 'música':
-        return <FiMusic />;
-      case 'cine':
-        return <FiCamera />;
-      case 'teatro':
-        return <FiUsers />;
-      case 'eventos':
-        return <FiMapPin />;
-      case 'recomendaciones':
-        return <FiTarget />;
-      default:
-        return <FiStar />;
-    }
-  };
   return (
     <Drawer.Root
       open={isOpen}
@@ -88,6 +59,7 @@ export const MobileMenu = ({
                   justifyContent="flex-start"
                   w="full"
                   _hover={{ bg: 'brand.50' }}
+                  onClick={() => setWhatToDoModalOpen(true)}
                 >
                   <FiSearch /> Que hacer hoy
                 </Button>
@@ -109,7 +81,7 @@ export const MobileMenu = ({
                 <Text fontWeight="bold" fontSize="lg" color="brand.600" mb={2}>
                   Categorías
                 </Text>
-                {categories.map((category) => {
+                {culturalCategories.map((category) => {
                   if (category.to) {
                     return (
                       <Link key={category.name} to={category.to}>
@@ -124,7 +96,7 @@ export const MobileMenu = ({
                           onClick={onClose}
                           _hover={{ bg: 'brand.50', color: 'brand.600' }}
                         >
-                          {getCategoryIcon(category.name)} {category.name}
+                          {category.icon} {category.name}
                         </Button>
                       </Link>
                     );
@@ -143,7 +115,7 @@ export const MobileMenu = ({
                       onClick={onClose}
                       _hover={{ bg: 'brand.50', color: 'brand.600' }}
                     >
-                      {getCategoryIcon(category.name)} {category.name}
+                      {category.icon} {category.name}
                     </Button>
                   );
                 })}
