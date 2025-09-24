@@ -92,11 +92,19 @@ jobs:
           ls -lh deploy.tar
 
       - name: Verify deploy.tar position
-        run: ls -la # 👈 asegurarse de que esté en la raíz
+        run: ls -la
 
-      - name: Deploy to CapRover
-        uses: caprover/deploy-from-github@v1.1.2
-        with:
-          server: ${{ secrets.CAPROVER_SERVER }}
-          app: ${{ secrets.APP_NAME }}
-          token: ${{ secrets.APP_TOKEN }}
+      - name: Install CapRover CLI
+        run: npm install -g caprover
+
+      - name: Deploy with CapRover CLI
+        env:
+          CAPROVER_SERVER: ${{ secrets.CAPROVER_SERVER }}
+          APP_TOKEN: ${{ secrets.APP_TOKEN }}
+          APP_NAME: ${{ secrets.APP_NAME }}
+        run: |
+          caprover deploy \
+            -h ${{ secrets.CAPROVER_SERVER }} \
+            -p ${{ secrets.APP_TOKEN }} \
+            -a ${{ secrets.APP_NAME }} \
+            -t deploy.tar
