@@ -1,7 +1,7 @@
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
-import { AdminSidebar } from '../../components/admin-sidebar';
+import { AdminSidebar } from '../../core/components/admin-sidebar';
 
 // Mock react-icons
 jest.mock('react-icons/fi', () => ({

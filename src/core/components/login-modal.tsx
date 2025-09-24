@@ -3,7 +3,7 @@ import {
   useAuth,
   UserRole,
   type UserRoleType,
-} from '../core/contexts/auth-context';
+} from '../contexts/auth-context';
 
 interface LoginModalProps {
   isOpen: boolean;

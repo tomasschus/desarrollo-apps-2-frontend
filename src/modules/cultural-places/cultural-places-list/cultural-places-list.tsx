@@ -11,8 +11,8 @@ import {
 } from '@chakra-ui/react';
 import { FiMapPin } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
-import { LoadingIndicator } from '../../../components/ui/loading-indicator';
-import { TruncatedText } from '../../../components/ui/truncated-text';
+import { LoadingIndicator } from '../../../core/components/ui/loading-indicator';
+import { TruncatedText } from '../../../core/components/ui/truncated-text';
 import { useGetDataFromBackend } from '../../../core/hooks/useGetDataFromBackend';
 import { getCulturalPlaces } from './cultural-places-list.api';
 

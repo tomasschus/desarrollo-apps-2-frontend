@@ -21,7 +21,7 @@ import {
   FiUsers,
 } from 'react-icons/fi';
 import { Link } from 'react-router';
-import { version } from '../../package.json';
+import { version } from '../../../package.json';
 
 interface AdminSidebarProps {
   activeSection?: string;

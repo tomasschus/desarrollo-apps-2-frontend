@@ -1,7 +1,7 @@
 import { Container, Flex, Stack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { toaster } from '../../components/ui/toaster';
+import { toaster } from '../../core/components/ui/toaster';
 import { useAuth } from '../../core/contexts/auth-context';
 import { useCart } from '../../core/contexts/cart-context';
 import { useConfetti } from '../../core/contexts/confetti-context';

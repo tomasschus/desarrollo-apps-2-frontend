@@ -14,7 +14,7 @@ import {
   FaUsers,
   FaUserTie,
 } from 'react-icons/fa';
-import { Tooltip } from '../../../../components/ui/tooltip';
+import { Tooltip } from '../../../../core/components/ui/tooltip';
 import { useAuth } from '../../../../core/contexts/auth-context';
 import { formatMoney } from '../../../../utils/money.utils';
 

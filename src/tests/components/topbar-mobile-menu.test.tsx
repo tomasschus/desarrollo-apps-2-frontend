@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
-import { MobileMenu } from '../../components/topbar-mobile-menu';
+import { MobileMenu } from '../../core/components/topbar-mobile-menu';
 
 describe('MobileMenu', () => {
   const renderWithProviders = (component: React.ReactElement) =>

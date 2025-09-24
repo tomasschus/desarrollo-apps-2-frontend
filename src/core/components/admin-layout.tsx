@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
-import { useAuth } from '../core/contexts/auth-context';
+import { useAuth } from '../contexts/auth-context';
 import { AdminSidebar } from './admin-sidebar';
 
 export const AdminLayout = ({ children }: { children?: React.ReactNode }) => {

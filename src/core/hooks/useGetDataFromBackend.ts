@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { toaster } from '../../components/ui/toaster';
+import { toaster } from '../components/ui/toaster';
 import { useAuth } from '../contexts/auth-context';
 
 interface UseApiRequestOptions {

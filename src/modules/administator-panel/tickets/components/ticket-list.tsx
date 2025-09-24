@@ -1,5 +1,5 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
-import { LoadingIndicator } from '../../../../components/ui/loading-indicator';
+import { LoadingIndicator } from '../../../../core/components/ui/loading-indicator';
 import type { Ticket } from '../tickets.api';
 import { TicketCard } from './ticket-card';
 

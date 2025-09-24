@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { UserMenu } from '../../components/user-menu';
+import { UserMenu } from '../../core/components/user-menu';
 import { useAuth } from '../../core/contexts/auth-context';
 
 // Mock dependencies

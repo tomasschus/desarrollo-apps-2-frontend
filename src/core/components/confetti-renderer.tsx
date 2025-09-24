@@ -1,5 +1,5 @@
 import Confetti from 'react-confetti';
-import { useConfetti } from '../core/contexts/confetti-context';
+import { useConfetti } from '../contexts/confetti-context';
 
 export const ConfettiRenderer: React.FC = () => {
   const { showConfetti } = useConfetti();

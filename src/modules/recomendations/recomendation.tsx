@@ -9,8 +9,8 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { RouteMap } from '../../components/route-map/route-map';
-import { LoadingIndicator } from '../../components/ui/loading-indicator';
+import { RouteMap } from '../../core/components/route-map/route-map';
+import { LoadingIndicator } from '../../core/components/ui/loading-indicator';
 import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 import type {
   RecomendationRequest,

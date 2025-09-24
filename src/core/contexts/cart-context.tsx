@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { toaster } from '../../components/ui/toaster';
+import { toaster } from '../components/ui/toaster';
 import useLocalStorage from '../../core/hooks/useLocalStorage';
 import { useAuth } from './auth-context';
 

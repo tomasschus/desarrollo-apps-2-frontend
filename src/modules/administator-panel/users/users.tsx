@@ -1,6 +1,6 @@
 import { Box, EmptyState, Heading, Stack, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { LoadingIndicator } from '../../../components/ui/loading-indicator';
+import { LoadingIndicator } from '../../../core/components/ui/loading-indicator';
 import { useGetDataFromBackend } from '../../../core/hooks/useGetDataFromBackend';
 import { UserFilters } from './components/user-filters';
 import { UserList } from './components/user-list';

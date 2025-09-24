@@ -1,8 +1,8 @@
 import {
   GRAPHHOPPER_API_KEY,
   GRAPHHOPPER_URL,
-} from '../../core/config/api.config';
-import { optimizeRouteOrder, type RoutePoint } from '../../utils/routing';
+} from '../../config/api.config';
+import { optimizeRouteOrder, type RoutePoint } from '../../../utils/routing';
 
 export const getRoute = (
   points: RoutePoint[],

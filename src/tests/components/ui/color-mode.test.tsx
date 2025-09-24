@@ -9,7 +9,7 @@ import {
   ColorModeButton,
   LightMode,
   DarkMode,
-} from '../../../components/ui/color-mode';
+} from '../../../core/components/ui/color-mode';
 
 // Mock next-themes
 jest.mock('next-themes', () => ({

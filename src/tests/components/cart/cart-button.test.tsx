@@ -2,7 +2,7 @@
 jest.mock('../../../contexts/cart-context');
 
 import { fireEvent, render, screen } from '@testing-library/react';
-import { CartButton } from '../../../components/cart/cart-button';
+import { CartButton } from '../../../core/components/cart/cart-button';
 import { useCart } from '../../../core/contexts/cart-context';
 jest.mock('@chakra-ui/react', () => ({
   Box: ({ children, ...props }: any) => <div {...props}>{children}</div>,

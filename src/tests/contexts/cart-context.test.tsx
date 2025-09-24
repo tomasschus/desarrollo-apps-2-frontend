@@ -1,5 +1,5 @@
 import { act, render, screen } from '@testing-library/react';
-import { toaster } from '../../components/ui/toaster';
+import { toaster } from '../../core/components/ui/toaster';
 import { useAuth } from '../../core/contexts/auth-context';
 import { CartProvider, useCart } from '../../core/contexts/cart-context';
 import useLocalStorage from '../../core/hooks/useLocalStorage';

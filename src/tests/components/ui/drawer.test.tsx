@@ -12,7 +12,7 @@ import {
   DrawerBody,
   DrawerFooter,
   Drawer,
-} from '../../../components/ui/drawer';
+} from '../../../core/components/ui/drawer';
 
 describe('Drawer', () => {
   const renderWithProviders = (component: React.ReactElement) =>

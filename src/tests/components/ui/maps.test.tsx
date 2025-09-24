@@ -1,7 +1,7 @@
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
 import { render, screen } from '@testing-library/react';
-import { Maps } from '../../../components/ui/maps';
-import { MapsMultiple } from '../../../components/ui/maps-multiple';
+import { Maps } from '../../../core/components/ui/maps';
+import { MapsMultiple } from '../../../core/components/ui/maps-multiple';
 
 // Mock react-leaflet
 jest.mock('react-leaflet', () => ({

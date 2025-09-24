@@ -10,8 +10,8 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { FiMinus, FiPlus, FiShoppingCart, FiTrash2, FiX } from 'react-icons/fi';
-import { useCart } from '../../core/contexts/cart-context';
-import { formatIsoDate } from '../../utils/date.utils';
+import { useCart } from '../../contexts/cart-context';
+import { formatIsoDate } from '../../../utils/date.utils';
 
 interface CartDrawerProps {
   isOpen: boolean;

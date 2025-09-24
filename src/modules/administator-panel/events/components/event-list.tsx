@@ -1,5 +1,5 @@
 import { Box, EmptyState, SimpleGrid, Text } from '@chakra-ui/react';
-import { LoadingIndicator } from '../../../../components/ui/loading-indicator';
+import { LoadingIndicator } from '../../../../core/components/ui/loading-indicator';
 import type { Event } from '../events.api';
 import { EventCard } from './event-card';
 
