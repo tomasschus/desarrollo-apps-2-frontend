@@ -14,8 +14,8 @@ import {
 import { useId } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
-import { toaster } from '../../../../components/ui/toaster';
-import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { toaster } from '../../../../core/components/ui/toaster';
+import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
 import { createCulturalPlace } from '../cultural-places.api';
 
 interface CulturalPlaceFormData {

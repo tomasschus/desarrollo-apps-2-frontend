@@ -8,8 +8,8 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { formatIsoDate } from '../../../../utils/date.utils';
-import { formatMoney } from '../../../../utils/money.utils';
+import { formatIsoDate } from '../../../../core/utils/date.utils';
+import { formatMoney } from '../../../../core/utils/money.utils';
 import type { Ticket } from '../tickets.api';
 import {
   getStatusColor,

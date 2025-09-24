@@ -6,7 +6,7 @@ jest.mock('../../../contexts/cart-context', () => ({
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { CartDrawer } from '../../../components/cart/cart-drawer';
+import { CartDrawer } from '../../../core/components/cart/cart-drawer';
 
 const mockUseCart = require('../../../contexts/cart-context').useCart;
 

@@ -2,8 +2,8 @@ import { Flex, Grid, Heading, Icon, Stack } from '@chakra-ui/react';
 import { useMemo, useState } from 'react';
 import { FiCalendar } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
-import { LoadingIndicator } from '../../components/ui/loading-indicator';
-import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { LoadingIndicator } from '../../core/components/ui/loading-indicator';
+import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 
 import { CalendarStats } from './components/calendar-stats';
 import { CalendarView } from './components/calendar-view';

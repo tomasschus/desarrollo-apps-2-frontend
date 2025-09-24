@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
-import { Tooltip } from '../../../components/ui/tooltip';
+import { Tooltip } from '../../../core/components/ui/tooltip';
 
 // Mock Portal
 jest.mock('@chakra-ui/react', () => {

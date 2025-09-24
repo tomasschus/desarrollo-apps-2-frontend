@@ -1,10 +1,10 @@
 import { Box, Grid, Stack, Text, VStack } from '@chakra-ui/react';
 import { FiXCircle } from 'react-icons/fi';
 import { useParams } from 'react-router';
-import { LoadingIndicator } from '../../components/ui/loading-indicator';
-import { Maps } from '../../components/ui/maps';
-import { useAuth } from '../../contexts/auth-context';
-import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { LoadingIndicator } from '../../core/components/ui/loading-indicator';
+import { Maps } from '../../core/components/ui/maps';
+import { useAuth } from '../../core/contexts/auth-context';
+import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 import { CulturalPlaceInfo } from './components/cultural-place-info';
 import { EventAbout } from './components/event-about';
 import { EventCalendar } from './components/event-calendar';

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useNavigate } from 'react-router';
-import { Topbar } from '../../components/topbar';
-import { useAuth } from '../../contexts/auth-context';
+import { Topbar } from '../../core/components/topbar';
+import { useAuth } from '../../core/contexts/auth-context';
 
 // Mock dependencies
 jest.mock('../../contexts/auth-context');

@@ -4,8 +4,8 @@ jest.mock('../../../../utils/date.utils', () => ({
 }));
 
 import { render, screen } from '@testing-library/react';
+import { formatIsoDate } from '../../../../core/utils/date.utils';
 import { EventHeader } from '../../../../modules/events/components/event-header';
-import { formatIsoDate } from '../../../../utils/date.utils';
 
 // Mock Chakra UI components
 jest.mock('@chakra-ui/react', () => ({

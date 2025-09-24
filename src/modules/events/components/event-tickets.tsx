@@ -1,6 +1,6 @@
 import { Box, Button, Flex, HStack, Text, VStack } from '@chakra-ui/react';
 import { FaTicketAlt } from 'react-icons/fa';
-import { useCart } from '../../../contexts/cart-context';
+import { useCart } from '../../../core/contexts/cart-context';
 
 interface TicketType {
   type: string;

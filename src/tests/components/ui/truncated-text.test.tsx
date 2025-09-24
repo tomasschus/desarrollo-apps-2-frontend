@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
-import { TruncatedText } from '../../../components/ui/truncated-text';
+import { TruncatedText } from '../../../core/components/ui/truncated-text';
 
 describe('TruncatedText', () => {
   const renderWithProviders = (component: React.ReactElement) =>

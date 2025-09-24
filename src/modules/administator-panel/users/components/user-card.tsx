@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FiEdit, FiMail, FiTrash2, FiUser } from 'react-icons/fi';
-import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
 import type { User } from '../users.api';
 import { deleteUser } from '../users.api';
 import {

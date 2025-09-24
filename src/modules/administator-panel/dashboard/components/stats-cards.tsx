@@ -1,6 +1,6 @@
 import { Box, HStack, Icon, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 import { FiCalendar, FiFileText, FiMapPin, FiTrendingUp } from 'react-icons/fi';
-import { formatMoney } from '../../../../utils/money.utils';
+import { formatMoney } from '../../../../core/utils/money.utils';
 import type { DashboardStats } from '../dashboard.utils';
 
 export const StatsCards = ({ stats }: { stats: DashboardStats }) => {

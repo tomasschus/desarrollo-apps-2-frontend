@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router';
-import { Toaster } from './components/ui/toaster';
+import { Toaster } from './core/components/ui/toaster';
 import { router } from './routes';
 
 function App() {

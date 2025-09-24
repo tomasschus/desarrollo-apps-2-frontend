@@ -1,6 +1,6 @@
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
 import { render } from '@testing-library/react';
-import { Toaster, toaster } from '../../../components/ui/toaster';
+import { Toaster, toaster } from '../../../core/components/ui/toaster';
 
 // Mock Portal
 jest.mock('@chakra-ui/react', () => {

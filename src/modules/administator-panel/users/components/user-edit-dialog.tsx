@@ -9,8 +9,8 @@ import {
   createListCollection,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { toaster } from '../../../../components/ui/toaster';
-import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { toaster } from '../../../../core/components/ui/toaster';
+import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
 import type { UpdateUserData, User } from '../users.api';
 import { updateUser } from '../users.api';
 import { getStatusColor } from '../users.utils';

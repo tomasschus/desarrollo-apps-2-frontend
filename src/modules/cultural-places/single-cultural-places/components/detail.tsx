@@ -1,9 +1,9 @@
 import { Box, Grid, Stack, Text, VStack } from '@chakra-ui/react';
 import { FiXCircle } from 'react-icons/fi';
 import { useParams } from 'react-router';
-import { LoadingIndicator } from '../../../../components/ui/loading-indicator';
-import { Maps } from '../../../../components/ui/maps';
-import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { LoadingIndicator } from '../../../../core/components/ui/loading-indicator';
+import { Maps } from '../../../../core/components/ui/maps';
+import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
 import { getCulturalPlaceById } from '../cultural-places.api';
 import { About } from './about';
 import { Contact } from './contact';

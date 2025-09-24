@@ -1,6 +1,6 @@
 import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../../core/hooks/useGetDataFromBackend';
 import { TicketFilters } from './components/ticket-filters';
 import { TicketList } from './components/ticket-list';
 import { TicketStatsCards } from './components/ticket-stats-cards';

@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import axios from 'axios';
-import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 
 // Mock axios
 jest.mock('axios', () => ({

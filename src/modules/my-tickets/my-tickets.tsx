@@ -1,8 +1,8 @@
 import { Container, VStack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useAuth } from '../../contexts/auth-context';
-import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { useAuth } from '../../core/contexts/auth-context';
+import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 import {
   EmptyState,
   PageHeader,

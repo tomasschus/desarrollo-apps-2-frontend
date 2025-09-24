@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext, useState } from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useLocalStorage from '../../core/hooks/useLocalStorage';
 
 export const UserRole = {
   ADMIN: 'admin',

@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { lazy } from 'react';
-import { LazyPage } from '../../components/lazy-page';
+import { LazyPage } from '../../core/components/lazy-page';
 
 const MockLazyComponent = lazy(() =>
   Promise.resolve({ default: () => <div>Loaded Component</div> })

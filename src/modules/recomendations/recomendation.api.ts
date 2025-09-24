@@ -1,4 +1,4 @@
-import { N8N_API_BASE_URL } from '../../config/api.config';
+import { N8N_API_BASE_URL } from '../../core/config/api.config';
 
 export type RecomendationModalData = {
   activity: string;

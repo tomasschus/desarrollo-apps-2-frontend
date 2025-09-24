@@ -16,7 +16,7 @@ import {
   FiMapPin,
   FiTrash2,
 } from 'react-icons/fi';
-import { useGetDataFromBackend } from '../../../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../../../core/hooks/useGetDataFromBackend';
 import type { Event } from '../events.api';
 import { deleteEvent } from '../events.api';
 

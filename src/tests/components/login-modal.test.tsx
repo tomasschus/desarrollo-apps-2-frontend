@@ -1,7 +1,7 @@
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { LoginModal } from '../../components/login-modal';
-import { useAuth, UserRole } from '../../contexts/auth-context';
+import { LoginModal } from '../../core/components/login-modal';
+import { useAuth, UserRole } from '../../core/contexts/auth-context';
 
 // Mock dependencies
 jest.mock('../../contexts/auth-context');

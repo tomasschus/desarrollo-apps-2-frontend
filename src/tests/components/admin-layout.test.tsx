@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
-import { AdminLayout } from '../../components/admin-layout';
+import { AdminLayout } from '../../core/components/admin-layout';
 
 // Mock useNavigate and useLocation
 const mockNavigate = jest.fn();

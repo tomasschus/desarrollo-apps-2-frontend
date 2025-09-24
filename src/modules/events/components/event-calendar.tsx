@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../../../calendar-styles.css';
-import { formatIsoDate } from '../../../utils/date.utils';
+import { formatIsoDate } from '../../../core/utils/date.utils';
 
 interface EventCalendarProps {
   eventDate: string;

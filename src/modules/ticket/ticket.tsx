@@ -1,5 +1,5 @@
 import { useParams } from 'react-router';
-import { useGetDataFromBackend } from '../../hooks/useGetDataFromBackend';
+import { useGetDataFromBackend } from '../../core/hooks/useGetDataFromBackend';
 
 import { ErrorState } from './components/ErrorState';
 import { LoadingState } from './components/LoadingState';

@@ -11,8 +11,8 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import { LoadingIndicator } from '../../../components/ui/loading-indicator';
-import { useGetDataFromBackend } from '../../../hooks/useGetDataFromBackend';
+import { LoadingIndicator } from '../../../core/components/ui/loading-indicator';
+import { useGetDataFromBackend } from '../../../core/hooks/useGetDataFromBackend';
 import { CreateCulturalPlaceModal } from './components/create-cultural-place-modal';
 import { CulturalPlaceCard } from './components/cultural-place-card';
 import { getCulturalPlaces, type CulturalPlace } from './cultural-places.api';

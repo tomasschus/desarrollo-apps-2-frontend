@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router';
-import { AdminLayout } from './components/admin-layout';
-import { ScreenLayout } from './components/screen-layout';
+import { AdminLayout } from './core/components/admin-layout';
+import { ScreenLayout } from './core/components/screen-layout';
 
 // Importar rutas modulares
 import { adminRoutes } from './modules/administator-panel/admin.routes';

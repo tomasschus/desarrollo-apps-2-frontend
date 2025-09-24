@@ -9,7 +9,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
-import { formatIsoDate } from '../../../utils/date.utils';
+import { formatIsoDate } from '../../../core/utils/date.utils';
 import type { Event } from '../events-calendar.api';
 
 interface DayEventsModalProps {

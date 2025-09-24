@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { LoginButton } from '../../components/login-button';
+import { LoginButton } from '../../core/components/login-button';
 
 // Mock Chakra UI components simplemente
 jest.mock('@chakra-ui/react', () => ({
