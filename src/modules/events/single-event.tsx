@@ -84,6 +84,14 @@ export const SingleEvent = () => {
         <Grid templateColumns={{ base: '1fr', xl: '2fr 1fr' }} gap={6}>
           <VStack gap={6} align="stretch">
             <EventAbout description={event.description} />
+            <CulturalPlaceInfo
+              name={event.culturalPlaceId.name}
+              description={event.culturalPlaceId.description}
+              category={event.culturalPlaceId.category}
+              rating={event.culturalPlaceId.rating}
+              address={event.culturalPlaceId.contact.address}
+              phone={event.culturalPlaceId.contact.phone}
+            />
             <EventTickets
               eventId={event._id}
               eventName={event.name}
@@ -96,14 +104,6 @@ export const SingleEvent = () => {
           </VStack>
 
           <VStack gap={6} align="stretch">
-            <CulturalPlaceInfo
-              name={event.culturalPlaceId.name}
-              description={event.culturalPlaceId.description}
-              category={event.culturalPlaceId.category}
-              rating={event.culturalPlaceId.rating}
-              address={event.culturalPlaceId.contact.address}
-              phone={event.culturalPlaceId.contact.phone}
-            />
             <EventCalendar eventDate={event.date} eventName={event.name} />
             <Maps
               cardTitle="Ubicación del evento"

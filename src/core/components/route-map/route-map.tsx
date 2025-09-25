@@ -92,7 +92,7 @@ export const RouteMap = ({
     options: {
       method: 'GET',
     },
-    executeAutomatically: waypoints.length >= 2,
+    executeAutomatically: false, // waypoints.length >= 2,
     timeout: 60000,
     onSuccess: (response) => {
       if (response.paths && response.paths.length > 0) {
