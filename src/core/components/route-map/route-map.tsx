@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaRoute } from 'react-icons/fa6';
 import {
   MapContainer,
@@ -92,7 +92,7 @@ export const RouteMap = ({
     options: {
       method: 'GET',
     },
-    executeAutomatically: false,
+    executeAutomatically: waypoints.length >= 2,
     timeout: 60000,
     onSuccess: (response) => {
       if (response.paths && response.paths.length > 0) {
@@ -121,15 +121,6 @@ export const RouteMap = ({
       setOptimizedWaypoints([]);
     },
   });
-
-  useEffect(() => {
-    if (waypoints.length >= 2) {
-      refetchRoute();
-    } else {
-      setRoutePoints([]);
-      setOptimizedWaypoints([]);
-    }
-  }, [waypoints, profile, optimizeOrder, refetchRoute]);
 
   if (waypoints.length === 0) {
     return (
