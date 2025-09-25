@@ -1,13 +1,17 @@
 import {
   Alert,
+  Box,
   Button,
   Dialog,
   Field,
+  Flex,
   Input,
-  Stack,
   Text,
+  VStack,
 } from '@chakra-ui/react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useState } from 'react';
+import boyStudyingAnimation from '../../animations/BoyStudyingScience.lottie';
 import { useAuth } from '../contexts/auth-context';
 import { useGetDataFromBackend } from '../hooks/useGetDataFromBackend';
 import { loginUser, type User } from './login.api';
@@ -61,10 +65,17 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
     >
       <Dialog.Backdrop />
       <Dialog.Positioner>
-        <Dialog.Content maxW="400px" p={3}>
+        <Dialog.Content maxW={{ base: '400px', md: '900px' }} p={4}>
           <Dialog.Header>
             <Dialog.Title>
-              <Text fontWeight="bold" fontSize="xl" color="brand.600">
+              <Text
+                fontWeight="bold"
+                fontSize={{
+                  base: 'md',
+                  md: 'xl',
+                }}
+                color="brand.600"
+              >
                 Iniciar Sesión
               </Text>
             </Dialog.Title>
@@ -80,35 +91,91 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
             </Dialog.CloseTrigger>
           </Dialog.Header>
           <Dialog.Body>
-            <Stack>
-              <Field.Root>
-                <Field.Label>Email</Field.Label>
-                <Input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="tu@correo.com"
-                  type="email"
-                />
-              </Field.Root>
+            <Box
+              display={{ base: 'block', md: 'grid' }}
+              gridTemplateColumns={{ md: '1fr 1fr' }}
+              gap={6}
+            >
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <Box w="100%" h={{ base: '200px', md: '320px' }}>
+                  <DotLottieReact
+                    src={boyStudyingAnimation}
+                    autoplay
+                    loop
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                </Box>
+              </Box>
 
-              <Button
-                variant="solid"
-                colorPalette="brand"
-                w="full"
-                size="lg"
-                loading={loading}
-                loadingText="Ingresando..."
-                onClick={handleSubmit}
+              <VStack
+                gap={{
+                  base: 2,
+                  md: 4,
+                }}
+                align="center"
+                justify="center"
+                h="100%"
               >
-                Ingresar
-              </Button>
+                <Flex
+                  align="center"
+                  display={{
+                    base: 'none',
+                    md: 'flex',
+                  }}
+                >
+                  <Flex direction="column" gap={2} textAlign={'center'}>
+                    <Text
+                      fontSize="xl"
+                      fontWeight="bold"
+                      letterSpacing="tight"
+                      color={'brand.600'}
+                    >
+                      Cultura
+                    </Text>
+                    <Text fontSize="xs" color="brand.600" letterSpacing="wider">
+                      DESCUBRE • CONECTA • INSPIRA
+                    </Text>
+                  </Flex>
+                </Flex>
 
-              {error && (
-                <Alert.Root status="error">
-                  <Text>{error}</Text>
-                </Alert.Root>
-              )}
-            </Stack>
+                <Field.Root>
+                  <Field.Label>Email</Field.Label>
+                  <Input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="tu@correo.com"
+                    type="email"
+                    w="100%"
+                    h={{ base: '40px', md: '52px' }}
+                    fontSize={{ base: 'md', md: 'lg' }}
+                    px={4}
+                  />
+                </Field.Root>
+
+                <Button
+                  variant="solid"
+                  colorPalette="brand"
+                  w="full"
+                  size="lg"
+                  loading={loading}
+                  loadingText="Ingresando..."
+                  onClick={handleSubmit}
+                >
+                  Ingresar
+                </Button>
+
+                <Text fontSize="sm" color="gray.600" textAlign="center">
+                  No es necesario registrarse. Solo ingresa tu email y nosotros
+                  hacemos el resto.
+                </Text>
+
+                {error && (
+                  <Alert.Root status="error">
+                    <Text>{error}</Text>
+                  </Alert.Root>
+                )}
+              </VStack>
+            </Box>
           </Dialog.Body>
         </Dialog.Content>
       </Dialog.Positioner>
