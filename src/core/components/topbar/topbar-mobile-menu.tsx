@@ -1,6 +1,6 @@
 import { Button, Drawer, Separator, Stack, Text } from '@chakra-ui/react';
 import { FiHeart, FiSearch } from 'react-icons/fi';
-import { Link } from 'react-router';
+import { Link, useNavigate, useSearchParams } from 'react-router';
 import { culturalCategories } from './topbar-categories';
 
 export interface MobileMenuProps {
@@ -14,6 +14,11 @@ export const MobileMenu = ({
   onClose,
   setWhatToDoModalOpen,
 }: MobileMenuProps) => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const activeCategory = searchParams.get('category')
+    ? searchParams.get('category')!.toLowerCase().trim()
+    : undefined;
   return (
     <Drawer.Root
       open={isOpen}
@@ -101,18 +106,31 @@ export const MobileMenu = ({
                       </Link>
                     );
                   }
+                  const isActive =
+                    activeCategory &&
+                    category.name.toLowerCase().trim() === activeCategory;
 
                   return (
                     <Button
                       key={category.name}
                       variant="ghost"
                       size="lg"
-                      color="gray.700"
+                      color={isActive ? 'green.600' : 'gray.700'}
+                      bg={isActive ? 'green.50' : undefined}
                       justifyContent="flex-start"
                       w="full"
                       fontSize="lg"
                       py={6}
-                      onClick={onClose}
+                      onClick={() => {
+                        onClose();
+                        if (isActive) {
+                          navigate('/');
+                        } else {
+                          navigate(
+                            `/?category=${encodeURIComponent(category.name)}`
+                          );
+                        }
+                      }}
                       _hover={{ bg: 'brand.50', color: 'brand.600' }}
                     >
                       {category.icon} {category.name}

@@ -1,12 +1,7 @@
 import type { JSX } from 'react';
-import {
-  FiCalendar,
-  FiCamera,
-  FiMusic,
-  FiStar,
-  FiTarget,
-  FiUsers,
-} from 'react-icons/fi';
+import { FaTheaterMasks } from 'react-icons/fa';
+import { FiCalendar, FiCamera, FiFilm, FiTarget } from 'react-icons/fi';
+import { MdOutlineMuseum } from 'react-icons/md';
 
 export interface CulturalCategory {
   name: string;
@@ -17,24 +12,24 @@ export interface CulturalCategory {
 
 export const culturalCategories: CulturalCategory[] = [
   {
-    name: 'Arte',
-    filter: (event: string) => event === 'Arte',
-    icon: <FiStar />,
+    name: 'Centro Cultural',
+    filter: (event: string) => event === 'Centro Cultural',
+    icon: <MdOutlineMuseum />,
   },
   {
-    name: 'Música',
-    filter: (event: string) => event === 'Música',
-    icon: <FiMusic />,
+    name: 'Galería',
+    filter: (event: string) => event === 'Galería',
+    icon: <FiCamera />,
   },
   {
     name: 'Cine',
     filter: (event: string) => event === 'Cine',
-    icon: <FiCamera />,
+    icon: <FiFilm />,
   },
   {
     name: 'Teatro',
     filter: (event: string) => event === 'Teatro',
-    icon: <FiUsers />,
+    icon: <FaTheaterMasks />,
   },
   {
     name: 'Eventos',

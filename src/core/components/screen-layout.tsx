@@ -1,6 +1,6 @@
 import { HStack, Stack } from '@chakra-ui/react';
 import { Outlet } from 'react-router';
-import { Topbar } from './topbar';
+import { Topbar } from './topbar/topbar';
 
 export const ScreenLayout = ({ children }: { children?: React.ReactNode }) => {
   return (

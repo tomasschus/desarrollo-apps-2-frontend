@@ -5,12 +5,13 @@ import {
   Grid,
   HStack,
   Icon,
+  IconButton,
   Image,
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { FiMapPin } from 'react-icons/fi';
-import { useNavigate } from 'react-router';
+import { FiMapPin, FiX } from 'react-icons/fi';
+import { useNavigate, useSearchParams } from 'react-router';
 import { LoadingIndicator } from '../../../core/components/ui/loading-indicator';
 import { TruncatedText } from '../../../core/components/ui/truncated-text';
 import { useGetDataFromBackend } from '../../../core/hooks/useGetDataFromBackend';
@@ -38,6 +39,9 @@ interface CulturalPlace {
 
 export const CulturalPlacesList = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('category') || undefined;
+
   const {
     data: places,
     loading,
@@ -49,6 +53,10 @@ export const CulturalPlacesList = () => {
     },
     executeAutomatically: true,
   });
+
+  const filteredPlaces = category
+    ? places?.filter((p) => p.category.toLowerCase() === category.toLowerCase())
+    : places;
 
   const getCategoryColor = (category: string) => {
     const colorMap: { [key: string]: string } = {
@@ -86,9 +94,37 @@ export const CulturalPlacesList = () => {
 
   return (
     <Stack>
-      <Text fontSize="xl" fontWeight="semibold" mb={4}>
-        Espacios Culturales
-      </Text>
+      <HStack justifyContent="space-between" alignItems="center">
+        <Text fontSize="xl" fontWeight="semibold" mb={2}>
+          Espacios Culturales
+        </Text>
+        {category && (
+          <HStack mb={4} gap={2} alignItems="center">
+            <Text fontSize="sm" color="gray.600">
+              Filtrado por:
+            </Text>
+            <Badge
+              colorPalette={getCategoryColor(category)}
+              variant="solid"
+              fontSize="xs"
+              borderRadius="md"
+            >
+              {category}
+            </Badge>
+            <IconButton
+              variant="ghost"
+              size="sm"
+              aria-label="Eliminar filtro"
+              onClick={() => {
+                searchParams.delete('category');
+                navigate(`/?${searchParams.toString()}`);
+              }}
+            >
+              <FiX />
+            </IconButton>
+          </HStack>
+        )}
+      </HStack>
       <Grid
         templateColumns={{
           base: '1fr',
@@ -98,7 +134,7 @@ export const CulturalPlacesList = () => {
         }}
         gap={{ base: 4, md: 6 }}
       >
-        {places?.map((space) => (
+        {filteredPlaces?.map((space) => (
           <Box
             onClick={() => navigate(`/espacio-cultural/${space._id}`)}
             key={space._id}

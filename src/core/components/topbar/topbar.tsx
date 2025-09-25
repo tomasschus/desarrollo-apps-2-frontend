@@ -10,16 +10,16 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FiHeart, FiSearch, FiUser } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router';
-import { FestivalAnnouncement } from '../../modules/festival-announcement/festival-announcement';
-import { RecomendationModal } from '../../modules/preference-recommendations/preference-recommendations-modal';
-import { useAuth } from '../contexts/auth-context';
-import { CartButton } from './cart/cart-button';
-import { CartDrawer } from './cart/cart-drawer';
-import { LoginModal } from './login-modal';
+import { Link, useNavigate, useSearchParams } from 'react-router';
+import { FestivalAnnouncement } from '../../../modules/festival-announcement/festival-announcement';
+import { RecomendationModal } from '../../../modules/preference-recommendations/preference-recommendations-modal';
+import { useAuth } from '../../contexts/auth-context';
+import { CartButton } from '../cart/cart-button';
+import { CartDrawer } from '../cart/cart-drawer';
+import { LoginModal } from '../login-modal';
+import { UserMenu } from '../user-menu';
 import { culturalCategories } from './topbar-categories';
 import { MobileMenu } from './topbar-mobile-menu';
-import { UserMenu } from './user-menu';
 
 export const Topbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,6 +33,11 @@ export const Topbar = () => {
     setCartOpen(false);
     navigate('/checkout');
   };
+
+  const [searchParams] = useSearchParams();
+  const activeCategory = searchParams.get('category')
+    ? searchParams.get('category')!.toLowerCase().trim()
+    : undefined;
 
   return (
     <Box
@@ -174,17 +179,29 @@ export const Topbar = () => {
                   </Link>
                 );
               }
+              const isActive =
+                activeCategory &&
+                category.name.toLowerCase().trim() === activeCategory;
+
               return (
                 <Button
                   key={category.name}
                   variant="ghost"
                   size="md"
-                  color="gray.700"
+                  color={isActive ? 'green.600' : 'gray.700'}
+                  bg={isActive ? 'green.50' : undefined}
                   _hover={{
                     bg: 'gray.100',
-                    color: 'brand.600',
+                    color: isActive ? 'green.700' : 'brand.600',
                   }}
                   transition="all 0.2s"
+                  onClick={() =>
+                    isActive
+                      ? navigate('/')
+                      : navigate(
+                          `/?category=${encodeURIComponent(category.name)}`
+                        )
+                  }
                 >
                   {category.name}
                 </Button>

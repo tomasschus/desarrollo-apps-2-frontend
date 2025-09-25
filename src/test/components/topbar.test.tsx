@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Topbar } from '../../core/components/topbar';
+import { Topbar } from '../../core/components/topbar/topbar';
 
 // Mock de React Router
 jest.mock('react-router', () => ({
@@ -45,14 +45,17 @@ jest.mock('../../modules/festival-announcement/festival-announcement', () => ({
   ),
 }));
 
-jest.mock('../../modules/preference-recommendations/preference-recommendations-modal', () => ({
-  RecomendationModal: ({ isOpen, onOpenChange }: any) =>
-    isOpen ? (
-      <div data-testid="recommendation-modal" onClick={onOpenChange}>
-        Recommendation Modal
-      </div>
-    ) : null,
-}));
+jest.mock(
+  '../../modules/preference-recommendations/preference-recommendations-modal',
+  () => ({
+    RecomendationModal: ({ isOpen, onOpenChange }: any) =>
+      isOpen ? (
+        <div data-testid="recommendation-modal" onClick={onOpenChange}>
+          Recommendation Modal
+        </div>
+      ) : null,
+  })
+);
 
 jest.mock('../../core/components/cart/cart-button', () => ({
   CartButton: ({ onClick }: any) => (
@@ -127,7 +130,9 @@ describe('Topbar', () => {
       expect(screen.getByRole('banner')).toBeInTheDocument();
       expect(screen.getByRole('navigation')).toBeInTheDocument();
       expect(screen.getByText('Cultura')).toBeInTheDocument();
-      expect(screen.getByText('DESCUBRE • CONECTA • INSPIRA')).toBeInTheDocument();
+      expect(
+        screen.getByText('DESCUBRE • CONECTA • INSPIRA')
+      ).toBeInTheDocument();
     });
 
     it('muestra el logo y el título correctamente', () => {
@@ -138,7 +143,9 @@ describe('Topbar', () => {
       expect(logo).toHaveAttribute('src', '/monumento.svg');
 
       expect(screen.getByText('Cultura')).toBeInTheDocument();
-      expect(screen.getByText('DESCUBRE • CONECTA • INSPIRA')).toBeInTheDocument();
+      expect(
+        screen.getByText('DESCUBRE • CONECTA • INSPIRA')
+      ).toBeInTheDocument();
     });
 
     it('navega a la página principal cuando se hace click en el logo', () => {
@@ -181,7 +188,9 @@ describe('Topbar', () => {
       const modal = screen.getByTestId('recommendation-modal');
       fireEvent.click(modal);
 
-      expect(screen.queryByTestId('recommendation-modal')).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId('recommendation-modal')
+      ).not.toBeInTheDocument();
     });
   });
 
@@ -201,7 +210,9 @@ describe('Topbar', () => {
       render(<Topbar />);
 
       const eventosLink = screen.getByText('Eventos').closest('a');
-      const recomendacionesLink = screen.getByText('Recomendaciones ✨').closest('a');
+      const recomendacionesLink = screen
+        .getByText('Recomendaciones ✨')
+        .closest('a');
 
       expect(eventosLink).toHaveAttribute('href', '/eventos');
       expect(recomendacionesLink).toHaveAttribute('href', '/recomendaciones');
@@ -336,14 +347,18 @@ describe('Topbar', () => {
       mockAuthContext.isOperator = false;
       render(<Topbar />);
 
-      expect(screen.queryByText('Entrar al administrador')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Entrar al administrador')
+      ).not.toBeInTheDocument();
     });
 
     it('el enlace de administrador navega a /admin', () => {
       mockAuthContext.isAdmin = true;
       render(<Topbar />);
 
-      const adminLink = screen.getByText('Entrar al administrador').closest('a');
+      const adminLink = screen
+        .getByText('Entrar al administrador')
+        .closest('a');
       expect(adminLink).toHaveAttribute('href', '/admin');
     });
   });
@@ -391,7 +406,9 @@ describe('Topbar', () => {
       expect(screen.getByTestId('mobile-category-Cine')).toBeInTheDocument();
       expect(screen.getByTestId('mobile-category-Teatro')).toBeInTheDocument();
       expect(screen.getByTestId('mobile-category-Eventos')).toBeInTheDocument();
-      expect(screen.getByTestId('mobile-category-Recomendaciones ✨')).toBeInTheDocument();
+      expect(
+        screen.getByTestId('mobile-category-Recomendaciones ✨')
+      ).toBeInTheDocument();
     });
   });
 
