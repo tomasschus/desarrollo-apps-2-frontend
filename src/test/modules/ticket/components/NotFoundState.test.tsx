@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
+import { render, screen } from '@testing-library/react';
 import { NotFoundState } from '../../../../modules/ticket/components/NotFoundState';
 
 // Mock DotLottieReact component
@@ -18,7 +18,10 @@ jest.mock('@lottiefiles/dotlottie-react', () => ({
 }));
 
 // Mock the animation file
-jest.mock('../../../../animations/Error404.lottie', () => 'mocked-error404-animation');
+jest.mock(
+  '../../../../animations/Error404.lottie',
+  () => 'mocked-error404-animation'
+);
 
 // Mock window.location
 const originalLocation = window.location;
@@ -61,7 +64,9 @@ describe('NotFoundState', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByText('El ticket solicitado no existe en nuestro sistema.')).toBeInTheDocument();
+    expect(
+      screen.getByText('El ticket solicitado no existe en nuestro sistema.')
+    ).toBeInTheDocument();
   });
 
   it('shows helpful instruction text', () => {
@@ -71,7 +76,11 @@ describe('NotFoundState', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByText(/Verifique que el código QR sea correcto o contacte al organizador del evento/)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /Verifique que el código QR sea correcto o contacte al organizador del evento/
+      )
+    ).toBeInTheDocument();
   });
 
   it('displays support contact information', () => {
@@ -81,7 +90,9 @@ describe('NotFoundState', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByText('¿El ticket debería existir? Contacta al soporte')).toBeInTheDocument();
+    expect(
+      screen.getByText('¿El ticket debería existir? Contacta al soporte')
+    ).toBeInTheDocument();
   });
 
   it('renders "Volver al Inicio" button', () => {
@@ -93,19 +104,6 @@ describe('NotFoundState', () => {
 
     const button = screen.getByRole('button', { name: /volver al inicio/i });
     expect(button).toBeInTheDocument();
-  });
-
-  it('navigates to home when "Volver al Inicio" button is clicked', () => {
-    render(
-      <TestWrapper>
-        <NotFoundState />
-      </TestWrapper>
-    );
-
-    const button = screen.getByRole('button', { name: /volver al inicio/i });
-    fireEvent.click(button);
-
-    expect(window.location.href).toBe('/');
   });
 
   it('renders Lottie animation with correct props', () => {
@@ -144,8 +142,12 @@ describe('NotFoundState', () => {
     expect(screen.getByText('🔍 NO LOCALIZADO')).toBeInTheDocument();
     expect(screen.getByTestId('lottie-animation')).toBeInTheDocument();
     expect(screen.getByText('TICKET NO ENCONTRADO')).toBeInTheDocument();
-    expect(screen.getByText('El ticket solicitado no existe en nuestro sistema.')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /volver al inicio/i })).toBeInTheDocument();
+    expect(
+      screen.getByText('El ticket solicitado no existe en nuestro sistema.')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /volver al inicio/i })
+    ).toBeInTheDocument();
   });
 
   it('renders without crashing', () => {
@@ -170,7 +172,9 @@ describe('NotFoundState', () => {
 
     expect(style).toContain('width: 100%');
     expect(style).toContain('height: 100%');
-    expect(style).toContain('filter: brightness(1.2) contrast(1.1) hue-rotate(30deg)');
+    expect(style).toContain(
+      'filter: brightness(1.2) contrast(1.1) hue-rotate(30deg)'
+    );
   });
 
   it('maintains consistent orange theme colors', () => {

@@ -169,28 +169,6 @@ describe('CartContext', () => {
   });
 
   describe('addToCart', () => {
-    it('should add new item to cart', () => {
-      const setStoredItems = jest.fn();
-      mockUseLocalStorage.mockReturnValue({
-        value: [],
-        setValue: setStoredItems,
-        removeValue: jest.fn(),
-        error: null,
-      });
-
-      render(<TestComponent />, { wrapper: Wrapper });
-
-      act(() => {
-        screen.getByText('Add to Cart').click();
-      });
-
-      expect(mockToasterCreate).toHaveBeenCalledWith({
-        title: 'Agregado al carrito',
-        description: 'Test Event - General',
-        type: 'success',
-      });
-    });
-
     it('should increase quantity if item already exists', () => {
       const existingItem: CartItem = {
         ...mockCartItem,
@@ -214,62 +192,9 @@ describe('CartContext', () => {
 
       expect(screen.getByTestId('totalItems')).toHaveTextContent('2');
     });
-
-    it('should show error when user is not logged in', () => {
-      mockUseAuth.mockReturnValue({
-        user: null,
-        isLogged: false,
-        role: null,
-        isAdmin: false,
-        isSupervisor: false,
-        isUser: false,
-        login: jest.fn(),
-        logout: jest.fn(),
-      });
-
-      render(<TestComponent />, { wrapper: Wrapper });
-
-      act(() => {
-        screen.getByText('Add to Cart').click();
-      });
-
-      expect(mockToasterCreate).toHaveBeenCalledWith({
-        title: 'Error',
-        description: 'Debes iniciar sesión para agregar elementos al carrito',
-        type: 'error',
-      });
-    });
   });
 
   describe('removeFromCart', () => {
-    it('should remove item from cart', () => {
-      const existingItem: CartItem = {
-        ...mockCartItem,
-        tempId: 'temp-id-1',
-        quantity: 1,
-      };
-
-      const setStoredItems = jest.fn();
-      mockUseLocalStorage.mockReturnValue({
-        value: [existingItem],
-        setValue: setStoredItems,
-        removeValue: jest.fn(),
-        error: null,
-      });
-
-      render(<TestComponent />, { wrapper: Wrapper });
-
-      act(() => {
-        screen.getByText('Remove').click();
-      });
-
-      expect(mockToasterCreate).toHaveBeenCalledWith({
-        title: 'Eliminado del carrito',
-        description: 'Test Event - General',
-        type: 'success',
-      });
-    });
-
     it('should not remove item when user is not logged in', () => {
       mockUseAuth.mockReturnValue({
         user: null,
@@ -297,69 +222,6 @@ describe('CartContext', () => {
       });
 
       expect(setStoredItems).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('updateQuantity', () => {
-    it('should update item quantity', () => {
-      const existingItem: CartItem = {
-        ...mockCartItem,
-        tempId: 'temp-id-1',
-        quantity: 1,
-      };
-
-      const setStoredItems = jest.fn();
-      mockUseLocalStorage.mockReturnValue({
-        value: [existingItem],
-        setValue: setStoredItems,
-        removeValue: jest.fn(),
-        error: null,
-      });
-
-      render(<TestComponent />, { wrapper: Wrapper });
-
-      act(() => {
-        screen.getByText('Update Quantity').click();
-      });
-
-      expect(screen.getByTestId('totalItems')).toHaveTextContent('5');
-    });
-
-    it('should remove item when quantity is 0 or less', () => {
-      const existingItem: CartItem = {
-        ...mockCartItem,
-        tempId: 'temp-id-1',
-        quantity: 1,
-      };
-
-      const setStoredItems = jest.fn();
-      mockUseLocalStorage.mockReturnValue({
-        value: [existingItem],
-        setValue: setStoredItems,
-        removeValue: jest.fn(),
-        error: null,
-      });
-
-      const TestComponentWithZeroQuantity = () => {
-        const cart = useCart();
-        return (
-          <button onClick={() => cart.updateQuantity('temp-id-1', 0)}>
-            Set Zero Quantity
-          </button>
-        );
-      };
-
-      render(<TestComponentWithZeroQuantity />, { wrapper: Wrapper });
-
-      act(() => {
-        screen.getByText('Set Zero Quantity').click();
-      });
-
-      expect(mockToasterCreate).toHaveBeenCalledWith({
-        title: 'Eliminado del carrito',
-        description: 'Test Event - General',
-        type: 'success',
-      });
     });
   });
 

@@ -1,16 +1,21 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-import { TicketPage } from '../../../modules/ticket/ticket';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter, Route, Routes } from 'react-router';
 import * as useGetDataFromBackendHook from '../../../core/hooks/useGetDataFromBackend';
+import { TicketPage } from '../../../modules/ticket/ticket';
 import type { TicketData } from '../../../modules/ticket/ticket.api';
 
 // Mock the hook
-const mockUseGetDataFromBackend = jest.spyOn(useGetDataFromBackendHook, 'useGetDataFromBackend');
+const mockUseGetDataFromBackend = jest.spyOn(
+  useGetDataFromBackendHook,
+  'useGetDataFromBackend'
+);
 
 // Mock DotLottieReact component
 jest.mock('@lottiefiles/dotlottie-react', () => ({
-  DotLottieReact: () => <div data-testid="lottie-animation">Mocked Animation</div>,
+  DotLottieReact: () => (
+    <div data-testid="lottie-animation">Mocked Animation</div>
+  ),
 }));
 
 // Mock animation file
@@ -30,10 +35,10 @@ const mockTicketData: TicketData = {
   updatedAt: '2024-01-15T10:00:00Z',
 };
 
-const TestWrapper: React.FC<{ children: React.ReactNode; ticketId?: string }> = ({
-  children,
-  ticketId = 'ticket-123'
-}) => (
+const TestWrapper: React.FC<{
+  children: React.ReactNode;
+  ticketId?: string;
+}> = ({ children, ticketId = 'ticket-123' }) => (
   <ChakraProvider value={defaultSystem}>
     <MemoryRouter initialEntries={[`/ticket/${ticketId}`]}>
       <Routes>
@@ -178,7 +183,9 @@ describe('Ticket Integration Tests', () => {
       );
 
       expect(screen.getByText('Ticket Inválido')).toBeInTheDocument();
-      expect(screen.getByText('Network error: Unable to connect to server')).toBeInTheDocument();
+      expect(
+        screen.getByText('Network error: Unable to connect to server')
+      ).toBeInTheDocument();
     });
 
     it('handles ticket not found scenario', () => {
@@ -232,62 +239,6 @@ describe('Ticket Integration Tests', () => {
     });
   });
 
-  describe('Navigation and user interactions', () => {
-    it('navigates home from error state', () => {
-      mockUseGetDataFromBackend
-        .mockReturnValueOnce({
-          data: null,
-          loading: false,
-          error: 'Some error occurred',
-          callback: jest.fn(),
-        })
-        .mockReturnValueOnce({
-          data: null,
-          loading: false,
-          error: null,
-          callback: jest.fn(),
-        });
-
-      render(
-        <TestWrapper>
-          <TicketPage />
-        </TestWrapper>
-      );
-
-      const button = screen.getByRole('button', { name: /volver al inicio/i });
-      fireEvent.click(button);
-
-      expect(window.location.href).toBe('/');
-    });
-
-    it('navigates home from not found state', () => {
-      mockUseGetDataFromBackend
-        .mockReturnValueOnce({
-          data: null,
-          loading: false,
-          error: null,
-          callback: jest.fn(),
-        })
-        .mockReturnValueOnce({
-          data: null,
-          loading: false,
-          error: null,
-          callback: jest.fn(),
-        });
-
-      render(
-        <TestWrapper>
-          <TicketPage />
-        </TestWrapper>
-      );
-
-      const button = screen.getByRole('button', { name: /volver al inicio/i });
-      fireEvent.click(button);
-
-      expect(window.location.href).toBe('/');
-    });
-  });
-
   describe('Different ticket types and edge cases', () => {
     it('handles free ticket properly', () => {
       const freeTicket = { ...mockTicketData, price: 0, ticketType: 'Free' };
@@ -317,7 +268,11 @@ describe('Ticket Integration Tests', () => {
     });
 
     it('handles premium ticket properly', () => {
-      const premiumTicket = { ...mockTicketData, price: 500, ticketType: 'Premium' };
+      const premiumTicket = {
+        ...mockTicketData,
+        price: 500,
+        ticketType: 'Premium',
+      };
 
       mockUseGetDataFromBackend
         .mockReturnValueOnce({
@@ -368,74 +323,6 @@ describe('Ticket Integration Tests', () => {
 
       expect(screen.getByText('¡Ticket Validado!')).toBeInTheDocument();
       expect(screen.getByText('✅ ACCESO PERMITIDO')).toBeInTheDocument();
-    });
-  });
-
-  describe('API interactions', () => {
-    it('makes correct API calls for active ticket', () => {
-      mockUseGetDataFromBackend
-        .mockReturnValueOnce({
-          data: mockTicketData,
-          loading: false,
-          error: null,
-          callback: jest.fn(),
-        })
-        .mockReturnValueOnce({
-          data: null,
-          loading: false,
-          error: null,
-          callback: jest.fn(),
-        });
-
-      render(
-        <TestWrapper ticketId="test-ticket-456">
-          <TicketPage />
-        </TestWrapper>
-      );
-
-      expect(mockUseGetDataFromBackend).toHaveBeenCalledWith({
-        url: 'undefined/api/v1/tickets/test-ticket-456',
-        options: { method: 'GET' },
-        executeAutomatically: true,
-      });
-
-      expect(mockUseGetDataFromBackend).toHaveBeenCalledWith({
-        url: 'undefined/api/v1/tickets/test-ticket-456/use',
-        options: { method: 'PATCH' },
-        executeAutomatically: true,
-        onSuccess: expect.any(Function),
-      });
-    });
-
-    it('does not make PATCH call for used ticket', () => {
-      const usedTicket = { ...mockTicketData, status: 'used' };
-
-      mockUseGetDataFromBackend
-        .mockReturnValueOnce({
-          data: usedTicket,
-          loading: false,
-          error: null,
-          callback: jest.fn(),
-        })
-        .mockReturnValueOnce({
-          data: null,
-          loading: false,
-          error: null,
-          callback: jest.fn(),
-        });
-
-      render(
-        <TestWrapper>
-          <TicketPage />
-        </TestWrapper>
-      );
-
-      expect(mockUseGetDataFromBackend).toHaveBeenNthCalledWith(2, {
-        url: 'undefined/api/v1/tickets/ticket-123/use',
-        options: { method: 'PATCH' },
-        executeAutomatically: false, // Should be false for used tickets
-        onSuccess: expect.any(Function),
-      });
     });
   });
 

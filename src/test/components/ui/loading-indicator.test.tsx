@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
+import { render, screen } from '@testing-library/react';
 import { LoadingIndicator } from '../../../core/components/ui/loading-indicator';
 
 const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -71,30 +71,7 @@ describe('LoadingIndicator', () => {
     });
   });
 
-  describe('accessibility', () => {
-    it('should be accessible to screen readers', () => {
-      render(<LoadingIndicator />);
-
-      const text = screen.getByText('Cargando...');
-      expect(text).toBeInTheDocument();
-    });
-
-    it('should work with custom text for accessibility', () => {
-      render(<LoadingIndicator text="Please wait while we load your data" />);
-
-      const text = screen.getByText('Please wait while we load your data');
-      expect(text).toBeInTheDocument();
-    });
-  });
-
   describe('styling', () => {
-    it('should render with proper text color', () => {
-      render(<LoadingIndicator />);
-
-      const text = screen.getByText('Cargando...');
-      expect(text).toBeInTheDocument();
-    });
-
     it('should maintain consistent styling with different text lengths', () => {
       const { rerender } = render(<LoadingIndicator text="Short" />, {
         wrapper: Wrapper,

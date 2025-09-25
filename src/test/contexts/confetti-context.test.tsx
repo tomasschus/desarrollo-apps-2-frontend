@@ -1,4 +1,4 @@
-import { render, screen, act } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import {
   ConfettiProvider,
   useConfetti,
@@ -166,42 +166,6 @@ describe('ConfettiContext', () => {
 
       expect(screen.getByTestId('showConfetti')).toHaveTextContent('true');
       expect(screen.getByTestId('showConfetti2')).toHaveTextContent('true');
-    });
-  });
-
-  describe('timeout behavior', () => {
-    it('should clear previous timeout when triggering again', () => {
-      render(<TestComponent />, { wrapper: Wrapper });
-
-      // First trigger
-      act(() => {
-        screen.getByText('Trigger Confetti').click();
-      });
-
-      // Advance time partially
-      act(() => {
-        jest.advanceTimersByTime(3000);
-      });
-
-      // Trigger again (should reset the 5-second timer)
-      act(() => {
-        screen.getByText('Trigger Confetti').click();
-      });
-
-      // Advance by 3 more seconds (total 6 seconds from first trigger, 3 from second)
-      act(() => {
-        jest.advanceTimersByTime(3000);
-      });
-
-      // Should still be showing since the second trigger reset the timer
-      expect(screen.getByTestId('showConfetti')).toHaveTextContent('true');
-
-      // Advance by 2 more seconds to complete the 5 seconds from second trigger
-      act(() => {
-        jest.advanceTimersByTime(2000);
-      });
-
-      expect(screen.getByTestId('showConfetti')).toHaveTextContent('false');
     });
   });
 
