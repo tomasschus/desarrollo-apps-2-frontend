@@ -31,7 +31,7 @@ export const TicketPage = () => {
       method: 'PATCH',
     },
     executeAutomatically: Boolean(ticket && ticket.status === 'active'),
-    onSuccess: (_updatedTicket) => {
+    onSuccess: () => {
       fetchTicketInfo();
     },
   });
