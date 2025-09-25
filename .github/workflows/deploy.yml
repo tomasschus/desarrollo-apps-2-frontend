@@ -100,7 +100,7 @@ jobs:
       - name: Deploy to CapRover
         run: |
           caprover deploy \
-            -h ${{ secrets.CAPROVER_SERVER }} \
+            -u ${{ secrets.CAPROVER_SERVER }} \
             -a ${{ secrets.APP_NAME }} \
-            -t ${{ secrets.CAPROVER_APP_TOKEN }} \
-            -d ./deploy.tar
+            --appToken ${{ secrets.CAPROVER_APP_TOKEN }} \
+            -t ./deploy.tar
