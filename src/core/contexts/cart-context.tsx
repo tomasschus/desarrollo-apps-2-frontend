@@ -105,6 +105,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         title: 'Agregado al carrito',
         description: `${item.eventName} - ${item.ticketType}`,
         type: 'success',
+        action: {
+          label: 'Proceder al pago',
+          onClick: () => {
+            window.location.href = '/checkout';
+          },
+        },
       });
     }
 
