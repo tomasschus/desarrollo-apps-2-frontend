@@ -97,14 +97,10 @@ jobs:
       - name: Install CapRover CLI
         run: npm install -g caprover
 
-      - name: Deploy with CapRover CLI
-        env:
-          CAPROVER_SERVER: ${{ secrets.CAPROVER_SERVER }}
-          APP_TOKEN: ${{ secrets.APP_TOKEN }}
-          APP_NAME: ${{ secrets.APP_NAME }}
+      - name: Deploy to CapRover
         run: |
           caprover deploy \
             -h ${{ secrets.CAPROVER_SERVER }} \
-            -p ${{ secrets.APP_TOKEN }} \
             -a ${{ secrets.APP_NAME }} \
-            -t deploy.tar
+            -t ${{ secrets.CAPROVER_APP_TOKEN }} \
+            -d ./deploy.tar
