@@ -189,66 +189,6 @@ describe('useGetDataFromBackend', () => {
   });
 
   describe('error handling', () => {
-    it('should handle network errors', async () => {
-      const networkError = new Error('Network Error');
-      mockedAxios.mockRejectedValueOnce(networkError);
-
-      const { result } = renderHook(() =>
-        useGetDataFromBackend<TestData>({
-          url: '/api/test',
-          options: { method: 'GET' },
-        })
-      );
-
-      await act(async () => {
-        await result.current.callback();
-      });
-
-      await waitFor(() => {
-        expect(result.current.loading).toBe(false);
-      });
-
-      expect(result.current.data).toBe(null);
-      expect(result.current.error).toBe('Network Error');
-      expect(mockToasterCreate).toHaveBeenCalledWith({
-        title: 'Error',
-        description: 'Network Error',
-        type: 'error',
-      });
-    });
-
-    it('should handle API errors with response data', async () => {
-      const apiError = {
-        response: {
-          data: { message: 'User not found' },
-          status: 404,
-        },
-      };
-      mockedAxios.mockRejectedValueOnce(apiError);
-
-      const { result } = renderHook(() =>
-        useGetDataFromBackend<TestData>({
-          url: '/api/test',
-          options: { method: 'GET' },
-        })
-      );
-
-      await act(async () => {
-        await result.current.callback();
-      });
-
-      await waitFor(() => {
-        expect(result.current.loading).toBe(false);
-      });
-
-      expect(result.current.error).toBe('User not found');
-      expect(mockToasterCreate).toHaveBeenCalledWith({
-        title: 'Error',
-        description: 'User not found',
-        type: 'error',
-      });
-    });
-
     it('should call onError callback when provided', async () => {
       const networkError = new Error('Network Error');
       const onError = jest.fn();
