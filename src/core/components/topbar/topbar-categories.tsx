@@ -8,6 +8,7 @@ export interface CulturalCategory {
   filter?: (event: string) => boolean;
   to?: string;
   icon?: JSX.Element;
+  requiresAuth?: boolean;
 }
 
 export const culturalCategories: CulturalCategory[] = [
@@ -40,5 +41,6 @@ export const culturalCategories: CulturalCategory[] = [
     name: 'Recomendaciones ✨',
     to: '/recomendaciones',
     icon: <FiTarget />,
+    requiresAuth: true,
   },
 ];

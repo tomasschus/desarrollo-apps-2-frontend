@@ -14,9 +14,9 @@ import { Link, useNavigate, useSearchParams } from 'react-router';
 import { FestivalAnnouncement } from '../../../modules/festival-announcement/festival-announcement';
 import { RecomendationModal } from '../../../modules/preference-recommendations/preference-recommendations-modal';
 import { useAuth } from '../../contexts/auth-context';
+import { LoginModal } from '../../login/login-modal';
 import { CartButton } from '../cart/cart-button';
 import { CartDrawer } from '../cart/cart-drawer';
-import { LoginModal } from '../login-modal';
 import { UserMenu } from '../user-menu';
 import { culturalCategories } from './topbar-categories';
 import { MobileMenu } from './topbar-mobile-menu';
@@ -26,7 +26,7 @@ export const Topbar = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [whatToDoModalOpen, setWhatToDoModalOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const { isLogged, isAdmin, isOperator } = useAuth();
+  const { isLogged, isAdmin, isSupervisor } = useAuth();
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -51,7 +51,7 @@ export const Topbar = () => {
       boxShadow="sm"
     >
       <Box bg={'black'}>
-        {(isAdmin || isOperator) && (
+        {(isAdmin || isSupervisor) && (
           <HStack py={1} justifyContent={'center'}>
             <Link to="/admin">
               <Button size={'xs'} variant={'outline'}>
@@ -202,6 +202,7 @@ export const Topbar = () => {
                           `/?category=${encodeURIComponent(category.name)}`
                         )
                   }
+                  disabled={category.requiresAuth && !isLogged}
                 >
                   {category.name}
                 </Button>

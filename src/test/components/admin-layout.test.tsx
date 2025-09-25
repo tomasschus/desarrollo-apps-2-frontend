@@ -35,15 +35,19 @@ describe('AdminLayout', () => {
   describe('rendering', () => {
     it('should render admin layout with sidebar', () => {
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'Admin', email: 'admin@example.com', role: 'admin' },
+        user: {
+          id: '1',
+          name: 'Admin',
+          email: 'admin@example.com',
+          role: 'admin',
+        },
         isLogged: true,
         role: 'admin',
         isAdmin: true,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(<TestComponent />);
@@ -54,15 +58,19 @@ describe('AdminLayout', () => {
 
     it('should render children when provided', () => {
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'Admin', email: 'admin@example.com', role: 'admin' },
+        user: {
+          id: '1',
+          name: 'Admin',
+          email: 'admin@example.com',
+          role: 'admin',
+        },
         isLogged: true,
         role: 'admin',
         isAdmin: true,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(
@@ -72,7 +80,9 @@ describe('AdminLayout', () => {
       );
 
       expect(screen.getByTestId('child-content')).toBeInTheDocument();
-      expect(screen.getByTestId('child-content')).toHaveTextContent('Test Content');
+      expect(screen.getByTestId('child-content')).toHaveTextContent(
+        'Test Content'
+      );
     });
   });
 
@@ -98,15 +108,19 @@ describe('AdminLayout', () => {
     testCases.forEach(({ path, expected }) => {
       it(`should detect active section for path ${path}`, () => {
         mockUseAuth.mockReturnValue({
-          user: { id: '1', name: 'Admin', email: 'admin@example.com', role: 'admin' },
+          user: {
+            id: '1',
+            name: 'Admin',
+            email: 'admin@example.com',
+            role: 'admin',
+          },
           isLogged: true,
           role: 'admin',
           isAdmin: true,
-          isOperator: false,
+          isSupervisor: false,
           isUser: false,
           login: jest.fn(),
           logout: jest.fn(),
-          setRole: jest.fn(),
         });
 
         render(
@@ -115,7 +129,9 @@ describe('AdminLayout', () => {
           </MemoryRouter>
         );
 
-        expect(screen.getByTestId('active-section')).toHaveTextContent(expected);
+        expect(screen.getByTestId('active-section')).toHaveTextContent(
+          expected
+        );
       });
     });
   });
@@ -123,15 +139,19 @@ describe('AdminLayout', () => {
   describe('sidebar toggle', () => {
     it('should toggle sidebar visibility', () => {
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'Admin', email: 'admin@example.com', role: 'admin' },
+        user: {
+          id: '1',
+          name: 'Admin',
+          email: 'admin@example.com',
+          role: 'admin',
+        },
         isLogged: true,
         role: 'admin',
         isAdmin: true,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(<TestComponent />);
@@ -159,15 +179,19 @@ describe('AdminLayout', () => {
       }));
 
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'User', email: 'user@example.com', role: 'user' },
+        user: {
+          id: '1',
+          name: 'User',
+          email: 'user@example.com',
+          role: 'user',
+        },
         isLogged: true,
         role: 'user',
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: true,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(<TestComponent />);
@@ -186,15 +210,19 @@ describe('AdminLayout', () => {
       }));
 
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'Admin', email: 'admin@example.com', role: 'admin' },
+        user: {
+          id: '1',
+          name: 'Admin',
+          email: 'admin@example.com',
+          role: 'admin',
+        },
         isLogged: true,
         role: 'admin',
         isAdmin: true,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(<TestComponent />);
@@ -202,7 +230,7 @@ describe('AdminLayout', () => {
       expect(mockNavigate).not.toHaveBeenCalledWith('/');
     });
 
-    it('should not navigate when user is operator', () => {
+    it('should not navigate when user is supervisor', () => {
       const mockNavigate = jest.fn();
 
       // Mock useNavigate
@@ -213,15 +241,19 @@ describe('AdminLayout', () => {
       }));
 
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'Operator', email: 'operator@example.com', role: 'operator' },
+        user: {
+          id: '1',
+          name: 'supervisor',
+          email: 'supervisor@example.com',
+          role: 'supervisor',
+        },
         isLogged: true,
-        role: 'operator',
+        role: 'supervisor',
         isAdmin: false,
-        isOperator: true,
+        isSupervisor: true,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(<TestComponent />);
@@ -233,15 +265,19 @@ describe('AdminLayout', () => {
   describe('layout structure', () => {
     it('should apply correct styling classes', () => {
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'Admin', email: 'admin@example.com', role: 'admin' },
+        user: {
+          id: '1',
+          name: 'Admin',
+          email: 'admin@example.com',
+          role: 'admin',
+        },
         isLogged: true,
         role: 'admin',
         isAdmin: true,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       const { container } = render(<TestComponent />);
@@ -253,15 +289,19 @@ describe('AdminLayout', () => {
 
     it('should handle different sidebar states in layout', () => {
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'Admin', email: 'admin@example.com', role: 'admin' },
+        user: {
+          id: '1',
+          name: 'Admin',
+          email: 'admin@example.com',
+          role: 'admin',
+        },
         isLogged: true,
         role: 'admin',
         isAdmin: true,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(<TestComponent />);
@@ -280,15 +320,19 @@ describe('AdminLayout', () => {
   describe('responsive behavior', () => {
     it('should handle responsive layout changes', () => {
       mockUseAuth.mockReturnValue({
-        user: { id: '1', name: 'Admin', email: 'admin@example.com', role: 'admin' },
+        user: {
+          id: '1',
+          name: 'Admin',
+          email: 'admin@example.com',
+          role: 'admin',
+        },
         isLogged: true,
         role: 'admin',
         isAdmin: true,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       const { container } = render(<TestComponent />);

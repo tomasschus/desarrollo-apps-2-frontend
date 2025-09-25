@@ -1,11 +1,11 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-import { CheckoutPage } from '../../../modules/checkout/checkout';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import * as authContext from '../../../core/contexts/auth-context';
 import * as cartContext from '../../../core/contexts/cart-context';
 import * as confettiContext from '../../../core/contexts/confetti-context';
 import * as useGetDataFromBackendHook from '../../../core/hooks/useGetDataFromBackend';
+import { CheckoutPage } from '../../../modules/checkout/checkout';
 
 // Mock the toaster
 jest.mock('../../../core/components/ui/toaster', () => ({
@@ -71,9 +71,8 @@ jest.mock('../../../core/contexts/auth-context', () => ({
     logout: jest.fn(),
     role: 'user',
     isAdmin: false,
-    isOperator: false,
+    isSupervisor: false,
     isUser: true,
-    setRole: jest.fn(),
   })),
 }));
 
@@ -144,9 +143,8 @@ describe('CheckoutPage', () => {
       logout: jest.fn(),
       role: 'user',
       isAdmin: false,
-      isOperator: false,
+      isSupervisor: false,
       isUser: true,
-      setRole: jest.fn(),
     });
 
     mockUseCart.mockReturnValue({
@@ -200,9 +198,8 @@ describe('CheckoutPage', () => {
       logout: jest.fn(),
       role: null,
       isAdmin: false,
-      isOperator: false,
+      isSupervisor: false,
       isUser: false,
-      setRole: jest.fn(),
     });
 
     render(
@@ -228,9 +225,8 @@ describe('CheckoutPage', () => {
       logout: jest.fn(),
       role: null,
       isAdmin: false,
-      isOperator: false,
+      isSupervisor: false,
       isUser: false,
-      setRole: jest.fn(),
     });
 
     mockUseCart.mockReturnValue({
@@ -284,9 +280,8 @@ describe('CheckoutPage', () => {
       logout: jest.fn(),
       role: null,
       isAdmin: false,
-      isOperator: false,
+      isSupervisor: false,
       isUser: false,
-      setRole: jest.fn(),
     });
 
     const { container } = render(
@@ -565,9 +560,8 @@ describe('CheckoutPage', () => {
       logout: jest.fn(),
       role: 'user',
       isAdmin: false,
-      isOperator: false,
+      isSupervisor: false,
       isUser: true,
-      setRole: jest.fn(),
     });
 
     render(

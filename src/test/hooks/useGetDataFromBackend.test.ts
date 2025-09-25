@@ -13,7 +13,7 @@ jest.mock('../../core/contexts/auth-context', () => ({
     setRole: jest.fn(),
     isLogged: false,
     isAdmin: false,
-    isOperator: false,
+    isSupervisor: false,
     isUser: true,
   }),
 }));

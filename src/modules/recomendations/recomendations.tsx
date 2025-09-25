@@ -64,9 +64,6 @@ export const Recomendations = () => {
             </Text>
           </Box>
           <HStack gap={4}>
-            <Button colorScheme="teal" onClick={() => navigate('/login')}>
-              Iniciar sesión
-            </Button>
             <Button variant="outline" onClick={() => navigate('/eventos')}>
               Ver eventos sin personalizar
             </Button>

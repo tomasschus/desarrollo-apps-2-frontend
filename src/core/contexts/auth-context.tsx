@@ -1,32 +1,25 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext, useState } from 'react';
 import useLocalStorage from '../../core/hooks/useLocalStorage';
+import type { User } from '../login/login.api';
 
 export const UserRole = {
   ADMIN: 'admin',
   USER: 'user',
-  OPERATOR: 'operator',
+  SUPERVISOR: 'supervisor',
 } as const;
 
 export type UserRoleType = (typeof UserRole)[keyof typeof UserRole];
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: UserRoleType;
-}
 
 interface AuthContextType {
   isLogged: boolean;
   user: User | null;
   role: UserRoleType | null;
   isAdmin: boolean;
-  isOperator: boolean;
+  isSupervisor: boolean;
   isUser: boolean;
   login: (userData: User) => void;
   logout: () => void;
-  setRole: (role: UserRoleType) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -61,24 +54,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setStoredIsLogged(false);
   };
 
-  const setRole = (role: UserRoleType) => {
-    if (user) {
-      const updatedUser = { ...user, role };
-      setUser(updatedUser);
-      setStoredUser(updatedUser);
-    }
-  };
-
   const value: AuthContextType = {
     isLogged,
     user,
     role: user?.role || null,
     isAdmin: user?.role === UserRole.ADMIN,
-    isOperator: user?.role === UserRole.OPERATOR,
+    isSupervisor: user?.role === UserRole.SUPERVISOR,
     isUser: user?.role === UserRole.USER,
     login,
     logout,
-    setRole,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

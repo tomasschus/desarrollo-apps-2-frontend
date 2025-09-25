@@ -14,7 +14,7 @@ jest.mock('../../core/contexts/auth-context', () => ({
   UserRole: {
     ADMIN: 'admin',
     USER: 'user',
-    OPERATOR: 'operator',
+    supervisor: 'supervisor',
   },
 }));
 
@@ -62,10 +62,10 @@ const TestLoginModal = ({
         <button
           onClick={() => {
             mockLogin({
-              id: 'operator_789',
+              id: 'supervisor_789',
               name: 'Carlos Operador',
               email: 'carlos@operador.com',
-              role: 'operator',
+              role: 'supervisor',
             });
             onClose();
           }}
@@ -167,15 +167,15 @@ describe('LoginModal', () => {
 
     render(<TestLoginModal isOpen={true} onClose={mockOnClose} />);
 
-    const operatorButton = screen.getByText('👨‍💼 Iniciar como Operador');
-    fireEvent.click(operatorButton);
+    const supervisorButton = screen.getByText('👨‍💼 Iniciar como Operador');
+    fireEvent.click(supervisorButton);
 
     expect(mockLogin).toHaveBeenCalledTimes(1);
     expect(mockLogin).toHaveBeenCalledWith({
-      id: 'operator_789',
+      id: 'supervisor_789',
       name: 'Carlos Operador',
       email: 'carlos@operador.com',
-      role: 'operator',
+      role: 'supervisor',
     });
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });

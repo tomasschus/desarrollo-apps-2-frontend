@@ -28,7 +28,7 @@ jest.mock('react-icons/fi', () => ({
 const mockAuthContext = {
   isLogged: false,
   isAdmin: false,
-  isOperator: false,
+  isSupervisor: false,
   user: null,
   login: jest.fn(),
   logout: jest.fn(),
@@ -117,7 +117,7 @@ describe('Topbar', () => {
     jest.clearAllMocks();
     mockAuthContext.isLogged = false;
     mockAuthContext.isAdmin = false;
-    mockAuthContext.isOperator = false;
+    mockAuthContext.isSupervisor = false;
 
     // Mock useNavigate
     require('react-router').useNavigate.mockReturnValue(mockNavigate);
@@ -335,7 +335,7 @@ describe('Topbar', () => {
     });
 
     it('muestra el botón de administrador para usuarios operador', () => {
-      mockAuthContext.isOperator = true;
+      mockAuthContext.isSupervisor = true;
       render(<Topbar />);
 
       expect(screen.getByText('Entrar al administrador')).toBeInTheDocument();
@@ -344,7 +344,7 @@ describe('Topbar', () => {
     it('no muestra el botón de administrador para usuarios normales', () => {
       mockAuthContext.isLogged = true;
       mockAuthContext.isAdmin = false;
-      mockAuthContext.isOperator = false;
+      mockAuthContext.isSupervisor = false;
       render(<Topbar />);
 
       expect(

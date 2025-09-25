@@ -1,11 +1,11 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-import { CheckoutPage } from '../../../modules/checkout/checkout';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import * as authContext from '../../../core/contexts/auth-context';
 import * as cartContext from '../../../core/contexts/cart-context';
 import * as confettiContext from '../../../core/contexts/confetti-context';
 import * as useGetDataFromBackendHook from '../../../core/hooks/useGetDataFromBackend';
+import { CheckoutPage } from '../../../modules/checkout/checkout';
 
 // Mock the toaster
 jest.mock('../../../core/components/ui/toaster', () => ({
@@ -19,14 +19,14 @@ jest.mock('../../../core/utils/date.utils', () => ({
   formatIsoDate: jest.fn((_date: string, options?: any) => {
     if (options?.utc) return '15 de enero de 2024, 20:00 UTC';
     return '15 de enero de 2024';
-  })
+  }),
 }));
 
 jest.mock('../../../core/utils/money.utils', () => ({
   formatMoney: jest.fn((amount: number, options?: any) => {
     if (options?.inputDecimalScale === 0) return `$${amount}`;
     return `$${amount.toFixed(2)}`;
-  })
+  }),
 }));
 
 // Mock react-router navigate
@@ -38,9 +38,7 @@ jest.mock('react-router', () => ({
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <ChakraProvider value={defaultSystem}>
-    <MemoryRouter>
-      {children}
-    </MemoryRouter>
+    <MemoryRouter>{children}</MemoryRouter>
   </ChakraProvider>
 );
 
@@ -48,7 +46,10 @@ describe('Checkout Integration Tests', () => {
   const mockUseAuth = jest.spyOn(authContext, 'useAuth');
   const mockUseCart = jest.spyOn(cartContext, 'useCart');
   const mockUseConfetti = jest.spyOn(confettiContext, 'useConfetti');
-  const mockUseGetDataFromBackend = jest.spyOn(useGetDataFromBackendHook, 'useGetDataFromBackend');
+  const mockUseGetDataFromBackend = jest.spyOn(
+    useGetDataFromBackendHook,
+    'useGetDataFromBackend'
+  );
 
   const mockUser = {
     id: 'user-123',
@@ -108,9 +109,8 @@ describe('Checkout Integration Tests', () => {
         logout: jest.fn(),
         role: 'user',
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: true,
-        setRole: jest.fn(),
       });
 
       mockUseCart.mockReturnValue({
@@ -151,12 +151,16 @@ describe('Checkout Integration Tests', () => {
 
       // Verify checkout page renders
       expect(screen.getByText('Finalizar Compra')).toBeInTheDocument();
-      expect(screen.getByText('Concierto de Rock Internacional')).toBeInTheDocument();
+      expect(
+        screen.getByText('Concierto de Rock Internacional')
+      ).toBeInTheDocument();
       expect(screen.getByText('Obra de Teatro Clásica')).toBeInTheDocument();
 
       // Fill payment form completely
       const cardInput = screen.getByPlaceholderText('1234 5678 9012 3456');
-      const nameInput = screen.getByPlaceholderText('Como aparece en la tarjeta');
+      const nameInput = screen.getByPlaceholderText(
+        'Como aparece en la tarjeta'
+      );
       const monthSelect = screen.getByDisplayValue('MM');
       const yearSelect = screen.getByDisplayValue('YY');
       const cvvInput = screen.getByPlaceholderText('123');
@@ -169,12 +173,16 @@ describe('Checkout Integration Tests', () => {
 
       // Wait for payment validation
       await waitFor(() => {
-        const confirmButton = screen.getByRole('button', { name: /✨ Confirmar Compra/i });
+        const confirmButton = screen.getByRole('button', {
+          name: /✨ Confirmar Compra/i,
+        });
         expect(confirmButton).not.toBeDisabled();
       });
 
       // Submit purchase
-      const confirmButton = screen.getByRole('button', { name: /✨ Confirmar Compra/i });
+      const confirmButton = screen.getByRole('button', {
+        name: /✨ Confirmar Compra/i,
+      });
       fireEvent.click(confirmButton);
 
       expect(mockPurchaseCallback).toHaveBeenCalled();
@@ -184,7 +192,8 @@ describe('Checkout Integration Tests', () => {
 
       // Verify success actions
       expect(mockTriggerConfetti).toHaveBeenCalled();
-      const mockToaster = require('../../../core/components/ui/toaster').toaster;
+      const mockToaster =
+        require('../../../core/components/ui/toaster').toaster;
       expect(mockToaster.create).toHaveBeenCalledWith({
         title: 'Compra exitosa',
         description: 'Tus entradas han sido compradas con éxito',
@@ -203,9 +212,8 @@ describe('Checkout Integration Tests', () => {
         logout: jest.fn(),
         role: null,
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
-        setRole: jest.fn(),
       });
 
       mockUseCart.mockReturnValue({
@@ -233,7 +241,8 @@ describe('Checkout Integration Tests', () => {
         </TestWrapper>
       );
 
-      const mockToaster = require('../../../core/components/ui/toaster').toaster;
+      const mockToaster =
+        require('../../../core/components/ui/toaster').toaster;
       expect(mockToaster.create).toHaveBeenCalledWith({
         title: 'Autenticación requerida',
         description: 'Debes iniciar sesión para realizar una compra',
@@ -252,9 +261,8 @@ describe('Checkout Integration Tests', () => {
         logout: jest.fn(),
         role: 'user',
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: true,
-        setRole: jest.fn(),
       });
 
       mockUseCart.mockReturnValue({
@@ -298,9 +306,8 @@ describe('Checkout Integration Tests', () => {
         logout: jest.fn(),
         role: 'user',
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: true,
-        setRole: jest.fn(),
       });
 
       mockUseCart.mockReturnValue({
@@ -342,10 +349,12 @@ describe('Checkout Integration Tests', () => {
       // Simulate API error
       onErrorCallback();
 
-      const mockToaster = require('../../../core/components/ui/toaster').toaster;
+      const mockToaster =
+        require('../../../core/components/ui/toaster').toaster;
       expect(mockToaster.create).toHaveBeenCalledWith({
         title: 'Error en la compra',
-        description: 'Ocurrió un error al procesar tu compra. Por favor, intenta nuevamente.',
+        description:
+          'Ocurrió un error al procesar tu compra. Por favor, intenta nuevamente.',
         type: 'error',
       });
     });
@@ -360,9 +369,8 @@ describe('Checkout Integration Tests', () => {
         logout: jest.fn(),
         role: 'user',
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: true,
-        setRole: jest.fn(),
       });
 
       mockUseCart.mockReturnValue({

@@ -8,9 +8,9 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { API_BASE_URL } from '../config/api.config';
 import { useAuth } from '../contexts/auth-context';
 import { useGetDataFromBackend } from '../hooks/useGetDataFromBackend';
+import { loginUser, type User } from './login.api';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -23,25 +23,15 @@ export const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { callback: loginCallback } = useGetDataFromBackend<any>({
-    url: `${API_BASE_URL}/api/v1/users/login-without-password`,
+  const { callback: loginCallback } = useGetDataFromBackend<User>({
+    url: loginUser(),
     options: {
       method: 'POST',
       body: { email },
     },
-    executeAutomatically: false,
-    onSuccess: (data: any) => {
-      const user = {
-        id: (data.id as string) || (data._id as string) || '',
-        name: data.name || data.email || 'Usuario',
-        email: data.email,
-        role: (data.role as any) || 'user',
-      };
+    onSuccess: (user) => {
       login(user);
       onClose();
-    },
-    onError: (err: any) => {
-      throw err;
     },
   });
 

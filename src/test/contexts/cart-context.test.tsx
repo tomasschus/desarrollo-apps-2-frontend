@@ -1,11 +1,11 @@
-import { render, screen, act } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
+import type { ReactNode } from 'react';
+import { AuthProvider } from '../../core/contexts/auth-context';
 import {
   CartProvider,
   useCart,
   type CartItem,
 } from '../../core/contexts/cart-context';
-import { AuthProvider } from '../../core/contexts/auth-context';
-import type { ReactNode } from 'react';
 
 // Mock useLocalStorage
 jest.mock('../../core/hooks/useLocalStorage', () => ({
@@ -33,8 +33,8 @@ jest.mock('../../core/contexts/auth-context', () => ({
   useAuth: jest.fn(),
 }));
 
-import useLocalStorage from '../../core/hooks/useLocalStorage';
 import { useAuth } from '../../core/contexts/auth-context';
+import useLocalStorage from '../../core/hooks/useLocalStorage';
 
 const mockUseLocalStorage = useLocalStorage as jest.MockedFunction<
   typeof useLocalStorage
@@ -102,11 +102,10 @@ describe('CartContext', () => {
       isLogged: true,
       role: 'user',
       isAdmin: false,
-      isOperator: false,
+      isSupervisor: false,
       isUser: true,
       login: jest.fn(),
       logout: jest.fn(),
-      setRole: jest.fn(),
     });
 
     // Clear the mock calls
@@ -151,11 +150,10 @@ describe('CartContext', () => {
         isLogged: false,
         role: null,
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(<TestComponent />, { wrapper: Wrapper });
@@ -223,11 +221,10 @@ describe('CartContext', () => {
         isLogged: false,
         role: null,
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       render(<TestComponent />, { wrapper: Wrapper });
@@ -279,11 +276,10 @@ describe('CartContext', () => {
         isLogged: false,
         role: null,
         isAdmin: false,
-        isOperator: false,
+        isSupervisor: false,
         isUser: false,
         login: jest.fn(),
         logout: jest.fn(),
-        setRole: jest.fn(),
       });
 
       const setStoredItems = jest.fn();

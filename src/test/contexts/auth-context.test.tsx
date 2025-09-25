@@ -1,4 +1,4 @@
-import { render, screen, act } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import {
   AuthProvider,
   useAuth,
@@ -30,7 +30,7 @@ const TestComponent = () => {
       <div data-testid="isLogged">{auth.isLogged.toString()}</div>
       <div data-testid="role">{auth.role || 'null'}</div>
       <div data-testid="isAdmin">{auth.isAdmin.toString()}</div>
-      <div data-testid="isOperator">{auth.isOperator.toString()}</div>
+      <div data-testid="isSupervisor">{auth.isSupervisor.toString()}</div>
       <div data-testid="isUser">{auth.isUser.toString()}</div>
       <div data-testid="userName">{auth.user?.name || 'null'}</div>
       <button
@@ -46,7 +46,6 @@ const TestComponent = () => {
         Login
       </button>
       <button onClick={() => auth.logout()}>Logout</button>
-      <button onClick={() => auth.setRole(UserRole.ADMIN)}>Set Admin</button>
     </div>
   );
 };
@@ -73,7 +72,7 @@ describe('AuthContext', () => {
       expect(screen.getByTestId('isLogged')).toHaveTextContent('false');
       expect(screen.getByTestId('role')).toHaveTextContent('null');
       expect(screen.getByTestId('isAdmin')).toHaveTextContent('false');
-      expect(screen.getByTestId('isOperator')).toHaveTextContent('false');
+      expect(screen.getByTestId('isSupervisor')).toHaveTextContent('false');
       expect(screen.getByTestId('isUser')).toHaveTextContent('false');
       expect(screen.getByTestId('userName')).toHaveTextContent('null');
     });
@@ -116,7 +115,7 @@ describe('AuthContext', () => {
       expect(screen.getByTestId('isLogged')).toHaveTextContent('true');
       expect(screen.getByTestId('role')).toHaveTextContent('admin');
       expect(screen.getByTestId('isAdmin')).toHaveTextContent('true');
-      expect(screen.getByTestId('isOperator')).toHaveTextContent('false');
+      expect(screen.getByTestId('isSupervisor')).toHaveTextContent('false');
       expect(screen.getByTestId('isUser')).toHaveTextContent('false');
       expect(screen.getByTestId('userName')).toHaveTextContent('Stored User');
     });
@@ -312,19 +311,19 @@ describe('AuthContext', () => {
       render(<TestComponent />, { wrapper: Wrapper });
 
       expect(screen.getByTestId('isAdmin')).toHaveTextContent('true');
-      expect(screen.getByTestId('isOperator')).toHaveTextContent('false');
+      expect(screen.getByTestId('isSupervisor')).toHaveTextContent('false');
       expect(screen.getByTestId('isUser')).toHaveTextContent('false');
     });
 
-    it('should correctly identify operator role', () => {
+    it('should correctly identify supervisor role', () => {
       mockUseLocalStorage.mockImplementation((key) => {
         if (key === 'auth_user') {
           return {
             value: {
               id: '1',
-              name: 'Operator User',
-              email: 'operator@example.com',
-              role: UserRole.OPERATOR,
+              name: 'supervisor User',
+              email: 'supervisor@example.com',
+              role: UserRole.SUPERVISOR,
             },
             setValue: jest.fn(),
             removeValue: jest.fn(),
@@ -342,7 +341,7 @@ describe('AuthContext', () => {
       render(<TestComponent />, { wrapper: Wrapper });
 
       expect(screen.getByTestId('isAdmin')).toHaveTextContent('false');
-      expect(screen.getByTestId('isOperator')).toHaveTextContent('true');
+      expect(screen.getByTestId('isSupervisor')).toHaveTextContent('true');
       expect(screen.getByTestId('isUser')).toHaveTextContent('false');
     });
 
@@ -372,7 +371,7 @@ describe('AuthContext', () => {
       render(<TestComponent />, { wrapper: Wrapper });
 
       expect(screen.getByTestId('isAdmin')).toHaveTextContent('false');
-      expect(screen.getByTestId('isOperator')).toHaveTextContent('false');
+      expect(screen.getByTestId('isSupervisor')).toHaveTextContent('false');
       expect(screen.getByTestId('isUser')).toHaveTextContent('true');
     });
   });
